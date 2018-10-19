@@ -1,0 +1,30 @@
+#include <iostream>
+#include "heatEquation.hpp"
+#include <vector>
+#include <array>
+
+int main(int argc, char* argv[])
+{
+
+double T = 4.0;
+
+int n = 3;
+
+int m = 4;
+
+double h = 1/n;
+
+double a = pow(m_pi,-2);
+
+std::vector<double> initialSpaceNodes;
+std::vector<double> initialTimeNodes;
+
+
+std::vector<double> Diagonal = {3, 5};
+std::vector<double> LowerDiag = {0, 3};
+std::vector<double> UpperDiag = {4, 0};
+std::vector<double> f = {2, 16};
+std::vector<double> x = {0, 0};
+
+
+}

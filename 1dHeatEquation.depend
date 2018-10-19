@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1539899956 source:c:\users\thabo\desktop\1dheatequation\driver.cpp
+	<iostream>
+	"heatEquation.hpp"
+
+1539903917 c:\users\thabo\desktop\1dheatequation\heatequation.hpp
+	<iostream>
+
+1539899772 source:c:\users\thabo\desktop\1dheatequation\heatequation.cpp
+

@@ -50,7 +50,7 @@ void HeatEquation::TridiagonalMatrixSolver( int n,
                            std::vector<double> currentTimeNodes )
     {
         mCurrentSpaceNodes = currentSpaceNodes;
-        mCurrentTimeNodes = currentTimeNodes:
+        mCurrentTimeNodes = currentTimeNodes;
 
     }
 

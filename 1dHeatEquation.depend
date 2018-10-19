@@ -12,16 +12,26 @@
 	<iostream>
 	"heatEquation.hpp"
 
-1539983456 c:\users\thabo\desktop\heatequationdis\heatequation.hpp
+1539992317 c:\users\thabo\desktop\heatequationdis\heatequation.hpp
 	<iostream>
 	<vector>
 	<array>
 
-1539903935 source:c:\users\thabo\desktop\heatequationdis\heatequation.cpp
+1539992185 source:c:\users\thabo\desktop\heatequationdis\heatequation.cpp
 	<iostream>
 	"heatEquation.hpp"
+	<vector>
+	<array>
 
 1539983357 source:c:\users\thabo\desktop\heatequationdis\driver1.cpp
+	<iostream>
+	<cmath>
+	"heatEquation.hpp"
+	<vector>
+	<array>
+	<math.h>
+
+1539991645 source:c:\users\thabo\desktop\heatequationdis\driver2.cpp
 	<iostream>
 	<cmath>
 	"heatEquation.hpp"

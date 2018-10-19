@@ -11,10 +11,9 @@ public:
 
     void SetVariables( int n, int m, double T, double a );
 
-    void SetSystem( int n,
-         std::vector<double> Diagonal, std::vector<double> LowerDiag,
-         std::vector<double> UpperDiag, std::vector<double> f,
-         std::vector<double> x );
+    void SetSystem( std::vector<double> Diagonal,
+        std::vector<double> LowerDiag, std::vector<double> UpperDiag,
+        std::vector<double> f, std::vector<double> x );
 
 
 private:
@@ -23,7 +22,7 @@ private:
          std::vector<double> UpperDiag, std::vector<double> f,
          std::vector<double> &x );
 
-    void TimeStepper();
+//    void TimeStepper();
 
 
     int mn, mm;

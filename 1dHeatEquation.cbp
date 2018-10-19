@@ -31,7 +31,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Driver.cpp" />
+		<Unit filename="Driver2.cpp" />
 		<Unit filename="heatEquation.cpp" />
 		<Unit filename="heatEquation.hpp" />
 		<Extensions>

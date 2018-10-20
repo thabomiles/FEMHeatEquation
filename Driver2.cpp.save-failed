@@ -34,8 +34,8 @@ for(int i=1; i<=n; i++)
         initialSpaceMesh.push_back( initialSpaceNodes.at(i)- initialSpaceNodes.at(i-1) );
     }
 
-        for (auto i: initialSpaceNodes)
-            std::cout << i << ' ';
+        for (auto j: initialSpaceNodes)
+            std::cout << j << ' ';
 
 
 
@@ -48,7 +48,7 @@ for(int i=1; i<n-1; i++)
     {
         MassDiagonal.push_back( (initialSpaceMesh.at(i-1)+initialSpaceMesh.at(i))*pow(3,-1) );
         MassLowerDiag.push_back( initialSpaceMesh.at(i-1)*pow(3,-1) );
-        MassUpperDiag.push_back( initialSpaceMesh.at(i))*pow(3,-1) );
+        MassUpperDiag.push_back( (initialSpaceMesh.at(i)*pow(3,-1)) );
     }
 
 MassDiagonal.push_back( initialSpaceMesh.at(n-1)*pow(3,-1)) );

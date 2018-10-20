@@ -27,10 +27,6 @@ public:
     void BuildMassMatrix ( int n, std::vector<double> SpaceMesh,
          std::vector<double> &MassDiagonal, std::vector<double> &MassLowerDiag,
          std::vector<double> &MassUpperDiag  );
-
-    void BuildStiffnessMatrix ( int n, double a, std::vector<double> SpaceMesh,
-         std::vector<double> &StiffnessDiagonal, std::vector<double> &StiffnessLowerDiag,
-         std::vector<double> &StiffnessUpperDiag  );
 private:
 
 //    void TimeStepper();

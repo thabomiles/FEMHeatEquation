@@ -15,6 +15,10 @@ public:
         std::vector<double> LowerDiag, std::vector<double> UpperDiag,
         std::vector<double> f, std::vector<double> x );
 
+    void MatrixVectorMultiplier ( int n, std::vector<double> Diagonal,
+        std::vector<double> LowerDiag, std::vector<double> UpperDiag,
+        std::vector<double> f, std::vector<double> &ProductVector);
+
 
 private:
     void TridiagonalMatrixSolver( int n,
@@ -37,9 +41,6 @@ private:
 
     std::vector<double> mCurrentSpaceNodes;
     std::vector<double> mCurrentTimeNodes;
-
-
-
 
 };
 

@@ -54,6 +54,21 @@ void HeatEquation::TridiagonalMatrixSolver( int n,
 
     }
 
+    void HeatEquation::MatrixVectorMultiplier ( int n, std::vector<double> Diagonal,
+        std::vector<double> LowerDiag, std::vector<double> UpperDiag,
+        std::vector<double> f, std::vector<double> &ProductVector )
+    {
+        ProductVector.assign( n, 0 );
+
+        ProductVector.at(0) = Diagonal.at(0)*f.at(0)+UpperDiag.at(0)*f.at(1);
+        ProductVector.at(n-1) = LowerDiag.at(n-1)*f.at(n-2)+Diagonal.at(n-1)*f.at(n-1);
+
+            for (int j = 1; j<n-1; j++)
+            {
+                ProductVector.at(j) = LowerDiag.at(j)*f.at(j)+Diagonal.at(j)*f.at(j)+UpperDiag.at(j)*f.at(j+1);
+            }
+
+    }
 
 
 //void HeatEquation::TimeStepper

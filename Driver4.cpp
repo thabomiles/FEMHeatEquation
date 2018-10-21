@@ -71,28 +71,9 @@ for (int i = 0; i<n-1; i++)
 
 }
 
-        for (auto j: Diagonal)
-            std::cout << j << ' ';
-
-        std::cout << " \n";
-
-
-        for (auto j: LowerDiag)
-            std::cout << j << ' ';
-        std::cout << " \n";
-
-        for (auto j: UpperDiag)
-            std::cout << j << ' ';
-
-        std::cout << " \n";
 
 
 heat.MatrixVectorMultiplier(n-1, MassDiagonal, MassLowerDiag, MassUpperDiag, PreviousSolution, f);
-
-        for (auto j: f)
-            std::cout << j << ' ';
-
-        std::cout << " \n";
 
 
 heat.TridiagonalMatrixSolver(n-1, Diagonal, LowerDiag, UpperDiag, f, x);
@@ -106,32 +87,6 @@ heat.TridiagonalMatrixSolver(n-1, Diagonal, LowerDiag, UpperDiag, f, x);
         for (auto j: AnalyticSolution)
             std::cout << j << ' ';
         std::cout << " \n";
-
-//        for (auto j: x)
-//            std::cout << j << ' ';
-//
-//        std::cout << " \n";
-
-
-
-
-
-
-
-
-//        for (auto j: x)
-//            std::cout << j << ' ';
-//        std::cout << " \n";
-//
-//
-//        for (auto j: StiffnessUpperDiag)
-//            std::cout << j << ' ';
-//
-//        std::cout << " \n";
-//
-//
-//        for (auto j: StiffnessLowerDiag)
-//            std::cout << j << ' ';
 
 
 

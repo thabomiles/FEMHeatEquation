@@ -13,7 +13,7 @@ double T = 1.0;
     //n is the number of elements i.e. 1 less than the number of nodes
 int n = 10;
 
-int m = 50;
+int m = 100;
 
 double h = pow( n, -1);
 
@@ -65,10 +65,9 @@ for (int i = 0; i<n-1; i++)
     LowerDiag.push_back( MassLowerDiag.at(i) + initialTimeMesh.at(i)*StiffnessLowerDiag.at(i) );
 
 //        actually the analytic solution at next time step
-    AnalyticSolution.push_back(exp(-4*initialTimeNodes.at(1))*
-                               sin(2*M_PI*initialSpaceNodes.at(i+1))+initialSpaceNodes.at(i+1));
-    PreviousSolution.push_back(exp(-4*initialTimeNodes.at(0))*
-                               sin(2*M_PI*initialSpaceNodes.at(i+1))+initialSpaceNodes.at(i+1));
+    AnalyticSolution.push_back(exp(initialTimeNodes.at(1))*6*
+                               sin(M_PI*initialSpaceNodes.at(i+1)));
+    PreviousSolution.push_back(6*sin(M_PI*initialSpaceNodes.at(i+1)));
 
 }
 

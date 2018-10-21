@@ -7,6 +7,9 @@
 class HeatEquation
 {
 public:
+
+    void Solve();
+
     void SetSpaceTimeMesh( std::vector<double> currentSpaceNodes, std::vector<double> currentTimeNodes );
 
     void SetVariables( int n, int m, double T, double a );

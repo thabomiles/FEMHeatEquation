@@ -8,12 +8,12 @@
 int main(int argc, char* argv[])
 {
 
-double T = 4.0;
+double T = 1.0;
 
     //n is the number of elements i.e. 1 less than the number of nodes
-int n = 4;
+int n = 9;
 
-int m = 4;
+int m = 9;
 
 double h = pow( n, -1);
 
@@ -46,10 +46,62 @@ std::vector<double> StiffnessUpperDiag;
 HeatEquation heat;
 
 heat.BuildStiffnessMatrix(n, a, initialSpaceMesh, StiffnessDiagonal, StiffnessLowerDiag, StiffnessUpperDiag);
-heat.BuildMassMatrix(n, initialSpaceMesh, StiffnessDiagonal, StiffnessLowerDiag, StiffnessUpperDiag);
+heat.BuildMassMatrix(n, initialSpaceMesh, MassDiagonal, MassLowerDiag, MassUpperDiag);
+
+std::vector<double> Diagonal;
+std::vector<double> LowerDiag;
+std::vector<double> UpperDiag;
+std::vector<double> f;
+std::vector<double> x;
+std::vector<double> AnalyticSolution;
+std::vector<double> PreviousSolution;
+
+x.assign( n-1, 0 );
+
+for (int i = 0; i<n-1; i++)
+{
+    Diagonal.push_back( MassDiagonal.at(i) + initialTimeMesh.at(i)*StiffnessDiagonal.at(i) );
+    UpperDiag.push_back( MassUpperDiag.at(i) + initialTimeMesh.at(i)*StiffnessUpperDiag.at(i) );
+    Diagonal.push_back( MassLowerDiag.at(i) + initialTimeMesh.at(i)*StiffnessLowerDiag.at(i) );
+
+//        actually the analytic solution at next time step
+    AnalyticSolution.push_back(exp(-4*initialTimeNodes.at(1))*sin(2*M_PI*initialSpaceNodes.at(i+1)));
+    PreviousSolution.push_back(exp(-4*initialTimeNodes.at(0))*
+                               sin(2*M_PI*initialSpaceNodes.at(i+1))+initialSpaceNodes.at(i+1));
+
+}
+
+heat.MatrixVectorMultiplier(n-1, MassDiagonal, MassLowerDiag, MassUpperDiag, PreviousSolution, f);
 
 
-//        for (auto j: StiffnessDiagonal)
+std::cout << Diagonal.size() << ' ';
+
+
+//heat.TridiagonalMatrixSolver(n-1, Diagonal, LowerDiag, UpperDiag, f, x);
+
+        for (auto j: x)
+            std::cout << j << ' ';
+
+        std::cout << " \n";
+//
+//
+//        for (auto j: AnalyticSolution)
+//            std::cout << j << ' ';
+//        std::cout << " \n";
+//
+//        for (auto j: x)
+//            std::cout << j << ' ';
+//
+//        std::cout << " \n";
+
+
+
+
+
+
+
+
+//        for (auto j: x)
 //            std::cout << j << ' ';
 //        std::cout << " \n";
 //
@@ -62,30 +114,6 @@ heat.BuildMassMatrix(n, initialSpaceMesh, StiffnessDiagonal, StiffnessLowerDiag,
 //
 //        for (auto j: StiffnessLowerDiag)
 //            std::cout << j << ' ';
-
-std::vector<double> Diagonal;
-std::vector<double> LowerDiag;
-std::vector<double> UpperDiag;
-std::vector<double> f;
-std::vector<double> x;
-std::vector<double> AnalyticSolution;
-x.assign( n-2, 0 );
-
-for (int i = 0; i<n-2; i++)
-{
-    Diagonal.push_back( MassDiagonal.at(i) + initialTimeMesh.at(i)*StiffnessDiagonal.at(i) );
-    UpperDiag.push_back( MassUpperDiag.at(i) + initialTimeMesh.at(i)*StiffnessUpperDiag.at(i) );
-    Diagonal.push_back( MassLowerDiag.at(i) + initialTimeMesh.at(i)*StiffnessLowerDiag.at(i) );
-
-        //actually the analytic solution at next time step
-    AnalyticSolution.push_back(exp(-4*initialTimeNodes.at(1))*sin(2*M_PI*initialSpaceNodes.at(i+1)));
-    f.push_back(exp(-4*initialTimeNodes.at(0))*sin(2*M_PI*initialSpaceNodes.at(i+1)));
-
-}
-
-
-
-
 
 
 

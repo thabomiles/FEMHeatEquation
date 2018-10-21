@@ -33,22 +33,9 @@ for(int i=1; i<=n; i++)
         initialSpaceMesh.push_back( initialSpaceNodes.at(i)- initialSpaceNodes.at(i-1) );
     }
 
-
-
-//std::vector<double> StiffnessDiagonal = { a*pow( initialSpaceMesh.at(0), -1) };
-//std::vector<double> StiffnessLowerDiag = {0};
-//std::vector<double> StiffnessUpperDiag = { -1*a*pow( initialSpaceMesh.at(0), -1 ) };
-//
-//for(int i=1; i<n-2; i++)
-//    {
-//        StiffnessDiagonal.push_back( a*pow(initialSpaceMesh.at(i-1), -1) + a*pow(initialSpaceMesh.at(i), -1) );
-//        StiffnessLowerDiag.push_back( -1*a*pow(initialSpaceMesh.at(i-1),-1)  );
-//        StiffnessUpperDiag.push_back( -1*a*pow(initialSpaceMesh.at(i), -1) );
-//    }
-//
-//StiffnessDiagonal.push_back( a*pow(initialSpaceMesh.at(n-2), -1) + a*pow(initialSpaceMesh.at(n-3), -1) );
-//StiffnessLowerDiag.push_back( -1*a*pow(initialSpaceMesh.at(n-2),-1) );
-//StiffnessUpperDiag.push_back( 0 );
+std::vector<double> MassDiagonal;
+std::vector<double> MassLowerDiag;
+std::vector<double> MassUpperDiag;
 
 std::vector<double> StiffnessDiagonal;
 std::vector<double> StiffnessLowerDiag;

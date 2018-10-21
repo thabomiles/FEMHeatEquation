@@ -31,6 +31,7 @@ public:
     void BuildStiffnessMatrix ( int n, double a, std::vector<double> SpaceMesh,
          std::vector<double> &StiffnessDiagonal, std::vector<double> &StiffnessLowerDiag,
          std::vector<double> &StiffnessUpperDiag  );
+
 private:
 
 //    void TimeStepper();

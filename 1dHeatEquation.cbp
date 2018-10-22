@@ -31,7 +31,11 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Driver4.cpp" />
+		<Unit filename="Driver5WithNewClasses.cpp" />
+		<Unit filename="MassMatrix.cpp" />
+		<Unit filename="MassMatrix.hpp" />
+		<Unit filename="StiffnessMatrix.cpp" />
+		<Unit filename="StiffnessMatrix.hpp" />
 		<Unit filename="TriDiagMatrix.cpp" />
 		<Unit filename="TriDiagMatrix.hpp" />
 		<Unit filename="heatEquation.cpp" />

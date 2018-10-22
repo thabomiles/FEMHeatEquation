@@ -8,19 +8,21 @@ class TriDiagMatrix
 {
 public:
 
-    void SetMatrix( int n, std::vector<double> Diagonal,
+    void SetMatrix( std::vector<double> Diagonal,
         std::vector<double> LowerDiag, std::vector<double> UpperDiag);
 
     void MatrixVectorMultiplier ( std::vector<double> f, std::vector<double> &ProductVector);
 
-//    void TridiagonalMatrixSolver( std::vector<double> f,
-//         std::vector<double> &x );
+    void PrintMatrix();
 
-    void BuildMassMatrix ();
+    void MatrixSolver( std::vector<double> f,
+         std::vector<double> &x );
 
-    void BuildStiffnessMatrix ();
+    void MultiplyByScalar (double k);
 
-private:
+    void AddTwoMatrices ( TriDiagMatrix firstMatrix, TriDiagMatrix secondMatix );
+
+protected:
 
     int mpn;
 

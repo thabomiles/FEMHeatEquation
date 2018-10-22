@@ -32,6 +32,10 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="Driver1.cpp" />
+		<Unit filename="MassMatrix.cpp" />
+		<Unit filename="MassMatrix.hpp" />
+		<Unit filename="StiffnessMatrix.cpp" />
+		<Unit filename="StiffnessMatrix.hpp" />
 		<Unit filename="TriDiagMatrix.cpp" />
 		<Unit filename="TriDiagMatrix.hpp" />
 		<Extensions>

@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1540171762 source:c:\users\thabo\desktop\heatequationdis\class of matrices\tridiag\tridiagmatrix.cpp
+	<iostream>
+	<vector>
+	<array>
+	"TriDiagMatrix.hpp"
+
+1540171004 c:\users\thabo\desktop\heatequationdis\class of matrices\tridiag\tridiagmatrix.hpp
+	<iostream>
+	<vector>
+	<array>
+
+1540172035 source:c:\users\thabo\desktop\heatequationdis\class of matrices\tridiag\driver1.cpp
+	<iostream>
+	<cmath>
+	"TriDiagMatrix.hpp"
+	<vector>
+	<array>
+	<math.h>
+

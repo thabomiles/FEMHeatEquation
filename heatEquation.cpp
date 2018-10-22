@@ -72,7 +72,7 @@ void HeatEquation::MatrixVectorMultiplier ( int n, std::vector<double> Diagonal,
 
             for (int j = 1; j<n-1; j++)
             {
-                ProductVector.at(j) = LowerDiag.at(j)*f.at(j)+Diagonal.at(j)*f.at(j)+UpperDiag.at(j)*f.at(j+1);
+                ProductVector.at(j) = LowerDiag.at(j)*f.at(j-1)+Diagonal.at(j)*f.at(j)+UpperDiag.at(j)*f.at(j+1);
             }
 
     }

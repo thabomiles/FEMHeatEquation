@@ -49,11 +49,22 @@
 	<array>
 	<math.h>
 
-1540168148 source:c:\users\thabo\desktop\heatequationdis\driver4.cpp
+1540169236 source:c:\users\thabo\desktop\heatequationdis\driver4.cpp
 	<iostream>
 	<cmath>
 	"heatEquation.hpp"
 	<vector>
 	<array>
 	<math.h>
+
+1540170322 source:c:\users\thabo\desktop\heatequationdis\tridiagmatrix.cpp
+	<iostream>
+	<vector>
+	<array>
+	"TriDiagMatrix.hpp"
+
+1540170350 c:\users\thabo\desktop\heatequationdis\tridiagmatrix.hpp
+	<iostream>
+	<vector>
+	<array>
 

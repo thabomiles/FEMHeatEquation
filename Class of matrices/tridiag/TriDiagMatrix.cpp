@@ -44,6 +44,3 @@ void TriDiagMatrix::MatrixVectorMultiplier ( std::vector<double> f, std::vector<
 //    void TridiagonalMatrixSolver( std::vector<double> f,
 //         std::vector<double> &x );
 
-void BuildMassMatrix ();
-
-void BuildStiffnessMatrix ();

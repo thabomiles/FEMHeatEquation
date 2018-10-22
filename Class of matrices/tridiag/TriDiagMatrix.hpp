@@ -18,11 +18,7 @@ public:
 //    void TridiagonalMatrixSolver( std::vector<double> f,
 //         std::vector<double> &x );
 
-    void BuildMassMatrix ();
-
-    void BuildStiffnessMatrix ();
-
-private:
+protected:
 
     int mpn;
 

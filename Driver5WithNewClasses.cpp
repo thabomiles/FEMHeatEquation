@@ -14,10 +14,10 @@ int main(int argc, char* argv[])
 double T = 1.0;
 
     //n is the number of elements i.e. 1 less than the number of nodes
-int n = 8;
+int n = 4;
 
     //number of time steps i.e. 1 less than the number of nodes
-int m = 16;
+int m = 4;
 
 double h = pow( n, -1);
 
@@ -65,15 +65,18 @@ std::vector<double> RHS;
 
 for (int i = 0; i<n-1; i++)
 {
-    AnalyticSolution.push_back(exp(-initialTimeNodes.at(1))*6*
-                               sin(M_PI*initialSpaceNodes.at(i+1)));
     PreviousSolution.push_back(6*sin(M_PI*initialSpaceNodes.at(i+1)));
 }
 
-LHS.PrintMatrix();
+for(int j = 0; j<m; j++)
+{
+    for (int i = 0; i<n-1; i++)
+{
+    AnalyticSolution.push_back(exp(-initialTimeNodes.at(j+1))*6*
+                               sin(M_PI*initialSpaceNodes.at(i+1)));
+}
 
 mass.MatrixVectorMultiplier( PreviousSolution, RHS );
-
 
 LHS.MatrixSolver( RHS, x );
 
@@ -87,6 +90,10 @@ LHS.MatrixSolver( RHS, x );
         for (auto j: AnalyticSolution)
             std::cout << j << ' ';
         std::cout << " \n";
+
+        AnalyticSolution.clear();
+        PreviousSolution = x;
+}
 
 
 

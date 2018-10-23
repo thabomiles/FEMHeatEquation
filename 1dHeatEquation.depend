@@ -12,12 +12,12 @@
 	<iostream>
 	"heatEquation.hpp"
 
-1540148746 c:\users\thabo\desktop\heatequationdis\heatequation.hpp
+1540320021 c:\users\thabo\desktop\heatequationdis\heatequation.hpp
 	<iostream>
 	<vector>
 	<array>
 
-1540172388 source:c:\users\thabo\desktop\heatequationdis\heatequation.cpp
+1540320171 source:c:\users\thabo\desktop\heatequationdis\heatequation.cpp
 	<iostream>
 	<cmath>
 	"heatEquation.hpp"
@@ -96,7 +96,7 @@
 	<vector>
 	<array>
 
-1540293584 source:c:\users\thabo\desktop\heatequationdis\driver5withnewclasses.cpp
+1540320148 source:c:\users\thabo\desktop\heatequationdis\driver5withnewclasses.cpp
 	<iostream>
 	<cmath>
 	<vector>
@@ -106,4 +106,6 @@
 	"TriDiagMatrix.hpp"
 	"MassMatrix.hpp"
 	"StiffnessMatrix.hpp"
+	<fstream>
+	<string>
 

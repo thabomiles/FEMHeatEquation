@@ -7,6 +7,9 @@
 #include "TriDiagMatrix.hpp"
 #include "MassMatrix.hpp"
 #include "StiffnessMatrix.hpp"
+#include <fstream>
+#include <string>
+using namespace std;
 
 int main(int argc, char* argv[])
 {
@@ -68,6 +71,9 @@ for (int i = 0; i<n-1; i++)
     PreviousSolution.push_back(6*sin(M_PI*initialSpaceNodes.at(i+1)));
 }
 
+ofstream myfile;
+  myfile.open ("soultion1.txt");
+
 for(int j = 0; j<m; j++)
 {
     for (int i = 0; i<n-1; i++)
@@ -81,21 +87,30 @@ mass.MatrixVectorMultiplier( PreviousSolution, RHS );
 LHS.MatrixSolver( RHS, x );
 
 
-        for (auto j: x)
-            std::cout << j << ' ';
+        for (auto k: x)
+            std::cout << k << ' ';
 
+        for (auto k: x)
+            myfile << k <<  " ," ;
+
+        myfile << "\n";
         std::cout << " \n";
 
 
-        for (auto j: AnalyticSolution)
-            std::cout << j << ' ';
+
+
+        for (auto k: AnalyticSolution)
+            std::cout << k << ' ';
         std::cout << " \n";
+
+
+
 
         AnalyticSolution.clear();
         PreviousSolution = x;
 }
 
-
+        myfile.close();
 
 }
 

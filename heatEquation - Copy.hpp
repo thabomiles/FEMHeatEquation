@@ -44,8 +44,12 @@ private:
 
     double mT, ma;
 
+    std::vector<double> mCurrentDiagonal;
+    std::vector<double> mCurrentLowerDiag;
+    std::vector<double> mCurrentUpperDiag;
     std::vector<double> mCurrentf;
     std::vector<double> mCurrentSolution;
+
     std::vector<double> mCurrentSpaceNodes;
     std::vector<double> mCurrentTimeNodes;
 

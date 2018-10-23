@@ -14,10 +14,10 @@ int main(int argc, char* argv[])
 double T = 1.0;
 
     //n is the number of elements i.e. 1 less than the number of nodes
-int n = 3;
+int n = 8;
 
     //number of time steps i.e. 1 less than the number of nodes
-int m = 4;
+int m = 16;
 
 double h = pow( n, -1);
 
@@ -44,12 +44,6 @@ for(int i=1; i<=m; i++)
     }
 
 
-//                for (auto j: initialTimeMesh)
-//            std::cout << j << ' ';
-//                    std::cout << " \n";
-
-            //std::cout << initialSpaceMesh.size() << ' ';
-
 StiffnessMatrix stiff;
 stiff.BuildStiffnessMatrix( a, initialSpaceMesh );
 
@@ -69,24 +63,17 @@ std::vector<double> AnalyticSolution;
 std::vector<double> PreviousSolution;
 std::vector<double> RHS;
 
-
 for (int i = 0; i<n-1; i++)
 {
-    AnalyticSolution.push_back(exp(initialTimeNodes.at(1))*6*
+    AnalyticSolution.push_back(exp(-initialTimeNodes.at(1))*6*
                                sin(M_PI*initialSpaceNodes.at(i+1)));
     PreviousSolution.push_back(6*sin(M_PI*initialSpaceNodes.at(i+1)));
 }
 
+LHS.PrintMatrix();
 
 mass.MatrixVectorMultiplier( PreviousSolution, RHS );
 
-                for (auto j: PreviousSolution)
-            std::cout << j << ' ';
-            std::cout << " \n";
-
-                for (auto j: RHS)
-            std::cout << j << ' ';
-            std::cout << " \n";
 
 LHS.MatrixSolver( RHS, x );
 

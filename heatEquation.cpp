@@ -1,44 +1,115 @@
 #include <iostream>
 #include <cmath>
-#include "heatEquation.hpp"
+#include <math.h>
+#include <iostream>
 #include <vector>
 #include <array>
-#include <math.h>
+#include "heatEquation.hpp"
+#include "TriDiagMatrix.hpp"
+#include "MassMatrix.hpp"
+#include "StiffnessMatrix.hpp"
+#include <fstream>
+#include <string>
+using namespace std;
+
+HeatEquation::HeatEquation ( double endTime, int numberOfTimeSteps, int numberOfSpaceElements,
+                            const std::string outputFileName )
+{
+    mT = endTime;
+    mm = numberOfTimeSteps;
+    mn = numberOfSpaceElements;
+    moutputFileName = outputFileName;
+
+}
 
 void HeatEquation::Solve()
 {
 
+double h = pow( mn, -1);
+
+double M_PI = 2*acos(0);
+
+double a = pow(M_PI,-2);
+
+std::vector<double> initialSpaceNodes = {0};
+std::vector<double> initialTimeNodes = {0};
+std::vector<double> initialSpaceMesh;
+std::vector<double> initialTimeMesh;
+
+
+for(int i=1; i<=mn; i++)
+    {
+        initialSpaceNodes.push_back( i*h );
+        initialSpaceMesh.push_back( initialSpaceNodes.at(i)- initialSpaceNodes.at(i-1) );
+    }
+
+for(int i=1; i<=mm; i++)
+    {
+        initialTimeNodes.push_back( i*(mT/mm) );
+        initialTimeMesh.push_back( initialTimeNodes.at(i)- initialTimeNodes.at(i-1) );
+    }
+
+
+StiffnessMatrix stiff;
+stiff.BuildStiffnessMatrix( a, initialSpaceMesh );
+
+stiff.MultiplyByScalar( initialTimeMesh.at(0) );
+
+
+
+MassMatrix mass;
+mass.BuildMassMatrix(initialSpaceMesh);
+
+TriDiagMatrix LHS;
+LHS.AddTwoMatrices( mass, stiff );
+
+
+std::vector<double> x;
+std::vector<double> AnalyticSolution;
+std::vector<double> PreviousSolution;
+std::vector<double> RHS;
+
+for (int i = 0; i<mn-1; i++)
+{
+    PreviousSolution.push_back(6*sin(M_PI*initialSpaceNodes.at(i+1)));
 }
 
-void HeatEquation::TridiagonalMatrixSolver( int n,
-         std::vector<double> Diagonal, std::vector<double> LowerDiag,
-         std::vector<double> UpperDiag, std::vector<double> f,
-         std::vector<double> &x )
-    {
-                  //scaling matrix entries
-    for(int i=1; i<n; i++)
-    {
-        Diagonal.at(i) = Diagonal.at(i)-(UpperDiag.at(i-1)*LowerDiag.at(i)/Diagonal.at(i-1));
-        f.at(i) = f.at(i)-(f.at(i-1)*LowerDiag.at(i)/Diagonal.at(i-1));
-    }
+ofstream myfile;
+  myfile.open (moutputFileName);
 
-        //solving through elimination
-     x.at(n-1)=f.at(n-1)/Diagonal.at(n-1);
-     for(int i=n-2; i>=0; i=i-1)
-     {
-         x.at(i) = (f.at(i) - UpperDiag.at(i)*x.at(i+1))/(Diagonal.at(i));
-     }
-    }
+for(int j = 0; j<mm; j++)
+{
+    for (int i = 0; i<mn-1; i++)
+{
+    AnalyticSolution.push_back(exp(-initialTimeNodes.at(j+1))*6*
+                               sin(M_PI*initialSpaceNodes.at(i+1)));
+}
+
+mass.MatrixVectorMultiplier( PreviousSolution, RHS );
+
+LHS.MatrixSolver( RHS, x );
 
 
-void HeatEquation::SetSystem( std::vector<double> Diagonal,
-            std::vector<double> LowerDiag, std::vector<double> UpperDiag,
-            std::vector<double> f, std::vector<double> x )
-    {
-        mCurrentf = f;
-        mCurrentSolution = x;
+        for (auto k: x)
+            std::cout << k << ' ';
 
-    }
+        for (auto k: x)
+            myfile << k <<  " ," ;
+
+        myfile << "\n";
+        std::cout << " \n";
+
+        for (auto k: AnalyticSolution)
+            std::cout << k << ' ';
+        std::cout << " \n";
+
+        AnalyticSolution.clear();
+        PreviousSolution = x;
+}
+
+        myfile.close();
+
+}
 
 
 //void HeatEquation::TimeStepper

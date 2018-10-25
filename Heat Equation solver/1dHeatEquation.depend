@@ -1,0 +1,115 @@
+# depslib dependency file v1.0
+1540508174 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\massmatrix.cpp
+	<iostream>
+	<vector>
+	<array>
+	"TriDiagMatrix.hpp"
+	"MassMatrix.hpp"
+	<cmath>
+	"SpaceMesh.hpp"
+
+1540228121 c:\users\thabo\desktop\heatequationdis\heat equation solver\tridiagmatrix.hpp
+	<iostream>
+	<vector>
+	<array>
+
+1540502690 c:\users\thabo\desktop\heatequationdis\heat equation solver\massmatrix.hpp
+	"TriDiagMatrix.hpp"
+	"SpaceMesh.hpp"
+	<iostream>
+	<vector>
+	<array>
+
+1540507833 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\stiffnessmatrix.cpp
+	<iostream>
+	<vector>
+	<array>
+	"TriDiagMatrix.hpp"
+	"StiffnessMatrix.hpp"
+	<cmath>
+
+1540503628 c:\users\thabo\desktop\heatequationdis\heat equation solver\stiffnessmatrix.hpp
+	"TriDiagMatrix.hpp"
+	"SpaceMesh.hpp"
+	<iostream>
+	<vector>
+	<array>
+
+1540238330 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\tridiagmatrix.cpp
+	<iostream>
+	<vector>
+	<array>
+	"TriDiagMatrix.hpp"
+
+1540509604 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\driver5withnewclasses.cpp
+	<iostream>
+	<cmath>
+	<vector>
+	<array>
+	<math.h>
+	"heatEquation.hpp"
+	"TriDiagMatrix.hpp"
+	"MassMatrix.hpp"
+	"StiffnessMatrix.hpp"
+	"GeneralMesh.hpp"
+	<fstream>
+	<string>
+
+1540504434 c:\users\thabo\desktop\heatequationdis\heat equation solver\heatequation.hpp
+	<iostream>
+	<vector>
+	<array>
+	"SpaceMesh.hpp"
+	"TimeMesh.hpp"
+
+1540493805 c:\users\thabo\desktop\heatequationdis\heat equation solver\generalmesh.hpp
+	<iostream>
+	<vector>
+	<array>
+
+1540493985 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\generalmesh.cpp
+	"GeneralMesh.hpp"
+	<iostream>
+	<vector>
+	<array>
+	<algorithm>
+
+1540502877 c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.hpp
+	<iostream>
+	<vector>
+	<array>
+
+1540501478 c:\users\thabo\desktop\heatequationdis\heat equation solver\timemesh.hpp
+	<iostream>
+	<vector>
+	<array>
+
+1540504240 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\heatequation.cpp
+	<iostream>
+	<cmath>
+	<math.h>
+	<iostream>
+	<vector>
+	<array>
+	"heatEquation.hpp"
+	"TriDiagMatrix.hpp"
+	"MassMatrix.hpp"
+	"StiffnessMatrix.hpp"
+	"GeneralMesh.hpp"
+	<fstream>
+	<string>
+
+1540509731 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.cpp
+	<iostream>
+	<vector>
+	<array>
+	<algorithm>
+	"SpaceMesh.hpp"
+
+1540501426 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\timemesh.cpp
+	<iostream>
+	<vector>
+	<array>
+	<algorithm>
+	"TimeMesh.hpp"
+

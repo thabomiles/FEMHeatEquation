@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1540501449 source:c:\users\thabo\desktop\heatequationdis\mesh\driver.cpp
+	<iostream>
+	<vector>
+	"SpaceMesh.hpp"
+	"TimeMesh.hpp"
+
+1540501134 c:\users\thabo\desktop\heatequationdis\mesh\spacemesh.hpp
+	<iostream>
+	<vector>
+	<array>
+
+1540500472 source:c:\users\thabo\desktop\heatequationdis\mesh\spacemesh.cpp
+	<iostream>
+	<vector>
+	<array>
+	<algorithm>
+	"SpaceMesh.hpp"
+
+1540501478 c:\users\thabo\desktop\heatequationdis\mesh\timemesh.hpp
+	<iostream>
+	<vector>
+	<array>
+
+1540501426 source:c:\users\thabo\desktop\heatequationdis\mesh\timemesh.cpp
+	<iostream>
+	<vector>
+	<array>
+	<algorithm>
+	"TimeMesh.hpp"
+

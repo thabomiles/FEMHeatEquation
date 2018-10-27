@@ -7,7 +7,6 @@
 #include "TriDiagMatrix.hpp"
 #include "MassMatrix.hpp"
 #include "StiffnessMatrix.hpp"
-#include "GeneralMesh.hpp"
 #include <fstream>
 #include <string>
 using namespace std;
@@ -15,36 +14,26 @@ using namespace std;
 int main(int argc, char* argv[])
 {
 
+
+
 double T = 1.0;
 
-    //n is the number of elements i.e. 1 less than the number of nodes
-
     //number of time steps i.e. 1 less than the number of nodes
-int m = 16;
+int m = 32;
 
-//HeatEquation heat = HeatEquation( T, m, n, "soultion1.csv");
-//
-//heat.SolveUniformMesh();
-
-
-//double h = pow( n, -1);
 
 double M_PI = 2*acos(0);
 
 double a = pow(M_PI,-2);
 
 std::vector<double> initialSpaceNodes = {0, 0.25, 0.5, 1};
-int n = initialSpaceNodes.size()-1;
 std::vector<double> initialTimeNodes = {0};
 std::vector<double> initialSpaceMesh;
 std::vector<double> initialTimeMesh;
 
+       //n is the number of elements i.e. 1 less than the number of nodes
+int n = initialSpaceNodes.size()-1;
 
-//for(int i=1; i<=n; i++)
-//    {
-//        initialSpaceNodes.push_back( i*h );
-//        initialSpaceMesh.push_back( initialSpaceNodes.at(i)- initialSpaceNodes.at(i-1) );
-//    }
 
 for(int i=1; i<=m; i++)
     {
@@ -52,17 +41,26 @@ for(int i=1; i<=m; i++)
         initialTimeMesh.push_back( initialTimeNodes.at(i)- initialTimeNodes.at(i-1) );
     }
 
+
+
 SpaceMesh smesh;
 smesh.GenerateSpaceMesh(initialSpaceNodes);
 smesh.GloballyBisectSpaceMesh();
 smesh.GloballyBisectSpaceMesh();
 
+
+
+
 n=smesh.meshsize();
-
-
 
 TimeMesh tmesh;
 tmesh.GenerateTimeMesh( initialTimeNodes );
+
+//HeatEquation heat;
+//heat.SetSpaceTimeMesh( smesh, tmesh, "soultion1.txt");
+//heat.Solve();
+
+
 smesh.PrintSpaceNodes();
 smesh.PrintSpaceMesh();
 std::cout << n << ' ';

@@ -64,5 +64,8 @@ double TimeMesh::ReadTimeMesh (int i)
     return mpTimeMesh.at(i);
 }
 
-
+int TimeMesh::NumberOfTimeSteps()
+{
+    return mpTimeMesh.size();
+}
 

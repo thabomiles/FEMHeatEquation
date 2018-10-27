@@ -41,7 +41,7 @@
 	<array>
 	"TriDiagMatrix.hpp"
 
-1540509604 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\driver5withnewclasses.cpp
+1540651945 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\driver5withnewclasses.cpp
 	<iostream>
 	<cmath>
 	<vector>
@@ -51,11 +51,10 @@
 	"TriDiagMatrix.hpp"
 	"MassMatrix.hpp"
 	"StiffnessMatrix.hpp"
-	"GeneralMesh.hpp"
 	<fstream>
 	<string>
 
-1540504434 c:\users\thabo\desktop\heatequationdis\heat equation solver\heatequation.hpp
+1540654043 c:\users\thabo\desktop\heatequationdis\heat equation solver\heatequation.hpp
 	<iostream>
 	<vector>
 	<array>
@@ -74,17 +73,17 @@
 	<array>
 	<algorithm>
 
-1540502877 c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.hpp
+1540650507 c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.hpp
 	<iostream>
 	<vector>
 	<array>
 
-1540501478 c:\users\thabo\desktop\heatequationdis\heat equation solver\timemesh.hpp
+1540650281 c:\users\thabo\desktop\heatequationdis\heat equation solver\timemesh.hpp
 	<iostream>
 	<vector>
 	<array>
 
-1540504240 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\heatequation.cpp
+1540654584 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\heatequation.cpp
 	<iostream>
 	<cmath>
 	<math.h>
@@ -95,18 +94,17 @@
 	"TriDiagMatrix.hpp"
 	"MassMatrix.hpp"
 	"StiffnessMatrix.hpp"
-	"GeneralMesh.hpp"
 	<fstream>
 	<string>
 
-1540509731 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.cpp
+1540651466 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.cpp
 	<iostream>
 	<vector>
 	<array>
 	<algorithm>
 	"SpaceMesh.hpp"
 
-1540501426 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\timemesh.cpp
+1540650849 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\timemesh.cpp
 	<iostream>
 	<vector>
 	<array>

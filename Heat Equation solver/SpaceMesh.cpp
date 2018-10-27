@@ -70,3 +70,11 @@ int SpaceMesh::meshsize()
 }
 
 
+//double h = pow( n, -1);
+//for(int i=1; i<=n; i++)
+//    {
+//        initialSpaceNodes.push_back( i*h );
+//        initialSpaceMesh.push_back( initialSpaceNodes.at(i)- initialSpaceNodes.at(i-1) );
+//    }
+
+

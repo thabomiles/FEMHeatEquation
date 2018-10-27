@@ -16,12 +16,14 @@ public:
     void PrintTimeMesh ();
     double ReadTimeStep (int i);
     double ReadTimeMesh (int i);
+    int NumberOfTimeSteps();
 
 
 
 
 protected:
 
+    int mpnumberOfTimeSteps;
     std::vector<double> mpTimeNodes;
     std::vector<double> mpTimeMesh;
 

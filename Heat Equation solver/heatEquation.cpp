@@ -8,182 +8,111 @@
 #include "TriDiagMatrix.hpp"
 #include "MassMatrix.hpp"
 #include "StiffnessMatrix.hpp"
-#include "GeneralMesh.hpp"
 #include <fstream>
 #include <string>
 using namespace std;
 
 void HeatEquation::SetSpaceTimeMesh( SpaceMesh smesh, TimeMesh tmesh, const std::string outputFileName )
 {
-    mpSpaceMesh = smesh;
-    mpTimeMesh = tmesh;
+    mpsmesh = smesh;
+    mptmesh = tmesh;
     moutputFileName = outputFileName;
-
+    mpcurrenTimeStep = 0;
 }
 
 void HeatEquation::Solve()
 {
-
-double M_PI = 2*acos(0);
+    //number of time steps i.e. 1 less than the number of nodes
+int m = mptmesh.NumberOfTimeSteps();
 
 double a = pow(M_PI,-2);
 
+       //n is the number of elements i.e. 1 less than the number of nodes
+int n=mpsmesh.meshsize();
+
+n=mpsmesh.meshsize();
 
 StiffnessMatrix stiff;
-stiff.BuildStiffnessMatrix( a, mpSpaceMesh );
-stiff.MultiplyByScalar( mpTimeMesh.ReadTimeMesh(0) );
+stiff.BuildStiffnessMatrix( a, mpsmesh );
 
+stiff.MultiplyByScalar( mptmesh.ReadTimeMesh(0) );
 
 MassMatrix mass;
-mass.BuildMassMatrix( mpSpaceMesh );
-
+mass.BuildMassMatrix(mpsmesh);
 TriDiagMatrix LHS;
 LHS.AddTwoMatrices( mass, stiff );
 
 
-std::vector<double> x;
-std::vector<double> AnalyticSolution;
-std::vector<double> PreviousSolution;
-std::vector<double> RHS;
-
-for (int i = 0; i<mn-1; i++)
+for (int i = 0; i<n-1; i++)
 {
-    PreviousSolution.push_back(6*sin(M_PI*mpSpaceMesh.ReadSpaceNode(i+1)));
-    //PreviousSolution.push_back(6*sin(M_PI*initialSpaceNodes.at(i+1)));
+    mpPreviousSolution.push_back(6*sin(M_PI*mpsmesh.ReadSpaceNode(i+1)));
 }
 
 ofstream myfile;
-  myfile.open (moutputFileName);
+  myfile.open ("soultion1.txt");
 
-for(int j = 0; j<mm; j++)
+for(int j = 0; j<m; j++)
 {
-    for (int i = 0; i<mn-1; i++)
-{
-    AnalyticSolution.push_back(exp(-mpTimeMesh.ReadTimeStep(j+1))*6*
-                               sin(M_PI*mpSpaceMesh.ReadSpaceNode(i+1)));
-}
+    mpcurrenTimeStep = j+1;
 
-mass.MatrixVectorMultiplier( PreviousSolution, RHS );
+//    mpAnalyticSolution.clear();
+//    for (int i = 0; i<n-1; i++)
+//{
+//    mpAnalyticSolution.push_back(exp(-mptmesh.ReadTimeStep(j+1))*6*
+//                               sin(M_PI*mpsmesh.ReadSpaceNode(i+1)));
+//}
 
-LHS.MatrixSolver( RHS, x );
+AnalyticSolution();
+mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
+
+LHS.MatrixSolver( mpRHS, mpx );
 
 
-        for (auto k: x)
-            std::cout << k << ' ';
+        for (auto k: mpx)
+        std::cout << k << ' ';
+        std::cout << " \n";
 
-        for (auto k: x)
-            myfile << k <<  " ," ;
+        for (auto p: mpAnalyticSolution)
+        std::cout << p << ' ';
+        std::cout << " \n";
 
+        PrintNodalErrors();
+
+        for (auto k: mpx)
+        myfile << k <<  " ," ;
         myfile << "\n";
-        std::cout << " \n";
 
-        for (auto k: AnalyticSolution)
-            std::cout << k << ' ';
-        std::cout << " \n";
 
-        AnalyticSolution.clear();
-        PreviousSolution = x;
+        mpPreviousSolution = mpx;
 }
-
         myfile.close();
 }
 
 
-//void HeatEquation::SetUniformSystem( double endTime, int numberOfTimeSteps, int numberOfSpaceElements,
-//                            const std::string outputFileName )
-//{
-//    mT = endTime;
-//    mm = numberOfTimeSteps;
-//    mn = numberOfSpaceElements;
-//    moutputFileName = outputFileName;
-//}
-//
-//void HeatEquation::SolveUniformMesh()
-//{
-//
-//double h = pow( mn, -1);
-//
-//double M_PI = 2*acos(0);
-//
-//double a = pow(M_PI,-2);
-//
-//std::vector<double> initialSpaceNodes = {0};
-//std::vector<double> initialTimeNodes = {0};
-//std::vector<double> initialSpaceMesh;
-//std::vector<double> initialTimeMesh;
-//
-//
-//for(int i=1; i<=mn; i++)
-//    {
-//        initialSpaceNodes.push_back( i*h );
-//        initialSpaceMesh.push_back( initialSpaceNodes.at(i)- initialSpaceNodes.at(i-1) );
-//    }
-//
-//for(int i=1; i<=mm; i++)
-//    {
-//        initialTimeNodes.push_back( i*(mT/mm) );
-//        initialTimeMesh.push_back( initialTimeNodes.at(i)- initialTimeNodes.at(i-1) );
-//    }
-//
-//
-//StiffnessMatrix stiff;
-//stiff.BuildStiffnessMatrix( a, initialSpaceMesh );
-//
-//stiff.MultiplyByScalar( initialTimeMesh.at(0) );
-//
-//
-//
-//MassMatrix mass;
-//mass.BuildMassMatrix(initialSpaceMesh);
-//
-//TriDiagMatrix LHS;
-//LHS.AddTwoMatrices( mass, stiff );
-//
-//
-//std::vector<double> x;
-//std::vector<double> AnalyticSolution;
-//std::vector<double> PreviousSolution;
-//std::vector<double> RHS;
-//
-//for (int i = 0; i<mn-1; i++)
-//{
-//    PreviousSolution.push_back(6*sin(M_PI*initialSpaceNodes.at(i+1)));
-//}
-//
-//ofstream myfile;
-//  myfile.open (moutputFileName);
-//
-//for(int j = 0; j<mm; j++)
-//{
-//    for (int i = 0; i<mn-1; i++)
-//{
-//    AnalyticSolution.push_back(exp(-initialTimeNodes.at(j+1))*6*
-//                               sin(M_PI*initialSpaceNodes.at(i+1)));
-//}
-//
-//mass.MatrixVectorMultiplier( PreviousSolution, RHS );
-//
-//LHS.MatrixSolver( RHS, x );
-//
-//
-//        for (auto k: x)
-//            std::cout << k << ' ';
-//
-//        for (auto k: x)
-//            myfile << k <<  " ," ;
-//
-//        myfile << "\n";
-//        std::cout << " \n";
-//
-//        for (auto k: AnalyticSolution)
-//            std::cout << k << ' ';
-//        std::cout << " \n";
-//
-//        AnalyticSolution.clear();
-//        PreviousSolution = x;
-//}
-//
-//        myfile.close();
-//
-//}
-//
+void HeatEquation::AnalyticSolution( )
+{
+    mpAnalyticSolution.clear();
+     for (int i = 0; i<mpsmesh.meshsize()-1; i++)
+{
+    mpAnalyticSolution.push_back(exp(-mptmesh.ReadTimeStep(mpcurrenTimeStep))*6*
+                               sin(M_PI*mpsmesh.ReadSpaceNode(i+1)));
+}
+}
+
+void HeatEquation::PrintNodalErrors( )
+{
+    double nodalerror;
+    double infnorm = 0;
+    for (int i = 0; i<mpsmesh.meshsize()-1; i++)
+{
+    nodalerror = fabs(mpAnalyticSolution.at(i)-mpx.at(i));
+//    std::cout << nodalerror << ' ';
+    if (infnorm<nodalerror)
+    {
+        infnorm = nodalerror;
+    }
+}
+    std::cout << infnorm << ' ';
+    std::cout << " \n";
+}
+

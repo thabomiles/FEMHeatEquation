@@ -10,7 +10,9 @@
 #include "StiffnessMatrix.hpp"
 #include <fstream>
 #include <string>
+#include <boost/math/quadrature/gauss.hpp>
 using namespace std;
+using namespace boost::math::quadrature;
 
 void HeatEquation::SetSpaceTimeMesh( SpaceMesh smesh, TimeMesh tmesh, const std::string outputFileName )
 {
@@ -68,18 +70,10 @@ mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
 LHS.MatrixSolver( mpRHS, mpx );
 
 
-        for (auto k: mpx)
-        std::cout << k << ' ';
-        std::cout << " \n";
-
-        for (auto p: mpAnalyticSolution)
-        std::cout << p << ' ';
-        std::cout << " \n";
-
-        PrintNodalErrors();
+//        PrintSolution();
 
         for (auto k: mpx)
-        myfile << k <<  " ," ;
+        myfile << k <<  " ,"<<' ' ;
         myfile << "\n";
 
 
@@ -116,3 +110,58 @@ void HeatEquation::PrintNodalErrors( )
     std::cout << " \n";
 }
 
+    //the if statements deal with what happens if you are in the first interval
+    //in this case the first value of u is given by the boundary condition
+    //all the other elements can be fixed for x = 0
+double HeatEquation::PiecewiseU( double x )
+{
+    int upperindex = mpsmesh.IndexAbove( x );
+    auto boundaryconditionU0 = 0;
+    auto boundarycondition1Un = 0;
+
+    if((upperindex==1)||(upperindex==0))
+    {
+    firstpoint.at(0)= mpsmesh.ReadSpaceNode(0);
+    firstpoint.at(1) = boundaryconditionU0;
+
+    secondpoint[0] = mpsmesh.ReadSpaceNode(1);
+    secondpoint.at(1) = mpx.at(0);
+    }
+    else if (upperindex == mpsmesh.meshsize())
+    {
+    firstpoint.at(0)= mpsmesh.ReadSpaceNode(upperindex-1);
+    firstpoint.at(1) = mpx.at(upperindex-2);
+
+    secondpoint[0] = mpsmesh.ReadSpaceNode(upperindex);
+    secondpoint.at(1) = boundarycondition1Un;
+    }
+    else
+    {
+    firstpoint.at(0)= mpsmesh.ReadSpaceNode(upperindex-1);
+    firstpoint.at(1) = mpx.at(upperindex-2);
+
+    secondpoint[0] = mpsmesh.ReadSpaceNode(upperindex);
+    secondpoint.at(1) = mpx.at(upperindex-1);
+    }
+
+
+
+    double m = (firstpoint[1]-secondpoint[1])/(firstpoint[0]-secondpoint[0]);
+
+    return m*(x - firstpoint[0])+firstpoint[1];
+
+}
+
+
+
+void HeatEquation::PrintSolution( )
+{
+        for (auto k: mpx)
+        std::cout << k << ", ";
+        std::cout << " \n";
+
+//        for (auto k: mpAnalyticSolution)
+//        std::cout << k << ' ';
+//        std::cout << " \n";
+
+}

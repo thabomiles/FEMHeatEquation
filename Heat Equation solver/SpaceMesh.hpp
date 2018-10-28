@@ -17,7 +17,7 @@ public:
     double ReadSpaceNode (int i);
     double ReadSpaceMesh (int i);
     int meshsize();
-
+    int IndexAbove ( double x );
 
 
 protected:

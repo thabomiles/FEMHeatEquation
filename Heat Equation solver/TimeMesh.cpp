@@ -2,7 +2,10 @@
 #include <vector>
 #include <array>
 #include <algorithm>
+#include <fstream>
+#include <string>
 #include "TimeMesh.hpp"
+
 
 void TimeMesh::GenerateTimeMesh ( std::vector<double> TimeNodes )
 {

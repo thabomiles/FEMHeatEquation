@@ -2,6 +2,8 @@
 #include <vector>
 #include <array>
 #include <algorithm>
+#include <fstream>
+#include <string>
 #include "SpaceMesh.hpp"
 
 void SpaceMesh::GenerateSpaceMesh( std::vector<double> SpaceNodes )
@@ -42,7 +44,7 @@ void SpaceMesh::RefreshSpaceMesh()
 void SpaceMesh::PrintSpaceNodes ()
 {
     for (auto k: mpSpaceNodes)
-    std::cout << k << ' ';
+    std::cout << k << ", ";
     std::cout << " \n";
 }
 
@@ -61,13 +63,22 @@ double SpaceMesh::ReadSpaceNode (int i)
 
 double SpaceMesh::ReadSpaceMesh (int i)
 {
-    return mpSpaceMesh.at(i);
+    return mpSpaceMesh[i];
 }
 
 int SpaceMesh::meshsize()
 {
     return mpSpaceMesh.size();
 }
+
+int SpaceMesh::IndexAbove ( double x )
+{
+    auto it = lower_bound(mpSpaceNodes.begin(),mpSpaceNodes.end(), x);
+
+   return distance(mpSpaceNodes.begin(), it);
+
+}
+
 
 
 //double h = pow( n, -1);

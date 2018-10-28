@@ -22,6 +22,12 @@ public:
 
     void PrintNodalErrors( );
 
+    void ErrorFunction( double x );
+
+    double PiecewiseU( double x );
+
+    void PrintSolution();
+
 
 
 private:
@@ -39,6 +45,9 @@ private:
     std::vector<double> mpAnalyticSolution;
     std::vector<double> mpPreviousSolution;
     std::vector<double> mpRHS;
+
+    std::array<double, 2> firstpoint;
+    std::array<double, 2> secondpoint;
 };
 
 

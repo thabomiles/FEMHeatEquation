@@ -9,12 +9,12 @@
 #include "StiffnessMatrix.hpp"
 #include <fstream>
 #include <string>
+#include <boost/math/quadrature/gauss.hpp>
 using namespace std;
+using namespace boost::math::quadrature;
 
 int main(int argc, char* argv[])
 {
-
-
 
 double T = 1.0;
 
@@ -51,89 +51,113 @@ smesh.GloballyBisectSpaceMesh();
 
 
 
-n=smesh.meshsize();
+
+n=smesh.meshsize()-1;
 
 TimeMesh tmesh;
 tmesh.GenerateTimeMesh( initialTimeNodes );
 
-//HeatEquation heat;
-//heat.SetSpaceTimeMesh( smesh, tmesh, "soultion1.txt");
-//heat.Solve();
-
+HeatEquation heat;
+heat.SetSpaceTimeMesh( smesh, tmesh, "soultion1.txt");
+heat.Solve();
+//heat.PrintSolution();
 
 smesh.PrintSpaceNodes();
-smesh.PrintSpaceMesh();
+heat.PrintSolution();
+
+//std::cout << heat.PiecewiseU(0.2) << ' ';
+//std::cout << " \n";
+
+
+std::vector<double> testGrid;
+testGrid.assign(n,1);
+
+
+for(int i=1; i<smesh.meshsize(); i++)
+{
+    std::cout << heat.PiecewiseU(smesh.ReadSpaceNode(i)+0.0001) <<", "<<' ';
+}
+std::cout << " \n";
 std::cout << n << ' ';
 
-StiffnessMatrix stiff;
-stiff.BuildStiffnessMatrix( a, smesh );
-//stiff.PrintMatrix();
-
-
-stiff.MultiplyByScalar( tmesh.ReadTimeMesh(0) );
-//stiff.PrintMatrix();
+std::cout << smesh.meshsize() << ' ';
 
 
 
 
-
-MassMatrix mass;
-mass.BuildMassMatrix(smesh);
-//mass.PrintMatrix();
-TriDiagMatrix LHS;
-LHS.AddTwoMatrices( mass, stiff );
-
-
-std::vector<double> x;
-std::vector<double> AnalyticSolution;
-std::vector<double> PreviousSolution;
-std::vector<double> RHS;
-
-for (int i = 0; i<n-1; i++)
-{
-    PreviousSolution.push_back(6*sin(M_PI*smesh.ReadSpaceNode(i+1)));
 }
 
-ofstream myfile;
-  myfile.open ("soultion1.txt");
-
-for(int j = 0; j<m; j++)
-{
-    for (int i = 0; i<n-1; i++)
-{
-    AnalyticSolution.push_back(exp(-tmesh.ReadTimeStep(j+1))*6*
-                               sin(M_PI*smesh.ReadSpaceNode(i+1)));
-}
-
-mass.MatrixVectorMultiplier( PreviousSolution, RHS );
-
-LHS.MatrixSolver( RHS, x );
-
-
-        for (auto k: x)
-            std::cout << k << ' ';
-
-        for (auto k: x)
-            myfile << k <<  " ," ;
-
-        myfile << "\n";
-        std::cout << " \n";
 
 
 
-
-        for (auto p: AnalyticSolution)
-            std::cout << p << ' ';
-        std::cout << " \n";
+//heat.PiecewiseU(0.2);
 
 
+//std::cout << n << ' ';
+//
+//StiffnessMatrix stiff;
+//stiff.BuildStiffnessMatrix( a, smesh );
 
+//
+//
+//stiff.MultiplyByScalar( tmesh.ReadTimeMesh(0) );
 
-        AnalyticSolution.clear();
-        PreviousSolution = x;
-}
-
-        myfile.close();
-
-}
+//MassMatrix mass;
+//mass.BuildMassMatrix(smesh);
+//TriDiagMatrix LHS;
+//LHS.AddTwoMatrices( mass, stiff );
+//
+//
+//std::vector<double> x;
+//std::vector<double> AnalyticSolution;
+//std::vector<double> PreviousSolution;
+//std::vector<double> RHS;
+//
+//for (int i = 0; i<n-1; i++)
+//{
+//    PreviousSolution.push_back(6*sin(M_PI*smesh.ReadSpaceNode(i+1)));
+//}
+//
+//ofstream myfile;
+//  myfile.open ("soultion1.txt");
+//
+//for(int j = 0; j<m; j++)
+//{
+//    for (int i = 0; i<n-1; i++)
+//{
+//    AnalyticSolution.push_back(exp(-tmesh.ReadTimeStep(j+1))*6*
+//                               sin(M_PI*smesh.ReadSpaceNode(i+1)));
+//}
+//
+//mass.MatrixVectorMultiplier( PreviousSolution, RHS );
+//
+//LHS.MatrixSolver( RHS, x );
+//
+//
+//        for (auto k: x)
+//            std::cout << k << ' ';
+//
+//        for (auto k: x)
+//            myfile << k <<  " ," ;
+//
+//        myfile << "\n";
+//        std::cout << " \n";
+//
+//
+//
+//
+//        for (auto p: AnalyticSolution)
+//            std::cout << p << ' ';
+//        std::cout << " \n";
+//
+//
+//
+//
+//        AnalyticSolution.clear();
+//        PreviousSolution = x;
+//}
+//
+//        myfile.close();
+//
+//}
 

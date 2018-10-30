@@ -41,7 +41,7 @@
 	<array>
 	"TriDiagMatrix.hpp"
 
-1540748920 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\driver5withnewclasses.cpp
+1540838668 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\driver5withnewclasses.cpp
 	<iostream>
 	<cmath>
 	<vector>
@@ -55,7 +55,7 @@
 	<string>
 	<boost/math/quadrature/gauss.hpp>
 
-1540671520 c:\users\thabo\desktop\heatequationdis\heat equation solver\heatequation.hpp
+1540837969 c:\users\thabo\desktop\heatequationdis\heat equation solver\heatequation.hpp
 	<iostream>
 	<vector>
 	<array>
@@ -84,7 +84,7 @@
 	<vector>
 	<array>
 
-1540748668 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\heatequation.cpp
+1540855361 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\heatequation.cpp
 	<iostream>
 	<cmath>
 	<math.h>

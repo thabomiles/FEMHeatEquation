@@ -82,6 +82,11 @@ LHS.MatrixSolver( mpRHS, mpx );
         myfile.close();
 }
 
+double HeatEquation::ErrorSquared( double t )
+{
+    return pow(HeatEquation::PiecewiseU(t)-HeatEquation::ContinuousAnalyticSolution(t),2);
+}
+
 
 void HeatEquation::AnalyticSolution( )
 {
@@ -152,6 +157,29 @@ double HeatEquation::PiecewiseU( double x )
 
 }
 
+double HeatEquation::ContinuousAnalyticSolution( double t )
+{
+     return 6*exp(-1)*sin(M_PI*t);
+}
+
+double HeatEquation::L2ErrorGuass7 ( double lowerlimit, double upperlimit )
+{
+    const int n = 35;
+    double halfinterval = (upperlimit-lowerlimit)*pow(2,-1);
+    double intervalmidpoint = (upperlimit+lowerlimit)*pow(2,-1);
+    auto x  = gauss<double, n>::abscissa();
+    auto weight = gauss<double, n>::weights();
+
+    double quad = weight[0]*HeatEquation::ErrorSquared(halfinterval*x[0]+intervalmidpoint);
+    for (int j = 1; j<=(n-1)*pow(2, -1); j++)
+    {
+        quad = quad+weight[j]*HeatEquation::ErrorSquared(halfinterval*x[j]+intervalmidpoint);
+        quad = quad+weight[j]*HeatEquation::ErrorSquared(-halfinterval*x[j]+intervalmidpoint);
+    }
+
+    return halfinterval*quad;
+}
+
 
 
 void HeatEquation::PrintSolution( )
@@ -160,8 +188,8 @@ void HeatEquation::PrintSolution( )
         std::cout << k << ", ";
         std::cout << " \n";
 
-//        for (auto k: mpAnalyticSolution)
-//        std::cout << k << ' ';
-//        std::cout << " \n";
+        for (auto k: mpAnalyticSolution)
+        std::cout << k << ' ';
+        std::cout << " \n";
 
 }

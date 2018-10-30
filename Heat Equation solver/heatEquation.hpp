@@ -28,6 +28,12 @@ public:
 
     void PrintSolution();
 
+    double ContinuousAnalyticSolution( double t );
+
+    double ErrorSquared( double t );
+
+    double L2ErrorGuass7 ( double lowerlimit, double upperlimit );
+
 
 
 private:

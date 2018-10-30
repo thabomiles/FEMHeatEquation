@@ -47,6 +47,8 @@ SpaceMesh smesh;
 smesh.GenerateSpaceMesh(initialSpaceNodes);
 smesh.GloballyBisectSpaceMesh();
 smesh.GloballyBisectSpaceMesh();
+smesh.GloballyBisectSpaceMesh();
+smesh.GloballyBisectSpaceMesh();
 
 
 
@@ -62,8 +64,8 @@ heat.SetSpaceTimeMesh( smesh, tmesh, "soultion1.txt");
 heat.Solve();
 //heat.PrintSolution();
 
-smesh.PrintSpaceNodes();
-heat.PrintSolution();
+//smesh.PrintSpaceNodes();
+//heat.PrintSolution();
 
 //std::cout << heat.PiecewiseU(0.2) << ' ';
 //std::cout << " \n";
@@ -72,15 +74,38 @@ heat.PrintSolution();
 std::vector<double> testGrid;
 testGrid.assign(n,1);
 
-
-for(int i=1; i<smesh.meshsize(); i++)
+double infnorm = 0;
+double currentError = 0;
+for(int i=0; i<smesh.meshsize(); i++)
 {
-    std::cout << heat.PiecewiseU(smesh.ReadSpaceNode(i)+0.0001) <<", "<<' ';
-}
-std::cout << " \n";
-std::cout << n << ' ';
+    currentError = heat.L2ErrorGuass7( smesh.ReadSpaceNode(i),smesh.ReadSpaceNode(i+1));
+    if(currentError>infnorm)
+    {
+        infnorm=currentError;
+    }
 
-std::cout << smesh.meshsize() << ' ';
+//      std::cout << heat.L2ErrorGuass7( smesh.ReadSpaceNode(i),smesh.ReadSpaceNode(i+1) ) <<", "<<' ';
+//    std::cout << heat.ErrorSquared(smesh.ReadSpaceNode(i)+0.0001) <<", "<<' ';
+//    std::cout << heat.PiecewiseU(smesh.ReadSpaceNode(i)+0.0001) <<", "<<' ';
+//    std::cout << heat.ContinuousAnalyticSolution(smesh.ReadSpaceNode(i)+0.0001) <<", "<<' ';
+}
+
+std::cout << infnorm;
+std::cout << " \n";
+
+infnorm = 0;
+for(int i=0; i<smesh.meshsize(); i++)
+{
+    currentError = fabs(heat.PiecewiseU(smesh.ReadSpaceNode(i)+0.0001)-heat.ContinuousAnalyticSolution(smesh.ReadSpaceNode(i)+0.0001));
+        if(currentError>infnorm)
+    {
+        infnorm=currentError;
+    }
+//    std::cout << currentError <<", "<<' ';
+//    std::cout << heat.ContinuousAnalyticSolution(smesh.ReadSpaceNode(i)+0.0001) <<", "<<' ';
+}
+
+std::cout << infnorm;
 
 
 

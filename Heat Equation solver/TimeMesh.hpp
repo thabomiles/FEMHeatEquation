@@ -9,6 +9,10 @@ class TimeMesh
 public:
 
     void GenerateTimeMesh ( std::vector<double> TimeNodes );
+
+        //takes mTimeStep which is one less than the number of
+        //nodes and a Final time and produces the nodes i.e. m+1 equal steps
+    void GenerateUniformTimeMesh ( int mTimeSteps, double TFinalTime );
     void GloballyBisectTimeMesh ();
     void InsertTimeNode ( double ti );
     void RefreshTimeMesh();

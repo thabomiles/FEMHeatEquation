@@ -9,6 +9,8 @@ class SpaceMesh
 public:
 
     void GenerateSpaceMesh ( std::vector<double> SpaceNodes );
+
+    void GenerateDefaultSpaceMesh();
     void GloballyBisectSpaceMesh ();
     void InsertSpaceNode ( double xi );
     void RefreshSpaceMesh();

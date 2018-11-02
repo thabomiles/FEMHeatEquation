@@ -24,18 +24,8 @@ void HeatEquation::SetSpaceTimeMesh( SpaceMesh smesh, TimeMesh tmesh, const std:
 
 void HeatEquation::Solve()
 {
-    //number of time steps i.e. 1 less than the number of nodes
-int m = mptmesh.NumberOfTimeSteps();
-
-double a = pow(M_PI,-2);
-
-       //n is the number of elements i.e. 1 less than the number of nodes
-int n=mpsmesh.meshsize();
-
-n=mpsmesh.meshsize();
-
 StiffnessMatrix stiff;
-stiff.BuildStiffnessMatrix( a, mpsmesh );
+stiff.BuildStiffnessMatrix( mpsmesh );
 
 stiff.MultiplyByScalar( mptmesh.ReadTimeMesh(0) );
 
@@ -45,75 +35,36 @@ TriDiagMatrix LHS;
 LHS.AddTwoMatrices( mass, stiff );
 
 
-for (int i = 0; i<n-1; i++)
-{
-    mpPreviousSolution.push_back(6*sin(M_PI*mpsmesh.ReadSpaceNode(i+1)));
-}
+AnalyticSolutionVec();
+mpPreviousSolution = mpAnalyticSolution;
 
-ofstream myfile;
-  myfile.open ("soultion1.txt");
-
+int m = mptmesh.NumberOfTimeSteps();
 for(int j = 0; j<m; j++)
 {
     mpcurrenTimeStep = j+1;
 
-//    mpAnalyticSolution.clear();
-//    for (int i = 0; i<n-1; i++)
-//{
-//    mpAnalyticSolution.push_back(exp(-mptmesh.ReadTimeStep(j+1))*6*
-//                               sin(M_PI*mpsmesh.ReadSpaceNode(i+1)));
-//}
-
-AnalyticSolution();
+AnalyticSolutionVec();
 mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
 
 LHS.MatrixSolver( mpRHS, mpx );
 
+mpPreviousSolution = mpx;
 
-//        PrintSolution();
-
-        for (auto k: mpx)
-        myfile << k <<  " ,"<<' ' ;
-        myfile << "\n";
-
-
-        mpPreviousSolution = mpx;
 }
-        myfile.close();
-}
-
-double HeatEquation::ErrorSquared( double t )
-{
-    return pow(HeatEquation::PiecewiseU(t)-HeatEquation::ContinuousAnalyticSolution(t),2);
 }
 
 
-void HeatEquation::AnalyticSolution( )
+void HeatEquation::AnalyticSolutionVec( )
 {
     mpAnalyticSolution.clear();
      for (int i = 0; i<mpsmesh.meshsize()-1; i++)
 {
-    mpAnalyticSolution.push_back(exp(-mptmesh.ReadTimeStep(mpcurrenTimeStep))*6*
-                               sin(M_PI*mpsmesh.ReadSpaceNode(i+1)));
+
+    mpAnalyticSolution.push_back(HeatEquation::ContinuousAnalyticSolution( mpsmesh.ReadSpaceNode(i+1),
+                                                                        mptmesh.ReadTimeStep(mpcurrenTimeStep)));
 }
 }
 
-void HeatEquation::PrintNodalErrors( )
-{
-    double nodalerror;
-    double infnorm = 0;
-    for (int i = 0; i<mpsmesh.meshsize()-1; i++)
-{
-    nodalerror = fabs(mpAnalyticSolution.at(i)-mpx.at(i));
-//    std::cout << nodalerror << ' ';
-    if (infnorm<nodalerror)
-    {
-        infnorm = nodalerror;
-    }
-}
-    std::cout << infnorm << ' ';
-    std::cout << " \n";
-}
 
     //the if statements deal with what happens if you are in the first interval
     //in this case the first value of u is given by the boundary condition
@@ -157,20 +108,29 @@ double HeatEquation::PiecewiseU( double x )
 
 }
 
-double HeatEquation::ContinuousAnalyticSolution( double t )
+double HeatEquation::ErrorSquared( double x )
 {
-     return 6*exp(-1)*sin(M_PI*t);
+    double dummyVar = HeatEquation::PiecewiseU(x)-HeatEquation::ContinuousAnalyticSolution(x, 1);
+    return pow(dummyVar,2);
 }
 
-double HeatEquation::L2ErrorGuass7 ( double lowerlimit, double upperlimit )
+double HeatEquation::ContinuousAnalyticSolution( double x, double t )
 {
-    const int n = 35;
+     return 6*exp(-t)*sin(M_PI*x);
+}
+
+
+double HeatEquation::L2ErrorGuass ( double lowerlimit, double upperlimit )
+{
+    const int n = 7;
     double halfinterval = (upperlimit-lowerlimit)*pow(2,-1);
     double intervalmidpoint = (upperlimit+lowerlimit)*pow(2,-1);
     auto x  = gauss<double, n>::abscissa();
     auto weight = gauss<double, n>::weights();
 
     double quad = weight[0]*HeatEquation::ErrorSquared(halfinterval*x[0]+intervalmidpoint);
+//    std::cout << quad << ", ";
+
     for (int j = 1; j<=(n-1)*pow(2, -1); j++)
     {
         quad = quad+weight[j]*HeatEquation::ErrorSquared(halfinterval*x[j]+intervalmidpoint);
@@ -180,6 +140,31 @@ double HeatEquation::L2ErrorGuass7 ( double lowerlimit, double upperlimit )
     return halfinterval*quad;
 }
 
+void HeatEquation::BuildErrorMesh()
+{
+mpErrorMesh.clear();
+for(int i=0; i<mpsmesh.meshsize(); i++)
+{
+mpErrorMesh.push_back(HeatEquation::L2ErrorGuass( mpsmesh.ReadSpaceNode(i),mpsmesh.ReadSpaceNode(i+1)));
+}
+}
+
+double HeatEquation::GlobalSpaceError()
+{
+    double globalError=0;
+    for(auto k: mpErrorMesh)
+        globalError = globalError + k;
+
+    return sqrt(globalError);
+}
+
+void HeatEquation::PrintErrorMesh()
+{
+    for(auto k: mpErrorMesh)
+        std::cout << k << ", ";
+        std::cout << " \n";
+
+}
 
 
 void HeatEquation::PrintSolution( )
@@ -189,7 +174,7 @@ void HeatEquation::PrintSolution( )
         std::cout << " \n";
 
         for (auto k: mpAnalyticSolution)
-        std::cout << k << ' ';
+        std::cout << k << ", ";
         std::cout << " \n";
 
 }

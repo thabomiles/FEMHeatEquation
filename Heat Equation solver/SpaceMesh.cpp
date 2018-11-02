@@ -13,6 +13,12 @@ void SpaceMesh::GenerateSpaceMesh( std::vector<double> SpaceNodes )
     mpmeshsize = mpSpaceMesh.size();
 }
 
+void SpaceMesh::GenerateDefaultSpaceMesh()
+{
+    mpSpaceNodes = {0, 0.25, 0.5, 1};
+    RefreshSpaceMesh();
+}
+
 void SpaceMesh::GloballyBisectSpaceMesh ()
 {
     double gridPoint;

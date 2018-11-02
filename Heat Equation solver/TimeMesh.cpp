@@ -13,6 +13,16 @@ void TimeMesh::GenerateTimeMesh ( std::vector<double> TimeNodes )
     RefreshTimeMesh();
 }
 
+void TimeMesh::GenerateUniformTimeMesh ( int mTimeSteps, double TFinalTime )
+{
+    mpTimeNodes = {0};
+    for(int i=1; i<=mTimeSteps; i++)
+    {
+        mpTimeNodes.push_back( i*(TFinalTime/mTimeSteps) );
+    }
+    RefreshTimeMesh();
+}
+
 void TimeMesh::GloballyBisectTimeMesh ()
 {
     double gridPoint;

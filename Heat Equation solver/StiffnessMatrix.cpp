@@ -5,7 +5,7 @@
 #include "StiffnessMatrix.hpp"
 #include <cmath>
 
-void StiffnessMatrix::BuildStiffnessMatrix( double a, SpaceMesh smesh )
+void StiffnessMatrix::BuildStiffnessMatrix( SpaceMesh smesh )
 {
 mpn = smesh.meshsize()-1;
 mpDiagonal = { a*pow(smesh.ReadSpaceMesh(0), -1) + a*pow(smesh.ReadSpaceMesh(1), -1) };

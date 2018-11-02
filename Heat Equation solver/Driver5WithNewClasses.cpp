@@ -13,176 +13,76 @@
 using namespace std;
 using namespace boost::math::quadrature;
 
+double f( double x);
+double g (double x);
+const double M_PI = 2*acos(0);
+
+
 int main(int argc, char* argv[])
 {
 
-double T = 1.0;
-
-    //number of time steps i.e. 1 less than the number of nodes
-int m = 32;
-
-
-double M_PI = 2*acos(0);
-
-double a = pow(M_PI,-2);
-
-std::vector<double> initialSpaceNodes = {0, 0.25, 0.5, 1};
-std::vector<double> initialTimeNodes = {0};
-std::vector<double> initialSpaceMesh;
-std::vector<double> initialTimeMesh;
-
-       //n is the number of elements i.e. 1 less than the number of nodes
-int n = initialSpaceNodes.size()-1;
-
-
-for(int i=1; i<=m; i++)
-    {
-        initialTimeNodes.push_back( i*(T/m) );
-        initialTimeMesh.push_back( initialTimeNodes.at(i)- initialTimeNodes.at(i-1) );
-    }
-
-
-
 SpaceMesh smesh;
-smesh.GenerateSpaceMesh(initialSpaceNodes);
-smesh.GloballyBisectSpaceMesh();
-smesh.GloballyBisectSpaceMesh();
-smesh.GloballyBisectSpaceMesh();
-smesh.GloballyBisectSpaceMesh();
+smesh.GenerateDefaultSpaceMesh();
 
-
-
-
-
-n=smesh.meshsize()-1;
-
-TimeMesh tmesh;
-tmesh.GenerateTimeMesh( initialTimeNodes );
+tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize(), 2), 1.0);
 
 HeatEquation heat;
 heat.SetSpaceTimeMesh( smesh, tmesh, "soultion1.txt");
 heat.Solve();
-//heat.PrintSolution();
 
-//smesh.PrintSpaceNodes();
-//heat.PrintSolution();
+smesh.PrintSpaceNodes();
+heat.PrintSolution();
 
-//std::cout << heat.PiecewiseU(0.2) << ' ';
-//std::cout << " \n";
-
-
-std::vector<double> testGrid;
-testGrid.assign(n,1);
-
-double infnorm = 0;
-double currentError = 0;
-for(int i=0; i<smesh.meshsize(); i++)
-{
-    currentError = heat.L2ErrorGuass7( smesh.ReadSpaceNode(i),smesh.ReadSpaceNode(i+1));
-    if(currentError>infnorm)
-    {
-        infnorm=currentError;
-    }
-
-//      std::cout << heat.L2ErrorGuass7( smesh.ReadSpaceNode(i),smesh.ReadSpaceNode(i+1) ) <<", "<<' ';
-//    std::cout << heat.ErrorSquared(smesh.ReadSpaceNode(i)+0.0001) <<", "<<' ';
-//    std::cout << heat.PiecewiseU(smesh.ReadSpaceNode(i)+0.0001) <<", "<<' ';
-//    std::cout << heat.ContinuousAnalyticSolution(smesh.ReadSpaceNode(i)+0.0001) <<", "<<' ';
-}
-
-std::cout << infnorm;
+heat.BuildErrorMesh();
+heat.PrintErrorMesh();
+std::cout << heat.GlobalSpaceError();
 std::cout << " \n";
 
-infnorm = 0;
-for(int i=0; i<smesh.meshsize(); i++)
+
+std::cout << smesh.meshsize()+1;
+std::cout << " \n";
+//std::cout << sqrt(currentError);
+//std::cout << " \n";
+//std::cout << " \n";
+//
+//double M = gauss<double, 7>::integrate(f, 0, 0.25);
+//std::cout << M;
+//
+//std::cout << " \n";
+//std::cout << " \n";
+//
+//double Q = gauss<double, 7>::integrate(g, 0.25, 0.5);
+//std::cout << Q;
+//
+//std::cout << " \n";
+//std::cout << " \n";
+//
+//std::cout << heat.L2ErrorGuass( smesh.ReadSpaceNode(1),smesh.ReadSpaceNode(2))<< ", ";
+//
+//std::cout << " \n";
+//
+////std::cout << f (0.2);
+//
+//std::cout << " \n";
+//
+////std::cout << heat.ErrorSquared(0.2);
+//
+
+}
+
+double f( double x)
 {
-    currentError = fabs(heat.PiecewiseU(smesh.ReadSpaceNode(i)+0.0001)-heat.ContinuousAnalyticSolution(smesh.ReadSpaceNode(i)+0.0001));
-        if(currentError>infnorm)
-    {
-        infnorm=currentError;
-    }
-//    std::cout << currentError <<", "<<' ';
-//    std::cout << heat.ContinuousAnalyticSolution(smesh.ReadSpaceNode(i)+0.0001) <<", "<<' ';
+    double t = 6*sin(M_PI*x)*exp(-1);
+    double m1 = 4*1.66329*x;
+//    return t;
+    return pow(t-m1,2);
 }
 
-std::cout << infnorm;
-
-
-
-
+double g (double x)
+{
+    double t = 6*sin(M_PI*x)*exp(-1);
+    double m1 = 4*(2.29857-1.66329)*(x-0.25)+1.66329;
+    return pow(t-m1,2);
 }
 
-
-
-
-//heat.PiecewiseU(0.2);
-
-
-//std::cout << n << ' ';
-//
-//StiffnessMatrix stiff;
-//stiff.BuildStiffnessMatrix( a, smesh );
-
-//
-//
-//stiff.MultiplyByScalar( tmesh.ReadTimeMesh(0) );
-
-//MassMatrix mass;
-//mass.BuildMassMatrix(smesh);
-//TriDiagMatrix LHS;
-//LHS.AddTwoMatrices( mass, stiff );
-//
-//
-//std::vector<double> x;
-//std::vector<double> AnalyticSolution;
-//std::vector<double> PreviousSolution;
-//std::vector<double> RHS;
-//
-//for (int i = 0; i<n-1; i++)
-//{
-//    PreviousSolution.push_back(6*sin(M_PI*smesh.ReadSpaceNode(i+1)));
-//}
-//
-//ofstream myfile;
-//  myfile.open ("soultion1.txt");
-//
-//for(int j = 0; j<m; j++)
-//{
-//    for (int i = 0; i<n-1; i++)
-//{
-//    AnalyticSolution.push_back(exp(-tmesh.ReadTimeStep(j+1))*6*
-//                               sin(M_PI*smesh.ReadSpaceNode(i+1)));
-//}
-//
-//mass.MatrixVectorMultiplier( PreviousSolution, RHS );
-//
-//LHS.MatrixSolver( RHS, x );
-//
-//
-//        for (auto k: x)
-//            std::cout << k << ' ';
-//
-//        for (auto k: x)
-//            myfile << k <<  " ," ;
-//
-//        myfile << "\n";
-//        std::cout << " \n";
-//
-//
-//
-//
-//        for (auto p: AnalyticSolution)
-//            std::cout << p << ' ';
-//        std::cout << " \n";
-//
-//
-//
-//
-//        AnalyticSolution.clear();
-//        PreviousSolution = x;
-//}
-//
-//        myfile.close();
-//
-//}
 

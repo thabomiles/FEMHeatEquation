@@ -10,31 +10,31 @@ class HeatEquation
 {
 public:
 
-    double M_PI = 2*acos(0);
-
-    void SolveUniformMesh();
-
     void SetSpaceTimeMesh( SpaceMesh smesh, TimeMesh tmesh, const std::string outputFileName );
 
     void Solve();
 
-    void AnalyticSolution( );
-
-    void PrintNodalErrors( );
-
-    void ErrorFunction( double x );
+    void AnalyticSolutionVec( );
 
     double PiecewiseU( double x );
 
     void PrintSolution();
 
-    double ContinuousAnalyticSolution( double t );
+    double ContinuousAnalyticSolution( double x, double t );
 
-    double ErrorSquared( double t );
+    double ErrorSquared( double x );
 
-    double L2ErrorGuass7 ( double lowerlimit, double upperlimit );
+    double L2ErrorGuass ( double lowerlimit, double upperlimit );
 
+    const double M_PI = 2*acos(0);
 
+    void BuildErrorMesh();
+
+    double GlobalSpaceError();
+
+    void PrintErrorMesh();
+
+    std::vector<double> mpErrorMesh;
 
 private:
 
@@ -51,6 +51,7 @@ private:
     std::vector<double> mpAnalyticSolution;
     std::vector<double> mpPreviousSolution;
     std::vector<double> mpRHS;
+
 
     std::array<double, 2> firstpoint;
     std::array<double, 2> secondpoint;

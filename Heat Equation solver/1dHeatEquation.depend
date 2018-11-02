@@ -20,7 +20,7 @@
 	<vector>
 	<array>
 
-1540504233 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\stiffnessmatrix.cpp
+1541173230 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\stiffnessmatrix.cpp
 	<iostream>
 	<vector>
 	<array>
@@ -28,12 +28,14 @@
 	"StiffnessMatrix.hpp"
 	<cmath>
 
-1540500028 c:\users\thabo\desktop\heatequationdis\heat equation solver\stiffnessmatrix.hpp
+1541173230 c:\users\thabo\desktop\heatequationdis\heat equation solver\stiffnessmatrix.hpp
 	"TriDiagMatrix.hpp"
 	"SpaceMesh.hpp"
 	<iostream>
 	<vector>
 	<array>
+	<cmath>
+	<math.h>
 
 1540234730 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\tridiagmatrix.cpp
 	<iostream>
@@ -41,7 +43,7 @@
 	<array>
 	"TriDiagMatrix.hpp"
 
-1540838668 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\driver5withnewclasses.cpp
+1541174435 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\driver5withnewclasses.cpp
 	<iostream>
 	<cmath>
 	<vector>
@@ -55,7 +57,7 @@
 	<string>
 	<boost/math/quadrature/gauss.hpp>
 
-1540837969 c:\users\thabo\desktop\heatequationdis\heat equation solver\heatequation.hpp
+1541174435 c:\users\thabo\desktop\heatequationdis\heat equation solver\heatequation.hpp
 	<iostream>
 	<vector>
 	<array>
@@ -74,17 +76,17 @@
 	<array>
 	<algorithm>
 
-1540669688 c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.hpp
+1541172121 c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.hpp
 	<iostream>
 	<vector>
 	<array>
 
-1540646681 c:\users\thabo\desktop\heatequationdis\heat equation solver\timemesh.hpp
+1541171570 c:\users\thabo\desktop\heatequationdis\heat equation solver\timemesh.hpp
 	<iostream>
 	<vector>
 	<array>
 
-1540855361 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\heatequation.cpp
+1541174492 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\heatequation.cpp
 	<iostream>
 	<cmath>
 	<math.h>
@@ -99,7 +101,7 @@
 	<string>
 	<boost/math/quadrature/gauss.hpp>
 
-1540678115 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.cpp
+1541172184 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.cpp
 	<iostream>
 	<vector>
 	<array>
@@ -108,7 +110,7 @@
 	<string>
 	"SpaceMesh.hpp"
 
-1540668478 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\timemesh.cpp
+1541171293 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\timemesh.cpp
 	<iostream>
 	<vector>
 	<array>

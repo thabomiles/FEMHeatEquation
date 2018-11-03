@@ -24,14 +24,16 @@ void HeatEquation::SetSpaceTimeMesh( SpaceMesh smesh, TimeMesh tmesh, const std:
 
 void HeatEquation::Solve()
 {
-StiffnessMatrix stiff;
-stiff.BuildStiffnessMatrix( mpsmesh );
 
+//StiffnessMatrix stiff;
+//MassMatrix mass;
+//TriDiagMatrix LHS;
+
+stiff.BuildStiffnessMatrix( mpsmesh );
 stiff.MultiplyByScalar( mptmesh.ReadTimeMesh(0) );
 
-MassMatrix mass;
 mass.BuildMassMatrix(mpsmesh);
-TriDiagMatrix LHS;
+
 LHS.AddTwoMatrices( mass, stiff );
 
 
@@ -50,8 +52,19 @@ LHS.MatrixSolver( mpRHS, mpx );
 
 mpPreviousSolution = mpx;
 
+if (j==int(0.5*m))
+{
+    PrintSolution();
+    BuildErrorMesh();
+    PrintErrorMesh();
+    std::cout<< GlobalSpaceError();
+    std::cout << " \n";
+}
+
 }
 }
+
+
 
 
 void HeatEquation::AnalyticSolutionVec( )
@@ -100,17 +113,14 @@ double HeatEquation::PiecewiseU( double x )
     secondpoint.at(1) = mpx.at(upperindex-1);
     }
 
-
-
-    double m = (firstpoint[1]-secondpoint[1])/(firstpoint[0]-secondpoint[0]);
+    long double m = (firstpoint[1]-secondpoint[1])/(firstpoint[0]-secondpoint[0]);
 
     return m*(x - firstpoint[0])+firstpoint[1];
-
 }
 
 double HeatEquation::ErrorSquared( double x )
 {
-    double dummyVar = HeatEquation::PiecewiseU(x)-HeatEquation::ContinuousAnalyticSolution(x, 1);
+    double dummyVar = HeatEquation::PiecewiseU(x)-HeatEquation::ContinuousAnalyticSolution(x, mptmesh.ReadTimeStep(mpcurrenTimeStep));
     return pow(dummyVar,2);
 }
 
@@ -119,7 +129,7 @@ double HeatEquation::ContinuousAnalyticSolution( double x, double t )
      return 6*exp(-t)*sin(M_PI*x);
 }
 
-
+    //only use odd numbers for n
 double HeatEquation::L2ErrorGuass ( double lowerlimit, double upperlimit )
 {
     const int n = 7;
@@ -177,4 +187,12 @@ void HeatEquation::PrintSolution( )
         std::cout << k << ", ";
         std::cout << " \n";
 
+//    for (int i = 0; i<21; i++)
+//    {
+//       std::cout << HeatEquation::PiecewiseU(i*0.05) << ", ";
+//    }
+//    std::cout << " \n";
+
 }
+
+

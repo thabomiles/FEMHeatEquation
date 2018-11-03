@@ -6,6 +6,14 @@
 #include <string>
 #include "SpaceMesh.hpp"
 
+void SpaceMesh::CopySpaceMesh (const SpaceMesh& oldSpaceMesh)
+{
+
+    mpSpaceNodes = oldSpaceMesh.mpSpaceNodes;
+    RefreshSpaceMesh();
+    mpmeshsize = mpSpaceMesh.size();
+}
+
 void SpaceMesh::GenerateSpaceMesh( std::vector<double> SpaceNodes )
 {
     mpSpaceNodes = SpaceNodes;
@@ -83,6 +91,24 @@ int SpaceMesh::IndexAbove ( double x )
 
    return distance(mpSpaceNodes.begin(), it);
 
+}
+
+void SpaceMesh::RemoveSpaceNode (int i)
+{
+    if (i==0||i==meshsize())
+    {
+        std::cout <<"\n";
+        std::cout<< meshsize();
+        std::cout <<"\n";
+        std::cout<< "you cannot remove the first of last node";
+        std::cout <<"\n";
+
+    }
+    else
+    {
+    mpSpaceNodes.erase(mpSpaceNodes.begin() + i);
+    }
+    RefreshSpaceMesh();
 }
 
 

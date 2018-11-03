@@ -5,6 +5,9 @@
 #include <array>
 #include "SpaceMesh.hpp"
 #include "TimeMesh.hpp"
+#include "TriDiagMatrix.hpp"
+#include "MassMatrix.hpp"
+#include "StiffnessMatrix.hpp"
 
 class HeatEquation
 {
@@ -36,7 +39,7 @@ public:
 
     std::vector<double> mpErrorMesh;
 
-private:
+protected:
 
     int mn, mm, mpcurrenTimeStep;
 
@@ -47,10 +50,17 @@ private:
     SpaceMesh mpsmesh;
     TimeMesh mptmesh;
 
+    StiffnessMatrix stiff;
+    MassMatrix mass;
+    TriDiagMatrix LHS;
+
     std::vector<double> mpx;
     std::vector<double> mpAnalyticSolution;
     std::vector<double> mpPreviousSolution;
     std::vector<double> mpRHS;
+    std::vector<double> HalfTimeUh;
+    std::vector<double> HalfTimeInterpolant;
+
 
 
     std::array<double, 2> firstpoint;

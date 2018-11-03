@@ -8,6 +8,7 @@ class TimeMesh
 {
 public:
 
+    void CopyTimeMesh (const TimeMesh& oldTimeMesh);
     void GenerateTimeMesh ( std::vector<double> TimeNodes );
 
         //takes mTimeStep which is one less than the number of

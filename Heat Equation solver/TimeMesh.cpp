@@ -6,6 +6,11 @@
 #include <string>
 #include "TimeMesh.hpp"
 
+void TimeMesh::CopyTimeMesh (const TimeMesh& oldTimeMesh)
+{
+    mpTimeNodes = oldTimeMesh.mpTimeNodes;
+    RefreshTimeMesh();
+}
 
 void TimeMesh::GenerateTimeMesh ( std::vector<double> TimeNodes )
 {

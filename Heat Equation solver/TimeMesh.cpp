@@ -12,6 +12,23 @@ void TimeMesh::CopyTimeMesh (const TimeMesh& oldTimeMesh)
     RefreshTimeMesh();
 }
 
+void TimeMesh::BisectInterval (int lowerIndex, int upperIndex)
+{
+    if ((upperIndex-lowerIndex==1)&&(upperIndex<mpTimeNodes.size()))
+    {
+    double midpoint = 0.5*(mpTimeNodes.at(upperIndex)+mpTimeNodes.at(lowerIndex));
+    mpTimeNodes.push_back( midpoint );
+    sort(mpTimeNodes.begin(), mpTimeNodes.end());
+    }
+    else
+    {
+    std::cout<< "this is not an interval";
+    std::cout<< "\n";
+    }
+
+    RefreshTimeMesh();
+}
+
 void TimeMesh::GenerateTimeMesh ( std::vector<double> TimeNodes )
 {
     mpTimeNodes = TimeNodes;

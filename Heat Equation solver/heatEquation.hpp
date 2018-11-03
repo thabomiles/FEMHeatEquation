@@ -36,8 +36,11 @@ public:
     double GlobalSpaceError();
 
     void PrintErrorMesh();
+;
 
     std::vector<double> mpErrorMesh;
+
+
 
 protected:
 
@@ -63,8 +66,8 @@ protected:
 
 
 
-    std::array<double, 2> firstpoint;
-    std::array<double, 2> secondpoint;
+//    std::array<double, 2> firstpoint;
+//    std::array<double, 2> secondpoint;
 };
 
 

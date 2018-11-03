@@ -84,6 +84,9 @@ void HeatEquation::AnalyticSolutionVec( )
     //all the other elements can be fixed for x = 0
 double HeatEquation::PiecewiseU( double x )
 {
+    std::array<double, 2> firstpoint;
+    std::array<double, 2> secondpoint;
+
     int upperindex = mpsmesh.IndexAbove( x );
     auto boundaryconditionU0 = 0;
     auto boundarycondition1Un = 0;
@@ -172,7 +175,7 @@ void HeatEquation::PrintErrorMesh()
 {
     for(auto k: mpErrorMesh)
         std::cout << k << ", ";
-        std::cout << " \n";
+    std::cout << " \n";
 
 }
 
@@ -194,5 +197,6 @@ void HeatEquation::PrintSolution( )
 //    std::cout << " \n";
 
 }
+
 
 

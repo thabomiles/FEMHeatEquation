@@ -10,7 +10,7 @@ public:
 
     void CopySpaceMesh (const SpaceMesh& oldSpaceMesh);
     void GenerateSpaceMesh ( std::vector<double> SpaceNodes );
-
+    void BisectInterval (int lowerIndex, int upperIndex);
 
     void GenerateDefaultSpaceMesh();
     void GloballyBisectSpaceMesh ();

@@ -21,50 +21,55 @@ AnalyticSolutionVec();
 mpPreviousSolution = mpAnalyticSolution;
 
 
+
 int m = mptmesh.NumberOfTimeSteps();
 for(int j = 0; j<m; j++)
 {
+
     BuildSystemAtTimeStep();
+    oldmesh.CopySpaceMesh(mpsmesh);
+
     mpcurrenTimeStep = j+1;
 
-mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
-
-LHS.MatrixSolver( mpRHS, mpx );
-
-//SaveIntervalsForRefinement();
-
-//mpsmesh.InsertSpaceNode(j/m);
+    mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
+    LHS.MatrixSolver( mpRHS, mpx );
+    mpPreviousSolution = mpx;
 
 
-mpPreviousSolution = mpx;
 
-//UpdatePreviousSolution();
 
 if (j==int(0.5*m))
 {
-    PrintSolution();
+
+
     BuildErrorMesh();
     PrintErrorMesh();
-    std::cout<< GlobalSpaceError();
+
+    std::cout << GlobalSpaceError();
     std::cout << " \n";
-//    mpsmesh.GloballyBisectSpaceMesh();
+
+    mpsmesh.GloballyBisectSpaceMesh();
     UpdatePreviousSolution();
+    mpsmesh.PrintSpaceNodes();
+    PrintSolution();
 }
-
-
 }
 }
 
 void AdaptiveHeatEquation::UpdatePreviousSolution()
 {
-//    mpPreviousSolution.clear();
-//    double dummyU;
-//    double oldMeshSize = mpsmesh.meshsize();
-//    for (int i = 1; i<oldMeshSize-2; i++)
-//    {
-//        dummyU = PiecewiseU(mpsmesh.ReadSpaceNode(i));
-//        mpPreviousSolution.push_back(dummyU);
-//    }
+    mpPreviousSolution.clear();
+    double dummyU;
+    double dummyx;
+
+    for (int i = 1; i<mpsmesh.meshsize(); i++)
+    {
+        dummyU = InterpolantFunction(mpsmesh.ReadSpaceNode(i), mpx, oldmesh);
+        mpPreviousSolution.push_back(dummyU);
+    }
+//    for (auto i: mpPreviousSolution)
+//        std::cout<< i<< ", ";
+//    std::cout<< "\n";
 }
 
 void AdaptiveHeatEquation::RefineMesh()
@@ -103,42 +108,50 @@ stiff.BuildStiffnessMatrix( mpsmesh );
 stiff.MultiplyByScalar( mptmesh.ReadTimeMesh(mpcurrenTimeStep) );
 mass.BuildMassMatrix(mpsmesh);
 LHS.AddTwoMatrices( mass, stiff );
+}
 
-AnalyticSolutionVec();
+void AdaptiveHeatEquation::SolveTimeStep()
+{
+
+mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
+
+LHS.MatrixSolver( mpRHS, mpx );
+
+mpPreviousSolution = mpx;
 
 }
 
-double AdaptiveHeatEquation::InterpolantFunction( double x, std::vector<double> funct )
+double AdaptiveHeatEquation::InterpolantFunction( double x, std::vector<double> funct, SpaceMesh& relevantMesh )
 {
     std::array<double, 2> firstpoint;
     std::array<double, 2> secondpoint;
 
-    int upperindex = mpsmesh.IndexAbove( x );
+    int upperindex = relevantMesh.IndexAbove( x );
     auto boundaryconditionU0 = 0;
     auto boundarycondition1Un = 0;
 
     if((upperindex==1)||(upperindex==0))
     {
-    firstpoint.at(0)= mpsmesh.ReadSpaceNode(0);
+    firstpoint.at(0)= relevantMesh.ReadSpaceNode(0);
     firstpoint.at(1) = boundaryconditionU0;
 
-    secondpoint[0] = mpsmesh.ReadSpaceNode(1);
+    secondpoint[0] = relevantMesh.ReadSpaceNode(1);
     secondpoint.at(1) = funct.at(0);
     }
-    else if (upperindex == mpsmesh.meshsize())
+    else if (upperindex == relevantMesh.meshsize())
     {
-    firstpoint.at(0)= mpsmesh.ReadSpaceNode(upperindex-1);
+    firstpoint.at(0)= relevantMesh.ReadSpaceNode(upperindex-1);
     firstpoint.at(1) = funct.at(upperindex-2);
 
-    secondpoint[0] = mpsmesh.ReadSpaceNode(upperindex);
+    secondpoint[0] = relevantMesh.ReadSpaceNode(upperindex);
     secondpoint.at(1) = boundarycondition1Un;
     }
     else
     {
-    firstpoint.at(0)= mpsmesh.ReadSpaceNode(upperindex-1);
+    firstpoint.at(0)= relevantMesh.ReadSpaceNode(upperindex-1);
     firstpoint.at(1) = funct.at(upperindex-2);
 
-    secondpoint[0] = mpsmesh.ReadSpaceNode(upperindex);
+    secondpoint[0] = relevantMesh.ReadSpaceNode(upperindex);
     secondpoint.at(1) = funct.at(upperindex-1);
     }
 

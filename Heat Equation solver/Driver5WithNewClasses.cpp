@@ -25,6 +25,7 @@ int main(int argc, char* argv[])
 
 SpaceMesh smesh;
 smesh.GenerateDefaultSpaceMesh();
+smesh.GloballyBisectSpaceMesh();
 
 TimeMesh tmesh;
 tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize(), 2), 1.0);

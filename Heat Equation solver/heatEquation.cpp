@@ -45,7 +45,6 @@ for(int j = 0; j<m; j++)
 {
     mpcurrenTimeStep = j+1;
 
-AnalyticSolutionVec();
 mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
 
 LHS.MatrixSolver( mpRHS, mpx );
@@ -82,6 +81,7 @@ void HeatEquation::AnalyticSolutionVec( )
     //the if statements deal with what happens if you are in the first interval
     //in this case the first value of u is given by the boundary condition
     //all the other elements can be fixed for x = 0
+    //this function only works for the static case if the mesh changes everything is fucked
 double HeatEquation::PiecewiseU( double x )
 {
     std::array<double, 2> firstpoint;
@@ -182,6 +182,7 @@ void HeatEquation::PrintErrorMesh()
 
 void HeatEquation::PrintSolution( )
 {
+        AnalyticSolutionVec();
         for (auto k: mpx)
         std::cout << k << ", ";
         std::cout << " \n";

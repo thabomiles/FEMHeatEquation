@@ -36,7 +36,6 @@ public:
     double GlobalSpaceError();
 
     void PrintErrorMesh();
-;
 
     std::vector<double> mpErrorMesh;
 

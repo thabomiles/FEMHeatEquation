@@ -4,6 +4,7 @@
 #include <array>
 #include <math.h>
 #include "AdaptiveHeat.hpp"
+#include "StiffnessMatrix.hpp"
 #include <fstream>
 #include <string>
 #include <boost/math/quadrature/gauss.hpp>
@@ -18,9 +19,12 @@ int main(int argc, char* argv[])
 
 SpaceMesh smesh;
 smesh.GenerateDefaultSpaceMesh();
-//smesh.GenerateSpaceMesh({0, 0.25, 0.5, 0.75, 1});
 smesh.GloballyBisectSpaceMesh();
-//smesh.GloballyBisectSpaceMesh();
+smesh.GloballyBisectSpaceMesh();
+smesh.GloballyBisectSpaceMesh();
+
+smesh.PrintSpaceNodes();
+
 
 TimeMesh tmesh;
 tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize(), 2), 1.0);
@@ -33,8 +37,9 @@ TimeMesh tmesh1;
 AdaptiveHeatEquation adaptiveheat;
 adaptiveheat.SetSpaceTimeMesh( smesh, tmesh, "soultion1.txt");
 adaptiveheat.Solve();
-
+//
 adaptiveheat.PrintSolution();
+
 
 
 adaptiveheat.BuildErrorMesh();

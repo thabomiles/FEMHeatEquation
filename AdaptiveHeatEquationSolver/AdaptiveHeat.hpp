@@ -15,7 +15,10 @@ public:
     void SaveIntervalsForRefinement();
     void RefineMesh();
     void UpdatePreviousSolution();
-    double InterpolantFunction( double x, std::vector<double> funct );
+    void SolveStep();
+    double InterpolantFunction( double x, std::vector<double> funct, SpaceMesh& relevantMesh );
+    void SolveTimeStep();
+
 
 
 
@@ -23,6 +26,8 @@ protected:
 
     const double tolerance = 0.1;
     std::vector<double> intervalsForRefinement;
+    SpaceMesh oldmesh;
+
 
 
 };

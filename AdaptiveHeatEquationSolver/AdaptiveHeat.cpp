@@ -15,56 +15,62 @@
 using namespace std;
 using namespace boost::math::quadrature;
 
-void AdaptiveHeatEquation::Solve()
+void AdaptiveHeatEquation::AdaptiveSolver()
 {
 AnalyticSolutionVec();
 mpPreviousSolution = mpAnalyticSolution;
-
-
+BuildSystemAtTimeStep();
+mass.PrintMatrix();
+PrintSolution();
 
 int m = mptmesh.NumberOfTimeSteps();
-for(int j = 0; j<m; j++)
+for(int j = 0; j<1; j++)
 {
-
-    BuildSystemAtTimeStep();
-    oldmesh.CopySpaceMesh(mpsmesh);
-
     mpcurrenTimeStep = j+1;
+    mpcurrentMeshIndex = j;
+    SystemSolver();
 
-    mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
-    LHS.MatrixSolver( mpRHS, mpx );
-    mpPreviousSolution = mpx;
+    PrintSolution();
 
+    SaveIntervalsForRefinement();
+    oldmesh.CopySpaceMesh(mpsmesh);
+    mpPreviousSolDummy = mpPreviousSolution;
 
+    int i = 0;
+    while (i<1)
+    {
+        i++;
+        mpsmesh.BisectIntervals(intervalsForRefinement);
 
+        UpdatePreviousSolution();
+//
+        BuildSystemAtTimeStep();
+        SystemSolver();
+        SaveIntervalsForRefinement();
 
-if (j==int(0.5*m))
-{
-
-
-    BuildErrorMesh();
-    PrintErrorMesh();
-
-    std::cout << GlobalSpaceError();
-    std::cout << " \n";
-
-    mpsmesh.GloballyBisectSpaceMesh();
-    UpdatePreviousSolution();
+        if (i==3)
+        {
+            mpsmesh.PrintSpaceNodes();
+            PrintSolution();
+        }
+    }
     mpsmesh.PrintSpaceNodes();
     PrintSolution();
-}
+
+    mpPreviousSolution = mpx;
 }
 }
 
 void AdaptiveHeatEquation::UpdatePreviousSolution()
 {
+//    std::vector<double> previousDummy = mpPreviousSolution;
     mpPreviousSolution.clear();
     double dummyU;
     double dummyx;
 
     for (int i = 1; i<mpsmesh.meshsize(); i++)
     {
-        dummyU = InterpolantFunction(mpsmesh.ReadSpaceNode(i), mpx, oldmesh);
+        dummyU = InterpolantFunction(mpsmesh.ReadSpaceNode(i), mpPreviousSolDummy, oldmesh);
         mpPreviousSolution.push_back(dummyU);
     }
 //    for (auto i: mpPreviousSolution)
@@ -72,18 +78,10 @@ void AdaptiveHeatEquation::UpdatePreviousSolution()
 //    std::cout<< "\n";
 }
 
-void AdaptiveHeatEquation::RefineMesh()
-{
-    for(int i = 0; i<intervalsForRefinement.size(); i++)
-    {
-        mpsmesh.BisectInterval(i, i+1);
-    }
-    BuildErrorMesh();
-}
+
 
 void AdaptiveHeatEquation::SaveIntervalsForRefinement()
 {
-
     BuildErrorMesh();
     intervalsForRefinement.clear();
     for(int i=0; i<mpErrorMesh.size(); i++)
@@ -93,32 +91,27 @@ void AdaptiveHeatEquation::SaveIntervalsForRefinement()
             intervalsForRefinement.push_back(i);
         }
     }
-    for (auto j: mpErrorMesh)
-        std::cout<< sqrt(j) << ", ";
-    std::cout<< "\n";
-
-    for (auto j: intervalsForRefinement)
-        std::cout<< j << ", ";
-    std::cout<< "\n";
+//    for (auto j: mpErrorMesh)
+//        std::cout<< sqrt(j) << ", ";
+//    std::cout<< "\n";
+//
+//    for (auto j: intervalsForRefinement)
+//        std::cout<< j << ", ";
+//    std::cout<< "\n";
 }
 
 void AdaptiveHeatEquation::BuildSystemAtTimeStep()
 {
 stiff.BuildStiffnessMatrix( mpsmesh );
-stiff.MultiplyByScalar( mptmesh.ReadTimeMesh(mpcurrenTimeStep) );
+stiff.MultiplyByScalar( mptmesh.ReadTimeMesh(mpcurrentMeshIndex) );
 mass.BuildMassMatrix(mpsmesh);
 LHS.AddTwoMatrices( mass, stiff );
 }
 
-void AdaptiveHeatEquation::SolveTimeStep()
+void AdaptiveHeatEquation::SystemSolver()
 {
-
-mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
-
-LHS.MatrixSolver( mpRHS, mpx );
-
-mpPreviousSolution = mpx;
-
+    mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
+    LHS.MatrixSolver( mpRHS, mpx );
 }
 
 double AdaptiveHeatEquation::InterpolantFunction( double x, std::vector<double> funct, SpaceMesh& relevantMesh )
@@ -160,5 +153,34 @@ double AdaptiveHeatEquation::InterpolantFunction( double x, std::vector<double> 
     return m*(x - firstpoint[0])+firstpoint[1];
 }
 
+void AdaptiveHeatEquation::SolveChangingMesh()
+{
+AnalyticSolutionVec();
+mpPreviousSolution = mpAnalyticSolution;
+BuildSystemAtTimeStep();
 
+int m = mptmesh.NumberOfTimeSteps();
+for(int j = 0; j<m; j++)
+{
+    mpcurrenTimeStep = j+1;
+    mpcurrentMeshIndex = j;
+
+    SystemSolver();
+
+if (j==int(0.5*m))
+{
+    PrintErrorMesh();
+    std::cout << GlobalSpaceError();
+    std::cout << " \n";
+
+    oldmesh.CopySpaceMesh(mpsmesh);
+    mpsmesh.GloballyBisectSpaceMesh();
+    UpdatePreviousSolution();
+
+    BuildSystemAtTimeStep();
+    mpsmesh.PrintSpaceNodes();
+    PrintSolution();
+}
+}
+}
 

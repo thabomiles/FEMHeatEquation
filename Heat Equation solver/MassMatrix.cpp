@@ -8,6 +8,10 @@
 
 void MassMatrix::BuildMassMatrix ( SpaceMesh smesh )
 {
+mpDiagonal.clear();
+mpLowerDiag.clear();
+mpUpperDiag.clear();
+
 mpn = smesh.meshsize()-1;
 mpDiagonal = {(smesh.ReadSpaceMesh(0)+smesh.ReadSpaceMesh(1))*pow(3,-1)};
 mpLowerDiag = {0};

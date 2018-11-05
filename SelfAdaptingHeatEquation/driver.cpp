@@ -29,29 +29,22 @@ smesh.PrintSpaceNodes();
 TimeMesh tmesh;
 tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize(), 2), 1.0);
 
-TimeMesh tmesh1;
-
-
-
-
 AdaptiveHeatEquation adaptiveheat;
 adaptiveheat.SetSpaceTimeMesh( smesh, tmesh, "soultion1.txt");
-adaptiveheat.SolveChangingMesh();
+adaptiveheat.AdaptiveSolver();
 //
-adaptiveheat.PrintSolution();
+//adaptiveheat.PrintSolution();
 
 
+//
+//adaptiveheat.BuildErrorMesh();
+//adaptiveheat.PrintErrorMesh();
 
-adaptiveheat.BuildErrorMesh();
-adaptiveheat.PrintErrorMesh();
-
-std::cout << adaptiveheat.GlobalSpaceError();
-std::cout << " \n";
-
+//std::cout << adaptiveheat.GlobalSpaceError();
+//std::cout << " \n";
+//
 
 
 }
-
-
 
 

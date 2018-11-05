@@ -14,19 +14,11 @@ void SpaceMesh::CopySpaceMesh (const SpaceMesh& oldSpaceMesh)
     mpmeshsize = mpSpaceMesh.size();
 }
 
-void SpaceMesh::BisectInterval (int lowerIndex, int upperIndex)
+void SpaceMesh::BisectIntervals (std::vector<int> &intervalsForBisection)
 {
-    if ((upperIndex-lowerIndex==1)&&(upperIndex<mpSpaceNodes.size()))
-    {
-    double midpoint = 0.5*(mpSpaceNodes.at(upperIndex)+mpSpaceNodes.at(lowerIndex));
-    mpSpaceNodes.push_back( midpoint );
+    for(auto i: intervalsForBisection)
+        mpSpaceNodes.push_back(0.5*(mpSpaceNodes.at(i)+mpSpaceNodes.at(i+1)));
     sort(mpSpaceNodes.begin(), mpSpaceNodes.end());
-    }
-    else
-    {
-    std::cout<< "this is not an interval";
-    std::cout<< "\n";
-    }
 
     RefreshSpaceMesh();
 }

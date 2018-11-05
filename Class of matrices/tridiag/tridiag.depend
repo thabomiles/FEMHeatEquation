@@ -1,16 +1,16 @@
 # depslib dependency file v1.0
-1540228088 source:c:\users\thabo\desktop\heatequationdis\class of matrices\tridiag\tridiagmatrix.cpp
+1540224488 source:c:\users\thabo\desktop\heatequationdis\class of matrices\tridiag\tridiagmatrix.cpp
 	<iostream>
 	<vector>
 	<array>
 	"TriDiagMatrix.hpp"
 
-1540228121 c:\users\thabo\desktop\heatequationdis\class of matrices\tridiag\tridiagmatrix.hpp
+1540224521 c:\users\thabo\desktop\heatequationdis\class of matrices\tridiag\tridiagmatrix.hpp
 	<iostream>
 	<vector>
 	<array>
 
-1540228992 source:c:\users\thabo\desktop\heatequationdis\class of matrices\tridiag\driver1.cpp
+1541445746 source:c:\users\thabo\desktop\heatequationdis\class of matrices\tridiag\driver1.cpp
 	<iostream>
 	<cmath>
 	"TriDiagMatrix.hpp"
@@ -20,7 +20,7 @@
 	<math.h>
 	"StiffnessMatrix.hpp"
 
-1540228841 source:c:\users\thabo\desktop\heatequationdis\class of matrices\tridiag\massmatrix.cpp
+1540225241 source:c:\users\thabo\desktop\heatequationdis\class of matrices\tridiag\massmatrix.cpp
 	<iostream>
 	<vector>
 	<array>
@@ -28,13 +28,13 @@
 	"MassMatrix.hpp"
 	<cmath>
 
-1540174414 c:\users\thabo\desktop\heatequationdis\class of matrices\tridiag\massmatrix.hpp
+1540170814 c:\users\thabo\desktop\heatequationdis\class of matrices\tridiag\massmatrix.hpp
 	"TriDiagMatrix.hpp"
 	<iostream>
 	<vector>
 	<array>
 
-1540228841 source:c:\users\thabo\desktop\heatequationdis\class of matrices\tridiag\stiffnessmatrix.cpp
+1540225241 source:c:\users\thabo\desktop\heatequationdis\class of matrices\tridiag\stiffnessmatrix.cpp
 	<iostream>
 	<vector>
 	<array>
@@ -42,7 +42,7 @@
 	"StiffnessMatrix.hpp"
 	<cmath>
 
-1540175095 c:\users\thabo\desktop\heatequationdis\class of matrices\tridiag\stiffnessmatrix.hpp
+1540171495 c:\users\thabo\desktop\heatequationdis\class of matrices\tridiag\stiffnessmatrix.hpp
 	"TriDiagMatrix.hpp"
 	<iostream>
 	<vector>

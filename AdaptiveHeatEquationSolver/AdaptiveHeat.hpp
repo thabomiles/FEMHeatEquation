@@ -10,14 +10,15 @@
 class AdaptiveHeatEquation: public HeatEquation
 {
 public:
-    void Solve();
+    void AdaptiveSolver();
+    void SolveChangingMesh();
     void BuildSystemAtTimeStep();
     void SaveIntervalsForRefinement();
     void RefineMesh();
     void UpdatePreviousSolution();
     void SolveStep();
     double InterpolantFunction( double x, std::vector<double> funct, SpaceMesh& relevantMesh );
-    void SolveTimeStep();
+    void SystemSolver();
 
 
 
@@ -25,8 +26,11 @@ public:
 protected:
 
     const double tolerance = 0.1;
-    std::vector<double> intervalsForRefinement;
+    std::vector<int> intervalsForRefinement;
     SpaceMesh oldmesh;
+    int mpcurrentMeshIndex = 0;
+
+    std::vector<double> mpPreviousSolDummy;
 
 
 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<FileVersion major="1" minor="0" />
+	<ActiveTarget name="Debug" />
+	<File name="..\Heat Equation solver\TimeMesh.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="driver.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="651" topLine="19" />
+		</Cursor>
+	</File>
+	<File name="..\Heat Equation solver\SpaceMesh.hpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="333" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="..\Heat Equation solver\SpaceMesh.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="581" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="..\Heat Equation solver\TriDiagMatrix.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2812" topLine="52" />
+		</Cursor>
+	</File>
+	<File name="..\Heat Equation solver\MassMatrix.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="283" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="..\AdaptiveHeatEquationSolver\AdaptiveHeat.cpp" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="930" topLine="84" />
+		</Cursor>
+		<Folding>
+			<Collapse line="82" />
+			<Collapse line="116" />
+			<Collapse line="155" />
+		</Folding>
+	</File>
+	<File name="..\Heat Equation solver\StiffnessMatrix.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="204" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="..\AdaptiveHeatEquationSolver\AdaptiveHeat.hpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="803" topLine="15" />
+		</Cursor>
+	</File>
+</CodeBlocks_layout_file>

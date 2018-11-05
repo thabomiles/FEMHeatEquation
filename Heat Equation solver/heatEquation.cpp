@@ -43,7 +43,7 @@ mpPreviousSolution = mpAnalyticSolution;
 int m = mptmesh.NumberOfTimeSteps();
 for(int j = 0; j<m; j++)
 {
-    mpcurrenTimeStep = j+1;
+mpcurrenTimeStep = j+1;
 
 mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
 
@@ -164,6 +164,7 @@ mpErrorMesh.push_back(HeatEquation::L2ErrorGuass( mpsmesh.ReadSpaceNode(i),mpsme
 
 double HeatEquation::GlobalSpaceError()
 {
+    BuildErrorMesh();
     double globalError=0;
     for(auto k: mpErrorMesh)
         globalError = globalError + k;
@@ -173,6 +174,7 @@ double HeatEquation::GlobalSpaceError()
 
 void HeatEquation::PrintErrorMesh()
 {
+    BuildErrorMesh();
     for(auto k: mpErrorMesh)
         std::cout << k << ", ";
     std::cout << " \n";

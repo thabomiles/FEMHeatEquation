@@ -88,10 +88,10 @@ void TriDiagMatrix::MatrixVectorMultiplier ( std::vector<double> f, std::vector<
     {
         if (firstMatrix.mpn==secondMatix.mpn)
         {
-            mpn = secondMatix.mpn;
             mpDiagonal.clear();
             mpLowerDiag.clear();
             mpUpperDiag.clear();
+            mpn = secondMatix.mpn;
 
             for (int i = 0; i<mpn; i++)
             {

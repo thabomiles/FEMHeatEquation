@@ -20,84 +20,23 @@ void AdaptiveHeatEquation::AdaptiveSolver()
 AnalyticSolutionVec();
 mpPreviousSolution = mpAnalyticSolution;
 BuildSystemAtTimeStep();
-mass.PrintMatrix();
-PrintSolution();
 
-int m = mptmesh.NumberOfTimeSteps();
-for(int j = 0; j<1; j++)
+//int m = mptmesh.NumberOfTimeSteps();
+for(int j = 0; j<mptmesh.NumberOfTimeSteps(); j++)
 {
     mpcurrenTimeStep = j+1;
     mpcurrentMeshIndex = j;
+    BuildSystemAtTimeStep();
     SystemSolver();
-
     PrintSolution();
+    mpPreviousSolution = mpx;
 
     SaveIntervalsForRefinement();
     oldmesh.CopySpaceMesh(mpsmesh);
-    mpPreviousSolDummy = mpPreviousSolution;
-
-    int i = 0;
-    while (i<1)
-    {
-        i++;
-        mpsmesh.BisectIntervals(intervalsForRefinement);
-
-        UpdatePreviousSolution();
-//
-        BuildSystemAtTimeStep();
-        SystemSolver();
-        SaveIntervalsForRefinement();
-
-        if (i==3)
-        {
-            mpsmesh.PrintSpaceNodes();
-            PrintSolution();
-        }
-    }
+    mpsmesh.BisectIntervals(intervalsForRefinement);
     mpsmesh.PrintSpaceNodes();
-    PrintSolution();
-
-    mpPreviousSolution = mpx;
+    UpdatePreviousSolution();
 }
-}
-
-void AdaptiveHeatEquation::UpdatePreviousSolution()
-{
-//    std::vector<double> previousDummy = mpPreviousSolution;
-    mpPreviousSolution.clear();
-    double dummyU;
-    double dummyx;
-
-    for (int i = 1; i<mpsmesh.meshsize(); i++)
-    {
-        dummyU = InterpolantFunction(mpsmesh.ReadSpaceNode(i), mpPreviousSolDummy, oldmesh);
-        mpPreviousSolution.push_back(dummyU);
-    }
-//    for (auto i: mpPreviousSolution)
-//        std::cout<< i<< ", ";
-//    std::cout<< "\n";
-}
-
-
-
-void AdaptiveHeatEquation::SaveIntervalsForRefinement()
-{
-    BuildErrorMesh();
-    intervalsForRefinement.clear();
-    for(int i=0; i<mpErrorMesh.size(); i++)
-    {
-        if (sqrt(mpErrorMesh.at(i))>tolerance)
-        {
-            intervalsForRefinement.push_back(i);
-        }
-    }
-//    for (auto j: mpErrorMesh)
-//        std::cout<< sqrt(j) << ", ";
-//    std::cout<< "\n";
-//
-//    for (auto j: intervalsForRefinement)
-//        std::cout<< j << ", ";
-//    std::cout<< "\n";
 }
 
 void AdaptiveHeatEquation::BuildSystemAtTimeStep()
@@ -113,6 +52,42 @@ void AdaptiveHeatEquation::SystemSolver()
     mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
     LHS.MatrixSolver( mpRHS, mpx );
 }
+
+void AdaptiveHeatEquation::UpdatePreviousSolution()
+{
+    mpPreviousSolution.clear();
+    double dummyU;
+
+    for (int i = 1; i<mpsmesh.meshsize(); i++)
+    {
+        dummyU = InterpolantFunction(mpsmesh.ReadSpaceNode(i), mpx, oldmesh);
+        mpPreviousSolution.push_back(dummyU);
+    }
+    PrintVector(mpPreviousSolution);
+}
+
+
+
+void AdaptiveHeatEquation::SaveIntervalsForRefinement()
+{
+    BuildErrorMesh();
+    intervalsForRefinement.clear();
+    for(int i=0; i<mpErrorMesh.size(); i++)
+    {
+        if (sqrt(mpErrorMesh.at(i))>tolerance)
+        {
+            intervalsForRefinement.push_back(i);
+        }
+    }
+    for (auto j: mpErrorMesh)
+        std::cout<< sqrt(j) << ", ";
+    std::cout<< "\n";
+
+    for (auto k: intervalsForRefinement)
+        std::cout << k << ", ";
+    std::cout << " \n";
+}
+
 
 double AdaptiveHeatEquation::InterpolantFunction( double x, std::vector<double> funct, SpaceMesh& relevantMesh )
 {
@@ -157,29 +132,28 @@ void AdaptiveHeatEquation::SolveChangingMesh()
 {
 AnalyticSolutionVec();
 mpPreviousSolution = mpAnalyticSolution;
-BuildSystemAtTimeStep();
 
 int m = mptmesh.NumberOfTimeSteps();
 for(int j = 0; j<m; j++)
 {
     mpcurrenTimeStep = j+1;
     mpcurrentMeshIndex = j;
-
+    BuildSystemAtTimeStep();
     SystemSolver();
+    mpsmesh.PrintSpaceNodes();
+    PrintSolution();
+    mpPreviousSolution = mpx;
 
 if (j==int(0.5*m))
 {
     PrintErrorMesh();
-    std::cout << GlobalSpaceError();
-    std::cout << " \n";
-
     oldmesh.CopySpaceMesh(mpsmesh);
     mpsmesh.GloballyBisectSpaceMesh();
     UpdatePreviousSolution();
-
-    BuildSystemAtTimeStep();
     mpsmesh.PrintSpaceNodes();
-    PrintSolution();
+    std::cout<<"\n";
+    std::cout<<mpcurrenTimeStep;
+    std::cout<<"\n";
 }
 }
 }

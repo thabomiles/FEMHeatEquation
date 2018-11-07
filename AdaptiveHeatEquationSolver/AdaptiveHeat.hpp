@@ -25,7 +25,7 @@ public:
 
 protected:
 
-    const double tolerance = 0.1;
+    const double tolerance = 0.2;
     std::vector<int> intervalsForRefinement;
     SpaceMesh oldmesh;
     int mpcurrentMeshIndex = 0;

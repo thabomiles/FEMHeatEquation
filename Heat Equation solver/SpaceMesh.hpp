@@ -12,6 +12,7 @@ public:
     void GenerateSpaceMesh ( std::vector<double> SpaceNodes );
     void BisectIntervals (std::vector<int> &intervalsForBisection);
 
+    void GenerateUniformMesh(double boundary, int numberofnodes);
     void GenerateDefaultSpaceMesh();
     void GloballyBisectSpaceMesh ();
     void InsertSpaceNode ( double xi );

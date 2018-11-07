@@ -5,6 +5,16 @@
 #include <fstream>
 #include <string>
 #include "SpaceMesh.hpp"
+#include <cmath>
+
+void SpaceMesh::GenerateUniformMesh(double boundary, int numberofnodes)
+{
+    for(int i=0; i<numberofnodes; i++)
+    {
+        mpSpaceNodes.push_back( i*boundary*pow( numberofnodes-1, -1) );
+    }
+    RefreshSpaceMesh();
+}
 
 void SpaceMesh::CopySpaceMesh (const SpaceMesh& oldSpaceMesh)
 {
@@ -62,6 +72,7 @@ void SpaceMesh::RefreshSpaceMesh()
     mpSpaceMesh.clear();
     for (int i = 0; i<mpSpaceNodes.size()-1; i++)
     mpSpaceMesh.push_back( mpSpaceNodes.at(i+1)- mpSpaceNodes.at(i) );
+    mpmeshsize = mpSpaceMesh.size();
 }
 
 void SpaceMesh::PrintSpaceNodes ()

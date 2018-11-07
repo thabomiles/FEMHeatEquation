@@ -24,18 +24,10 @@ void HeatEquation::SetSpaceTimeMesh( SpaceMesh smesh, TimeMesh tmesh, const std:
 
 void HeatEquation::Solve()
 {
-
-//StiffnessMatrix stiff;
-//MassMatrix mass;
-//TriDiagMatrix LHS;
-
 stiff.BuildStiffnessMatrix( mpsmesh );
 stiff.MultiplyByScalar( mptmesh.ReadTimeMesh(0) );
-
 mass.BuildMassMatrix(mpsmesh);
-
 LHS.AddTwoMatrices( mass, stiff );
-
 
 AnalyticSolutionVec();
 mpPreviousSolution = mpAnalyticSolution;
@@ -44,20 +36,23 @@ int m = mptmesh.NumberOfTimeSteps();
 for(int j = 0; j<m; j++)
 {
 mpcurrenTimeStep = j+1;
+stiff.BuildStiffnessMatrix( mpsmesh );
+stiff.MultiplyByScalar( mptmesh.ReadTimeMesh(mpcurrenTimeStep-1) );
+mass.BuildMassMatrix(mpsmesh);
+LHS.AddTwoMatrices( mass, stiff );
 
 mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
 
 LHS.MatrixSolver( mpRHS, mpx );
 
+GlobalSpaceError();
+
 mpPreviousSolution = mpx;
 
 if (j==int(0.5*m))
 {
-    PrintSolution();
-    BuildErrorMesh();
     PrintErrorMesh();
-    std::cout<< GlobalSpaceError();
-    std::cout << " \n";
+    GlobalSpaceError();
 }
 
 }
@@ -142,7 +137,6 @@ double HeatEquation::L2ErrorGuass ( double lowerlimit, double upperlimit )
     auto weight = gauss<double, n>::weights();
 
     double quad = weight[0]*HeatEquation::ErrorSquared(halfinterval*x[0]+intervalmidpoint);
-//    std::cout << quad << ", ";
 
     for (int j = 1; j<=(n-1)*pow(2, -1); j++)
     {
@@ -169,35 +163,30 @@ double HeatEquation::GlobalSpaceError()
     for(auto k: mpErrorMesh)
         globalError = globalError + k;
 
+    std::cout << sqrt(globalError);
+    std::cout << " \n";
     return sqrt(globalError);
 }
 
 void HeatEquation::PrintErrorMesh()
 {
     BuildErrorMesh();
-    for(auto k: mpErrorMesh)
-        std::cout << k << ", ";
-    std::cout << " \n";
-
+    PrintVector(mpErrorMesh);
 }
 
 
 void HeatEquation::PrintSolution( )
 {
         AnalyticSolutionVec();
-        for (auto k: mpx)
+        PrintVector(mpx);
+        PrintVector(mpAnalyticSolution);
+}
+
+void HeatEquation::PrintVector( std::vector<double> aVector)
+{
+        for (auto k: aVector)
         std::cout << k << ", ";
         std::cout << " \n";
-
-        for (auto k: mpAnalyticSolution)
-        std::cout << k << ", ";
-        std::cout << " \n";
-
-//    for (int i = 0; i<21; i++)
-//    {
-//       std::cout << HeatEquation::PiecewiseU(i*0.05) << ", ";
-//    }
-//    std::cout << " \n";
 
 }
 

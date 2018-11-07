@@ -24,8 +24,9 @@ int main(int argc, char* argv[])
 {
 
 SpaceMesh smesh;
-smesh.GenerateDefaultSpaceMesh();
-smesh.GloballyBisectSpaceMesh();
+//smesh.GenerateDefaultSpaceMesh();
+//smesh.GloballyBisectSpaceMesh();
+smesh.GenerateSpaceMesh({0, 0.25, 0.375, 0.5, 0.75, 1});
 
 TimeMesh tmesh;
 tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize(), 2), 1.0);
@@ -37,7 +38,6 @@ heat.Solve();
 //smesh.PrintSpaceNodes();
 heat.PrintSolution();
 
-heat.BuildErrorMesh();
 heat.PrintErrorMesh();
 
 std::cout << heat.GlobalSpaceError();

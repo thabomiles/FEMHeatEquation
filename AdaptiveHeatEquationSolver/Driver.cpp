@@ -36,17 +36,13 @@ TimeMesh tmesh1;
 
 AdaptiveHeatEquation adaptiveheat;
 adaptiveheat.SetSpaceTimeMesh( smesh, tmesh, "soultion1.txt");
-adaptiveheat.SolveChangingMesh();
-//
+adaptiveheat.AdaptiveSolver();
+
 adaptiveheat.PrintSolution();
 
-
-
-adaptiveheat.BuildErrorMesh();
 adaptiveheat.PrintErrorMesh();
+adaptiveheat.GlobalSpaceError();
 
-std::cout << adaptiveheat.GlobalSpaceError();
-std::cout << " \n";
 
 
 

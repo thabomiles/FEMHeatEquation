@@ -37,6 +37,8 @@ public:
 
     void PrintErrorMesh();
 
+    void PrintVector( std::vector<double> aVector);
+
     std::vector<double> mpErrorMesh;
 
 

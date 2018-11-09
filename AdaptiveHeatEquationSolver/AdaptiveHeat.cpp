@@ -52,6 +52,7 @@ void AdaptiveHeatEquation::SystemSolver()
     mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
     //BuildRHS();
     LHS.MatrixSolver( mpRHS, mpx );
+    oldmesh.CopySpaceMesh(mpsmesh);
 }
 
 void AdaptiveHeatEquation::UpdatePreviousSolution()
@@ -140,20 +141,21 @@ for(int j = 0; j<m; j++)
 {
     mpcurrenTimeStep = j+1;
     mpcurrentMeshIndex = j;
+
     BuildSystemAtTimeStep();
-    SystemSolver();
+    //mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
+    BuildRHS();
+    LHS.MatrixSolver( mpRHS, mpx );
+    oldmesh.CopySpaceMesh(mpsmesh);
     PrintVector(mpRHS);
+
     mpPreviousSolution = mpx;
+
 
 if (j==int(0.5*m))
 {
-    std::cout<<"\n";
-    PrintVector(mpPreviousSolution);
-    std::cout<<"\n";
-    oldmesh.CopySpaceMesh(mpsmesh);
+    //oldmesh.CopySpaceMesh(mpsmesh);
     mpsmesh.GloballyBisectSpaceMesh();
-    UpdatePreviousSolution();
-    mpsmesh.PrintSpaceNodes();
 }
 }
 }

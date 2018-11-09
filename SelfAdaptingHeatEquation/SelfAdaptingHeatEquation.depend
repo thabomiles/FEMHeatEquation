@@ -98,7 +98,7 @@
 	<array>
 	"TriDiagMatrix.hpp"
 
-1541723623 source:c:\users\thabo\desktop\heatequationdis\selfadaptingheatequation\driver.cpp
+1541764312 source:c:\users\thabo\desktop\heatequationdis\selfadaptingheatequation\driver.cpp
 	<iostream>
 	<cmath>
 	<vector>
@@ -118,7 +118,7 @@
 	"SpaceMesh.hpp"
 	"TimeMesh.hpp"
 
-1541724514 source:c:\users\thabo\desktop\heatequationdis\adaptiveheatequationsolver\adaptiveheat.cpp
+1541764312 source:c:\users\thabo\desktop\heatequationdis\adaptiveheatequationsolver\adaptiveheat.cpp
 	<iostream>
 	<cmath>
 	<math.h>

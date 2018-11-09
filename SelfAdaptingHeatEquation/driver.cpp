@@ -22,7 +22,6 @@ smesh.GenerateSpaceMesh({0, 0.25, 0.5, 1.0});
 smesh.PrintSpaceNodes();
 smesh.PrintSpaceMesh();
 
-//smesh.GloballyBisectSpaceMesh();
 
 TimeMesh tmesh;
 tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize(), 2), 1.0);
@@ -35,7 +34,7 @@ adaptiveheat.SolveChangingMesh();
 adaptiveheat.PrintSolution();
 
 adaptiveheat.PrintErrorMesh();
-//adaptiveheat.GlobalSpaceError();
+adaptiveheat.GlobalSpaceError();
 
 }
 

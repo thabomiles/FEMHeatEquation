@@ -7,6 +7,10 @@
 class SpaceMesh
 {
 public:
+    void Range( double lowerlimit, double upperlimit, std::vector<double>& Nodes);
+    void CommonMesh( SpaceMesh& firstmesh, SpaceMesh& secondmesh );
+    double TestFunctions(int nodeIndex, double x);
+    bool Contained (std::vector<double> SpaceNodes);
 
     void CopySpaceMesh (const SpaceMesh& oldSpaceMesh);
     void GenerateSpaceMesh ( std::vector<double> SpaceNodes );

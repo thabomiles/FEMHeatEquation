@@ -25,14 +25,10 @@ smesh.GenerateDefaultSpaceMesh();
 
 smesh.PrintSpaceNodes();
 
-
 TimeMesh tmesh;
 tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize(), 2), 1.0);
 
 TimeMesh tmesh1;
-
-
-
 
 AdaptiveHeatEquation adaptiveheat;
 adaptiveheat.SetSpaceTimeMesh( smesh, tmesh, "soultion1.txt");
@@ -42,9 +38,6 @@ adaptiveheat.PrintSolution();
 
 adaptiveheat.PrintErrorMesh();
 adaptiveheat.GlobalSpaceError();
-
-
-
 
 }
 

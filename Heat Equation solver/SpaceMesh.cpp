@@ -6,6 +6,51 @@
 #include <string>
 #include "SpaceMesh.hpp"
 #include <cmath>
+#include <set>
+
+void SpaceMesh::Range( double lowerlimit, double upperlimit, std::vector<double>& Nodes)
+{
+    Nodes.clear();
+    for(auto i:mpSpaceNodes)
+        if(lowerlimit<=i&&i<=upperlimit)
+        {
+            Nodes.push_back(i);
+        }
+
+}
+
+void SpaceMesh::CommonMesh( SpaceMesh& firstmesh, SpaceMesh& secondmesh )
+{
+    mpSpaceNodes=firstmesh.mpSpaceNodes;
+    mpSpaceNodes.insert( mpSpaceNodes.end(), secondmesh.mpSpaceNodes.begin(), secondmesh.mpSpaceNodes.end() );
+    sort(mpSpaceNodes.begin(), mpSpaceNodes.end());
+    mpSpaceNodes.erase( unique( mpSpaceNodes.begin(), mpSpaceNodes.end() ), mpSpaceNodes.end() );
+    RefreshSpaceMesh();
+}
+
+double SpaceMesh::TestFunctions( int nodeIndex, double x)
+{
+        if((nodeIndex==0)||(nodeIndex==meshsize()))
+    {
+        std::cout<< " This function has 0 dirichlet boundaries "<< "\n";
+    }
+    else if (x<mpSpaceNodes[nodeIndex]-mpSpaceMesh[nodeIndex-1]||x>mpSpaceNodes[nodeIndex]+mpSpaceMesh[nodeIndex])
+    {
+        std::cout<< " You are out of your interval "<< "\n";
+        return 0;
+    }
+    else if (x<=mpSpaceNodes[nodeIndex])
+    {
+        //std::cout<< " Lower "<< "\n";
+        return pow(mpSpaceMesh.at(nodeIndex-1),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
+    }
+    else if (x>mpSpaceNodes[nodeIndex])
+    {
+        //std::cout<< " Upper "<< "\n";
+        return -pow(mpSpaceMesh.at(nodeIndex),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
+    }
+
+}
 
 void SpaceMesh::GenerateUniformMesh(double boundary, int numberofnodes)
 {
@@ -122,7 +167,6 @@ void SpaceMesh::RemoveSpaceNode (int i)
         std::cout <<"\n";
         std::cout<< "you cannot remove the first of last node";
         std::cout <<"\n";
-
     }
     else
     {
@@ -130,14 +174,5 @@ void SpaceMesh::RemoveSpaceNode (int i)
     }
     RefreshSpaceMesh();
 }
-
-
-
-//double h = pow( n, -1);
-//for(int i=1; i<=n; i++)
-//    {
-//        initialSpaceNodes.push_back( i*h );
-//        initialSpaceMesh.push_back( initialSpaceNodes.at(i)- initialSpaceNodes.at(i-1) );
-//    }
 
 

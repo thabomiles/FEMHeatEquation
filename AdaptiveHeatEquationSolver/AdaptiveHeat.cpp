@@ -158,3 +158,39 @@ if (j==int(0.5*m))
 }
 }
 
+double AdaptiveHeatEquation::IntegrateBasisWithU( int NodeIndex, double lowerlimit,
+                              double upperlimit, SpaceMesh& currentSmesh, SpaceMesh& previousSmesh,
+                               std::vector<double>& SolutionVec )
+{
+        const int n = 7;
+    double halfinterval = (upperlimit-lowerlimit)*pow(2,-1);
+    double intervalmidpoint = (upperlimit+lowerlimit)*pow(2,-1);
+    auto x  = gauss<double, n>::abscissa();
+    auto weight = gauss<double, n>::weights();
+
+    double quad = weight[0]*SolutionTimesBasis(NodeIndex, halfinterval*x[0]+intervalmidpoint,
+                                            currentSmesh, previousSmesh, SolutionVec);
+
+    for (int j = 1; j<=(n-1)*pow(2, -1); j++)
+    {
+        quad = quad+weight[j]*SolutionTimesBasis(NodeIndex, halfinterval*x[j]+intervalmidpoint,
+                                                 currentSmesh, previousSmesh, SolutionVec);
+        quad = quad+weight[j]*SolutionTimesBasis(NodeIndex, -halfinterval*x[j]+intervalmidpoint,
+                                                 currentSmesh, previousSmesh, SolutionVec);
+    }
+
+    return halfinterval*quad;
+}
+
+double AdaptiveHeatEquation::SolutionTimesBasis( int NodeIndex, double x, SpaceMesh& currentSmesh,
+                              SpaceMesh& previousSmesh, std::vector<double>& SolutionVec )
+{
+//    std::cout<< currentSmesh.TestFunctions( NodeIndex, x)<< ", "<<
+//    InterpolantFunction(x, SolutionVec, previousSmesh)<< "\n";
+
+    return currentSmesh.TestFunctions( NodeIndex, x)*InterpolantFunction(x, SolutionVec, previousSmesh);
+}
+
+
+
+

@@ -24,7 +24,7 @@
 	"MassMatrix.hpp"
 	"StiffnessMatrix.hpp"
 
-1541512087 c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.hpp
+1541719569 c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.hpp
 	<iostream>
 	<vector>
 	<array>
@@ -64,7 +64,7 @@
 	<cmath>
 	"SpaceMesh.hpp"
 
-1541512606 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.cpp
+1541719568 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.cpp
 	<iostream>
 	<vector>
 	<array>
@@ -73,6 +73,7 @@
 	<string>
 	"SpaceMesh.hpp"
 	<cmath>
+	<set>
 
 1541445058 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\stiffnessmatrix.cpp
 	<iostream>
@@ -97,7 +98,7 @@
 	<array>
 	"TriDiagMatrix.hpp"
 
-1541518807 source:c:\users\thabo\desktop\heatequationdis\selfadaptingheatequation\driver.cpp
+1541723623 source:c:\users\thabo\desktop\heatequationdis\selfadaptingheatequation\driver.cpp
 	<iostream>
 	<cmath>
 	<vector>
@@ -109,7 +110,7 @@
 	<string>
 	<boost/math/quadrature/gauss.hpp>
 
-1541442025 c:\users\thabo\desktop\heatequationdis\adaptiveheatequationsolver\adaptiveheat.hpp
+1541722283 c:\users\thabo\desktop\heatequationdis\adaptiveheatequationsolver\adaptiveheat.hpp
 	<iostream>
 	<vector>
 	<array>
@@ -117,7 +118,7 @@
 	"SpaceMesh.hpp"
 	"TimeMesh.hpp"
 
-1541518769 source:c:\users\thabo\desktop\heatequationdis\adaptiveheatequationsolver\adaptiveheat.cpp
+1541724514 source:c:\users\thabo\desktop\heatequationdis\adaptiveheatequationsolver\adaptiveheat.cpp
 	<iostream>
 	<cmath>
 	<math.h>

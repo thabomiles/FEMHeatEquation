@@ -24,7 +24,7 @@ public:
 
     double SolutionTimesBasis( int NodeIndex, double x, SpaceMesh& currentSmesh,
                               SpaceMesh& previousSmesh, std::vector<double>& SolutionVec );
-    double BuildRHS();
+    void BuildRHS();
 
 
 
@@ -34,7 +34,7 @@ protected:
     const double tolerance = 0.2;
     std::vector<int> intervalsForRefinement;
     SpaceMesh oldmesh;
-    SpaceMesh commonrefinementmesh;
+    SpaceMesh refinedsmesh;
     int mpcurrentMeshIndex = 0;
 
     std::vector<double> mpPreviousSolDummy;

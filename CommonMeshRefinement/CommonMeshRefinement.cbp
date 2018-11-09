@@ -13,6 +13,9 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="../AdaptiveHeatEquationSolver" />
+					<Add directory="../Heat Equation solver" />
+					<Add directory="../../../Downloads/boost_1_68_0 (2)/boost_1_68_0" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -31,6 +34,21 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="../AdaptiveHeatEquationSolver/AdaptiveHeat.cpp" />
+		<Unit filename="../AdaptiveHeatEquationSolver/AdaptiveHeat.hpp" />
+		<Unit filename="../Heat Equation solver/MassMatrix.cpp" />
+		<Unit filename="../Heat Equation solver/MassMatrix.hpp" />
+		<Unit filename="../Heat Equation solver/SpaceMesh.cpp" />
+		<Unit filename="../Heat Equation solver/SpaceMesh.hpp" />
+		<Unit filename="../Heat Equation solver/StiffnessMatrix.cpp" />
+		<Unit filename="../Heat Equation solver/StiffnessMatrix.hpp" />
+		<Unit filename="../Heat Equation solver/TimeMesh.cpp" />
+		<Unit filename="../Heat Equation solver/TimeMesh.hpp" />
+		<Unit filename="../Heat Equation solver/TriDiagMatrix.cpp" />
+		<Unit filename="../Heat Equation solver/TriDiagMatrix.hpp" />
+		<Unit filename="../Heat Equation solver/heatEquation.cpp" />
+		<Unit filename="../Heat Equation solver/heatEquation.hpp" />
+		<Unit filename="driver.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

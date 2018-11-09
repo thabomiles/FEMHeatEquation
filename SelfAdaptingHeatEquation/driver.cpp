@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
 {
 
 SpaceMesh smesh;
-smesh.GenerateUniformMesh(1.0, 5);
+smesh.GenerateSpaceMesh({0, 0.25, 0.5, 1.0});
 smesh.PrintSpaceNodes();
 smesh.PrintSpaceMesh();
 
@@ -34,7 +34,7 @@ adaptiveheat.SolveChangingMesh();
 
 adaptiveheat.PrintSolution();
 
-//adaptiveheat.PrintErrorMesh();
+adaptiveheat.PrintErrorMesh();
 //adaptiveheat.GlobalSpaceError();
 
 }

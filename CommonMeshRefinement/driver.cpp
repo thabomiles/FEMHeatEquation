@@ -33,7 +33,6 @@ std::vector<double> b;
 std::vector<double> intervals;
 SpaceMesh refinedsmesh;
 refinedsmesh.CommonMesh(currentsmesh, oldsmesh);
-//refinedsmesh.PrintSpaceNodes();
 
 double integral;
 for (int i = 1; i<currentsmesh.meshsize(); i++)

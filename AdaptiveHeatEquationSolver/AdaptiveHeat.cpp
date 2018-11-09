@@ -50,6 +50,7 @@ LHS.AddTwoMatrices( mass, stiff );
 void AdaptiveHeatEquation::SystemSolver()
 {
     mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
+    //BuildRHS();
     LHS.MatrixSolver( mpRHS, mpx );
 }
 
@@ -63,7 +64,7 @@ void AdaptiveHeatEquation::UpdatePreviousSolution()
         dummyU = InterpolantFunction(mpsmesh.ReadSpaceNode(i), mpx, oldmesh);
         mpPreviousSolution.push_back(dummyU);
     }
-    PrintVector(mpPreviousSolution);
+    //PrintVector(mpPreviousSolution);
 }
 
 
@@ -132,6 +133,7 @@ void AdaptiveHeatEquation::SolveChangingMesh()
 {
 AnalyticSolutionVec();
 mpPreviousSolution = mpAnalyticSolution;
+oldmesh.CopySpaceMesh(mpsmesh);
 
 int m = mptmesh.NumberOfTimeSteps();
 for(int j = 0; j<m; j++)
@@ -140,20 +142,18 @@ for(int j = 0; j<m; j++)
     mpcurrentMeshIndex = j;
     BuildSystemAtTimeStep();
     SystemSolver();
-    mpsmesh.PrintSpaceNodes();
-    PrintSolution();
+    PrintVector(mpRHS);
     mpPreviousSolution = mpx;
 
 if (j==int(0.5*m))
 {
-    PrintErrorMesh();
+    std::cout<<"\n";
+    PrintVector(mpPreviousSolution);
+    std::cout<<"\n";
     oldmesh.CopySpaceMesh(mpsmesh);
     mpsmesh.GloballyBisectSpaceMesh();
     UpdatePreviousSolution();
     mpsmesh.PrintSpaceNodes();
-    std::cout<<"\n";
-    std::cout<<mpcurrenTimeStep;
-    std::cout<<"\n";
 }
 }
 }
@@ -185,10 +185,30 @@ double AdaptiveHeatEquation::IntegrateBasisWithU( int NodeIndex, double lowerlim
 double AdaptiveHeatEquation::SolutionTimesBasis( int NodeIndex, double x, SpaceMesh& currentSmesh,
                               SpaceMesh& previousSmesh, std::vector<double>& SolutionVec )
 {
-//    std::cout<< currentSmesh.TestFunctions( NodeIndex, x)<< ", "<<
-//    InterpolantFunction(x, SolutionVec, previousSmesh)<< "\n";
-
     return currentSmesh.TestFunctions( NodeIndex, x)*InterpolantFunction(x, SolutionVec, previousSmesh);
+}
+
+    //this function is untested in context
+void AdaptiveHeatEquation::BuildRHS()
+{
+mpRHS.clear();
+std::vector<double> intervals;
+
+refinedsmesh.CommonMesh(mpsmesh, oldmesh);
+
+double integral;
+for (int i = 1; i<mpsmesh.meshsize(); i++)
+{
+    integral=0;
+    refinedsmesh.Range(mpsmesh.ReadSpaceNode(i-1), mpsmesh.ReadSpaceNode(i+1), intervals);
+
+    for(int j = 0; j<intervals.size()-1; j++)
+    {
+        integral = integral + IntegrateBasisWithU(i, intervals.at(j),
+                    intervals.at(j+1), mpsmesh, oldmesh, mpPreviousSolution);
+    }
+    mpRHS.push_back(integral);
+}
 }
 
 

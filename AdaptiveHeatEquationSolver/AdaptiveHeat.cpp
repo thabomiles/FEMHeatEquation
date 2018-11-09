@@ -20,23 +20,46 @@ void AdaptiveHeatEquation::AdaptiveSolver()
 AnalyticSolutionVec();
 mpPreviousSolution = mpAnalyticSolution;
 BuildSystemAtTimeStep();
+oldmesh.CopySpaceMesh(mpsmesh);
+mpsmesh.PrintSpaceNodes();
 
 //int m = mptmesh.NumberOfTimeSteps();
 for(int j = 0; j<mptmesh.NumberOfTimeSteps(); j++)
 {
     mpcurrenTimeStep = j+1;
     mpcurrentMeshIndex = j;
+    std::cout<<"\n";
+    std::cout<<mpcurrenTimeStep <<"\n";
+    std::cout<<"\n";
     BuildSystemAtTimeStep();
     SystemSolver();
-    PrintSolution();
     mpPreviousSolution = mpx;
+    mpsmesh.PrintSpaceNodes();
+    PrintSolution();
 
     SaveIntervalsForRefinement();
-    oldmesh.CopySpaceMesh(mpsmesh);
+    SaveIntervalsForCoarsening();
     mpsmesh.BisectIntervals(intervalsForRefinement);
-    mpsmesh.PrintSpaceNodes();
-    UpdatePreviousSolution();
+    mpsmesh.CoarsenIntervals(NodesForRemoval);
 }
+mpsmesh.PrintSpaceNodes();
+}
+
+void AdaptiveHeatEquation::SaveIntervalsForCoarsening()
+{
+    BuildErrorMesh();
+    NodesForRemoval.clear();
+    for(int i=0; i<mpErrorMesh.size()-1; i++)
+    {
+        if (sqrt(mpErrorMesh.at(i)+mpErrorMesh.at(i+1))<coarseningtol)
+        {
+            NodesForRemoval.push_back(i+1);
+        }
+    }
+
+    for (auto k: NodesForRemoval)
+        std::cout << k << ", ";
+    std::cout << " \n";
 }
 
 void AdaptiveHeatEquation::BuildSystemAtTimeStep()
@@ -49,8 +72,8 @@ LHS.AddTwoMatrices( mass, stiff );
 
 void AdaptiveHeatEquation::SystemSolver()
 {
-    mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
-    //BuildRHS();
+    //mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
+    BuildRHS();
     LHS.MatrixSolver( mpRHS, mpx );
     oldmesh.CopySpaceMesh(mpsmesh);
 }
@@ -65,7 +88,6 @@ void AdaptiveHeatEquation::UpdatePreviousSolution()
         dummyU = InterpolantFunction(mpsmesh.ReadSpaceNode(i), mpx, oldmesh);
         mpPreviousSolution.push_back(dummyU);
     }
-    //PrintVector(mpPreviousSolution);
 }
 
 
@@ -81,10 +103,10 @@ void AdaptiveHeatEquation::SaveIntervalsForRefinement()
             intervalsForRefinement.push_back(i);
         }
     }
-    for (auto j: mpErrorMesh)
-        std::cout<< sqrt(j) << ", ";
-    std::cout<< "\n";
-
+//    for (auto j: mpErrorMesh)
+//        std::cout<< sqrt(j) << ", ";
+//    std::cout<< "\n";
+//
     for (auto k: intervalsForRefinement)
         std::cout << k << ", ";
     std::cout << " \n";
@@ -161,8 +183,7 @@ if (j==int(0.5*m))
 }
 
 double AdaptiveHeatEquation::IntegrateBasisWithU( int NodeIndex, double lowerlimit,
-                              double upperlimit, SpaceMesh& currentSmesh, SpaceMesh& previousSmesh,
-                               std::vector<double>& SolutionVec )
+                              double upperlimit )
 {
         const int n = 7;
     double halfinterval = (upperlimit-lowerlimit)*pow(2,-1);
@@ -170,27 +191,23 @@ double AdaptiveHeatEquation::IntegrateBasisWithU( int NodeIndex, double lowerlim
     auto x  = gauss<double, n>::abscissa();
     auto weight = gauss<double, n>::weights();
 
-    double quad = weight[0]*SolutionTimesBasis(NodeIndex, halfinterval*x[0]+intervalmidpoint,
-                                            currentSmesh, previousSmesh, SolutionVec);
+    double quad = weight[0]*SolutionTimesBasis(NodeIndex, halfinterval*x[0]+intervalmidpoint);
 
     for (int j = 1; j<=(n-1)*pow(2, -1); j++)
     {
-        quad = quad+weight[j]*SolutionTimesBasis(NodeIndex, halfinterval*x[j]+intervalmidpoint,
-                                                 currentSmesh, previousSmesh, SolutionVec);
-        quad = quad+weight[j]*SolutionTimesBasis(NodeIndex, -halfinterval*x[j]+intervalmidpoint,
-                                                 currentSmesh, previousSmesh, SolutionVec);
+        quad = quad+weight[j]*SolutionTimesBasis(NodeIndex, halfinterval*x[j]+intervalmidpoint);
+        quad = quad+weight[j]*SolutionTimesBasis(NodeIndex, -halfinterval*x[j]+intervalmidpoint);
     }
 
     return halfinterval*quad;
 }
 
-double AdaptiveHeatEquation::SolutionTimesBasis( int NodeIndex, double x, SpaceMesh& currentSmesh,
-                              SpaceMesh& previousSmesh, std::vector<double>& SolutionVec )
+double AdaptiveHeatEquation::SolutionTimesBasis( int NodeIndex, double x )
 {
-    return currentSmesh.TestFunctions( NodeIndex, x)*InterpolantFunction(x, SolutionVec, previousSmesh);
+    return mpsmesh.TestFunctions( NodeIndex, x)*InterpolantFunction(x, mpPreviousSolution, oldmesh);
 }
 
-    //this function is untested in context
+    //this function works for refinement
 void AdaptiveHeatEquation::BuildRHS()
 {
 mpRHS.clear();
@@ -207,7 +224,7 @@ for (int i = 1; i<mpsmesh.meshsize(); i++)
     for(int j = 0; j<intervals.size()-1; j++)
     {
         integral = integral + IntegrateBasisWithU(i, intervals.at(j),
-                    intervals.at(j+1), mpsmesh, oldmesh, mpPreviousSolution);
+                    intervals.at(j+1));
     }
     mpRHS.push_back(integral);
 }

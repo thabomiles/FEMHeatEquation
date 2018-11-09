@@ -19,27 +19,24 @@ public:
     void SolveStep();
     double InterpolantFunction( double x, std::vector<double> funct, SpaceMesh& relevantMesh );
     void SystemSolver();
-    double IntegrateBasisWithU( int NodeIndex, double lowerlimit, double upperlimit, SpaceMesh& currentSmesh,
-                               SpaceMesh& previousSmesh, std::vector<double>& SolutionVec );
+    double IntegrateBasisWithU( int NodeIndex, double lowerlimit, double upperlimit );
 
-    double SolutionTimesBasis( int NodeIndex, double x, SpaceMesh& currentSmesh,
-                              SpaceMesh& previousSmesh, std::vector<double>& SolutionVec );
+    double SolutionTimesBasis( int NodeIndex, double x );
     void BuildRHS();
 
+    void SaveIntervalsForCoarsening();
 
 
 
 protected:
 
     const double tolerance = 0.2;
+    const double coarseningtol = 0.1;
     std::vector<int> intervalsForRefinement;
+    std::vector<int> NodesForRemoval;
     SpaceMesh oldmesh;
     SpaceMesh refinedsmesh;
     int mpcurrentMeshIndex = 0;
-
-    std::vector<double> mpPreviousSolDummy;
-
-
 
 };
 

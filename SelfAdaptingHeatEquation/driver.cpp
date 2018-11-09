@@ -18,18 +18,19 @@ int main(int argc, char* argv[])
 {
 
 SpaceMesh smesh;
-smesh.GenerateSpaceMesh({0, 0.25, 0.5, 1.0});
-smesh.PrintSpaceNodes();
-smesh.PrintSpaceMesh();
-
+smesh.GenerateSpaceMesh({0, 0.15,  0.25, 0.5, 1.0});
+//smesh.GloballyBisectSpaceMesh();
+//smesh.GloballyBisectSpaceMesh();
+//smesh.GloballyBisectSpaceMesh();
 
 TimeMesh tmesh;
 tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize(), 2), 1.0);
 
 AdaptiveHeatEquation adaptiveheat;
 adaptiveheat.SetSpaceTimeMesh( smesh, tmesh, "soultion1.txt");
-//adaptiveheat.AdaptiveSolver();
-adaptiveheat.SolveChangingMesh();
+adaptiveheat.AdaptiveSolver();
+//adaptiveheat.SolveChangingMesh();
+
 
 adaptiveheat.PrintSolution();
 

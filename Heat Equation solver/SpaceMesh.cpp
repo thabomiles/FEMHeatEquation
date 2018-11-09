@@ -16,7 +16,6 @@ void SpaceMesh::Range( double lowerlimit, double upperlimit, std::vector<double>
         {
             Nodes.push_back(i);
         }
-
 }
 
 void SpaceMesh::CommonMesh( SpaceMesh& firstmesh, SpaceMesh& secondmesh )
@@ -74,6 +73,17 @@ void SpaceMesh::BisectIntervals (std::vector<int> &intervalsForBisection)
     for(auto i: intervalsForBisection)
         mpSpaceNodes.push_back(0.5*(mpSpaceNodes.at(i)+mpSpaceNodes.at(i+1)));
     sort(mpSpaceNodes.begin(), mpSpaceNodes.end());
+
+    RefreshSpaceMesh();
+}
+
+void SpaceMesh::CoarsenIntervals (std::vector<int> &intervalsForCoarsening)
+{
+    for (int i = intervalsForCoarsening.size()-1; i>=0; i-- )
+        std::remove(mpSpaceNodes.begin(), mpSpaceNodes.end(),mpSpaceNodes.at(intervalsForCoarsening.at(i)));
+
+    int vecSize = mpSpaceNodes.size()-intervalsForCoarsening.size();
+    mpSpaceNodes.resize(vecSize);
 
     RefreshSpaceMesh();
 }

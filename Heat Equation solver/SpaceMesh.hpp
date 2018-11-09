@@ -15,6 +15,7 @@ public:
     void CopySpaceMesh (const SpaceMesh& oldSpaceMesh);
     void GenerateSpaceMesh ( std::vector<double> SpaceNodes );
     void BisectIntervals (std::vector<int> &intervalsForBisection);
+    void CoarsenIntervals (std::vector<int> &intervalsForCoarsening);
 
     void GenerateUniformMesh(double boundary, int numberofnodes);
     void GenerateDefaultSpaceMesh();

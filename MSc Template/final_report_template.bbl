@@ -1,0 +1,66 @@
+\begin{thebibliography}{10}
+
+\bibitem{Pironneau}
+Yves Achdou and Olivier Pironneau.
+\newblock {\em Computational methods for option pricing}, volume~30.
+\newblock Siam, 2005.
+
+\bibitem{babuska1981posteriori}
+I~Babuska and A~Miller.
+\newblock A-posteriori error estimates and adaptive techniques for the finite
+  element method.
+\newblock Technical report, MARYLAND UNIV COLLEGE PARK INST FOR PHYSICAL
+  SCIENCE AND TECHNOLOGY, 1981.
+
+\bibitem{Bergam}
+Amal Bergam, Christine Bernardi, and Zoubida Mghazli.
+\newblock A posteriori analysis of the finite element discretization of some
+  parabolic equations.
+\newblock {\em Mathematics of computation}, 74(251):1117--1138, 2005.
+
+\bibitem{courant1943}
+R.~Courant.
+\newblock Variational methods for the solution of problems of equilibrium and
+  vibrations.
+\newblock {\em Bull. Amer. Math. Soc.}, 49(1):1--23, 01 1943.
+
+\bibitem{eriksson1991adaptive}
+Kenneth Eriksson and Claes Johnson.
+\newblock Adaptive finite element methods for parabolic problems i: A linear
+  model problem.
+\newblock {\em SIAM Journal on Numerical Analysis}, 28(1):43--77, 1991.
+
+\bibitem{johnson1988error}
+Claes Johnson.
+\newblock Error estimates and adaptive time-step control for a class of
+  one-step methods for stiff ordinary differential equations.
+\newblock {\em SIAM Journal on Numerical Analysis}, 25(4):908--926, 1988.
+
+\bibitem{morin2008basic}
+Pedro Morin, Kunibert~G Siebert, and Andreas Veeser.
+\newblock A basic convergence result for conforming adaptive finite elements.
+\newblock {\em Mathematical Models and Methods in Applied Sciences},
+  18(05):707--737, 2008.
+
+\bibitem{nochetto2009theory}
+Ricardo~H Nochetto, Kunibert~G Siebert, and Andreas Veeser.
+\newblock Theory of adaptive finite element methods: an introduction.
+\newblock In {\em Multiscale, nonlinear and adaptive approximation}, pages
+  409--542. Springer, 2009.
+
+\bibitem{siebert2011convergence}
+Kunibert~G Siebert.
+\newblock A convergence proof for adaptive finite elements without lower bound.
+\newblock {\em IMA journal of numerical analysis}, 31(3):947--970, 2011.
+
+\bibitem{Topper}
+J{\"u}rgen Topper.
+\newblock {\em Financial engineering with finite elements}, volume 319.
+\newblock John Wiley \& Sons, 2005.
+
+\bibitem{topper2005option}
+J{\"u}rgen Topper.
+\newblock Option pricing with finite elements.
+\newblock {\em Wilmott Magazine}, pages 84--90, 2005.
+
+\end{thebibliography}

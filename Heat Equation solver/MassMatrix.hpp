@@ -11,6 +11,7 @@ class MassMatrix: public TriDiagMatrix
 public:
 
     void BuildMassMatrix ( SpaceMesh smesh );
+    void BuildGeneralMassMatrix ( SpaceMesh smesh );
 };
 
 

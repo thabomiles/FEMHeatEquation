@@ -28,21 +28,21 @@ for(int j = 0; j<mptmesh.NumberOfTimeSteps(); j++)
 {
     mpcurrenTimeStep = j+1;
     mpcurrentMeshIndex = j;
-    std::cout<<"\n";
-    std::cout<<mpcurrenTimeStep <<"\n";
-    std::cout<<"\n";
+//    std::cout<<"\n";
+//    std::cout<<mpcurrenTimeStep <<"\n";
+//    std::cout<<"\n";
     BuildSystemAtTimeStep();
     SystemSolver();
     mpPreviousSolution = mpx;
-    mpsmesh.PrintSpaceNodes();
-    PrintSolution();
 
     SaveIntervalsForRefinement();
     SaveIntervalsForCoarsening();
     mpsmesh.BisectIntervals(intervalsForRefinement);
     mpsmesh.CoarsenIntervals(NodesForRemoval);
 }
-mpsmesh.PrintSpaceNodes();
+    std::cout<<mpsmesh.meshsize() <<"\n";
+    std::cout<<"\n";
+
 }
 
 void AdaptiveHeatEquation::SaveIntervalsForCoarsening()
@@ -57,9 +57,9 @@ void AdaptiveHeatEquation::SaveIntervalsForCoarsening()
         }
     }
 
-    for (auto k: NodesForRemoval)
-        std::cout << k << ", ";
-    std::cout << " \n";
+//    for (auto k: NodesForRemoval)
+//        std::cout << k << ", ";
+//    std::cout << " \n";
 }
 
 void AdaptiveHeatEquation::BuildSystemAtTimeStep()
@@ -107,9 +107,9 @@ void AdaptiveHeatEquation::SaveIntervalsForRefinement()
 //        std::cout<< sqrt(j) << ", ";
 //    std::cout<< "\n";
 //
-    for (auto k: intervalsForRefinement)
-        std::cout << k << ", ";
-    std::cout << " \n";
+//    for (auto k: intervalsForRefinement)
+//        std::cout << k << ", ";
+//    std::cout << " \n";
 }
 
 
@@ -119,8 +119,8 @@ double AdaptiveHeatEquation::InterpolantFunction( double x, std::vector<double> 
     std::array<double, 2> secondpoint;
 
     int upperindex = relevantMesh.IndexAbove( x );
-    auto boundaryconditionU0 = 0;
-    auto boundarycondition1Un = 0;
+    auto boundaryconditionU0 = g_0;
+    auto boundarycondition1Un = g_L;
 
     if((upperindex==1)||(upperindex==0))
     {
@@ -169,7 +169,6 @@ for(int j = 0; j<m; j++)
     BuildRHS();
     LHS.MatrixSolver( mpRHS, mpx );
     oldmesh.CopySpaceMesh(mpsmesh);
-    PrintVector(mpRHS);
 
     mpPreviousSolution = mpx;
 

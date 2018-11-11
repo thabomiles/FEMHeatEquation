@@ -45,8 +45,6 @@ mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
 
 LHS.MatrixSolver( mpRHS, mpx );
 
-GlobalSpaceError();
-
 mpPreviousSolution = mpx;
 
 if (j==int(0.5*m))
@@ -83,8 +81,8 @@ double HeatEquation::PiecewiseU( double x )
     std::array<double, 2> secondpoint;
 
     int upperindex = mpsmesh.IndexAbove( x );
-    auto boundaryconditionU0 = 0;
-    auto boundarycondition1Un = 0;
+    auto boundaryconditionU0 = g_0;
+    auto boundarycondition1Un = g_L;
 
     if((upperindex==1)||(upperindex==0))
     {

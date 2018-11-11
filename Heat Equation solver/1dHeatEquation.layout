@@ -2,9 +2,9 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="Driver5WithNewClasses.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="MassMatrix.hpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="905" topLine="16" />
+			<Cursor1 position="112" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="TimeMesh.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -12,34 +12,19 @@
 			<Cursor1 position="311" topLine="8" />
 		</Cursor>
 	</File>
-	<File name="TriDiagMatrix.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="15" />
-		</Cursor>
-	</File>
-	<File name="heatEquation.hpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1092" topLine="30" />
-		</Cursor>
-	</File>
-	<File name="MassMatrix.hpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="112" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="SpaceMesh.hpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="217" topLine="19" />
-		</Cursor>
-	</File>
 	<File name="StiffnessMatrix.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="183" topLine="2" />
 		</Cursor>
 	</File>
-	<File name="SpaceMesh.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Driver5WithNewClasses.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2286" topLine="99" />
+			<Cursor1 position="905" topLine="16" />
+		</Cursor>
+	</File>
+	<File name="SpaceMesh.hpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="217" topLine="19" />
 		</Cursor>
 	</File>
 	<File name="StiffnessMatrix.hpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -52,14 +37,29 @@
 			<Cursor1 position="206" topLine="1" />
 		</Cursor>
 	</File>
+	<File name="MassMatrix.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="524" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="SpaceMesh.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2286" topLine="99" />
+		</Cursor>
+	</File>
 	<File name="heatEquation.cpp" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1369" topLine="51" />
 		</Cursor>
 	</File>
-	<File name="MassMatrix.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="TriDiagMatrix.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="524" topLine="9" />
+			<Cursor1 position="0" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="heatEquation.hpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1092" topLine="30" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

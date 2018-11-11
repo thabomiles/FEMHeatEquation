@@ -46,9 +46,15 @@ for(int i=0; i<mpn-2; i++)
         mpUpperDiag.push_back( -1*a*pow(smesh.ReadSpaceMesh(i+1), -1) );
     }
 
-mpDiagonal.push_back( a*pow(smesh.ReadSpaceMesh(mpn-2), -1)+mpk_n );
+mpDiagonal.push_back( a*pow(smesh.ReadSpaceMesh(mpn-2), -1)+mpk_L );
 mpLowerDiag.push_back( -1*a*pow(smesh.ReadSpaceMesh(mpn-2),-1) );
 mpUpperDiag.push_back( 0 );
 
+}
+
+void StiffnessMatrix::SetParameters (double k_0, double k_L)
+{
+    mpk_0=k_0;
+    mpk_L=k_L;
 }
 

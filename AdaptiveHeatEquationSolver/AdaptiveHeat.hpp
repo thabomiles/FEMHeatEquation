@@ -30,8 +30,8 @@ public:
 
 protected:
 
-    const double tolerance = 0.2;
-    const double coarseningtol = 0.1;
+    const double tolerance = 0.005;
+    const double coarseningtol = 0.00005;
     std::vector<int> intervalsForRefinement;
     std::vector<int> NodesForRemoval;
     SpaceMesh oldmesh;

@@ -19,9 +19,13 @@ int main(int argc, char* argv[])
 
 SpaceMesh smesh;
 smesh.GenerateSpaceMesh({0, 0.15,  0.25, 0.5, 1.0});
-//smesh.GloballyBisectSpaceMesh();
-//smesh.GloballyBisectSpaceMesh();
-//smesh.GloballyBisectSpaceMesh();
+smesh.GloballyBisectSpaceMesh();
+smesh.GloballyBisectSpaceMesh();
+smesh.GloballyBisectSpaceMesh();
+smesh.PrintSpaceNodes();
+std::cout<<smesh.meshsize() <<"\n";
+std::cout<<"\n";
+
 
 TimeMesh tmesh;
 tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize(), 2), 1.0);
@@ -31,10 +35,12 @@ adaptiveheat.SetSpaceTimeMesh( smesh, tmesh, "soultion1.txt");
 adaptiveheat.AdaptiveSolver();
 //adaptiveheat.SolveChangingMesh();
 
+//adaptiveheat.Solve();
 
-adaptiveheat.PrintSolution();
 
-adaptiveheat.PrintErrorMesh();
+//adaptiveheat.PrintSolution();
+
+//adaptiveheat.PrintErrorMesh();
 adaptiveheat.GlobalSpaceError();
 
 }

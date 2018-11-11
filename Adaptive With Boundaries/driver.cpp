@@ -6,11 +6,13 @@
 #include "AdaptiveHeat.hpp"
 #include "StiffnessMatrix.hpp"
 #include "MassMatrix.hpp"
+#include "GeneralizedHeat.hpp"
 #include <fstream>
 #include <string>
 #include <boost/math/quadrature/gauss.hpp>
 using namespace std;
 using namespace boost::math::quadrature;
+#include "APDE.hpp"
 
 const double M_PI = 2*acos(0);
 
@@ -25,14 +27,15 @@ smesh.GenerateSpaceMesh({0, 0.25, 0.5, 1.0});
 TimeMesh tmesh;
 tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize(), 2), 1.0);
 
-//MassMatrix genmass;
-//genmass.BuildGeneralMassMatrix(smesh);
-//genmass.PrintMatrix();
+APDE apde;
 
-StiffnessMatrix genstiff;
-genstiff.BuildGeneralStiffnessMatrix(smesh);
-genstiff.PrintMatrix();
+GeneralHeat genheat;
+genheat.SetSpaceTimeMesh(smesh, tmesh, apde);
+genheat.Solve();
 
+genheat.PrintSolution();
+genheat.PrintErrorMesh();
+genheat.GlobalSpaceError();
 
 }
 

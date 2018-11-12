@@ -48,6 +48,12 @@ LHS.MatrixSolver( mpRHS, mpx );
 
 mpPreviousSolution = mpx;
 
+//PrintSolution();
+//std::cout<<"\n";
+//GlobalSpaceError();
+//std::cout<<"\n";
+//PrintVector(mpErrorMesh);
+
 if (j==int(0.5*m))
 {
     PrintErrorMesh();
@@ -187,6 +193,31 @@ void HeatEquation::PrintVector( std::vector<double> aVector)
         std::cout << k << ", ";
         std::cout << " \n";
 
+}
+
+void HeatEquation::AddVectors(std::vector<double>func1, std::vector<double> func2, std::vector<double>& result)
+{
+    if(func1.size()==func2.size())
+    {
+    result.clear();
+     for ( int i=0; i<func1.size(); i++ )
+     {
+         result.push_back(func1.at(i)+func2.at(i));
+     }
+    }
+    else
+    {
+        std::cout<< " your vectors are different sizes";
+        std::cout<<"\n";
+    }
+}
+
+void HeatEquation::VectorTimesScalar( std::vector<double>& func1, double scalar)
+{
+         for ( int i=0; i<func1.size(); i++ )
+     {
+         func1.at(i)= scalar*func1.at(i);
+     }
 }
 
 

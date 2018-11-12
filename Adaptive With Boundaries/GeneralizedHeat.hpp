@@ -14,11 +14,19 @@ public:
     void SetSpaceTimeMesh( SpaceMesh smesh, TimeMesh tmesh, APDE& apde );
     double ContinuousAnalyticSolution( double x, double t );
     void BuiltbrVec();
-    void AddVectors( std::vector<double>func1, std::vector<double> func2, std::vector<double>& result );
-    void VectorTimesScalar( std::vector<double>& func1, double scalar);
+
     void SolveWithBCs();
     void AnalyticSolutionVec( );
     void PrintSolution( );
+    double PiecewiseU( double x );
+
+    double ErrorSquared( double x );
+
+    double L2ErrorGuass ( double lowerlimit, double upperlimit );
+
+    void BuildErrorMesh();
+
+    double GlobalSpaceError();
 
 
 protected:

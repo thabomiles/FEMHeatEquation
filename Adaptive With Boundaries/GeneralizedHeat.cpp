@@ -39,31 +39,6 @@ void GeneralHeat::BuiltbrVec()
 
 }
 
-void GeneralHeat::AddVectors(std::vector<double>func1, std::vector<double> func2, std::vector<double>& result)
-{
-    if(func1.size()==func2.size())
-    {
-    result.clear();
-     for ( int i=0; i<func1.size(); i++ )
-     {
-         result.push_back(func1.at(i)+func2.at(i));
-     }
-    }
-    else
-    {
-        std::cout<< " your vectors are different sizes";
-        std::cout<<"\n";
-    }
-}
-
-void GeneralHeat::VectorTimesScalar( std::vector<double>& func1, double scalar)
-{
-         for ( int i=0; i<func1.size(); i++ )
-     {
-         func1.at(i)= scalar*func1.at(i);
-     }
-}
-
 void GeneralHeat::AnalyticSolutionVec( )
 {
     mpAnalyticSolution.clear();
@@ -82,6 +57,91 @@ void GeneralHeat::PrintSolution( )
         PrintVector(mpAnalyticSolution);
 }
 
+double GeneralHeat::ErrorSquared( double x )
+{
+    double dummyVar = PiecewiseU(x)-ContinuousAnalyticSolution(x, mptmesh.ReadTimeStep(mpcurrenTimeStep));
+    return pow(dummyVar,2);
+}
+
+double GeneralHeat::PiecewiseU( double x )
+{
+    std::array<double, 2> firstpoint;
+    std::array<double, 2> secondpoint;
+
+    int upperindex = mpsmesh.IndexAbove( x );
+    auto boundaryconditionU0 = g_0;
+    auto boundarycondition1Un = g_L;
+
+    if((upperindex==1)||(upperindex==0))
+    {
+    firstpoint.at(0)= mpsmesh.ReadSpaceNode(0);
+    firstpoint.at(1) = mpx.at(0);
+
+    secondpoint[0] = mpsmesh.ReadSpaceNode(1);
+    secondpoint.at(1) = mpx.at(1);
+    }
+    else if (upperindex == mpsmesh.meshsize())
+    {
+    firstpoint.at(0)= mpsmesh.ReadSpaceNode(upperindex-1);
+    firstpoint.at(1) = mpx.at(upperindex-1);
+
+    secondpoint[0] = mpsmesh.ReadSpaceNode(upperindex);
+    secondpoint.at(1) = mpx.at(upperindex);
+    }
+    else
+    {
+    firstpoint.at(0)= mpsmesh.ReadSpaceNode(upperindex-1);
+    firstpoint.at(1) = mpx.at(upperindex-1);
+
+    secondpoint[0] = mpsmesh.ReadSpaceNode(upperindex);
+    secondpoint.at(1) = mpx.at(upperindex);
+    }
+
+    long double m = (firstpoint[1]-secondpoint[1])/(firstpoint[0]-secondpoint[0]);
+
+    return m*(x - firstpoint[0])+firstpoint[1];
+}
+
+double GeneralHeat::L2ErrorGuass ( double lowerlimit, double upperlimit )
+{
+    const int n = 7;
+    double halfinterval = (upperlimit-lowerlimit)*pow(2,-1);
+    double intervalmidpoint = (upperlimit+lowerlimit)*pow(2,-1);
+    auto x  = gauss<double, n>::abscissa();
+    auto weight = gauss<double, n>::weights();
+
+    double quad = weight[0]*ErrorSquared(halfinterval*x[0]+intervalmidpoint);
+
+    for (int j = 1; j<=(n-1)*pow(2, -1); j++)
+    {
+        quad = quad+weight[j]*ErrorSquared(halfinterval*x[j]+intervalmidpoint);
+        quad = quad+weight[j]*ErrorSquared(-halfinterval*x[j]+intervalmidpoint);
+    }
+
+    return halfinterval*quad;
+}
+
+void GeneralHeat::BuildErrorMesh()
+{
+mpErrorMesh.clear();
+for(int i=0; i<mpsmesh.meshsize(); i++)
+{
+mpErrorMesh.push_back(L2ErrorGuass( mpsmesh.ReadSpaceNode(i),mpsmesh.ReadSpaceNode(i+1)));
+}
+}
+
+double GeneralHeat::GlobalSpaceError()
+{
+    BuildErrorMesh();
+    double globalError=0;
+    for(auto k: mpErrorMesh)
+        globalError = globalError + k;
+
+    std::cout << sqrt(globalError);
+    std::cout << " \n";
+    return sqrt(globalError);
+}
+
 void GeneralHeat::SolveWithBCs()
 {
 AnalyticSolutionVec();
@@ -96,13 +156,9 @@ mpcurrentMeshIndex = j;
 stiff.BuildGeneralStiffnessMatrix ( mpsmesh );
 stiff.MultiplyByScalar( mptmesh.ReadTimeMesh(mpcurrentMeshIndex) );
 mass.BuildGeneralMassMatrix(mpsmesh);
-//stiff.PrintMatrix();
-//std::cout<<"\n";
-//mass.PrintMatrix();
+
 LHS.AddTwoMatrices( mass, stiff );
-//std::cout<<"\n";
-//LHS.PrintMatrix();
-//std::cout<<"\n";
+
 mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
 
 BuiltbrVec();
@@ -113,16 +169,16 @@ AddVectors( br, mpRHS, mpRHS );
 
 LHS.MatrixSolver( mpRHS, mpx );
 
-PrintSolution();
-std::cout<<"\n";
-GlobalSpaceError();
-
 mpPreviousSolution = mpx;
+
 
 if (j==int(0.5*m))
 {
+    PrintSolution();
     PrintErrorMesh();
     GlobalSpaceError();
+    std::cout<<mpcurrenTimeStep;
+    std::cout<<"\n";
 }
 
 }

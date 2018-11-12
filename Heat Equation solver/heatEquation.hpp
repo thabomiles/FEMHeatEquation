@@ -39,6 +39,9 @@ public:
 
     void PrintVector( std::vector<double> aVector);
 
+    void AddVectors( std::vector<double>func1, std::vector<double> func2, std::vector<double>& result );
+    void VectorTimesScalar( std::vector<double>& func1, double scalar);
+
     std::vector<double> mpErrorMesh;
 
 

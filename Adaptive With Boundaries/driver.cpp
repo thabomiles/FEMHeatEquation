@@ -13,6 +13,7 @@
 using namespace std;
 using namespace boost::math::quadrature;
 #include "APDE.hpp"
+#include "PDE1.hpp"
 
 const double M_PI = 2*acos(0);
 
@@ -32,16 +33,21 @@ tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize(), 2), 1.0);
 
 APDE apde;
 
+
+//std::cout<<pde1.ContinuousAnalyticSolution(1, 0);
+
 GeneralHeat genheat;
 genheat.SetSpaceTimeMesh(smesh, tmesh, apde);
 
-genheat.SolveWithBCs();
-//genheat.Solve();
+//std::cout<<genheat.ContinuousAnalyticSolution(1, 0);
 
-//
-//genheat.PrintSolution();
-//genheat.PrintErrorMesh();
-//genheat.GlobalSpaceError();
+genheat.SolveWithBCs();
+//enheat.Solve();
+
+
+genheat.PrintSolution();
+genheat.PrintErrorMesh();
+genheat.GlobalSpaceError();
 
 }
 

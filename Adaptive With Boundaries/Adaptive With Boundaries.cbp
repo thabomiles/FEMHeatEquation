@@ -47,6 +47,8 @@
 		<Unit filename="../Heat Equation solver/TriDiagMatrix.hpp" />
 		<Unit filename="../Heat Equation solver/heatEquation.cpp" />
 		<Unit filename="../Heat Equation solver/heatEquation.hpp" />
+		<Unit filename="APDE.cpp" />
+		<Unit filename="APDE.hpp" />
 		<Unit filename="GeneralizedHeat.cpp" />
 		<Unit filename="GeneralizedHeat.hpp" />
 		<Unit filename="driver.cpp" />

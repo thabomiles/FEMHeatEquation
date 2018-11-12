@@ -23,6 +23,7 @@ BuildSystemAtTimeStep();
 oldmesh.CopySpaceMesh(mpsmesh);
 mpsmesh.PrintSpaceNodes();
 
+
 //int m = mptmesh.NumberOfTimeSteps();
 for(int j = 0; j<mptmesh.NumberOfTimeSteps(); j++)
 {

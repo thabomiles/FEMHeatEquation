@@ -21,7 +21,7 @@ class APDE
     protected:
         const double M_PI = 2*acos(0);
 
-        double g_0 =0 , g_L = 0, k_0 = 0, k_L = 0;
+        double g_0 =0 , g_L = 0, k_0 = pow(10, 300), k_L = pow(10, 300);
 
 
 

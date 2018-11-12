@@ -45,9 +45,9 @@ public:
 
 protected:
 
-    int mn, mm, mpcurrenTimeStep = 0;
+    int mn, mm, mpcurrenTimeStep = 0, mpcurrentMeshIndex = 0;
 
-    double mT, g_0 =0 , g_L = 0, k_0 = 0, k_L = 0;
+    double mT, g_0 =0 , g_L = 0;
 
 
     std::string moutputFileName;

@@ -24,10 +24,10 @@ void HeatEquation::SetSpaceTimeMesh( SpaceMesh smesh, TimeMesh tmesh, const std:
 
 void HeatEquation::Solve()
 {
-stiff.BuildStiffnessMatrix( mpsmesh );
-stiff.MultiplyByScalar( mptmesh.ReadTimeMesh(0) );
-mass.BuildMassMatrix(mpsmesh);
-LHS.AddTwoMatrices( mass, stiff );
+//stiff.BuildStiffnessMatrix( mpsmesh );
+//stiff.MultiplyByScalar( mptmesh.ReadTimeMesh(mpcurrentMeshIndex) );
+//mass.BuildMassMatrix(mpsmesh);
+//LHS.AddTwoMatrices( mass, stiff );
 
 AnalyticSolutionVec();
 mpPreviousSolution = mpAnalyticSolution;
@@ -36,8 +36,9 @@ int m = mptmesh.NumberOfTimeSteps();
 for(int j = 0; j<m; j++)
 {
 mpcurrenTimeStep = j+1;
+mpcurrentMeshIndex = j;
 stiff.BuildStiffnessMatrix( mpsmesh );
-stiff.MultiplyByScalar( mptmesh.ReadTimeMesh(mpcurrenTimeStep-1) );
+stiff.MultiplyByScalar( mptmesh.ReadTimeMesh(mpcurrentMeshIndex) );
 mass.BuildMassMatrix(mpsmesh);
 LHS.AddTwoMatrices( mass, stiff );
 
@@ -65,7 +66,7 @@ void HeatEquation::AnalyticSolutionVec( )
      for (int i = 0; i<mpsmesh.meshsize()-1; i++)
 {
 
-    mpAnalyticSolution.push_back(HeatEquation::ContinuousAnalyticSolution( mpsmesh.ReadSpaceNode(i+1),
+    mpAnalyticSolution.push_back(ContinuousAnalyticSolution( mpsmesh.ReadSpaceNode(i+1),
                                                                         mptmesh.ReadTimeStep(mpcurrenTimeStep)));
 }
 }
@@ -116,7 +117,7 @@ double HeatEquation::PiecewiseU( double x )
 
 double HeatEquation::ErrorSquared( double x )
 {
-    double dummyVar = HeatEquation::PiecewiseU(x)-HeatEquation::ContinuousAnalyticSolution(x, mptmesh.ReadTimeStep(mpcurrenTimeStep));
+    double dummyVar = PiecewiseU(x)-ContinuousAnalyticSolution(x, mptmesh.ReadTimeStep(mpcurrenTimeStep));
     return pow(dummyVar,2);
 }
 
@@ -134,12 +135,12 @@ double HeatEquation::L2ErrorGuass ( double lowerlimit, double upperlimit )
     auto x  = gauss<double, n>::abscissa();
     auto weight = gauss<double, n>::weights();
 
-    double quad = weight[0]*HeatEquation::ErrorSquared(halfinterval*x[0]+intervalmidpoint);
+    double quad = weight[0]*ErrorSquared(halfinterval*x[0]+intervalmidpoint);
 
     for (int j = 1; j<=(n-1)*pow(2, -1); j++)
     {
-        quad = quad+weight[j]*HeatEquation::ErrorSquared(halfinterval*x[j]+intervalmidpoint);
-        quad = quad+weight[j]*HeatEquation::ErrorSquared(-halfinterval*x[j]+intervalmidpoint);
+        quad = quad+weight[j]*ErrorSquared(halfinterval*x[j]+intervalmidpoint);
+        quad = quad+weight[j]*ErrorSquared(-halfinterval*x[j]+intervalmidpoint);
     }
 
     return halfinterval*quad;
@@ -150,7 +151,7 @@ void HeatEquation::BuildErrorMesh()
 mpErrorMesh.clear();
 for(int i=0; i<mpsmesh.meshsize(); i++)
 {
-mpErrorMesh.push_back(HeatEquation::L2ErrorGuass( mpsmesh.ReadSpaceNode(i),mpsmesh.ReadSpaceNode(i+1)));
+mpErrorMesh.push_back(L2ErrorGuass( mpsmesh.ReadSpaceNode(i),mpsmesh.ReadSpaceNode(i+1)));
 }
 }
 

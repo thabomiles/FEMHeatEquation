@@ -28,6 +28,8 @@ public:
 
     double GlobalSpaceError();
 
+     void PrintErrorMesh();
+
 
 protected:
     double k_0 = 0, k_L = 0;

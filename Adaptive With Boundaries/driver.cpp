@@ -23,9 +23,11 @@ int main(int argc, char* argv[])
 
 SpaceMesh smesh;
 smesh.GenerateSpaceMesh({0, 0.15, 0.25, 0.5, 1.0});
-//smesh.GloballyBisectSpaceMesh();
-//smesh.GloballyBisectSpaceMesh();
-//smesh.GloballyBisectSpaceMesh();
+smesh.GloballyBisectSpaceMesh();
+smesh.GloballyBisectSpaceMesh();
+smesh.GloballyBisectSpaceMesh();
+smesh.GloballyBisectSpaceMesh();
+smesh.GloballyBisectSpaceMesh();
 
 
 TimeMesh tmesh;
@@ -35,7 +37,7 @@ APDE apde;
 
 
 //std::cout<<pde1.ContinuousAnalyticSolution(1, 0);
-
+smesh.PrintSpaceNodes();
 GeneralHeat genheat;
 genheat.SetSpaceTimeMesh(smesh, tmesh, apde);
 
@@ -46,7 +48,7 @@ genheat.SolveWithBCs();
 
 
 genheat.PrintSolution();
-genheat.PrintErrorMesh();
+genheat.BuildErrorMesh();
 genheat.GlobalSpaceError();
 
 }

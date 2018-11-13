@@ -142,6 +142,14 @@ double GeneralHeat::GlobalSpaceError()
     return sqrt(globalError);
 }
 
+
+void GeneralHeat::PrintErrorMesh()
+{
+    BuildErrorMesh();
+    PrintVector(mpErrorMesh);
+}
+
+
 void GeneralHeat::SolveWithBCs()
 {
 AnalyticSolutionVec();
@@ -175,11 +183,15 @@ mpPreviousSolution = mpx;
 if (j==int(0.5*m))
 {
     PrintSolution();
-    PrintErrorMesh();
     GlobalSpaceError();
+    PrintVector(mpErrorMesh);
     std::cout<<mpcurrenTimeStep;
     std::cout<<"\n";
 }
 
 }
+BuildErrorMesh();
+PrintVector(mpErrorMesh);
 }
+
+

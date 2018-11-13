@@ -69,7 +69,6 @@ The rest of this dissertation comprises:
 
 As show by Bergam \cite{Bergam} in their article.
 
-In another reference \cite{Pironneau}. In a final reference \cite{Topper}
 
 % this is a comment in the file that won't appear in the output
 
@@ -82,7 +81,9 @@ achieved. Appendix \ref{app:rawdata} displays the raw data, and
 certain technical calculations for section \ref{sec:my1} are deferred
 to appendix \ref{app:calculations}.
 
-\section{A section} \label{sec:background}
+\newpage
+
+\section{The Linear Heat Equation} \label{sec:Heat Equation}
 
 References can be for example
 textbooks \cite{bott-tu,haw-ell,wolf,alling-greenleaf,hatcher},
@@ -97,7 +98,23 @@ footnotes\footnote{Such as this.} separate from the references. Other
 citation practices exist: Your supervisor can advise as to what is
 appropriate for your topic.
 
-\section{Another section} \label{sec:my1}
+\newpage
+
+\section{The Finite Element Method for the Heat Equation} \label{sec:FEM}
+
+This section is concerned with the discretisation of the Heat Equation by Finite Elements. Though not uncommon the FEM is not necessarily widely known by the average postgraduate mathematician. As such we will provide a fairly detailed description of the method and full derivation of the scheme. A very nice introduction to the subject is \cite{larson2013finite}.
+
+The underlying practical steps to the method are:
+
+\begin{enumerate}
+\item Finding a variational form of the equation under consideration. This will allow us to look for a solution which satisfies the equation in some weak sense. This step requires the introduction of the function spaces where we will set our equation and look for its solution. We will see that these spaces are Sobolev spaces.
+
+\item Dividing our domain $\Omega$, in our case just an interval, into elements.
+
+\item Taking the variational form which we have at first defined in an infinite dimensional function space and approximate it on a finite dimensional sub-space. In our case the subspace will be piecewise polynomial functions defined on our subdivision.
+
+\item Projecting the boundary conditions onto the finite dimensional space.
+\end{enumerate}
 
 \subsection{A subsection} \label{subsec:theory}
 
@@ -142,8 +159,9 @@ This could contain a table of interesting numbers
   \end{tabular}
 \end{center}
 
+\newpage
 
-\section{Yet another section} \label{sec:my2}
+\section{Implementation} \label{sec:my2}
 
 Graphics can be included. Figure \ref{fig:bsd} shows an example.
 Learn about floats and pictures in the \LaTeX\ wikibook to place
@@ -155,6 +173,8 @@ the figures at the right place in the end.
  \caption{Oh look, something happens here !}
  \label{fig:bsd}
 \end{figure}
+
+\newpage
 
 \section{Conclusions} \label{sec:conclusions}
 

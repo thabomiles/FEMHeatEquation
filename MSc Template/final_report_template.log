@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.13)  11 NOV 2018 00:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.13)  13 NOV 2018 01:09
 entering extended mode
 **./final_report_template.tex
 (final_report_template.tex
@@ -265,66 +265,92 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 4.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-))
+)
+
+LaTeX Warning: Reference `sec:my1' on page 8 undefined on input line 11.
+
+)
 \tf@toc=\write3
 \openout3 = `final_report_template.toc'.
 
  [3] [4]
 
-LaTeX Warning: Citation `bott-tu' on page 5 undefined on input line 92.
+LaTeX Warning: Reference `sec:background' on page 5 undefined on input line 76.
 
 
-LaTeX Warning: Citation `haw-ell' on page 5 undefined on input line 92.
+
+LaTeX Warning: Reference `sec:my1' on page 5 undefined on input line 77.
 
 
-LaTeX Warning: Citation `wolf' on page 5 undefined on input line 92.
+LaTeX Warning: Reference `sec:my1' on page 5 undefined on input line 81.
+
+[5]
+
+LaTeX Warning: Citation `bott-tu' on page 6 undefined on input line 89.
 
 
-LaTeX Warning: Citation `alling-greenleaf' on page 5 undefined on input line 92
+LaTeX Warning: Citation `haw-ell' on page 6 undefined on input line 89.
+
+
+LaTeX Warning: Citation `wolf' on page 6 undefined on input line 89.
+
+
+LaTeX Warning: Citation `alling-greenleaf' on page 6 undefined on input line 89
 .
 
 
-LaTeX Warning: Citation `hatcher' on page 5 undefined on input line 92.
+LaTeX Warning: Citation `hatcher' on page 6 undefined on input line 89.
 
 
-LaTeX Warning: Citation `wheeler-geon' on page 5 undefined on input line 93.
+LaTeX Warning: Citation `wheeler-geon' on page 6 undefined on input line 90.
 
 
-LaTeX Warning: Citation `dewitt-can' on page 5 undefined on input line 93.
+LaTeX Warning: Citation `dewitt-can' on page 6 undefined on input line 90.
 
 
-LaTeX Warning: Citation `krasnov-louko' on page 5 undefined on input line 95.
+LaTeX Warning: Citation `krasnov-louko' on page 6 undefined on input line 92.
 
 
-LaTeX Warning: Citation `barrett-dawe' on page 5 undefined on input line 95.
+LaTeX Warning: Citation `barrett-dawe' on page 6 undefined on input line 92.
 
 
-LaTeX Warning: Citation `poisson-livrev' on page 5 undefined on input line 96.
+LaTeX Warning: Citation `poisson-livrev' on page 6 undefined on input line 93.
 
 
-LaTeX Warning: Citation `poisson-gr17' on page 5 undefined on input line 97.
+LaTeX Warning: Citation `poisson-gr17' on page 6 undefined on input line 94.
 
 
-LaTeX Warning: Citation `giulini-thesis' on page 5 undefined on input line 97.
+LaTeX Warning: Citation `giulini-thesis' on page 6 undefined on input line 94.
 
 
-LaTeX Warning: Citation `langlois-thesis' on page 5 undefined on input line 97.
+LaTeX Warning: Citation `langlois-thesis' on page 6 undefined on input line 94.
 
 
 
-LaTeX Warning: Citation `ligo-site' on page 5 undefined on input line 98.
+LaTeX Warning: Citation `ligo-site' on page 6 undefined on input line 95.
 
-[5] [6] [7] [8] (final_report_template.bbl [9]) [10] (final_report_template.aux
-)
+[6]
+
+LaTeX Warning: Citation `larson2013finite' on page 7 undefined on input line 10
+5.
+
+[7] [8] [9] [10]
+
+LaTeX Warning: Reference `sec:my1' on page 11 undefined on input line 200.
+
+[11] (final_report_template.bbl [12]) [13] (final_report_template.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 2901 strings out of 493312
- 38934 string characters out of 3138898
- 105521 words of memory out of 3000000
- 6404 multiletter control sequences out of 15000+200000
+ 2904 strings out of 493312
+ 38980 string characters out of 3138898
+ 104521 words of memory out of 3000000
+ 6407 multiletter control sequences out of 15000+200000
  12970 words of font info for 50 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,9n,34p,892b,207s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -341,9 +367,9 @@ gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on final_report_template.pdf (10 pages, 171018 bytes).
+Output written on final_report_template.pdf (13 pages, 173403 bytes).
 PDF statistics:
- 91 PDF objects out of 1000 (max. 8388607)
+ 101 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

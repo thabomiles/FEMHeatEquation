@@ -100,18 +100,18 @@ appropriate for your topic.
 
 \newpage
 
-\section{The Finite Element Method for the Heat Equation} \label{sec:FEM}
+\section{The Finite Element Method} \label{sec:FEM}
 
-This section is concerned with the discretisation of the Heat Equation by Finite Elements. Though not uncommon the FEM is not necessarily widely known by the average postgraduate mathematician. As such we will provide a fairly detailed description of the method and full derivation of the scheme. A very nice introduction to the subject is \cite{larson2013finite}.
+This section is concerned with the discretisation of the Heat Equation by Finite Elements. Though not uncommon, the FEM is not necessarily widely known by the average postgraduate mathematician. As such we will provide a fairly detailed description of the method and full derivation of the scheme. A very nice introduction to the subject if more detail is needed is \cite{larson2013finite}.
 
 The underlying practical steps to the method are:
 
 \begin{enumerate}
-\item Finding a variational form of the equation under consideration. This will allow us to look for a solution which satisfies the equation in some weak sense. This step requires the introduction of the function spaces where we will set our equation and look for its solution. We will see that these spaces are Sobolev spaces.
+\item Finding a variational form of the equation we are looking to solve. This will allow us to look for a solution which satisfies the equation in some weak sense. This step requires the introduction of the function spaces in which we can study our  equation and look for its solution. We will see that these spaces are Sobolev spaces.
 
-\item Dividing our domain $\Omega$, in our case just an interval, into elements.
+\item Creating the subdivision of our domain $\Omega$.
 
-\item Taking the variational form which we have at first defined in an infinite dimensional function space and approximate it on a finite dimensional sub-space. In our case the subspace will be piecewise polynomial functions defined on our subdivision.
+\item Taking the variational form, which we have at first defined in an infinite dimensional function space $V$, and approximating it on a finite dimensional sub-space $V_{h}$. In our case the subspace will be piecewise polynomial functions defined on our subdivision.
 
 \item Projecting the boundary conditions onto the finite dimensional space.
 \end{enumerate}
@@ -161,7 +161,27 @@ This could contain a table of interesting numbers
 
 \newpage
 
-\section{Implementation} \label{sec:my2}
+
+\section{A simple implementation} \label{sec:simpleFEM}
+
+
+
+
+\newpage
+
+\section{Error Analysis in the Finite Element Method} \label{sec:Errors}
+
+\newpage
+
+\section{Design of Adaptive Algorithms} \label{sec:Adaptive}
+
+\newpage
+
+\section{Some Numerical Examples} \label{sec:Adaptive}
+
+\newpage
+
+\section{Object oriented design patterns} \label{sec:my2}
 
 Graphics can be included. Figure \ref{fig:bsd} shows an example.
 Learn about floats and pictures in the \LaTeX\ wikibook to place

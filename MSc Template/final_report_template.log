@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.13)  14 NOV 2018 23:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.13)  16 NOV 2018 01:07
 entering extended mode
 **./final_report_template.tex
 (final_report_template.tex
@@ -142,6 +142,9 @@ File: pdftex.def 2017/06/24 v1.0g Graphics/color driver for pdftex
 )
 (final_report_template.aux
 
+LaTeX Warning: Label `eq:Conservation of Energy2' multiply defined.
+
+
 LaTeX Warning: Label `sec:Adaptive' multiply defined.
 
 )
@@ -260,89 +263,95 @@ G,.JBIG2,.JB2,.eps]
 
 {C:/Users/thabo/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
 (final_report_template.toc
-LaTeX Font Info:    Try loading font information for U+msa on input line 4.
+LaTeX Font Info:    Try loading font information for U+msa on input line 3.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 4.
+LaTeX Font Info:    Try loading font information for U+msb on input line 3.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-LaTeX Warning: Reference `sec:my1' on page 15 undefined on input line 15.
+LaTeX Warning: Reference `sec:my1' on page 17 undefined on input line 18.
 
 )
 \tf@toc=\write3
 \openout3 = `final_report_template.toc'.
 
- [3] [4]
+ [3]
 
-LaTeX Warning: Reference `sec:background' on page 5 undefined on input line 76.
-
-
-
-LaTeX Warning: Reference `sec:my1' on page 5 undefined on input line 77.
-
-
-LaTeX Warning: Reference `sec:my1' on page 5 undefined on input line 81.
-
-[5]
-
-LaTeX Warning: Citation `bott-tu' on page 6 undefined on input line 89.
-
-
-LaTeX Warning: Citation `haw-ell' on page 6 undefined on input line 89.
-
-
-LaTeX Warning: Citation `wolf' on page 6 undefined on input line 89.
-
-
-LaTeX Warning: Citation `alling-greenleaf' on page 6 undefined on input line 89
-.
-
-
-LaTeX Warning: Citation `hatcher' on page 6 undefined on input line 89.
-
-
-LaTeX Warning: Citation `wheeler-geon' on page 6 undefined on input line 90.
-
-
-LaTeX Warning: Citation `dewitt-can' on page 6 undefined on input line 90.
-
-
-LaTeX Warning: Citation `krasnov-louko' on page 6 undefined on input line 92.
-
-
-LaTeX Warning: Citation `barrett-dawe' on page 6 undefined on input line 92.
-
-
-LaTeX Warning: Citation `poisson-livrev' on page 6 undefined on input line 93.
-
-
-LaTeX Warning: Citation `poisson-gr17' on page 6 undefined on input line 94.
-
-
-LaTeX Warning: Citation `giulini-thesis' on page 6 undefined on input line 94.
-
-
-LaTeX Warning: Citation `langlois-thesis' on page 6 undefined on input line 94.
+LaTeX Warning: Reference `sec:background' on page 4 undefined on input line 73.
 
 
 
-LaTeX Warning: Citation `ligo-site' on page 6 undefined on input line 95.
+LaTeX Warning: Reference `sec:my1' on page 4 undefined on input line 74.
 
-[6]
 
-LaTeX Warning: Citation `larson2013finite' on page 7 undefined on input line 10
-5.
+LaTeX Warning: Reference `sec:my1' on page 4 undefined on input line 78.
 
-[7] [8] [9] [10] [11] [12] [13] [14]
+[4] [5] [6]
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ¢ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ¢ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ¢ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ¢ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ¢ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ¢ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ¢ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ¢ in font cmr12!
+ [7]
+<Heat1.pdf, id=33, pagebox=cropbox, 462.52798pt x 346.89601pt>
+File: Heat1.pdf Graphic file (type pdf)
+<use Heat1.pdf>
+Package pdftex.def Info: Heat1.pdf  used on input line 153. on input line 153.
+Package pdftex.def Info: Requested size: 227.62206pt x 170.71628pt on input lin
+e 153.
+<Heat2.pdf, id=34, pagebox=cropbox, 462.52798pt x 346.89601pt>
+File: Heat2.pdf Graphic file (type pdf)
+<use Heat2.pdf>
+Package pdftex.def Info: Heat2.pdf  used on input line 154. on input line 154.
+Package pdftex.def Info: Requested size: 227.62206pt x 170.71628pt on input lin
+e 154.
 
-LaTeX Warning: Reference `sec:my1' on page 15 undefined on input line 220.
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 153--155
+[][] [] 
+ []
 
-[15] (final_report_template.bbl [16]) [17] (final_report_template.aux)
+[8
+
+ <./Heat1.pdf> <./Heat2.pdf
+
+pdfTeX warning: pdflatex (file ./Heat2.pdf): PDF inclusion: multiple pdfs with 
+page group included in a single page
+>]
+
+LaTeX Warning: Citation `larson2013finite' on page 9 undefined on input line 16
+6.
+
+[9
+
+] [10] [11] [12] [13] [14] [15] [16]
+
+LaTeX Warning: Reference `sec:my1' on page 17 undefined on input line 281.
+
+[17] (final_report_template.bbl [18]) [19] (final_report_template.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -351,29 +360,28 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2907 strings out of 493312
- 39021 string characters out of 3138898
- 104591 words of memory out of 3000000
- 6410 multiletter control sequences out of 15000+200000
+ 2914 strings out of 493312
+ 39294 string characters out of 3138898
+ 104703 words of memory out of 3000000
+ 6415 multiletter control sequences out of 15000+200000
  12970 words of font info for 50 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,9n,34p,892b,207s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,9n,34p,892b,215s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKT
 eX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program File
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on final_report_template.pdf (17 pages, 177985 bytes).
+nts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Pro
+gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Fil
+es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on final_report_template.pdf (19 pages, 206257 bytes).
 PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
+ 156 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

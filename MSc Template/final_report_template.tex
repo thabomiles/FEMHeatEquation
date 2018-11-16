@@ -54,9 +54,6 @@ concise and clear. The typical length is one paragraph.
 
 \section{Introduction} \label{sec:intro}
 
-The introductory section goes here. And remember the introduction
-is the last thing you write. 
-
 The origin of the Finite Element Method (FEM) is generally agreed to be a paper by Courant \cite{courant1943} in 1943. Though initially obscure, it gained widespread usage in engineering as computing power became more cheaply available. Since then it has become increasingly more common in the natural sciences and more recently in financial industry \cite{topper2005option}. Though the Finite Difference Method is still overwhelming used to price options the FEM is now sometimes being instead. 
 
 Though more technical than the Finite Difference Method, under certain circumstance the FEM has stark advantages. Two notable advantages are that the FEM is simpler to use for Partial Differential Equations (PDEs) with irregular shaped domains and that there is a very well understood theory of aposteriori errors. This theory of errors, which only requires knowledge of the estimated solution, allows for the FEM to be adapted during implementation. This adaptive methodology leads to a solution where errors are guaranteed to be within certain tolerances which allows the user to analyse the effects of changing parameters. Also, adaptivity leads to a solution that should be in some sense efficient as ideally maximum accuracy achieved for the minimum degrees of freedom. This concept of efficiency is what we look to investigate further in this paper.
@@ -85,20 +82,84 @@ to appendix \ref{app:calculations}.
 
 \section{The Linear Heat Equation} \label{sec:Heat Equation}
 
-References can be for example
-textbooks \cite{bott-tu,haw-ell,wolf,alling-greenleaf,hatcher},
-conventional journal articles \cite{wheeler-geon,dewitt-can},
-conventional journal articles that are also available at an e-print
-server \cite{krasnov-louko,barrett-dawe}, electronic journal
-articles \cite{poisson-livrev}, articles in conference proceedings
-\cite{poisson-gr17}, PhD theses \cite{giulini-thesis,langlois-thesis}
-or websites \cite{ligo-site}. This template orders the references by
-their first citation, cites them by their number and keeps any
-footnotes\footnote{Such as this.} separate from the references. Other
-citation practices exist: Your supervisor can advise as to what is
-appropriate for your topic.
+The Heat Equation provides a simple situation within which we can understand and demonstrate the implementation of the Finite Element Method and adaptive algorithms. Conversely it is fundamental enough that it would allow someone reading this dissertation to easily build on our findings to access a different but connected problem for example the Black-Scholes equation. It can be thought of as a prototypical parabolic equation and this was our motivation for studying it.
 
-\newpage
+In this section we will describe the derivation of the Heat Equation in one dimension. We will first do this in the steady state i.e. where $\frac{du}{dt}=0$ and then extend this to the time dependent equation. We do this just to refresh the reader's knowledge of the properties of the equation. 
+
+\subsection{The Heat Equation in Steady State} \label{subsec:Steady State}
+
+The steady state equation in one dimension can be thought of as describing a thin rod of uniform material on the interval $I =$ [0, L]. As we are only considering the one dimensional problem heat is only conducted in the $x$ direction. The rod is heated by a source $f$ which we assume to have been acting continuously for long enough to reach the steady state. 
+
+Let $q$ be the heat flux i.e flow of energy per unit of area per unit of time and let $S$ be the cross section of the rod. As flux is a vector quantity it needs a direction and we take this as the direction of x increasing. The first law of thermodynamics on conservation of energy tells us that the flow out of the rod must equal the flow in from the heat source. Hence we have:
+
+\begin{equation}
+q(L)S(L) - q(0)S(0) =  \int_I  f  dx	\label{eq:Conservation of Energy1}
+\end{equation}
+
+We now divide both sides of \eqref{eq:Conservation of Energy1} by L and take L $\rightarrow$ 0. Hence we have the differential equation:
+
+\begin{equation}
+(Sq)' = f	\label{eq:Conservation of Energy2}
+\end{equation}
+
+Employing Fouriers law which in this context can be understood as the flux being negatively proportional to the temperature gradient:
+
+\begin{equation}
+q = kT'	\label{eq:Fouriers Law}
+\end{equation}
+
+here k represents the heat conductivity of the rod.
+
+Together \eqref{eq:Conservation of Energy2} and \eqref{eq:Fouriers Law} give us the Heat Equation:
+
+\begin{equation}
+-(SkT')'= f 	\label{eq:Steady State Heat Equation}
+\end{equation}
+
+
+\subsection{The Time Dependent Problem} \label{subsec:Time Dependent Heat Equation}
+
+The time dependent problem is very similar to the steady state form. We introduce a function e which is the energy per unit length within the rod. We use the the conservation of energy principle again but this time we use the fact that the sum of the resultant heat flux is equal to the rate of change of internal energy. Here rate of change of $e$ is denoted by $e\dot{•}$
+
+\begin{equation}
+\int_I  e\dot{•} dx =   q(0)S(0) - q(L)S(L)  \int_I  f  dx	\label{eq:Conservation of Energyt1}
+\end{equation}
+
+Once again dividing by L and letting L $\rightarrow$ 0.
+
+\begin{equation}
+e\dot{•} + (Sq)' = f	\label{eq:Conservation of Energyt2}
+\end{equation}
+
+Finally assuming that the energy depends linearly on the the Temperature
+
+\begin{equation}
+e = mT	\label{eq:Conservation of Energy2}
+\end{equation}
+
+And using \eqref{eq:Fouriers Law} and combining \eqref{eq:Conservation of Energyt1} and \eqref{eq:Conservation of Energyt2} we have the transient Heat Equation which we will refer through out the rest of this paper simply as the Heat Equation:
+
+ \begin{equation}
+mT\dot{•} - (SkT')' = f	\label{eq:Heat Equation}
+\end{equation}
+
+
+\clearpage
+\subsection{Boundary Conditions} \label{subsec:Boundary Conditions}
+
+
+
+\begin{figure}[h]
+   \includegraphics[width=0.5\textwidth]{Heat1.pdf}
+   \includegraphics[width=0.5\textwidth]{Heat2.pdf}
+   
+ \caption{$f= 0$, $m=1$, $S = 1$, $k = \pi^-2$}
+ \label{fig:Heat1}
+\end{figure}
+
+
+
+\clearpage
 
 \section{The Finite Element Method} \label{sec:FEM}
 
@@ -187,7 +248,7 @@ Graphics can be included. Figure \ref{fig:bsd} shows an example.
 Learn about floats and pictures in the \LaTeX\ wikibook to place
 the figures at the right place in the end.
 %
-\begin{figure}
+\begin{figure}[h]
  \begin{center}
  \end{center}
  \caption{Oh look, something happens here !}

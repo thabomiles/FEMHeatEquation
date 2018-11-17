@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.13)  16 NOV 2018 01:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.13)  17 NOV 2018 18:02
 entering extended mode
 **./final_report_template.tex
 (final_report_template.tex
@@ -140,28 +140,42 @@ File: pdftex.def 2017/06/24 v1.0g Graphics/color driver for pdftex
 \Gin@req@height=\dimen120
 \Gin@req@width=\dimen121
 )
-(final_report_template.aux
-
-LaTeX Warning: Label `eq:Conservation of Energy2' multiply defined.
-
-
-LaTeX Warning: Label `sec:Adaptive' multiply defined.
-
+("C:\Program Files\MiKTeX 2.9\tex\latex\amscls\amsthm.sty"
+Package: amsthm 2015/03/04 v2.20.2
+\thm@style=\toks21
+\thm@bodyfont=\toks22
+\thm@headfont=\toks23
+\thm@notefont=\toks24
+\thm@headpunct=\toks25
+\thm@preskip=\skip46
+\thm@postskip=\skip47
+\thm@headsep=\skip48
+\dth@everypar=\toks26
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\bigints\bigints.sty"
+Package: bigints 2010/02/15 Writing big integrals
+Package bigints Info: This is Bigints by Merciadri Luca. on input line 5.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\relsize.sty"
+Package: relsize 2003/07/04 ver 3.1
+)
+\c@definition=\count102
+
+(final_report_template.aux)
 \openout1 = `final_report_template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -199,17 +213,17 @@ LaTeX Font Info:    ... okay on input line 38.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count102
+\scratchcounter=\count103
 \scratchdimen=\dimen122
 \scratchbox=\box28
-\nofMPsegments=\count103
-\nofMParguments=\count104
-\everyMPshowfont=\toks21
-\MPscratchCnt=\count105
+\nofMPsegments=\count104
+\nofMParguments=\count105
+\everyMPshowfont=\toks27
+\MPscratchCnt=\count106
 \MPscratchDim=\dimen123
-\MPnumerator=\count106
-\makeMPintoPDFobject=\count107
-\everyMPtoPDFconversion=\toks22
+\MPnumerator=\count107
+\makeMPintoPDFobject=\count108
+\everyMPtoPDFconversion=\toks28
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -258,7 +272,7 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-\my@gap=\skip46
+\my@gap=\skip49
  [1
 
 {C:/Users/thabo/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
@@ -274,7 +288,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 3.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-LaTeX Warning: Reference `sec:my1' on page 17 undefined on input line 18.
+LaTeX Warning: Reference `sec:my1' on page 18 undefined on input line 24.
 
 )
 \tf@toc=\write3
@@ -282,14 +296,14 @@ LaTeX Warning: Reference `sec:my1' on page 17 undefined on input line 18.
 
  [3]
 
-LaTeX Warning: Reference `sec:background' on page 4 undefined on input line 73.
+LaTeX Warning: Reference `sec:background' on page 4 undefined on input line 84.
 
 
 
-LaTeX Warning: Reference `sec:my1' on page 4 undefined on input line 74.
+LaTeX Warning: Reference `sec:my1' on page 4 undefined on input line 85.
 
 
-LaTeX Warning: Reference `sec:my1' on page 4 undefined on input line 78.
+LaTeX Warning: Reference `sec:my1' on page 4 undefined on input line 89.
 
 [4] [5] [6]
 Missing character: There is no â in font cmr12!
@@ -317,20 +331,20 @@ Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ¢ in font cmr12!
  [7]
-<Heat1.pdf, id=33, pagebox=cropbox, 462.52798pt x 346.89601pt>
+<Heat1.pdf, id=32, pagebox=cropbox, 462.52798pt x 346.89601pt>
 File: Heat1.pdf Graphic file (type pdf)
 <use Heat1.pdf>
-Package pdftex.def Info: Heat1.pdf  used on input line 153. on input line 153.
+Package pdftex.def Info: Heat1.pdf  used on input line 164. on input line 164.
 Package pdftex.def Info: Requested size: 227.62206pt x 170.71628pt on input lin
-e 153.
-<Heat2.pdf, id=34, pagebox=cropbox, 462.52798pt x 346.89601pt>
+e 164.
+<Heat2.pdf, id=33, pagebox=cropbox, 462.52798pt x 346.89601pt>
 File: Heat2.pdf Graphic file (type pdf)
 <use Heat2.pdf>
-Package pdftex.def Info: Heat2.pdf  used on input line 154. on input line 154.
+Package pdftex.def Info: Heat2.pdf  used on input line 165. on input line 165.
 Package pdftex.def Info: Requested size: 227.62206pt x 170.71628pt on input lin
-e 154.
+e 165.
 
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 153--155
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 164--166
 [][] [] 
  []
 
@@ -342,46 +356,52 @@ pdfTeX warning: pdflatex (file ./Heat2.pdf): PDF inclusion: multiple pdfs with
 page group included in a single page
 >]
 
-LaTeX Warning: Citation `larson2013finite' on page 9 undefined on input line 16
-6.
+LaTeX Warning: Citation `larson2013finite' on page 9 undefined on input line 17
+7.
 
-[9
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 201.
 
-] [10] [11] [12] [13] [14] [15] [16]
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 201.
+ [9
 
-LaTeX Warning: Reference `sec:my1' on page 17 undefined on input line 281.
+] [10] [11
 
-[17] (final_report_template.bbl [18]) [19] (final_report_template.aux)
+] [12]
+[13] [14] [15] [16] [17]
+
+LaTeX Warning: Reference `sec:my1' on page 18 undefined on input line 374.
+
+[18] (final_report_template.bbl [19]) [20] (final_report_template.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 2914 strings out of 493312
- 39294 string characters out of 3138898
- 104703 words of memory out of 3000000
- 6415 multiletter control sequences out of 15000+200000
- 12970 words of font info for 50 fonts, out of 3000000 for 9000
+ 3131 strings out of 493312
+ 42563 string characters out of 3138898
+ 109414 words of memory out of 3000000
+ 6624 multiletter control sequences out of 15000+200000
+ 11117 words of font info for 43 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,9n,34p,892b,215s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,10n,34p,892b,236s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pf
-b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Fil
-es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on final_report_template.pdf (19 pages, 206257 bytes).
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program 
+Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on final_report_template.pdf (20 pages, 210417 bytes).
 PDF statistics:
- 156 PDF objects out of 1000 (max. 8388607)
+ 155 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

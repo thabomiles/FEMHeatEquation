@@ -5,6 +5,17 @@
 % change the optional argument if you use dvips or others
 \usepackage[pdftex]{graphicx}
 
+\usepackage{amsthm}
+\usepackage{bigints}
+ \usepackage{relsize}
+ 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\def\realnumbers{\mathbb{R}}
+
+\DeclareMathSizes{12}{12}{10}{10}
+
 
 % other packages that maybe of use include:
 % hyperref, amsthm, xy, todonotes, showkeys, ...
@@ -134,7 +145,7 @@ e\dot{•} + (Sq)' = f	\label{eq:Conservation of Energyt2}
 Finally assuming that the energy depends linearly on the the Temperature
 
 \begin{equation}
-e = mT	\label{eq:Conservation of Energy2}
+e = mT	\label{eq:Energy and Heat}
 \end{equation}
 
 And using \eqref{eq:Fouriers Law} and combining \eqref{eq:Conservation of Energyt1} and \eqref{eq:Conservation of Energyt2} we have the transient Heat Equation which we will refer through out the rest of this paper simply as the Heat Equation:
@@ -177,7 +188,83 @@ The underlying practical steps to the method are:
 \item Projecting the boundary conditions onto the finite dimensional space.
 \end{enumerate}
 
-\subsection{A subsection} \label{subsec:theory}
+Once the mathematical context of the Finite Element has been outlined we will move on to finding the weak formulation of the Heat Equation. With this done we will consider the finite dimensional subspace and the elements that will be used in our discretisation. We will close the chapter will a discussion of other possible choices for elements.
+
+\subsection{Sobolev Spaces} \label{subsec:Sobolev}
+
+We begin by stating the notation to be used in this dissertation and also stating some of the relevant definitions and results from functional analysis.
+
+\theoremstyle{definition}
+\begin{definition}{Continuous Functions}
+Let $\Omega \subset \mathbb{R}^n, n \geq 1$ be an open bounded set. 
+\begin{itemize}
+\item We define $C(\Omega)$  the set of all real-valued and continuous functions defined on $\Omega$.
+\item For $m \geq1$ we write $C^m(\Omega)$ to denote the set of m times continuously differentiable functions  i.e. that $C^m(\Omega) = \{f \in C(\Omega) : f^{(k)} \in C(\Omega)\quad \forall k \leq m\} $.
+\end{itemize}
+\end{definition}
+
+
+\theoremstyle{definition}
+\begin{definition}{Function Support}
+Let $\Omega \subset \mathbb{R}^n, n \geq 1$ be an open bounded set. 
+
+\end{definition}
+
+\theoremstyle{definition}
+\begin{definition}{$L^p$ Space}
+
+$\|u\|_{L_2(\Omega)} := \mathlarger{\Big(\int_\Omega  { |u|^p } dx\Big)}^{\frac{1}{p}} < \infty$
+
+\end{definition}
+
+
+\theoremstyle{definition}
+\begin{definition}{Multi Index}
+
+$\alpha = (\alpha_1, \alpha_2, ... \alpha_n) \in \mathbb{N}^n$
+
+$|\alpha| = \alpha_1 + ... \alpha_n$
+
+Define the Multi Index 
+
+$D^{\alpha} = \Big(\frac{\partial}{\partial x_1}\Big)^{\alpha_1}$
+
+$...\Big(\frac{\partial}{\partial x_n}\Big)^{\alpha_n} = $
+
+$\frac{\partial^{|\alpha|}}{\partial x^{\alpha}_1 ... \partial x^{\alpha}_n}$
+
+We can now generalise our earlier definition of continuous differentiable functions to an analogous idea with the multi index which will be relevant to partial differentiation.
+
+$C^m(\Omega) = \{f \in C(\Omega) : D^\alpha f \in C(\Omega)\quad \forall |a| \leq m\} $
+
+\end{definition}
+
+
+\theoremstyle{definition}
+\begin{definition}{Weak Derivative}
+
+Say $\psi_\alpha$ is a locally integrable 
+
+$\mathlarger{\int_\Omega  \psi_\alpha(x) \cdot v(x) dx} = (-1)^{\alpha} \mathlarger{\int_\Omega  u(x) \cdot D^{\alpha} v(x) dx} \forall v \in C^\infty_0(\Omega)$
+
+\end{definition}
+
+\theoremstyle{definition}
+\begin{definition}{Weak Derivative}
+
+Say $\psi_\alpha$ is a locally integrable 
+
+$\mathlarger{\int_\Omega  \psi_\alpha(x) \cdot v(x) dx} = (-1)^{\alpha} \mathlarger{\int_\Omega  u(x) \cdot D^{\alpha} v(x) dx} \forall v \in C^\infty_0(\Omega)$
+
+\end{definition}
+
+
+\clearpage
+
+
+\subsection{The Weak Formulation} \label{subsec:Weak Formulation}
+
+\subsection{Finite Dimensional Subspace} \label{subsec:Subspace}
 
 Subsections may be used. Use a clear structure in your report.
 
@@ -223,14 +310,20 @@ This could contain a table of interesting numbers
 \newpage
 
 
-\section{A simple implementation} \label{sec:simpleFEM}
+\section{Fully Discrete Problem} \label{sec:Fully Discrete}
+
+\subsubsection{Implicit Euler} \label{subsubsec:Implicit Euler}
 
 
-
+\subsubsection{Impementation} \label{subsubsec:Implementation}
 
 \newpage
 
 \section{Error Analysis in the Finite Element Method} \label{sec:Errors}
+
+\subsubsection{A Posteriori Error Analysis} \label{subsubsec:A Posteriori}
+
+\subsubsection{KK Method} \label{subsubsec:KK}
 
 \newpage
 
@@ -238,7 +331,7 @@ This could contain a table of interesting numbers
 
 \newpage
 
-\section{Some Numerical Examples} \label{sec:Adaptive}
+\section{Some Numerical Examples} \label{sec:Examples}
 
 \newpage
 

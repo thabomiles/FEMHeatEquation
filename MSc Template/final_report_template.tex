@@ -12,6 +12,9 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}[section]
+
 \def\realnumbers{\mathbb{R}}
 
 \DeclareMathSizes{12}{12}{10}{10}
@@ -139,7 +142,7 @@ The time dependent problem is very similar to the steady state form. We introduc
 Once again dividing by L and letting L $\rightarrow$ 0.
 
 \begin{equation}
-e\dot{•} + (Sq)' = f	\label{eq:Conservation of Energyt2}
+\dot{e} + (Sq)' = f	\label{eq:Conservation of Energyt2}
 \end{equation}
 
 Finally assuming that the energy depends linearly on the the Temperature
@@ -151,7 +154,7 @@ e = mT	\label{eq:Energy and Heat}
 And using \eqref{eq:Fouriers Law} and combining \eqref{eq:Conservation of Energyt1} and \eqref{eq:Conservation of Energyt2} we have the transient Heat Equation which we will refer through out the rest of this paper simply as the Heat Equation:
 
  \begin{equation}
-mT\dot{•} - (SkT')' = f	\label{eq:Heat Equation}
+m\dot{T} - (SkT')' = f	\label{eq:Heat Equation}
 \end{equation}
 
 
@@ -235,7 +238,7 @@ $\frac{\partial^{|\alpha|}}{\partial x^{\alpha}_1 ... \partial x^{\alpha}_n}$
 
 We can now generalise our earlier definition of continuous differentiable functions to an analogous idea with the multi index which will be relevant to partial differentiation.
 
-$C^m(\Omega) = \{f \in C(\Omega) : D^\alpha f \in C(\Omega)\quad \forall |a| \leq m\} $
+$C^m(\Omega) = \{f \in C(\Omega) : D^\alpha f \in C(\Omega)\quad \forall |a| \leq\leq m\} $
 
 \end{definition}
 
@@ -257,12 +260,46 @@ Say $\psi_\alpha$ is a locally integrable
 $\mathlarger{\int_\Omega  \psi_\alpha(x) \cdot v(x) dx} = (-1)^{\alpha} \mathlarger{\int_\Omega  u(x) \cdot D^{\alpha} v(x) dx} \forall v \in C^\infty_0(\Omega)$
 
 \end{definition}
+
+\theoremstyle{definition}
+\begin{definition}{Sobolev Space}
+
+$H^{m}(\Omega) = \{ u \in L_2(\Omega) : D^{\alpha} u \in L_2(\Omega), |\alpha| \leq m \}$
+
+$$\|u\|_{H^m(\Omega)} :=  \Big(\mathlarger{\sum_{|\alpha|\leq m}}\|D^{\alpha}u\|^2_{L_2(\Omega)} \Big)^{\frac{1}{2}} $$
+
+
+\end{definition}
+
+The Lax Milgram theorem shows shows the existence and uniqueness of a solution to the PDE. 
+
+
+\begin{theorem}[Lax Milgram]
+\label{Lax Milgram}
+Let V be a real Hilbert Space with associated norm $\|\dot{•}\|$. Also let $a(\dot{•}, \dot{•})$ be a bilinear functional on V x V with:
+
+(a) $a(\cdot, \cdot)$ is coercive, i.e. there exists a positive constant $c_0 \forall v \in V |a(v, v)|  \geq c_0 \|v\|^2_V$ 
+
+(b) $a(\cdot, \cdot)$ is continuous i.e. there exists a positive constant $c_1 \forall v, w \in V |a(v, w) \leq c_1 \|v\|_V \|w\|_V$ 
+
+and for $\ell(\cdot)$ a bilinear functional also on V such that 
+
+(c) $\ell(\cdot)$ is continuous i.e. there exists a positive constant $c_2 \forall v \in V |\ell(\cdot)|  \leq c_2 \|v\|_V$
+
+Then there $\exists u \in V: a(u, v) = \ell(v) \forall v \exists V$ and u is unique.
+\end{theorem}
+
+This version of the theorem is Weaker than the refinement proved by Babuska but it sufficient for our purposes. The refined theorem is available in most textbooks on the FEM.
+
+
 
 
 \clearpage
 
 
 \subsection{The Weak Formulation} \label{subsec:Weak Formulation}
+
+Now we have defined the mathematical context we can consider our 
 
 \subsection{Finite Dimensional Subspace} \label{subsec:Subspace}
 

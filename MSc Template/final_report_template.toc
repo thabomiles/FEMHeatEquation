@@ -5,20 +5,20 @@
 \contentsline {subsection}{\numberline {2.3}Boundary Conditions}{8}
 \contentsline {section}{\numberline {3}The Finite Element Method}{9}
 \contentsline {subsection}{\numberline {3.1}Sobolev Spaces}{9}
-\contentsline {subsection}{\numberline {3.2}The Weak Formulation}{11}
-\contentsline {subsection}{\numberline {3.3}Finite Dimensional Subspace}{11}
-\contentsline {subsection}{\numberline {3.4}Another subsection}{11}
-\contentsline {subsubsection}{\numberline {3.4.1}A subsubsection}{11}
-\contentsline {subsubsection}{\numberline {3.4.2}Another subsubsection}{11}
-\contentsline {section}{\numberline {4}Fully Discrete Problem}{12}
-\contentsline {subsubsection}{\numberline {4.0.1}Implicit Euler}{12}
-\contentsline {subsubsection}{\numberline {4.0.2}Impementation}{12}
-\contentsline {section}{\numberline {5}Error Analysis in the Finite Element Method}{13}
-\contentsline {subsubsection}{\numberline {5.0.1}A Posteriori Error Analysis}{13}
-\contentsline {subsubsection}{\numberline {5.0.2}KK Method}{13}
-\contentsline {section}{\numberline {6}Design of Adaptive Algorithms}{14}
-\contentsline {section}{\numberline {7}Some Numerical Examples}{15}
-\contentsline {section}{\numberline {8}Object oriented design patterns}{16}
-\contentsline {section}{\numberline {9}Conclusions}{17}
-\contentsline {section}{\numberline {A}Raw data}{18}
-\contentsline {section}{\numberline {B}Calculations for section \G@refundefinedtrue \text {\normalfont \bfseries ??}\GenericWarning { }{LaTeX Warning: Reference `sec:my1' on page 18 undefined}}{18}
+\contentsline {subsection}{\numberline {3.2}The Weak Formulation}{12}
+\contentsline {subsection}{\numberline {3.3}Finite Dimensional Subspace}{12}
+\contentsline {subsection}{\numberline {3.4}Another subsection}{12}
+\contentsline {subsubsection}{\numberline {3.4.1}A subsubsection}{12}
+\contentsline {subsubsection}{\numberline {3.4.2}Another subsubsection}{12}
+\contentsline {section}{\numberline {4}Fully Discrete Problem}{13}
+\contentsline {subsubsection}{\numberline {4.0.1}Implicit Euler}{13}
+\contentsline {subsubsection}{\numberline {4.0.2}Impementation}{13}
+\contentsline {section}{\numberline {5}Error Analysis in the Finite Element Method}{14}
+\contentsline {subsubsection}{\numberline {5.0.1}A Posteriori Error Analysis}{14}
+\contentsline {subsubsection}{\numberline {5.0.2}KK Method}{14}
+\contentsline {section}{\numberline {6}Design of Adaptive Algorithms}{15}
+\contentsline {section}{\numberline {7}Some Numerical Examples}{16}
+\contentsline {section}{\numberline {8}Object oriented design patterns}{17}
+\contentsline {section}{\numberline {9}Conclusions}{18}
+\contentsline {section}{\numberline {A}Raw data}{19}
+\contentsline {section}{\numberline {B}Calculations for section \G@refundefinedtrue \text {\normalfont \bfseries ??}\GenericWarning { }{LaTeX Warning: Reference `sec:my1' on page 19 undefined}}{19}

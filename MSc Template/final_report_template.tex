@@ -7,10 +7,14 @@
 
 \usepackage{amsthm}
 \usepackage{bigints}
- \usepackage{relsize}
+\usepackage{relsize}
+\usepackage{amsmath}
  
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
+
+\theoremstyle{problem}
+\newtheorem{problem}{Problem}[section]
 
 \theoremstyle{theorem}
 \newtheorem{theorem}{Theorem}[section]
@@ -136,7 +140,7 @@ Together \eqref{eq:Conservation of Energy2} and \eqref{eq:Fouriers Law} give us 
 The time dependent problem is very similar to the steady state form. We introduce a function e which is the energy per unit length within the rod. We use the the conservation of energy principle again but this time we use the fact that the sum of the resultant heat flux is equal to the rate of change of internal energy. Here rate of change of $e$ is denoted by $e\dot{•}$
 
 \begin{equation}
-\int_I  e\dot{•} dx =   q(0)S(0) - q(L)S(L)  \int_I  f  dx	\label{eq:Conservation of Energyt1}
+\int_I  \dot{e} dx =   q(0)S(0) - q(L)S(L)  \int_I  f  dx	\label{eq:Conservation of Energyt1}
 \end{equation}
 
 Once again dividing by L and letting L $\rightarrow$ 0.
@@ -289,7 +293,7 @@ and for $\ell(\cdot)$ a bilinear functional also on V such that
 Then there $\exists u \in V: a(u, v) = \ell(v) \forall v \exists V$ and u is unique.
 \end{theorem}
 
-This version of the theorem is Weaker than the refinement proved by Babuska but it sufficient for our purposes. The refined theorem is available in most textbooks on the FEM.
+This version of the theorem is Weaker than the refinement proved by Babuska but it sufficient for our purposes. The refined theorem is available f in most textbooks on the FEM.
 
 
 
@@ -299,9 +303,52 @@ This version of the theorem is Weaker than the refinement proved by Babuska but 
 
 \subsection{The Weak Formulation} \label{subsec:Weak Formulation}
 
-Now we have defined the mathematical context we can consider our 
+Now we have defined the mathematical context we can consider our first problem.
 
-\subsection{Finite Dimensional Subspace} \label{subsec:Subspace}
+Take a simple Heat Equation:
+
+
+
+\begin{subequations} 
+\begin{align}
+  \dot{u} - u'' = & f \quad x \in [0, L], \quad t \in (0, T]  \\ \label{eq:Simple Heat}
+  u(0, t) & = u(L, t) = 0\\
+  u(x, 0) & = u_0(x)   
+\end{align}
+\end{subequations}
+
+Multplying $\dot{u} - u'' = f$ by a test function  $v \in H^1_0(0, L)$  on both sides gives:
+
+\begin{equation}
+  \int_0^L \dot{u} v dx  - \int_0^L  u'' v  dx =   \int_0^L  f v  dx   
+\end{equation}
+
+Integrating by parts yields:
+
+\begin{equation}
+  \int_0^L \dot{u} v dx  + \int_0^L  u'' v  +u(0)v(0) - u(L)v(L) dx =   \int_0^L  f v  dx   
+\end{equation}
+
+\begin{equation}
+  \int_0^L \dot{u} v dx +  \int_0^L  u' v'  dx =   \int_0^L  f v  dx    
+\end{equation}
+
+The weak formulation of our problem is now given by:
+
+\begin{problem}{Weak Formulation}
+
+
+Find $\quad u(\cdot, t) \in H^1_0(0, L)$:
+\begin{align*}
+ \int_0^L \dot{u} v dx +  \int_0^L  u' v'  dx =   \int_0^L  f v  dx& \\
+  \int_0^L  u(x, 0) v dx = \int_0^L u_0(x) v dx&  
+\end{align*}
+$\forall v \in H^1_0(0, L)$
+
+\end{problem}
+
+
+\subsection{Spatial Discretization} \label{subsec:Subspace}
 
 Subsections may be used. Use a clear structure in your report.
 
@@ -356,11 +403,64 @@ This could contain a table of interesting numbers
 
 \newpage
 
-\section{Error Analysis in the Finite Element Method} \label{sec:Errors}
+\section{A Posteriori Error Analysis} \label{sec:Errors}
 
-\subsubsection{A Posteriori Error Analysis} \label{subsubsec:A Posteriori}
+When a continuous problem such as the Heat Equation is discretised and solved numerically an error is incurred. For a convergent scheme this error can be bounded in general by a priori error i.e. the estimates that are calculated before a specific approximated solution is found. A priori estimates can also be used to show stability of numerical schemes. Although useful in these applications it is rare that an a priori error estimate accurately quantifies the error present in a numerical solution. As such in a practical context the a priori error cannot be used to indicate the quality of a solution. 
 
-\subsubsection{KK Method} \label{subsubsec:KK}
+A posteriori error analysis uses the computed numerical solution itself to analyses the error. Where a posteriori error estimates are available and accurate this has the obvious advantage that it describes the error in the approximation without the need for an analytical solution. This replaces the heuristics and guess work that had previously guided the error analysis of the FEM approximation in complex settings. 
+
+Since the initial pioneering methods of Babuska \cite{babuska1978posteriori} \cite{babuska1981posteriori} in this field many a posteriori estimates have been presented. Many of these have been shown to be effective in context. The emphasis in the literature has moved now from the discovery of new a posteriori estimates to the testing of the limitations and robustness of existing a posteriori estimates all this is done primarily with the goal of validating the extensively used self-adapting FEM packages.
+
+\subsubsection{Gradient Recovery} \label{subsubsec:KK}
+
+While the overall goal of the FEM may be the numerical solution it may also be the case that the gradient is of particular interest also. The gradient in the approximation is discontinuous over element boundaries but can be smoothed out by post-processing. In fact under certain circumstances the smoothed gradient is closer to the gradient of the true solution \cite{ainsworth65001posteriori}. This leads fairly directly one of the simpler a posteriori error estimates which is measuring the gradient before and after this post-processing.
+
+We will now try to describe this process more formally. Consider the steady state one dimensional Heat Equation with conductivity co-efficient of one. 
+
+\begin{equation}
+-u''= f		\quad \quad  x \in [0, 1]  	\label{eq:Steady Diffusion}
+\end{equation}
+
+We now seek to define the energy norm. To do this we will first define the weak formulation of \ref{eq:Steady Diffusion}.
+
+\begin{problem}{Weak Formulation}
+
+Find $\quad u(\cdot, t) \in H^1_0(0, 1)$:
+\begin{align*}
+\int_0^L  u' v'  dx =   \int_0^L  f v dx  \quad \quad  dx \forall v \in H^1_0(0, L)
+\end{align*}
+$\forall v \in H^1_0(0, L)$
+\end{problem}
+
+Write
+\begin{equation*}
+\int_0^L  u' v'  dx = a(u, v)  	
+\end{equation*}
+
+It is clear that the bilinear form is symmetric i.e.  a(w, v) = a(v, w) and it can be shown that it is coercive as described in the Lax Milgram theorem \ref{Lax Milgram}. Hence, A(w, v) is an inner product on $H^1_0(0, L) (w, v)_a$.
+
+We can then define the associated energy norm.
+
+\begin{equation}
+\|w\|_a = |(w, w)_a|^\frac{1}{2}
+\end{equation}
+
+If we measure the true error in the energy norm we get.
+
+\begin{equation}
+\|u-u_h\|_a^2 = \int_0^L  u' - u_h'  dx
+\end{equation}
+
+Which is the $L_2$ norm of of the difference between the gradient .
+
+If we had the true gradient we would now be able to measure the true error in the energy norm. As that is unavailable we will use an estimate of the true gradient which will be obtained by some suitable post- processing of the FEM approximation to the solution. Let the post processed FEM approximated gradient be denoted by $G_h(u_h)$ then the error indicator for \ref{eq:Steady Diffusion} is given by:
+
+\begin{equation}
+\eta^2 = \int_0^L  |G_h(u_h) - u_h|^2  dx
+\end{equation}
+
+Clearly there are as many different error indicators as there are ways of processing the FEM approximation to the gradient.
+
 
 \newpage
 

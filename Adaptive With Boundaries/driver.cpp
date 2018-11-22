@@ -29,27 +29,35 @@ smesh.GloballyBisectSpaceMesh();
 smesh.GloballyBisectSpaceMesh();
 smesh.GloballyBisectSpaceMesh();
 
+SpaceMesh newsmesh;
+newsmesh.GenerateUniformMesh(5, 6);
+newsmesh.PrintSpaceNodes();
+
+
+
 
 TimeMesh tmesh;
 tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize(), 2), 1.0);
 
 APDE apde;
 
-
-//std::cout<<pde1.ContinuousAnalyticSolution(1, 0);
-smesh.PrintSpaceNodes();
 GeneralHeat genheat;
 genheat.SetSpaceTimeMesh(smesh, tmesh, apde);
 
-//std::cout<<genheat.ContinuousAnalyticSolution(1, 0);
 
 genheat.SolveWithBCs();
-//enheat.Solve();
 
 
-genheat.PrintSolution();
+//genheat.PrintSolution();
+
 genheat.BuildErrorMesh();
+genheat.PrintErrorMesh();
 genheat.GlobalSpaceError();
+
+genheat.UnitTest1();
+
+
+
 
 }
 

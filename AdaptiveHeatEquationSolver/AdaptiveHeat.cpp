@@ -29,9 +29,7 @@ for(int j = 0; j<mptmesh.NumberOfTimeSteps(); j++)
 {
     mpcurrenTimeStep = j+1;
     mpcurrentMeshIndex = j;
-//    std::cout<<"\n";
-//    std::cout<<mpcurrenTimeStep <<"\n";
-//    std::cout<<"\n";
+
     BuildSystemAtTimeStep();
     SystemSolver();
     mpPreviousSolution = mpx;
@@ -58,9 +56,6 @@ void AdaptiveHeatEquation::SaveIntervalsForCoarsening()
         }
     }
 
-//    for (auto k: NodesForRemoval)
-//        std::cout << k << ", ";
-//    std::cout << " \n";
 }
 
 void AdaptiveHeatEquation::BuildSystemAtTimeStep()
@@ -73,7 +68,6 @@ LHS.AddTwoMatrices( mass, stiff );
 
 void AdaptiveHeatEquation::SystemSolver()
 {
-    //mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
     BuildRHS();
     LHS.MatrixSolver( mpRHS, mpx );
     oldmesh.CopySpaceMesh(mpsmesh);
@@ -104,13 +98,7 @@ void AdaptiveHeatEquation::SaveIntervalsForRefinement()
             intervalsForRefinement.push_back(i);
         }
     }
-//    for (auto j: mpErrorMesh)
-//        std::cout<< sqrt(j) << ", ";
-//    std::cout<< "\n";
-//
-//    for (auto k: intervalsForRefinement)
-//        std::cout << k << ", ";
-//    std::cout << " \n";
+
 }
 
 
@@ -166,7 +154,6 @@ for(int j = 0; j<m; j++)
     mpcurrentMeshIndex = j;
 
     BuildSystemAtTimeStep();
-    //mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
     BuildRHS();
     LHS.MatrixSolver( mpRHS, mpx );
     oldmesh.CopySpaceMesh(mpsmesh);
@@ -176,7 +163,6 @@ for(int j = 0; j<m; j++)
 
 if (j==int(0.5*m))
 {
-    //oldmesh.CopySpaceMesh(mpsmesh);
     mpsmesh.GloballyBisectSpaceMesh();
 }
 }
@@ -207,7 +193,7 @@ double AdaptiveHeatEquation::SolutionTimesBasis( int NodeIndex, double x )
     return mpsmesh.TestFunctions( NodeIndex, x)*InterpolantFunction(x, mpPreviousSolution, oldmesh);
 }
 
-    //this function works for refinement
+    //this function works for refinement and coarsening
 void AdaptiveHeatEquation::BuildRHS()
 {
 mpRHS.clear();

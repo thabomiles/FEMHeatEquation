@@ -10,12 +10,13 @@ public:
     void Range( double lowerlimit, double upperlimit, std::vector<double>& Nodes);
     void CommonMesh( SpaceMesh& firstmesh, SpaceMesh& secondmesh );
     double TestFunctions(int nodeIndex, double x);
-    bool Contained (std::vector<double> SpaceNodes);
+    bool Contained (double my_var );
 
     void CopySpaceMesh (const SpaceMesh& oldSpaceMesh);
     void GenerateSpaceMesh ( std::vector<double> SpaceNodes );
     void BisectIntervals (std::vector<int> &intervalsForBisection);
     void CoarsenIntervals (std::vector<int> &intervalsForCoarsening);
+    void ReadLastSpaceNode();
 
     void GenerateUniformMesh(double boundary, int numberofnodes);
     void GenerateDefaultSpaceMesh();

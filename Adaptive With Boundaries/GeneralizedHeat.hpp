@@ -28,8 +28,24 @@ public:
 
     double GlobalSpaceError();
 
-     void PrintErrorMesh();
+    void PrintErrorMesh();
 
+    double GeneralInterpolant( double x, std::vector<double>& funct, SpaceMesh& relevantMesh );
+
+    void BuildGradientVec( std::vector<double>& funct, SpaceMesh& relevantMesh, std::vector<double>& gradvec );
+
+    void GradientRecoveryFunction(  SpaceMesh& relevantMesh,
+                                             std::vector<double>& gradvec, std::vector<double>& gradrecovery );
+
+    void BuildErrorEstimate ( );
+
+    double GradientFunction ( double x );
+
+    void UnitTest1 ();
+
+    std::vector<double> FEMGradient;
+    std::vector<double> ErrorEstimate;
+    std::vector<double> GradientRecovery;
 
 protected:
     double k_0 = 0, k_L = 0;

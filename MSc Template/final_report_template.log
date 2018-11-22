@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.13)  18 NOV 2018 21:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.13)  20 NOV 2018 23:47
 entering extended mode
 **./final_report_template.tex
 (final_report_template.tex
@@ -162,24 +162,28 @@ Package: relsize 2003/07/04 ver 3.1
 \c@definition=\count102
 
 
-Package amsthm Warning: Unknown theoremstyle `theorem' on input line 15.
+Package amsthm Warning: Unknown theoremstyle `problem' on input line 16.
 
-\c@theorem=\count103
+\c@problem=\count103
+
+Package amsthm Warning: Unknown theoremstyle `theorem' on input line 19.
+
+\c@theorem=\count104
 (final_report_template.aux)
 \openout1 = `final_report_template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -217,16 +221,16 @@ LaTeX Font Info:    ... okay on input line 52.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count104
+\scratchcounter=\count105
 \scratchdimen=\dimen122
 \scratchbox=\box28
-\nofMPsegments=\count105
-\nofMParguments=\count106
+\nofMPsegments=\count106
+\nofMParguments=\count107
 \everyMPshowfont=\toks27
-\MPscratchCnt=\count107
+\MPscratchCnt=\count108
 \MPscratchDim=\dimen123
-\MPnumerator=\count108
-\makeMPintoPDFobject=\count109
+\MPnumerator=\count109
+\makeMPintoPDFobject=\count110
 \everyMPtoPDFconversion=\toks28
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -292,7 +296,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 3.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-LaTeX Warning: Reference `sec:my1' on page 19 undefined on input line 24.
+LaTeX Warning: Reference `sec:my1' on page 21 undefined on input line 23.
 
 )
 \tf@toc=\write3
@@ -300,22 +304,16 @@ LaTeX Warning: Reference `sec:my1' on page 19 undefined on input line 24.
 
  [3]
 
-LaTeX Warning: Reference `sec:background' on page 4 undefined on input line 87.
+LaTeX Warning: Reference `sec:background' on page 4 undefined on input line 91.
 
-
-
-LaTeX Warning: Reference `sec:my1' on page 4 undefined on input line 88.
 
 
 LaTeX Warning: Reference `sec:my1' on page 4 undefined on input line 92.
 
+
+LaTeX Warning: Reference `sec:my1' on page 4 undefined on input line 96.
+
 [4] [5] [6]
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ¢ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ¢ in font cmr12!
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ¢ in font cmr12!
@@ -326,17 +324,17 @@ Missing character: There is no ¢ in font cmr12!
 <Heat1.pdf, id=32, pagebox=cropbox, 462.52798pt x 346.89601pt>
 File: Heat1.pdf Graphic file (type pdf)
 <use Heat1.pdf>
-Package pdftex.def Info: Heat1.pdf  used on input line 167. on input line 167.
+Package pdftex.def Info: Heat1.pdf  used on input line 171. on input line 171.
 Package pdftex.def Info: Requested size: 227.62206pt x 170.71628pt on input lin
-e 167.
+e 171.
 <Heat2.pdf, id=33, pagebox=cropbox, 462.52798pt x 346.89601pt>
 File: Heat2.pdf Graphic file (type pdf)
 <use Heat2.pdf>
-Package pdftex.def Info: Heat2.pdf  used on input line 168. on input line 168.
+Package pdftex.def Info: Heat2.pdf  used on input line 172. on input line 172.
 Package pdftex.def Info: Requested size: 227.62206pt x 170.71628pt on input lin
-e 168.
+e 172.
 
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 167--169
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 171--173
 [][] [] 
  []
 
@@ -349,15 +347,15 @@ page group included in a single page
 >]
 
 LaTeX Warning: Citation `larson2013finite' on page 9 undefined on input line 18
-0.
+4.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 204.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 208.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 204.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 208.
  [9
 
 ]
@@ -382,20 +380,29 @@ Missing character: There is no ¢ in font cmr12!
  [10] [11] [12
 
 ]
-[13] [14] [15] [16] [17] [18]
+[13] [14]
 
-LaTeX Warning: Reference `sec:my1' on page 19 undefined on input line 411.
+LaTeX Warning: Citation `babuska1978posteriori' on page 15 undefined on input l
+ine 412.
 
-[19] (final_report_template.bbl [20]) [21] (final_report_template.aux)
+
+LaTeX Warning: Citation `ainsworth65001posteriori' on page 15 undefined on inpu
+t line 416.
+
+[15] [16] [17] [18] [19] [20]
+
+LaTeX Warning: Reference `sec:my1' on page 21 undefined on input line 511.
+
+[21] (final_report_template.bbl [22]) [23] (final_report_template.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3139 strings out of 493312
- 42641 string characters out of 3138898
- 109481 words of memory out of 3000000
- 6632 multiletter control sequences out of 15000+200000
+ 3149 strings out of 493312
+ 42768 string characters out of 3138898
+ 110552 words of memory out of 3000000
+ 6642 multiletter control sequences out of 15000+200000
  11117 words of font info for 43 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,10n,34p,892b,236s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -410,9 +417,9 @@ cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.
 pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/
 Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program 
 Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on final_report_template.pdf (21 pages, 216095 bytes).
+Output written on final_report_template.pdf (23 pages, 222820 bytes).
 PDF statistics:
- 158 PDF objects out of 1000 (max. 8388607)
+ 164 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

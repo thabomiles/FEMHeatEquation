@@ -18,6 +18,12 @@ void SpaceMesh::Range( double lowerlimit, double upperlimit, std::vector<double>
         }
 }
 
+void SpaceMesh::ReadLastSpaceNode()
+{
+    mpSpaceNodes.back();
+}
+
+
 void SpaceMesh::CommonMesh( SpaceMesh& firstmesh, SpaceMesh& secondmesh )
 {
     mpSpaceNodes=firstmesh.mpSpaceNodes;
@@ -183,6 +189,11 @@ void SpaceMesh::RemoveSpaceNode (int i)
     mpSpaceNodes.erase(mpSpaceNodes.begin() + i);
     }
     RefreshSpaceMesh();
+}
+
+bool SpaceMesh::Contained (double my_var)
+{
+    bool found = (std::find(mpSpaceNodes.begin(), mpSpaceNodes.end(), my_var) != mpSpaceNodes.end());
 }
 
 

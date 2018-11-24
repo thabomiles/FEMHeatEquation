@@ -23,11 +23,7 @@ int main(int argc, char* argv[])
 
 SpaceMesh smesh;
 smesh.GenerateSpaceMesh({0, 0.15, 0.25, 0.5, 1.0});
-smesh.GloballyBisectSpaceMesh();
-smesh.GloballyBisectSpaceMesh();
-smesh.GloballyBisectSpaceMesh();
-smesh.GloballyBisectSpaceMesh();
-smesh.GloballyBisectSpaceMesh();
+
 
 SpaceMesh newsmesh;
 newsmesh.GenerateUniformMesh(5, 6);
@@ -45,16 +41,18 @@ GeneralHeat genheat;
 genheat.SetSpaceTimeMesh(smesh, tmesh, apde);
 
 
-genheat.SolveWithBCs();
+genheat.StationaryHeatEquation();
 
-
+//genheat.SolveWithBCs();
+//
+//
 //genheat.PrintSolution();
-
-genheat.BuildErrorMesh();
-genheat.PrintErrorMesh();
-genheat.GlobalSpaceError();
-
-genheat.UnitTest1();
+//
+//genheat.BuildErrorMesh();
+//genheat.PrintErrorMesh();
+//genheat.GlobalSpaceError();
+//
+//genheat.UnitTest1();
 
 
 

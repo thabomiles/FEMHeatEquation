@@ -30,6 +30,25 @@ double GeneralHeat::ContinuousAnalyticSolution( double x, double t )
      return mppde->ContinuousAnalyticSolution( x, t );
 }
 
+
+void GeneralHeat::StationaryHeatEquation()
+{
+stiff.SetParameters(k_0, k_L);
+
+stiff.BuildGeneralStiffnessMatrix ( mpsmesh );
+
+BuiltbrVec();
+
+
+stiff.MatrixSolver( br, mpx );
+
+PrintVector(mpx);
+
+}
+
+
+
+
 void GeneralHeat::BuiltbrVec()
 {
     br.assign(mpsmesh.meshsize()+1, 0);
@@ -284,8 +303,10 @@ void GeneralHeat::BuildErrorEstimate(  )
     auto GradSquaredError = [this](double x)
         { return pow(GeneralInterpolant(x, GradientRecovery, mpsmesh ) - GradientFunction(x), 2); };
 
+    double dummy_var;
     for(int i=0; i<mpsmesh.meshsize(); i++)
     {
+
     ErrorEstimate.push_back( gauss<double, 7>::integrate(GradSquaredError, mpsmesh.ReadSpaceNode(i), mpsmesh.ReadSpaceNode(i+1)) );
     }
 }
@@ -304,7 +325,6 @@ double GeneralHeat::GradientFunction ( double x )
     {
        return FEMGradient.at(upperindex-1);
     }
-
 }
 
 void GeneralHeat::UnitTest1 ()

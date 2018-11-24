@@ -41,6 +41,8 @@ public:
 
     double GradientFunction ( double x );
 
+    void StationaryHeatEquation();
+
     void UnitTest1 ();
 
     std::vector<double> FEMGradient;

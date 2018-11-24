@@ -15,9 +15,10 @@
 \contentsline {subsubsection}{\numberline {4.0.2}Impementation}{14}
 \contentsline {section}{\numberline {5}A Posteriori Error Analysis}{15}
 \contentsline {subsubsection}{\numberline {5.0.1}Gradient Recovery}{15}
-\contentsline {section}{\numberline {6}Design of Adaptive Algorithms}{17}
-\contentsline {section}{\numberline {7}Some Numerical Examples}{18}
-\contentsline {section}{\numberline {8}Object oriented design patterns}{19}
-\contentsline {section}{\numberline {9}Conclusions}{20}
-\contentsline {section}{\numberline {A}Raw data}{21}
-\contentsline {section}{\numberline {B}Calculations for section \G@refundefinedtrue \text {\normalfont \bfseries ??}\GenericWarning { }{LaTeX Warning: Reference `sec:my1' on page 21 undefined}}{21}
+\contentsline {subsubsection}{\numberline {5.0.2}Implementation}{18}
+\contentsline {section}{\numberline {6}Design of Adaptive Algorithms}{20}
+\contentsline {section}{\numberline {7}Some Numerical Examples}{21}
+\contentsline {section}{\numberline {8}Object oriented design patterns}{22}
+\contentsline {section}{\numberline {9}Conclusions}{23}
+\contentsline {section}{\numberline {A}Raw data}{24}
+\contentsline {section}{\numberline {B}Calculations for section \G@refundefinedtrue \text {\normalfont \bfseries ??}\GenericWarning { }{LaTeX Warning: Reference `sec:my1' on page 24 undefined}}{24}

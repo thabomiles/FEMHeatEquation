@@ -9,6 +9,11 @@
 \usepackage{bigints}
 \usepackage{relsize}
 \usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{listings}
+\lstset {backgroundcolor=\color{black!5}, basicstyle=\footnotesize, stringstyle=\color{red}, commentstyle=\color{green!50!black}, basicstyle=\footnotesize\ttfamily, keywordstyle=\color{blue}, 
+}
+\usepackage{xcolor}
  
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -405,17 +410,17 @@ This could contain a table of interesting numbers
 
 \section{A Posteriori Error Analysis} \label{sec:Errors}
 
-When a continuous problem such as the Heat Equation is discretised and solved numerically an error is incurred. For a convergent scheme this error can be bounded in general by a priori error i.e. the estimates that are calculated before a specific approximated solution is found. A priori estimates can also be used to show stability of numerical schemes. Although useful in these applications it is rare that an a priori error estimate accurately quantifies the error present in a numerical solution. As such in a practical context the a priori error cannot be used to indicate the quality of a solution. 
+When a continuous problem such as the Heat Equation is discretised Finite Element Methods and solved numerically an error is incurred. Some knowledge about the error is available in advance of the implementation of a specific FEM approximation. This type of error analysis, so called a priori, is valuable for the analysis of convergence and other proofs that may be important about an FEM scheme in general. Although useful in these applications it is rare that an a priori error estimate accurately quantifies the error present in a numerical solution. As such in a practical context the a priori error cannot be used to indicate the quality of a solution. 
 
-A posteriori error analysis uses the computed numerical solution itself to analyses the error. Where a posteriori error estimates are available and accurate this has the obvious advantage that it describes the error in the approximation without the need for an analytical solution. This replaces the heuristics and guess work that had previously guided the error analysis of the FEM approximation in complex settings. 
+In contrast, a posteriori error analysis uses the computed numerical solution itself to analyses the error. Where a posteriori error estimates are available and accurate this has the obvious advantage that it describes the error in the approximation without the need for an analytical solution. This replaces the heuristics and guess work that had previously guided the error analysis of the FEM approximation in settings where no analytical solution was available. 
 
-Since the initial pioneering methods of Babuska \cite{babuska1978posteriori} \cite{babuska1981posteriori} in this field many a posteriori estimates have been presented. Many of these have been shown to be effective in context. The emphasis in the literature has moved now from the discovery of new a posteriori estimates to the testing of the limitations and robustness of existing a posteriori estimates all this is done primarily with the goal of validating the extensively used self-adapting FEM packages.
+Since the initial pioneering methods of Babuska \cite{babuska1978posteriori} \cite{babuska1981posteriori} in this field many a posteriori error methods have been presented. Many of these have been shown to be effective in context. The emphasis in the literature has moved now from the discovery of new a posteriori estimates to the testing of the limitations of existing a posteriori estimates. All this is done primarily with the goal of validating the extensively used self-adapting FEM packages.
 
 \subsubsection{Gradient Recovery} \label{subsubsec:KK}
 
-While the overall goal of the FEM may be the numerical solution it may also be the case that the gradient is of particular interest also. The gradient in the approximation is discontinuous over element boundaries but can be smoothed out by post-processing. In fact under certain circumstances the smoothed gradient is closer to the gradient of the true solution \cite{ainsworth65001posteriori}. This leads fairly directly one of the simpler a posteriori error estimates which is measuring the gradient before and after this post-processing.
+The FEM provides an approximation to an unknown function, however the gradient of the function may also be of particular interest also. The gradient in the approximation is discontinuous over element boundaries but can be smoothed out by post-processing. In fact under certain circumstances the smoothed gradient is closer to the gradient of the true solution \cite{ainsworth65001posteriori}. This leads fairly directly one of the simpler a posteriori error estimates which is measuring the gradient before and after this post-processing.
 
-We will now try to describe this process more formally. Consider the steady state one dimensional Heat Equation with conductivity co-efficient of one. 
+Consider the steady state one dimensional Heat Equation with conductivity co-efficient of one. 
 
 \begin{equation}
 -u''= f		\quad \quad  x \in [0, 1]  	\label{eq:Steady Diffusion}
@@ -437,7 +442,7 @@ Write
 \int_0^L  u' v'  dx = a(u, v)  	
 \end{equation*}
 
-It is clear that the bilinear form is symmetric i.e.  a(w, v) = a(v, w) and it can be shown that it is coercive as described in the Lax Milgram theorem \ref{Lax Milgram}. Hence, A(w, v) is an inner product on $H^1_0(0, L) (w, v)_a$.
+It is clear that the bilinear form is symmetric i.e.  a(w, v) = a(v, w) and it can be shown that it is coercive as described in the Lax Milgram theorem \ref{Lax Milgram}. Hence, $a(w, v)$ is an inner product on $H^1_0(0, L) (w, v)_a$.
 
 We can then define the associated energy norm.
 
@@ -460,6 +465,105 @@ If we had the true gradient we would now be able to measure the true error in th
 \end{equation}
 
 Clearly there are as many different error indicators as there are ways of processing the FEM approximation to the gradient.
+
+Consider an FEM approximation to an PDE of form \ref{eq:Simple Heat} at an arbitrary time step.
+
+\begin{center}
+\begin{tikzpicture}
+
+\draw[thick,->] (0,0) -- (10,0);
+\draw[thick,->] (0,0) -- (0,2.5);
+
+\draw[blue,thick,dashed] (0,0) -- (2,2.2) -- (4,2.8) -- (8,0);
+
+\end{tikzpicture}
+\end{center}
+
+The gradient of this approximation is a discontinuous step-like function, undefined at the nodes of the space mesh.
+
+\begin{center}
+\begin{tikzpicture}
+
+\draw[thick,->] (0,2) -- (8,2) ;
+\draw[thick,->] (0,0) -- (0,6) ;
+
+\draw[blue,thick] (0,3.1) -- (2,3.1);
+\draw[blue,thick] (2,2.3) -- (4,2.3);
+\draw[blue,thick] (4,1.3) -- (8,1.3);
+
+\filldraw (2,2.7) circle (2pt);
+\filldraw (4,1.8) circle (2pt);
+
+
+\end{tikzpicture}
+\end{center}
+
+Intuitively a better approximation would be given by a function defined in the whole domain. A simple but logical one to use could be a continuous piecewise linear function as we have the architecture in our code to linearly interpolate sets of points. We take the midpoint of the FEM approximated gradient where currently our gradient is undefined and hence where we expect post-processing to have the greatest effect. 
+
+More formally results exist to support this choice. In the case of a uniform partition the "super-convergence" of the centroid of two elements is shown by \cite{zlamal1978superconvergence}. Though true "super-convergence" may not be assured on our more general partition our method none-the-less should be an improvement on the untreated gradient. 
+
+A we also need to decide what to do with the elements at each side as our current method will not produce points for on the boundaries. We will choose to have the interpolant take the value of the gradient in the centre of the elements.
+
+
+
+\begin{center}
+\begin{tikzpicture}
+
+\draw[thick,->] (0,2) -- (8,2) ;
+\draw[thick,->] (0,0) -- (0,6) ;
+
+\draw[blue,thick] (0,3.1) -- (2,3.1);
+\draw[blue,thick] (2,2.3) -- (4,2.3);
+\draw[blue,thick] (4,1.3) -- (8,1.3);
+
+\filldraw (1,3.1) circle (2pt);
+\filldraw (2,2.7) circle (2pt);
+\filldraw (4,1.8) circle (2pt);
+\filldraw (6,1.3) circle (2pt);
+
+\draw[blue,thick,dashed] (0,3.5) --(1,3.1) --(2,2.7) -- (4,1.8)  -- (6,1.3) -- (8,0.8);
+
+
+\end{tikzpicture}
+\end{center}
+
+\subsubsection{Implementation} \label{subsubsec:KK Implementation}
+
+To make the most use of our existing member functions in the SpaceMesh class we should make sure our gradient recovery vector match the space nodes. This will allow the interpolant to be completely defined by the new vector and a reference to a grid. This means that the first and last point though should be defined on the boundary. In practise this means hard coding an interpolant over the first and last element and taking its value at the boundary.
+
+\begin{lstlisting}[language=C++]
+void GeneralHeat::GradientRecoveryFunction( SpaceMesh& relevantMesh,
+       std::vector<double>& gradvec, std::vector<double>& gradrecovery ) {
+    	
+    	//(x_0, y_0) (x_1, y_1) define the line segment to be hard coded
+    double x_0 = 0.5*(relevantMesh.ReadSpaceNode(1)+
+    				relevantMesh.ReadSpaceNode(0));
+    double y_0 = gradvec.at(0);
+    double x_1 = relevantMesh.ReadSpaceNode(1);
+    double y_1 = 0.5*(gradvec.at(1)+gradvec.at(0));
+
+    gradrecovery.push_back(y_0+(relevantMesh.ReadSpaceNode(0)-
+    						x_0)*(y_1-y_0)/(x_1-x_0));
+		
+		//take the midpoint of the two gradients where undefined
+    for(int i = 0; i<relevantMesh.meshsize()-1; i++)
+    {
+        gradrecovery.push_back(0.5*(gradvec.at(i)+gradvec.at(i+1)));
+    }
+		
+		//the hardcoding needs to happen on both sides
+    x_0 = relevantMesh.ReadSpaceNode(mpsmesh.meshsize()-1);
+    y_0 = gradrecovery.back();
+    x_1 = 0.5*(relevantMesh.ReadSpaceNode(relevantMesh.meshsize())			   
+    +relevantMesh.ReadSpaceNode(relevantMesh.meshsize()-1));
+    y_1 = gradvec.back();
+
+    gradrecovery.push_back(y_0+
+    (mpsmesh.ReadSpaceNode(mpsmesh.meshsize())-x_0)*(y_1-y_0)/(x_1-x_0));
+}
+
+\end{lstlisting}
+
 
 
 \newpage

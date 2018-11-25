@@ -22,14 +22,8 @@ int main(int argc, char* argv[])
 {
 
 SpaceMesh smesh;
-smesh.GenerateSpaceMesh({0, 0.15, 0.25, 0.5, 1.0});
-
-
-SpaceMesh newsmesh;
-newsmesh.GenerateUniformMesh(5, 6);
-newsmesh.PrintSpaceNodes();
-
-
+smesh.GenerateUniformMesh(1, 5);
+smesh.PrintSpaceNodes();
 
 
 TimeMesh tmesh;

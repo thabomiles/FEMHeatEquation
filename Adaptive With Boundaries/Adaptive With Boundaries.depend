@@ -47,7 +47,7 @@
 	<vector>
 	<array>
 
-1541949326 c:\users\thabo\desktop\heatequationdis\heat equation solver\stiffnessmatrix.hpp
+1543101676 c:\users\thabo\desktop\heatequationdis\heat equation solver\stiffnessmatrix.hpp
 	"TriDiagMatrix.hpp"
 	"SpaceMesh.hpp"
 	<iostream>
@@ -122,7 +122,7 @@
 	<array>
 	"TriDiagMatrix.hpp"
 
-1542981631 source:c:\users\thabo\desktop\heatequationdis\adaptive with boundaries\generalizedheat.cpp
+1543103508 source:c:\users\thabo\desktop\heatequationdis\adaptive with boundaries\generalizedheat.cpp
 	<iostream>
 	<cmath>
 	<math.h>
@@ -137,7 +137,7 @@
 	<string>
 	<boost/math/quadrature/gauss.hpp>
 
-1542981631 source:c:\users\thabo\desktop\heatequationdis\adaptive with boundaries\driver.cpp
+1543102980 source:c:\users\thabo\desktop\heatequationdis\adaptive with boundaries\driver.cpp
 	<iostream>
 	<cmath>
 	<vector>
@@ -153,7 +153,7 @@
 	"APDE.hpp"
 	"PDE1.hpp"
 
-1542981469 c:\users\thabo\desktop\heatequationdis\adaptive with boundaries\generalizedheat.hpp
+1543099929 c:\users\thabo\desktop\heatequationdis\adaptive with boundaries\generalizedheat.hpp
 	<iostream>
 	<vector>
 	<array>

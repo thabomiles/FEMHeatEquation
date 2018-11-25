@@ -33,11 +33,29 @@ double GeneralHeat::ContinuousAnalyticSolution( double x, double t )
 
 void GeneralHeat::StationaryHeatEquation()
 {
+    double my_var = 0.5*mpsmesh.ReadSpaceMesh(0);
+    f_vec = {-pow(M_PI, 2)*sin(0)*my_var};
+
+for(int i =1; i<mpsmesh.meshsize(); i++)
+{
+    my_var = 0.5*(mpsmesh.ReadSpaceMesh(i)+mpsmesh.ReadSpaceMesh(i-1));
+    f_vec.push_back( -pow(M_PI, 2)*sin(M_PI*mpsmesh.ReadSpaceNode(i))*my_var );
+}
+
+my_var = 0.5*mpsmesh.ReadSpaceMesh(mpsmesh.meshsize()-1);
+f_vec.push_back( -pow(M_PI, 2)*sin(M_PI*mpsmesh.ReadSpaceNode(mpsmesh.meshsize()))*my_var );
+
+//f_vec.assign( 11, 0.1 );
+//f_vec[0]=0.05;
+//f_vec[10]=0.05;
+
+
 stiff.SetParameters(k_0, k_L);
 
 stiff.BuildGeneralStiffnessMatrix ( mpsmesh );
 
 BuiltbrVec();
+AddVectors(br, f_vec, br);
 
 
 stiff.MatrixSolver( br, mpx );

@@ -50,9 +50,11 @@ public:
     std::vector<double> GradientRecovery;
 
 protected:
-    double k_0 = 0, k_L = 0;
+    double k_0, k_L;
     APDE* mppde;
     std::vector<double> br;
+    std::vector<double> f_vec;
+
 
 };
 

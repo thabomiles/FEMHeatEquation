@@ -18,7 +18,7 @@ public:
 
 protected:
     const double M_PI = 2*acos(0);
-    double a = pow(M_PI,-2);
+    double a = 1;
     double mpk_0 = 0;
     double mpk_L = 0;
 

@@ -212,6 +212,7 @@ Let $\Omega \subset \mathbb{R}^n, n \geq 1$ be an open bounded set.
 \begin{itemize}
 \item We define $C(\Omega)$  the set of all real-valued and continuous functions defined on $\Omega$.
 \item For $m \geq1$ we write $C^m(\Omega)$ to denote the set of m times continuously differentiable functions  i.e. that $C^m(\Omega) = \{f \in C(\Omega) : f^{(k)} \in C(\Omega)\quad \forall k \leq m\} $.
+\item Let $C^{\infty}_0(\Omega) $ denote the set of all infinitely many times differentiable that vanish on the boundary of $\Omega$.
 \end{itemize}
 \end{definition}
 
@@ -233,16 +234,11 @@ $\|u\|_{L_2(\Omega)} := \mathlarger{\Big(\int_\Omega  { |u|^p } dx\Big)}^{\frac{
 \theoremstyle{definition}
 \begin{definition}{Multi Index}
 
-$\alpha = (\alpha_1, \alpha_2, ... \alpha_n) \in \mathbb{N}^n$
-
-$|\alpha| = \alpha_1 + ... \alpha_n$
+$\alpha = (\alpha_1, \alpha_2, ... \alpha_n) \in \mathbb{N}^n \quad \quad   |\alpha| = \alpha_1 + ... \alpha_n$
 
 Define the Multi Index 
 
-$D^{\alpha} = \Big(\frac{\partial}{\partial x_1}\Big)^{\alpha_1}$
-
-$...\Big(\frac{\partial}{\partial x_n}\Big)^{\alpha_n} = $
-
+$D^{\alpha} = \Big(\frac{\partial}{\partial x_1}\Big)^{\alpha_1}...\Big(\frac{\partial}{\partial x_n}\Big)^{\alpha_n} = $
 $\frac{\partial^{|\alpha|}}{\partial x^{\alpha}_1 ... \partial x^{\alpha}_n}$
 
 We can now generalise our earlier definition of continuous differentiable functions to an analogous idea with the multi index which will be relevant to partial differentiation.
@@ -251,15 +247,6 @@ $C^m(\Omega) = \{f \in C(\Omega) : D^\alpha f \in C(\Omega)\quad \forall |a| \le
 
 \end{definition}
 
-
-\theoremstyle{definition}
-\begin{definition}{Weak Derivative}
-
-Say $\psi_\alpha$ is a locally integrable 
-
-$\mathlarger{\int_\Omega  \psi_\alpha(x) \cdot v(x) dx} = (-1)^{\alpha} \mathlarger{\int_\Omega  u(x) \cdot D^{\alpha} v(x) dx} \forall v \in C^\infty_0(\Omega)$
-
-\end{definition}
 
 \theoremstyle{definition}
 \begin{definition}{Weak Derivative}
@@ -308,7 +295,56 @@ This version of the theorem is Weaker than the refinement proved by Babuska but 
 
 \subsection{The Weak Formulation} \label{subsec:Weak Formulation}
 
-Now we have defined the mathematical context we can consider our first problem.
+Now we have defined the mathematical context let us solve a problem via the FEM. Take the stationary heat equation.
+
+Consider the steady state one dimensional Heat Equation with conductivity co-efficient of one. 
+
+
+
+\begin{subequations} 
+\label{eq:Steady Diffusion1} 
+\begin{align}
+-u'' &= f		\quad \quad  x \in [0, 1] \\  	
+u(0) &= 0 \\
+u(1) &= 1
+\end{align}
+\end{subequations}
+
+The first step of solving this and any PDE by the FEM is to find a suitable weak formulation. This is given by multiplying both sides of the equation by a test function in the Sobolev space $v \in H^1_0(0, L)$
+
+\begin{equation*}
+\int_0^L  u'' v  dx = \int_0^L  f v dx 	\quad \quad  dx \forall v \in H^1(0, L)
+\end{equation*}
+
+Integrating by parts on the left leads us to our weak formulation of \ref{eq:Steady Diffusion1}
+
+\begin{problem}{Weak Formulation} \label{prob:Weak Formulation Elliptic}
+Find $\quad u \in H^1(0, 1)$:
+\begin{align*}
+\int_0^L  u' v'  dx =   \int_0^L  f v dx  \quad \quad  dx \forall v \in H^1(0, L)
+\end{align*}
+$\forall v \in H^1(0, L)$
+\end{problem}
+
+Define 
+\begin{equation*}
+\int_0^L  u' v'  dx = a(u, v)  	
+\int_0^L  f v dx  =  \ell(v)
+\end{equation*}
+
+This gives us the linear and bilinear form with can be used to show by \ref{Lax Milgram} that $u$ exists and is unique. However, our test function has been chosen simply some function in the Sobolev space which has infinitely many functions defined within it and is described as infinite dimensional. 
+
+To find the FEM approximation to \ref{Steady Diffusion1} we look for a solution in a finite dimensional subspace of $V\subset H^1(0, L) $. The subspace we chose consists of continuous piecewise linear functions of defined on some given subdivision of $\Omega$. Then we can restate the weak formulation as the following approximation:
+
+\begin{problem} \label{prob:Approx1}
+Find $\quad u_h \in  V\subset H^1(0, 1) \quad : \quad a(u_h, v_h) =  \ell(v_h) \quad \forall v_h \subset V.$
+\end{problem}
+
+
+
+\subsection{Spatial Discretization} \label{subsec:Subspace}
+
+
 
 Take a simple Heat Equation:
 
@@ -352,50 +388,6 @@ $\forall v \in H^1_0(0, L)$
 
 \end{problem}
 
-
-\subsection{Spatial Discretization} \label{subsec:Subspace}
-
-Subsections may be used. Use a clear structure in your report.
-
-We denote the set of real numbers by
-$\mathbb{R}$, the set of integers by $\ZZ$ and the set of complex
-numbers by $\mathbb{C}$. Our analysis is based on the equation
-$e^{\pi i} = -1$ and the relation
-\begin{equation}
-  \frac{2}{4} = \frac{1}{2}   \label{eq:myeq1}
-\end{equation} % no empty line after this
-which we verify in the appendix \ref{app:calculations}.
-Useful consequences are
-\begin{align}
-  \frac{4}{8} &= \frac{1}{2} \\
-  \frac{4}{12} + \frac{1}{\Gamma(s)}\int_0^{\infty} \frac{t^{s-1}}{e^t-1} dt
-     &= \frac{1}{3} +\sum_{n=1}^{\infty} \frac{1}{n^s}\\
-  \frac{2}{10} &= \frac{1}{5} 
-\end{align}
-For any $0\neq a\in \ZZ$, the equality
-\begin{equation*} % * for no numbering
- \frac{2 a}{4 a} = \frac{1}{2}
-\end{equation*}
-follows from equation \eqref{eq:myeq1}.
-
-\subsection{Another subsection} \label{subsec:application}
-
-\subsubsection{A subsubsection} \label{subsubsec:red}
-
-Sometimes subsubsections may be appropriate.
-
-\subsubsection{Another subsubsection} \label{subsubsec:green}
-
-This could contain a table of interesting numbers
-\begin{center}
-  \begin{tabular}{r|cccccc}
-    $n$   & 1 & 2 & 3 & 4 & 5 & 6 \\ \hline
-    $F_n$ & 1 & 1 & 2 & 3 & 5 & 8 \\
-    $B_n$ & $\tfrac{1}{2}$ & $\tfrac{1}{6}$ & 0 & $-\tfrac{1}{30}$ & 0 &  $\tfrac{1}{42}$ \\
-    $p_n$ & 2 & 3& 5& 7 & 11 & 13 \\
-  \end{tabular}
-\end{center}
-
 \newpage
 
 
@@ -420,13 +412,7 @@ Since the initial pioneering methods of Babuska \cite{babuska1978posteriori} \ci
 
 The FEM provides an approximation to an unknown function, however the gradient of the function may also be of particular interest also. The gradient in the approximation is discontinuous over element boundaries but can be smoothed out by post-processing. In fact under certain circumstances the smoothed gradient is closer to the gradient of the true solution \cite{ainsworth65001posteriori}. This leads fairly directly one of the simpler a posteriori error estimates which is measuring the gradient before and after this post-processing.
 
-Consider the steady state one dimensional Heat Equation with conductivity co-efficient of one. 
-
-\begin{equation}
--u''= f		\quad \quad  x \in [0, 1]  	\label{eq:Steady Diffusion}
-\end{equation}
-
-We now seek to define the energy norm. To do this we will first define the weak formulation of \ref{eq:Steady Diffusion}.
+Consider again the steady state one dimensional Heat Equation with conductivity co-efficient of one \ref{eq:Steady Diffusion1} and here restating its weak formulation for ease.
 
 \begin{problem}{Weak Formulation}
 
@@ -437,7 +423,7 @@ Find $\quad u(\cdot, t) \in H^1_0(0, 1)$:
 $\forall v \in H^1_0(0, L)$
 \end{problem}
 
-Write
+With
 \begin{equation*}
 \int_0^L  u' v'  dx = a(u, v)  	
 \end{equation*}
@@ -605,6 +591,16 @@ mathematical symbols like $\xi$, $\nabla$, $\infty$, $\log$, $\iff$, etc.
 \appendix
 
 \section{Raw data} \label{app:rawdata}
+
+This could contain a table of interesting numbers
+\begin{center}
+  \begin{tabular}{r|cccccc}
+    $n$   & 1 & 2 & 3 & 4 & 5 & 6 \\ \hline
+    $F_n$ & 1 & 1 & 2 & 3 & 5 & 8 \\
+    $B_n$ & $\tfrac{1}{2}$ & $\tfrac{1}{6}$ & 0 & $-\tfrac{1}{30}$ & 0 &  $\tfrac{1}{42}$ \\
+    $p_n$ & 2 & 3& 5& 7 & 11 & 13 \\
+  \end{tabular}
+\end{center}
 
 Material that needs to be included but would distract from the main
 line of presentation can be put in appendices.

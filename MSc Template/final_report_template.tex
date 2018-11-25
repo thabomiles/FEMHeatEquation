@@ -216,13 +216,6 @@ Let $\Omega \subset \mathbb{R}^n, n \geq 1$ be an open bounded set.
 \end{itemize}
 \end{definition}
 
-
-\theoremstyle{definition}
-\begin{definition}{Function Support}
-Let $\Omega \subset \mathbb{R}^n, n \geq 1$ be an open bounded set. 
-
-\end{definition}
-
 \theoremstyle{definition}
 \begin{definition}{$L^p$ Space}
 
@@ -306,24 +299,24 @@ Consider the steady state one dimensional Heat Equation with conductivity co-eff
 \begin{align}
 -u'' &= f		\quad \quad  x \in [0, 1] \\  	
 u(0) &= 0 \\
-u(1) &= 1
+u(1) &= 0
 \end{align}
 \end{subequations}
 
-The first step of solving this and any PDE by the FEM is to find a suitable weak formulation. This is given by multiplying both sides of the equation by a test function in the Sobolev space $v \in H^1_0(0, L)$
+The first step of solving this and any PDE by the FEM is to find a suitable weak formulation. This is given by multiplying both sides of the equation by a test function in the Sobolev space $v \in H^1_0(0, L)$.
 
 \begin{equation*}
-\int_0^L  u'' v  dx = \int_0^L  f v dx 	\quad \quad  dx \forall v \in H^1(0, L)
+\int_0^L  u'' v  dx = \int_0^L  f v dx 	\quad \quad  dx \forall v \in H^1_0(0, L)
 \end{equation*}
 
 Integrating by parts on the left leads us to our weak formulation of \ref{eq:Steady Diffusion1}
 
 \begin{problem}{Weak Formulation} \label{prob:Weak Formulation Elliptic}
-Find $\quad u \in H^1(0, 1)$:
+\\Find $\quad u \in H^1_0(0, 1)$:
 \begin{align*}
-\int_0^L  u' v'  dx =   \int_0^L  f v dx  \quad \quad  dx \forall v \in H^1(0, L)
+\int_0^L  u' v'  dx =   \int_0^L  f v dx  \quad \quad  \forall v \in H^1_0(0, L)
 \end{align*}
-$\forall v \in H^1(0, L)$
+$\forall v \in H^1_0(0, L)$
 \end{problem}
 
 Define 
@@ -334,15 +327,79 @@ Define
 
 This gives us the linear and bilinear form with can be used to show by \ref{Lax Milgram} that $u$ exists and is unique. However, our test function has been chosen simply some function in the Sobolev space which has infinitely many functions defined within it and is described as infinite dimensional. 
 
-To find the FEM approximation to \ref{Steady Diffusion1} we look for a solution in a finite dimensional subspace of $V\subset H^1(0, L) $. The subspace we chose consists of continuous piecewise linear functions of defined on some given subdivision of $\Omega$. Then we can restate the weak formulation as the following approximation:
+To find the FEM approximation to \ref{Steady Diffusion1} we look for a solution in a finite dimensional subspace of $V\subset H^1(0, L) $. The subspace we chose consists of continuous piecewise linear functions of defined on some given subdivision of $\Omega$. Then we can restate the weak formulation by the following:
 
 \begin{problem} \label{prob:Approx1}
 Find $\quad u_h \in  V\subset H^1(0, 1) \quad : \quad a(u_h, v_h) =  \ell(v_h) \quad \forall v_h \subset V.$
 \end{problem}
 
+We now define a basis for our domain 
+As we are looking to approximate u by a piecewise linear function $u_h$ 
+
+Let the subspace $V$ have dimension $N(h)$ and $V = span\{\phi_1, ..., \phi_{N(h)}\}$. Hence, we have defined our subspace by linearly independent basis functions $\phi_i$.
+
+Now we can define our approximation $u_h$ to \ref{eq:Steady Diffusion1} by:
+
+\begin{equation*}
+u_h(x) = \sum_{j=1}^{N(h)} U_j \cdot \phi_h(x)
+\end{equation*}
+
+With $U_j \: j = 1, ..., N(h)$ being constants to be determined. We can now rewrite \ref{prob:Approx1} by the following:
+
+\begin{problem}
+$$\sum_{j=1}^{N(h)}U_j \: a( \,\phi_j(x),\, \phi_i(x)) = \ell(\,\phi_i(x)\,) $$
+\end{problem}
+
+This gives a system of linear equations with $a( \,\phi_j(x),\, \phi_i(x))$ an $N(h)\times N(h)$ matrix. To form and solve this system we need to introduce the FEM basis function 
+
+\subsection{Subdivion and basis functions} \label{subsec:Subspace}
+
+Take the subdivision on $x \in \Omega$ in our model problem \ref{eq:Steady Diffusion1}. We subdivide the domain into N intervals $[x_k, x_{k+1}] \quad k=0, 1, ... , N-1$. This subdivision may not be regular and when later in this dissertation we begin seeking an adaptive solution will very rarely be regular. intervals may be referred to as elements and give the FEM its name.
+\\
+\\
+
+\begin{center}
+\begin{tikzpicture}
+
+\draw[thick] (0,0) -- (10,0) node[anchor=north west] {};
+\foreach \x in {0,1,2,3,5,6,9}
+   \draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {$x_\x$};
+
+\draw (10 cm,1pt) -- (10 cm,-1pt) node[anchor=north] {$x_N$};
+
+\end{tikzpicture}
+\end{center}
 
 
-\subsection{Spatial Discretization} \label{subsec:Subspace}
+We now define the FEM basis function on this grid. 
+
+\begin{equation}
+\phi_j(x) =  \Big(\:1 - \Big|\frac{x-x_k}{h_i}\Big| \: \Big)_+ , \quad j = 0,1,..., N
+\end{equation}
+
+
+
+\begin{center}
+\begin{tikzpicture}
+
+
+\draw[thick] (0,0) -- (0,3) node[anchor=south east] {};
+
+\draw[thick] (0,0) -- (3,0) -- (3.2,0.4) --(3.4, -0.4) -- (3.6,0) -- (10,0) node[anchor=north west] {};
+\foreach \x in {0,1,2,3,5,6,9}
+   \draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {$x_\x$};
+   
+\draw[thick] (0,2) -- (1,0);
+\draw[thick] (0,2) -- (1,0);
+
+
+\end{tikzpicture}
+\end{center}
+
+
+\clearpage
+
+\section{Fully Discrete Problem} \label{sec:Fully Discrete}
 
 
 
@@ -391,7 +448,7 @@ $\forall v \in H^1_0(0, L)$
 \newpage
 
 
-\section{Fully Discrete Problem} \label{sec:Fully Discrete}
+
 
 \subsubsection{Implicit Euler} \label{subsubsec:Implicit Euler}
 
@@ -416,7 +473,7 @@ Consider again the steady state one dimensional Heat Equation with conductivity 
 
 \begin{problem}{Weak Formulation}
 
-Find $\quad u(\cdot, t) \in H^1_0(0, 1)$:
+Find $\quad u \in H^1_0(0, 1)$:
 \begin{align*}
 \int_0^L  u' v'  dx =   \int_0^L  f v dx  \quad \quad  dx \forall v \in H^1_0(0, L)
 \end{align*}

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <array>
+#include <functional>
 #include "AdaptiveHeat.hpp"
 #include "SpaceMesh.hpp"
 #include "TimeMesh.hpp"
@@ -44,6 +45,8 @@ public:
     void StationaryHeatEquation();
 
     void UnitTest1 ();
+
+    void buildfvec( SpaceMesh& a_smesh, const std::function<double(double)>& f );
 
     std::vector<double> FEMGradient;
     std::vector<double> ErrorEstimate;

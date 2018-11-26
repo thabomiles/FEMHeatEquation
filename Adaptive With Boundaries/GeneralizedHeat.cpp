@@ -10,6 +10,7 @@
 #include "StiffnessMatrix.hpp"
 #include <fstream>
 #include <string>
+#include <functional>
 #include <boost/math/quadrature/gauss.hpp>
 using namespace std;
 using namespace boost::math::quadrature;
@@ -33,22 +34,22 @@ double GeneralHeat::ContinuousAnalyticSolution( double x, double t )
 
 void GeneralHeat::StationaryHeatEquation()
 {
-    double my_var = 0.5*mpsmesh.ReadSpaceMesh(0);
-    f_vec = {-pow(M_PI, 2)*sin(0)*my_var};
+    auto funct = [this](double x)
+        { return -pow(M_PI, 2)*sin(M_PI*x); };
 
-for(int i =1; i<mpsmesh.meshsize(); i++)
-{
-    my_var = 0.5*(mpsmesh.ReadSpaceMesh(i)+mpsmesh.ReadSpaceMesh(i-1));
-    f_vec.push_back( -pow(M_PI, 2)*sin(M_PI*mpsmesh.ReadSpaceNode(i))*my_var );
-}
+//    double my_var = 0.5*mpsmesh.ReadSpaceMesh(0);
+//    f_vec = {-pow(M_PI, 2)*sin(0)*my_var};
+//
+//for(int i =1; i<mpsmesh.meshsize(); i++)
+//{
+//    my_var = 0.5*(mpsmesh.ReadSpaceMesh(i)+mpsmesh.ReadSpaceMesh(i-1));
+//    f_vec.push_back( -pow(M_PI, 2)*sin(M_PI*mpsmesh.ReadSpaceNode(i))*my_var );
+//}
+//
+//my_var = 0.5*mpsmesh.ReadSpaceMesh(mpsmesh.meshsize()-1);
+//f_vec.push_back( -pow(M_PI, 2)*sin(M_PI*mpsmesh.ReadSpaceNode(mpsmesh.meshsize()))*my_var );
 
-my_var = 0.5*mpsmesh.ReadSpaceMesh(mpsmesh.meshsize()-1);
-f_vec.push_back( -pow(M_PI, 2)*sin(M_PI*mpsmesh.ReadSpaceNode(mpsmesh.meshsize()))*my_var );
-
-//f_vec.assign( 11, 0.1 );
-//f_vec[0]=0.05;
-//f_vec[10]=0.05;
-
+buildfvec( mpsmesh, funct );
 
 stiff.SetParameters(k_0, k_L);
 
@@ -57,11 +58,25 @@ stiff.BuildGeneralStiffnessMatrix ( mpsmesh );
 BuiltbrVec();
 AddVectors(br, f_vec, br);
 
-
 stiff.MatrixSolver( br, mpx );
 
 PrintVector(mpx);
 
+}
+
+void GeneralHeat::buildfvec( SpaceMesh& a_smesh, const std::function<double(double)>& f  )
+{
+    double my_var = 0.5*a_smesh.ReadSpaceMesh(0);
+    f_vec = {f(0)*my_var};
+
+for(int i =1; i<mpsmesh.meshsize(); i++)
+{
+    my_var = 0.5*(a_smesh.ReadSpaceMesh(i)+a_smesh.ReadSpaceMesh(i-1));
+    f_vec.push_back( f(a_smesh.ReadSpaceNode(i))*my_var );
+}
+
+my_var = 0.5*mpsmesh.ReadSpaceMesh(mpsmesh.meshsize()-1);
+f_vec.push_back( -pow(M_PI, 2)*sin(M_PI*mpsmesh.ReadSpaceNode(mpsmesh.meshsize()))*my_var );
 }
 
 

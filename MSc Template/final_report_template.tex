@@ -285,14 +285,55 @@ This version of the theorem is Weaker than the refinement proved by Babuska but 
 
 \clearpage
 
+\subsection{Subdivion and basis functions} \label{subsec:Subspace}
+
+Take the subdivision on $x \in \Omega$ in our model problem \ref{eq:Steady Diffusion1}. We subdivide the domain into N intervals $[x_k, x_{k+1}] \quad k=0, 1, ... , N-1$. This subdivision may not be regular and when later in this dissertation we begin seeking an adaptive solution will very rarely be regular. intervals may be referred to as elements and give the FEM its name.
+\\
+\\
+
+\begin{center}
+\begin{tikzpicture}
+
+\draw[thick] (0,0) -- (10,0) node[anchor=north west] {};
+\foreach \x in {0,1,2,3,5,6,9}
+   \draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {$x_\x$};
+
+\draw (10 cm,1pt) -- (10 cm,-1pt) node[anchor=north] {$x_N$};
+
+\end{tikzpicture}
+\end{center}
+
+
+We now define the FEM basis function on this grid. 
+
+\begin{equation}
+\phi_j(x) =  \Big(\:1 - \Big|\frac{x-x_k}{h_i}\Big| \: \Big)_+ , \quad j = 0,1,..., N
+\end{equation}
+
+
+
+\begin{center}
+\begin{tikzpicture}
+
+
+\draw[thick] (0,0) -- (0,3) node[anchor=south east] {};
+
+\draw[thick] (0,0) -- (3,0) -- (3.2,0.4) --(3.4, -0.4) -- (3.6,0) -- (10,0) node[anchor=north west] {};
+\foreach \x in {0,1,2,3,5,6,9}
+   \draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {$x_\x$};
+   
+\draw[thick] (0,2) -- (1,0);
+\draw[thick] (0,2) -- (1,0);
+
+
+\end{tikzpicture}
+\end{center}
+
+
 
 \subsection{The Weak Formulation} \label{subsec:Weak Formulation}
 
 Now we have defined the mathematical context let us solve a problem via the FEM. Take the stationary heat equation.
-
-Consider the steady state one dimensional Heat Equation with conductivity co-efficient of one. 
-
-
 
 \begin{subequations} 
 \label{eq:Steady Diffusion1} 
@@ -352,49 +393,76 @@ $$\sum_{j=1}^{N(h)}U_j \: a( \,\phi_j(x),\, \phi_i(x)) = \ell(\,\phi_i(x)\,) $$
 
 This gives a system of linear equations with $a( \,\phi_j(x),\, \phi_i(x))$ an $N(h)\times N(h)$ matrix. To form and solve this system we need to introduce the FEM basis function 
 
-\subsection{Subdivion and basis functions} \label{subsec:Subspace}
-
-Take the subdivision on $x \in \Omega$ in our model problem \ref{eq:Steady Diffusion1}. We subdivide the domain into N intervals $[x_k, x_{k+1}] \quad k=0, 1, ... , N-1$. This subdivision may not be regular and when later in this dissertation we begin seeking an adaptive solution will very rarely be regular. intervals may be referred to as elements and give the FEM its name.
-\\
-\\
-
-\begin{center}
-\begin{tikzpicture}
-
-\draw[thick] (0,0) -- (10,0) node[anchor=north west] {};
-\foreach \x in {0,1,2,3,5,6,9}
-   \draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {$x_\x$};
-
-\draw (10 cm,1pt) -- (10 cm,-1pt) node[anchor=north] {$x_N$};
-
-\end{tikzpicture}
-\end{center}
-
-
-We now define the FEM basis function on this grid. 
+\begin{subequations} 
+\begin{align}
+A_{ij} =& \int_I \phi_i \phi_j dx \label{eq:stiff}\\
+b_i =& \int_I  \, f\phi_i dx
+\end{align}
+\end{subequations}
 
 \begin{equation}
-\phi_j(x) =  \Big(\:1 - \Big|\frac{x-x_k}{h_i}\Big| \: \Big)_+ , \quad j = 0,1,..., N
+AU = F			\label{system1}
 \end{equation}
 
+\subsection{Implementation} \label{subsec:Implementation1}
+
+It is evident that all the matrices that arise from the one dimensional FEM are tridiagonal. This is important as there are efficient algorithms available for solving tridiagonal systems. To store the matrix we only need to  none zero arrays that compose it. This is an ideal opportunity to create a data structure to store these matrices and also to make use of some object oriented design patterns to associate the characteristics of the matrices to a special case of tridiagonal matrices such as \ref{eq:stiff}. One possible declaration is given below:
+
+\begin{lstlisting}[language=C++]
+class TriDiagMatrix{
+public:
+    void SetMatrix( std::vector<double> Diagonal,
+         std::vector<double> LowerDiag, std::vector<double> UpperDiag);
+
+    void MatrixVectorMultiplier ( std::vector<double> f, 
+    	 std::vector<double> &ProductVector);
+
+    void PrintMatrix();
+
+    void MatrixSolver( std::vector<double> f,
+         std::vector<double> &x );
+
+    void MultiplyByScalar (double k);
+
+    void AddTwoMatrices ( TriDiagMatrix firstMatrix, 
+    	 TriDiagMatrix secondMatix );
+protected:
+    int mpn;
+    std::vector<double> mpDiagonal;
+    std::vector<double> mpLowerDiag;
+    std::vector<double> mpUpperDiag;
+};
+\end{lstlisting}
 
 
-\begin{center}
-\begin{tikzpicture}
+
+The obvious advantage of a similar declaration is not only the efficiency of the storage and the methods but also the readability, polymorphism and the ease with which the code can then be tested. Once module tests have been run and effectiveness established we can derived any specific matrices we need from the above interface. The first derivation we make is for \ref{eq:stiff} also called the Stiffness matrix. This class reads a specific subdivision of the domain $\omega$ and sets the Stiffness matrix accordingly.
+
+\begin{lstlisting}[language=C++]
+class StiffnessMatrix: public TriDiagMatrix{
+public:
+    void BuildStiffnessMatrix ( SpaceMesh& smesh ); };
+
+\end{lstlisting}
+
+We are now ready to solve \ref{eq:system1}. We can now write a solve method which is as simple as the simplest psuedo-code. \\
+
+\begin{lstlisting}[language=C++]
+void StationaryHeatEquation()
+}
+StiffnessMatrix ( mpsmesh );
+buildfvec( SpaceMesh& a_smesh, double(*f)(double))
+stiff.MatrixSolver( f_vec, U );
+PrintVector(U);
+}
+\end{lstlisting} 
+
+Now we form the system of linear equations that we will need to create solution. We have not here discussed boundary conditions. In the derivation of the weak formulation the boundary conditions are projected into the solution space. This has been done in \ref{prob:Weak Formulation Elliptic} by choosing $H^1_0(0, L)$ for our zero dirichlet boundaries. 
 
 
-\draw[thick] (0,0) -- (0,3) node[anchor=south east] {};
 
-\draw[thick] (0,0) -- (3,0) -- (3.2,0.4) --(3.4, -0.4) -- (3.6,0) -- (10,0) node[anchor=north west] {};
-\foreach \x in {0,1,2,3,5,6,9}
-   \draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {$x_\x$};
-   
-\draw[thick] (0,2) -- (1,0);
-\draw[thick] (0,2) -- (1,0);
+In practise one of the major advantages of the FEM is the ease with which complex boundary conditions can be implemented. A detailed account of doing this in general is given in \cite{larson2013finite} 
 
-
-\end{tikzpicture}
-\end{center}
 
 
 \clearpage
@@ -454,6 +522,46 @@ $\forall v \in H^1_0(0, L)$
 
 
 \subsubsection{Impementation} \label{subsubsec:Implementation}
+
+When it comes to the computer implementation of the FEM on time dependent or multidimensional problems "meshing" is the important art-form. There are entire software packages available to carry out the creation and manipulation of mesh structures and it would therefore benefit any FEM project to either design there own data-structures or implement an existing mesh package. 
+
+An important question when designing the data-structure and class inheritance structure is the relationship between the time-steps and the space nodes. When using Finite Difference Methods to discretise the time element the space nodes are free to vary at at a given time step however the time steps are the same when considered from a given node. This seems to both invite and discourage the creation of a single data-structure to handle meshing in both space and time. Much of the functionality of each is shared but much differs:
+
+\begin{lstlisting}[language=C++]
+class SpaceMesh
+{
+public:
+    void CopySpaceMesh (const SpaceMesh& oldSpaceMesh);
+    void BisectIntervals (std::vector<int> &intervalsForBisection);
+    int meshsize();
+
+    void CommonMesh( SpaceMesh& firstmesh, SpaceMesh& secondmesh );
+    double TestFunctions(int nodeIndex, double x);
+    bool Contained (double my_var );
+
+protected:
+    std::vector<double> mpSpaceNodes ;
+    std::vector<double> mpSpaceMesh;
+    int mpmeshsize;
+};
+
+class TimeMesh
+{
+public:
+    void CopyTimeMesh (const TimeMesh& oldTimeMesh);
+    void GenerateTimeMesh ( std::vector<double> TimeNodes );
+    void BisectInterval (int lowerIndex, int upperIndex);
+    int NumberOfTimeSteps();
+protected:
+    int mpnumberOfTimeSteps;
+    std::vector<double> mpTimeNodes;
+    std::vector<double> mpTimeMesh;
+};
+
+
+\end{lstlisting}
+
+The question of how to structure inheritance in FEM meshes is in this case restricted to the one dimension and may seem abstract at the beginning of a project. However, there are many utility style functions i.e. adding a node or copy construction which could be simplified if there was an abstraction which could be justified rigorously. The danger of a heuristic abstraction pattern is that one of the child classes have access to a function which is not truly polymorphic and it cannot be used safely or that the program not scale because of restrictions on the inheritance. We leave the question of whether there is a rigorous way to argue for a shared parent class for a space and time meshes open. 
 
 \newpage
 
@@ -619,20 +727,6 @@ void GeneralHeat::GradientRecoveryFunction( SpaceMesh& relevantMesh,
 
 \newpage
 
-\section{Object oriented design patterns} \label{sec:my2}
-
-Graphics can be included. Figure \ref{fig:bsd} shows an example.
-Learn about floats and pictures in the \LaTeX\ wikibook to place
-the figures at the right place in the end.
-%
-\begin{figure}[h]
- \begin{center}
- \end{center}
- \caption{Oh look, something happens here !}
- \label{fig:bsd}
-\end{figure}
-
-\newpage
 
 \section{Conclusions} \label{sec:conclusions}
 

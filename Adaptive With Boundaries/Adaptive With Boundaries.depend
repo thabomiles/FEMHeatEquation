@@ -122,7 +122,7 @@
 	<array>
 	"TriDiagMatrix.hpp"
 
-1543269055 source:c:\users\thabo\desktop\heatequationdis\adaptive with boundaries\generalizedheat.cpp
+1543272394 source:c:\users\thabo\desktop\heatequationdis\adaptive with boundaries\generalizedheat.cpp
 	<iostream>
 	<cmath>
 	<math.h>
@@ -135,6 +135,7 @@
 	"StiffnessMatrix.hpp"
 	<fstream>
 	<string>
+	<functional>
 	<boost/math/quadrature/gauss.hpp>
 
 1543103670 source:c:\users\thabo\desktop\heatequationdis\adaptive with boundaries\driver.cpp
@@ -153,7 +154,7 @@
 	"APDE.hpp"
 	"PDE1.hpp"
 
-1543269905 c:\users\thabo\desktop\heatequationdis\adaptive with boundaries\generalizedheat.hpp
+1543271361 c:\users\thabo\desktop\heatequationdis\adaptive with boundaries\generalizedheat.hpp
 	<iostream>
 	<vector>
 	<array>
@@ -163,7 +164,7 @@
 	"TimeMesh.hpp"
 	"APDE.hpp"
 
-1542981773 c:\users\thabo\desktop\heatequationdis\adaptive with boundaries\apde.hpp
+1543272560 c:\users\thabo\desktop\heatequationdis\adaptive with boundaries\apde.hpp
 	<cmath>
 	<math.h>
 	<vector>

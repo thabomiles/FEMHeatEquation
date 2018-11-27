@@ -34,22 +34,13 @@ double GeneralHeat::ContinuousAnalyticSolution( double x, double t )
 
 void GeneralHeat::StationaryHeatEquation()
 {
-    auto funct = [this](double x)
+    auto funct = [&](double x)
         { return -pow(M_PI, 2)*sin(M_PI*x); };
 
-//    double my_var = 0.5*mpsmesh.ReadSpaceMesh(0);
-//    f_vec = {-pow(M_PI, 2)*sin(0)*my_var};
-//
-//for(int i =1; i<mpsmesh.meshsize(); i++)
-//{
-//    my_var = 0.5*(mpsmesh.ReadSpaceMesh(i)+mpsmesh.ReadSpaceMesh(i-1));
-//    f_vec.push_back( -pow(M_PI, 2)*sin(M_PI*mpsmesh.ReadSpaceNode(i))*my_var );
-//}
-//
-//my_var = 0.5*mpsmesh.ReadSpaceMesh(mpsmesh.meshsize()-1);
-//f_vec.push_back( -pow(M_PI, 2)*sin(M_PI*mpsmesh.ReadSpaceNode(mpsmesh.meshsize()))*my_var );
+    auto funct1  = [&](double x)
+        { return pow(M_PI, 2)*cos(M_PI*x-0.5*M_PI); };
 
-buildfvec( mpsmesh, funct );
+buildfvec( mpsmesh, funct1 );
 
 stiff.SetParameters(k_0, k_L);
 
@@ -76,7 +67,7 @@ for(int i =1; i<mpsmesh.meshsize(); i++)
 }
 
 my_var = 0.5*mpsmesh.ReadSpaceMesh(mpsmesh.meshsize()-1);
-f_vec.push_back( -pow(M_PI, 2)*sin(M_PI*mpsmesh.ReadSpaceNode(mpsmesh.meshsize()))*my_var );
+f_vec.push_back( f(a_smesh.ReadSpaceNode(a_smesh.meshsize()))*my_var );
 }
 
 

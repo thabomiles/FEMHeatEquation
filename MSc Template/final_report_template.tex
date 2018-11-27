@@ -401,7 +401,7 @@ b_i =& \int_I  \, f\phi_i dx
 \end{subequations}
 
 \begin{equation}
-AU = F			\label{system1}
+AU = F			\label{eq:system1}
 \end{equation}
 
 \subsection{Implementation} \label{subsec:Implementation1}
@@ -445,36 +445,39 @@ public:
 
 \end{lstlisting}
 
-We are now ready to solve \ref{eq:system1}. We can now write a solve method which is as simple as the simplest psuedo-code. \\
+We are now ready to solve \ref{eq:system1}. We can now write a solve method which is as simple as the simplest psuedo-code. Called for \ref{eq:Steady Diffusion1} with  $f=\pi^2cos(\pi x - \frac{\pi}{2})$, subdivision of $\Omega$ so that $h_i = 0.25 i=1, 2, 3, 4$   the code produces the below result.\\
 
 \begin{lstlisting}[language=C++]
-void StationaryHeatEquation()
-}
+void StationaryHeatEquation(){
 StiffnessMatrix ( mpsmesh );
 buildfvec( SpaceMesh& a_smesh, double(*f)(double))
 stiff.MatrixSolver( f_vec, U );
 PrintVector(U);
 }
-\end{lstlisting} 
+\end{lstlisting}
 
-Now we form the system of linear equations that we will need to create solution. We have not here discussed boundary conditions. In the derivation of the weak formulation the boundary conditions are projected into the solution space. This has been done in \ref{prob:Weak Formulation Elliptic} by choosing $H^1_0(0, L)$ for our zero dirichlet boundaries. 
+\clearpage
+
+\begin{figure}
+   \includegraphics[width=0.5\textwidth]{EllipticPDE2.pdf}
+   
+ \label{fig:eliptic1}
+\end{figure}
 
 
 
-In practise one of the major advantages of the FEM is the ease with which complex boundary conditions can be implemented. A detailed account of doing this in general is given in \cite{larson2013finite} 
+We have not yet discussed the implementation of boundary conditions. In the derivation of the weak formulation the boundary conditions are projected into the solution space. This has been done in \ref{prob:Weak Formulation Elliptic} by choosing $H^1_0(0, L)$ for our zero dirichlet boundaries.
+
+In practise one of the major advantages of the FEM is the ease with which more complicated boundary conditions can be implemented. A detailed account of doing this in a general is given in \cite{larson2013finite}. The method they advocate is implementing Robin boundary conditions and using parameters to set Neuman conditions or approximate dirichlet conditions. From here onward this is the method used in the code from here on.
+
 
 
 
 \clearpage
 
-\section{Fully Discrete Problem} \label{sec:Fully Discrete}
+\section{The Time Dependent Problem} \label{sec:Time dependent}
 
-
-
-Take a simple Heat Equation:
-
-
-
+Now that we have built some foundations by solving the elliptical PDE ref{eq:Steady Diffusion1} we can use the same method to discretise the space dimension of the Heat Equation.
 \begin{subequations} 
 \begin{align}
   \dot{u} - u'' = & f \quad x \in [0, L], \quad t \in (0, T]  \\ \label{eq:Simple Heat}
@@ -501,25 +504,39 @@ Integrating by parts yields:
 
 The weak formulation of our problem is now given by:
 
-\begin{problem}{Weak Formulation}
-
-
+\begin{problem}{Weak Formulation} \label{weak2}
 Find $\quad u(\cdot, t) \in H^1_0(0, L)$:
 \begin{align*}
- \int_0^L \dot{u} v dx +  \int_0^L  u' v'  dx =   \int_0^L  f v  dx& \\
-  \int_0^L  u(x, 0) v dx = \int_0^L u_0(x) v dx&  
+	(\dot{u}(\cdot, t), v) + a(u(\cdot, t), v) = (f(\cdot, t), v)&\\
+	(u(\cdot, 0), v) = (u_0, v)&\\
 \end{align*}
 $\forall v \in H^1_0(0, L)$
-
 \end{problem}
 
-\newpage
+Here,
+
+\begin{align*}
+ a(w, v)  = \int_0^L  w' v'  dx 
+ (w, v) = \int_0^L  w v  dx 
+\end{align*}
 
 
 
 
 \subsubsection{Implicit Euler} \label{subsubsec:Implicit Euler}
 
+\ref{weak2} is the a space discrete problem, sometimes referred to as the semi-discreet problem but we now need to discretise in time to be able to find an approximation to the solution. We will use Finite Differences to discretise in time and we will choose the Implicit Euler method. 
+
+
+\begin{problem}{Implict Euler Method} \label{eq:Implicit Euler}
+\\Find $u_h^{m+1} \in V 0 \leq m \leq M-1$
+\begin{align*}
+\Big(\frac{u_h^{m+1} \, - \, u_h^{m}}{\Delta t}, v_h \Big) +\: a(u_h^m, v_h) \quad=&\quad (f(\cdot, t^m), v_h) \\
+(u^{0}_h - u_0, v_h)\quad  =& \quad0 \quad \forall v_h \in V
+\end{align*}
+\end{problem}
+%a(u_h^m, v_h) =& (f(\cdot, t^m), v_h) \\
+%{u^{0}_h - u_0, v_h) =& 0 \quad \forall v_h \in V
 
 \subsubsection{Impementation} \label{subsubsec:Implementation}
 

@@ -1,25 +1,18 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
-#include <array>
 #include <math.h>
-#include "AdaptiveHeat.hpp"
-#include "StiffnessMatrix.hpp"
-#include "MassMatrix.hpp"
 #include "GeneralizedHeat.hpp"
-#include <fstream>
-#include <string>
-#include <boost/math/quadrature/gauss.hpp>
-using namespace std;
-using namespace boost::math::quadrature;
 #include "APDE.hpp"
 #include "PDE_Q2.hpp"
 #include "originalPDE.hpp"
 #include "EllipticPDE_Q1.hpp"
 #include "EllipticPDE2.hpp"
-
-const double M_PI = 2*acos(0);
-
+#include <string>
+#include <boost/math/quadrature/gauss.hpp>
+using namespace std;
+using namespace boost::math::quadrature;
+//const double M_PI = 2*acos(0);
 
 int main(int argc, char* argv[])
 {

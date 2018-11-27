@@ -19,7 +19,7 @@ public:
 
     void AnalyticSolutionVec( );
 
-    double PiecewiseU( double x );
+    double PiecewiseU( double x, SpaceMesh currentsmesh, std::vector<double> U  );
 
     void PrintSolution();
 

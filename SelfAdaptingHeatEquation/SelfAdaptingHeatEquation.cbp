@@ -33,8 +33,6 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="../AdaptiveHeatEquationSolver/AdaptiveHeat.cpp" />
-		<Unit filename="../AdaptiveHeatEquationSolver/AdaptiveHeat.hpp" />
 		<Unit filename="../Heat Equation solver/MassMatrix.cpp" />
 		<Unit filename="../Heat Equation solver/MassMatrix.hpp" />
 		<Unit filename="../Heat Equation solver/SpaceMesh.cpp" />
@@ -47,6 +45,8 @@
 		<Unit filename="../Heat Equation solver/TriDiagMatrix.hpp" />
 		<Unit filename="../Heat Equation solver/heatEquation.cpp" />
 		<Unit filename="../Heat Equation solver/heatEquation.hpp" />
+		<Unit filename="AdaptiveHeat.cpp" />
+		<Unit filename="AdaptiveHeat.hpp" />
 		<Unit filename="driver.cpp" />
 		<Extensions>
 			<code_completion />

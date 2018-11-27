@@ -122,7 +122,7 @@
 	<array>
 	"TriDiagMatrix.hpp"
 
-1543333059 source:c:\users\thabo\desktop\heatequationdis\adaptive with boundaries\generalizedheat.cpp
+1543337503 source:c:\users\thabo\desktop\heatequationdis\adaptive with boundaries\generalizedheat.cpp
 	<iostream>
 	<cmath>
 	<math.h>
@@ -138,24 +138,19 @@
 	<functional>
 	<boost/math/quadrature/gauss.hpp>
 
-1543337367 source:c:\users\thabo\desktop\heatequationdis\adaptive with boundaries\driver.cpp
+1543339256 source:c:\users\thabo\desktop\heatequationdis\adaptive with boundaries\driver.cpp
 	<iostream>
 	<cmath>
 	<vector>
-	<array>
 	<math.h>
-	"AdaptiveHeat.hpp"
-	"StiffnessMatrix.hpp"
-	"MassMatrix.hpp"
 	"GeneralizedHeat.hpp"
-	<fstream>
-	<string>
-	<boost/math/quadrature/gauss.hpp>
 	"APDE.hpp"
 	"PDE_Q2.hpp"
 	"originalPDE.hpp"
 	"EllipticPDE_Q1.hpp"
 	"EllipticPDE2.hpp"
+	<string>
+	<boost/math/quadrature/gauss.hpp>
 
 1543337403 c:\users\thabo\desktop\heatequationdis\adaptive with boundaries\generalizedheat.hpp
 	<iostream>
@@ -294,6 +289,78 @@
 1543337367 c:\users\thabo\desktop\heatequationdis\pdes\ellipticpde2.hpp
 	<cmath>
 	<math.h>
+	<vector>
+	<array>
+	"APDE.hpp"
+
+1543332657 c:\users\thabo\desktop\heatequationdis\pdes\pde_q2.hpp
+	<cmath>
+	<math.h>
+	<vector>
+	<array>
+	"SpaceMesh.hpp"
+	"TimeMesh.hpp"
+	"TriDiagMatrix.hpp"
+	"MassMatrix.hpp"
+	"StiffnessMatrix.hpp"
+	"APDE.hpp"
+
+1543332657 c:\users\thabo\desktop\heatequationdis\pdes\originalpde.hpp
+	<cmath>
+	<math.h>
+	<vector>
+	<array>
+	"SpaceMesh.hpp"
+	"TimeMesh.hpp"
+	"TriDiagMatrix.hpp"
+	"MassMatrix.hpp"
+	"StiffnessMatrix.hpp"
+	"APDE.hpp"
+
+1543332658 source:c:\users\thabo\desktop\heatequationdis\pdes\originalpde.cpp
+	<iostream>
+	<cmath>
+	<math.h>
+	<iostream>
+	<vector>
+	<array>
+	"originalPDE.hpp"
+
+1542036124 source:c:\users\thabo\desktop\heatequationdis\pdes\pde1.cpp
+	<iostream>
+	<cmath>
+	<math.h>
+	<iostream>
+	<vector>
+	<array>
+	"APDE.hpp"
+	"PDE1.hpp"
+
+1542036082 c:\users\thabo\desktop\heatequationdis\pdes\pde1.hpp
+	<cmath>
+	<math.h>
+	<vector>
+	<array>
+	"SpaceMesh.hpp"
+	"TimeMesh.hpp"
+	"TriDiagMatrix.hpp"
+	"MassMatrix.hpp"
+	"StiffnessMatrix.hpp"
+
+1543329452 source:c:\users\thabo\desktop\heatequationdis\pdes\pde_q2.cpp
+	<iostream>
+	<cmath>
+	<math.h>
+	<iostream>
+	<vector>
+	<array>
+	"PDE_Q2.hpp"
+
+1543333988 source:c:\users\thabo\desktop\heatequationdis\pdes\apde.cpp
+	<iostream>
+	<cmath>
+	<math.h>
+	<iostream>
 	<vector>
 	<array>
 	"APDE.hpp"

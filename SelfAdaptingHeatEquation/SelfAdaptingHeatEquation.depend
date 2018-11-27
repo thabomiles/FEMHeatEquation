@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1542039806 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\heatequation.cpp
+1543347077 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\heatequation.cpp
 	<iostream>
 	<cmath>
 	<math.h>
@@ -14,7 +14,7 @@
 	<string>
 	<boost/math/quadrature/gauss.hpp>
 
-1542035164 c:\users\thabo\desktop\heatequationdis\heat equation solver\heatequation.hpp
+1543347037 c:\users\thabo\desktop\heatequationdis\heat equation solver\heatequation.hpp
 	<iostream>
 	<vector>
 	<array>
@@ -24,7 +24,7 @@
 	"MassMatrix.hpp"
 	"StiffnessMatrix.hpp"
 
-1541771162 c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.hpp
+1542911316 c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.hpp
 	<iostream>
 	<vector>
 	<array>
@@ -46,7 +46,7 @@
 	<vector>
 	<array>
 
-1541949326 c:\users\thabo\desktop\heatequationdis\heat equation solver\stiffnessmatrix.hpp
+1543324834 c:\users\thabo\desktop\heatequationdis\heat equation solver\stiffnessmatrix.hpp
 	"TriDiagMatrix.hpp"
 	"SpaceMesh.hpp"
 	<iostream>
@@ -64,7 +64,7 @@
 	<cmath>
 	"SpaceMesh.hpp"
 
-1541775109 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.cpp
+1542911316 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.cpp
 	<iostream>
 	<vector>
 	<array>
@@ -75,7 +75,7 @@
 	<cmath>
 	<set>
 
-1541950927 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\stiffnessmatrix.cpp
+1543325128 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\stiffnessmatrix.cpp
 	<iostream>
 	<vector>
 	<array>
@@ -98,7 +98,7 @@
 	<array>
 	"TriDiagMatrix.hpp"
 
-1542733831 source:c:\users\thabo\desktop\heatequationdis\selfadaptingheatequation\driver.cpp
+1543347245 source:c:\users\thabo\desktop\heatequationdis\selfadaptingheatequation\driver.cpp
 	<iostream>
 	<cmath>
 	<vector>
@@ -118,7 +118,31 @@
 	"SpaceMesh.hpp"
 	"TimeMesh.hpp"
 
-1542013657 source:c:\users\thabo\desktop\heatequationdis\adaptiveheatequationsolver\adaptiveheat.cpp
+1542734444 source:c:\users\thabo\desktop\heatequationdis\adaptiveheatequationsolver\adaptiveheat.cpp
+	<iostream>
+	<cmath>
+	<math.h>
+	<iostream>
+	<vector>
+	<array>
+	"heatEquation.hpp"
+	"AdaptiveHeat.hpp"
+	"TriDiagMatrix.hpp"
+	"MassMatrix.hpp"
+	"StiffnessMatrix.hpp"
+	<fstream>
+	<string>
+	<boost/math/quadrature/gauss.hpp>
+
+1543347171 c:\users\thabo\desktop\heatequationdis\selfadaptingheatequation\adaptiveheat.hpp
+	<iostream>
+	<vector>
+	<array>
+	"heatEquation.hpp"
+	"SpaceMesh.hpp"
+	"TimeMesh.hpp"
+
+1543346036 source:c:\users\thabo\desktop\heatequationdis\selfadaptingheatequation\adaptiveheat.cpp
 	<iostream>
 	<cmath>
 	<math.h>

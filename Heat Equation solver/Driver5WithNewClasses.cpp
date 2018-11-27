@@ -28,7 +28,6 @@ SpaceMesh smesh;
 //smesh.GloballyBisectSpaceMesh();
 smesh.GenerateSpaceMesh({0, 0.15, 0.25, 0.5, 1});
 
-//smesh.GenerateUniformMesh(1, 5);
 //smesh.GloballyBisectSpaceMesh();
 //smesh.GloballyBisectSpaceMesh();
 
@@ -42,10 +41,7 @@ heat.Solve();
 smesh.PrintSpaceNodes();
 heat.PrintSolution();
 
-//heat.PrintErrorMesh();
-//
-//std::cout << heat.GlobalSpaceError();
-//std::cout << " \n";
+heat.GlobalSpaceError();
 
 }
 

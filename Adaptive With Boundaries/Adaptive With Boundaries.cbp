@@ -15,6 +15,7 @@
 					<Add option="-g" />
 					<Add directory="../Heat Equation solver" />
 					<Add directory="../AdaptiveHeatEquationSolver" />
+					<Add directory="../PDEs" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -47,11 +48,19 @@
 		<Unit filename="../Heat Equation solver/TriDiagMatrix.hpp" />
 		<Unit filename="../Heat Equation solver/heatEquation.cpp" />
 		<Unit filename="../Heat Equation solver/heatEquation.hpp" />
+		<Unit filename="../PDEs/EllipticPDE2.cpp" />
+		<Unit filename="../PDEs/EllipticPDE2.hpp" />
+		<Unit filename="../PDEs/EllipticPDE_Q1.cpp" />
+		<Unit filename="../PDEs/EllipticPDE_Q1.hpp" />
 		<Unit filename="APDE.cpp" />
 		<Unit filename="APDE.hpp" />
 		<Unit filename="GeneralizedHeat.cpp" />
 		<Unit filename="GeneralizedHeat.hpp" />
+		<Unit filename="PDE_Q2.cpp" />
+		<Unit filename="PDE_Q2.hpp" />
 		<Unit filename="driver.cpp" />
+		<Unit filename="originalPDE.cpp" />
+		<Unit filename="originalPDE.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -7,10 +7,6 @@
 
 void StiffnessMatrix::BuildStiffnessMatrix( SpaceMesh smesh )
 {
-mpDiagonal.clear();
-mpLowerDiag.clear();
-mpUpperDiag.clear();
-
 mpn = smesh.meshsize()-1;
 mpDiagonal = { a*pow(smesh.ReadSpaceMesh(0), -1) + a*pow(smesh.ReadSpaceMesh(1), -1) };
 mpLowerDiag = {0};
@@ -30,10 +26,6 @@ mpUpperDiag.push_back( 0 );
 
 void StiffnessMatrix::BuildGeneralStiffnessMatrix ( SpaceMesh smesh )
 {
-mpDiagonal.clear();
-mpLowerDiag.clear();
-mpUpperDiag.clear();
-
 mpn = smesh.meshsize()+1;
 mpDiagonal = { a*pow(smesh.ReadSpaceMesh(0), -1)+mpk_0 };
 mpLowerDiag = {0};
@@ -52,8 +44,9 @@ mpUpperDiag.push_back( 0 );
 
 }
 
-void StiffnessMatrix::SetParameters (double k_0, double k_L)
+void StiffnessMatrix::SetParameters (double k_0, double k_L, double constant)
 {
+    a = constant;
     mpk_0=k_0;
     mpk_L=k_L;
 }

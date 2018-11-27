@@ -15,8 +15,6 @@ using namespace boost::math::quadrature;
 #include "APDE.hpp"
 #include "PDE_Q2.hpp"
 #include "originalPDE.hpp"
-#include "EllipticPDE_Q1.hpp"
-#include "EllipticPDE2.hpp"
 
 const double M_PI = 2*acos(0);
 
@@ -26,30 +24,26 @@ int main(int argc, char* argv[])
 
 SpaceMesh smesh;
 smesh.GenerateUniformMesh(1, 5);
-//smesh.GloballyBisectSpaceMesh();
-//smesh.GloballyBisectSpaceMesh();
+smesh.GloballyBisectSpaceMesh();
+smesh.GloballyBisectSpaceMesh();
 
 TimeMesh tmesh;
 tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize(), 2), 1.0);
 
 PDE_Q2 anotherpde;
 originalPDE firstpde;
-EllipticPDE_Q1 Q1;
-EllipticPDE2 elliptic2;
 
 GeneralHeat genheat;
-genheat.SetSpaceTimeMesh(smesh, tmesh, elliptic2);
+genheat.SetSpaceTimeMesh(smesh, tmesh, firstpde);
 
-genheat.StationaryHeatEquation();
-
-//genheat.SolveWithBCs();
+genheat.SolveWithBCs();
 //
 //
 //genheat.PrintSolution();
 //
 //genheat.BuildErrorMesh();
 //genheat.PrintErrorMesh();
-//genheat.GlobalSpaceError();
+genheat.GlobalSpaceError();
 //
 //genheat.UnitTest1();
 

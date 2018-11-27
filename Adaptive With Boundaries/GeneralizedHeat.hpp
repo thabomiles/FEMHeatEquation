@@ -19,11 +19,6 @@ public:
     void SolveWithBCs();
     void AnalyticSolutionVec( );
     void PrintSolution( );
-    double PiecewiseU( double x );
-
-    double ErrorSquared( double x );
-
-    double L2ErrorGuass ( double lowerlimit, double upperlimit );
 
     void BuildErrorMesh();
 
@@ -46,14 +41,14 @@ public:
 
     void UnitTest1 ();
 
-    void buildfvec( SpaceMesh& a_smesh, const std::function<double(double)>& f );
+    void buildfvec( SpaceMesh& a_smesh );
 
     std::vector<double> FEMGradient;
     std::vector<double> ErrorEstimate;
     std::vector<double> GradientRecovery;
 
 protected:
-    double k_0, k_L, g_0, g_L;
+    double mpa, k_0, k_L, g_0, g_L;
     APDE* mppde;
     std::vector<double> br;
     std::vector<double> f_vec;

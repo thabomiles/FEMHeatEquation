@@ -8,8 +8,16 @@
 
 double APDE::ContinuousAnalyticSolution( double x, double t )
 {
-     return 6*exp(-t)*sin(M_PI*x);
 }
+
+double APDE::EllipticalRHSfunction( double x )
+{
+}
+
+//double APDE::ContinuousAnalyticSolution( double x, double t )
+//{
+//     return 6*exp(-t)*sin(M_PI*x);
+//}
 
 //double APDE::ContinuousAnalyticSolution( double x, double t )
 //{

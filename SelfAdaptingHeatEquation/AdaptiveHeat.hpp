@@ -23,8 +23,13 @@ public:
 
     double SolutionTimesBasis( int NodeIndex, double x );
     void BuildRHS();
+    void BuildRHSWithBC();
+    double IntegrateFullBasisWithU( int NodeIndex, double lowerlimit,
+                              double upperlimit );
 
     void SaveIntervalsForCoarsening();
+
+    void UnitTest();
 
 
 

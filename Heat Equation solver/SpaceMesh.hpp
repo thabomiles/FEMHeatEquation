@@ -10,6 +10,7 @@ public:
     void Range( double lowerlimit, double upperlimit, std::vector<double>& Nodes);
     void CommonMesh( SpaceMesh& firstmesh, SpaceMesh& secondmesh );
     double TestFunctions(int nodeIndex, double x);
+    double GeneralTestFunctions(int nodeIndex, double x);
     bool Contained (double my_var );
 
     void CopySpaceMesh (const SpaceMesh& oldSpaceMesh);

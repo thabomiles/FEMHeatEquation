@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.13)  27 NOV 2018 17:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.13)  28 NOV 2018 14:22
 entering extended mode
 **./final_report_template.tex
 (final_report_template.tex
@@ -599,7 +599,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 3.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-LaTeX Warning: Reference `sec:my1' on page 28 undefined on input line 21.
+LaTeX Warning: Reference `sec:my1' on page 29 undefined on input line 21.
 
 )
 \tf@toc=\write4
@@ -698,7 +698,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 290--293
 ]
 
 LaTeX Warning: Reference `Steady Diffusion1' on page 13 undefined on input line
- 371.
+ 354.
 
 [13] ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
 File: lstlang1.sty 2015/06/04 1.6 listings language file
@@ -709,7 +709,7 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 ) [14]
-Underfull \hbox (badness 10000) in paragraph at lines 448--449
+Underfull \hbox (badness 10000) in paragraph at lines 431--432
 
  []
 
@@ -717,75 +717,75 @@ Underfull \hbox (badness 10000) in paragraph at lines 448--449
 <EllipticPDE2.pdf, id=103, pagebox=cropbox, 462.52798pt x 346.89601pt>
 File: EllipticPDE2.pdf Graphic file (type pdf)
 <use EllipticPDE2.pdf>
-Package pdftex.def Info: EllipticPDE2.pdf  used on input line 462. on input lin
-e 462.
+Package pdftex.def Info: EllipticPDE2.pdf  used on input line 445. on input lin
+e 445.
 Package pdftex.def Info: Requested size: 227.62206pt x 170.71628pt on input lin
-e 462.
+e 445.
 
 
 LaTeX Warning: Citation `larson2013finite' on page 16 undefined on input line 4
-71.
+54.
 
 [16
 
  <./EllipticPDE2.pdf>] [17
 
-] [18] [19]
+] [18] [19] [20]
 
-LaTeX Warning: Citation `babuska1978posteriori' on page 20 undefined on input l
-ine 591.
+LaTeX Warning: Citation `babuska1978posteriori' on page 21 undefined on input l
+ine 597.
 
 
-LaTeX Warning: Citation `ainsworth65001posteriori' on page 20 undefined on inpu
-t line 595.
-
-[20]
-
-LaTeX Warning: Reference `eq:Steady Diffusion' on page 21 undefined on input li
-ne 629.
+LaTeX Warning: Citation `ainsworth65001posteriori' on page 21 undefined on inpu
+t line 601.
 
 [21]
 
-LaTeX Warning: Citation `zlamal1978superconvergence' on page 22 undefined on in
-put line 671.
+LaTeX Warning: Reference `eq:Steady Diffusion' on page 22 undefined on input li
+ne 635.
 
 [22]
-Overfull \hbox (10.95499pt too wide) in paragraph at lines 704--706
+
+LaTeX Warning: Citation `zlamal1978superconvergence' on page 23 undefined on in
+put line 677.
+
+[23]
+Overfull \hbox (10.95499pt too wide) in paragraph at lines 710--712
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (10.95499pt too wide) in paragraph at lines 714--716
+Overfull \hbox (10.95499pt too wide) in paragraph at lines 720--722
 [][][][][][][][][][][][][] 
  []
 
-[23]
-Overfull \hbox (99.15477pt too wide) in paragraph at lines 725--726
+[24]
+Overfull \hbox (99.15477pt too wide) in paragraph at lines 731--732
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.655pt too wide) in paragraph at lines 730--731
+Overfull \hbox (4.655pt too wide) in paragraph at lines 736--737
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[24] [25] [26] [27]
+[25] [26] [27] [28]
 
-LaTeX Warning: Reference `sec:my1' on page 28 undefined on input line 779.
+LaTeX Warning: Reference `sec:my1' on page 29 undefined on input line 785.
 
 
-LaTeX Warning: Reference `eq:myeq1' on page 28 undefined on input line 781.
+LaTeX Warning: Reference `eq:myeq1' on page 29 undefined on input line 787.
 
-[28] (final_report_template.bbl [29]) [30] (final_report_template.aux)
+[29] (final_report_template.bbl [30]) [31] (final_report_template.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 14574 strings out of 493312
- 276481 string characters out of 3138898
- 346952 words of memory out of 3000000
- 17838 multiletter control sequences out of 15000+200000
+ 14579 strings out of 493312
+ 276640 string characters out of 3138898
+ 347770 words of memory out of 3000000
+ 17843 multiletter control sequences out of 15000+200000
  11117 words of font info for 43 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,12n,60p,892b,1620s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -800,9 +800,9 @@ cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.
 pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/
 Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program 
 Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on final_report_template.pdf (30 pages, 262053 bytes).
+Output written on final_report_template.pdf (31 pages, 263454 bytes).
 PDF statistics:
- 206 PDF objects out of 1000 (max. 8388607)
+ 210 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  28 words of extra memory for PDF output out of 10000 (max. 10000000)
 

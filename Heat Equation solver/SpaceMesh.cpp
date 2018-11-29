@@ -33,6 +33,35 @@ void SpaceMesh::CommonMesh( SpaceMesh& firstmesh, SpaceMesh& secondmesh )
     RefreshSpaceMesh();
 }
 
+double SpaceMesh::GeneralTestFunctions(int nodeIndex, double x)
+{
+    if (x<mpSpaceNodes[nodeIndex]-mpSpaceMesh[nodeIndex-1]||x>mpSpaceNodes[nodeIndex]+mpSpaceMesh[nodeIndex])
+    {
+        std::cout<< " You are out of your interval "<< "\n";
+        return 0;
+    }
+    else if(nodeIndex==0)
+    {
+        //std::cout<< " half hat1 "<< "\n";
+        return -pow(mpSpaceMesh.at(nodeIndex),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
+    }
+    else if(nodeIndex==meshsize())
+    {
+        //std::cout<< " half hat2 "<< "\n";
+        return pow(mpSpaceMesh.at(nodeIndex-1),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
+    }
+    else if (x<=mpSpaceNodes[nodeIndex])
+    {
+        //std::cout<< " Lower "<< "\n";
+        return pow(mpSpaceMesh.at(nodeIndex-1),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
+    }
+    else if (x>mpSpaceNodes[nodeIndex])
+    {
+        //std::cout<< " Upper "<< "\n";
+        return -pow(mpSpaceMesh.at(nodeIndex),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
+    }
+}
+
 double SpaceMesh::TestFunctions( int nodeIndex, double x)
 {
         if((nodeIndex==0)||(nodeIndex==meshsize()))
@@ -54,7 +83,6 @@ double SpaceMesh::TestFunctions( int nodeIndex, double x)
         //std::cout<< " Upper "<< "\n";
         return -pow(mpSpaceMesh.at(nodeIndex),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
     }
-
 }
 
 void SpaceMesh::GenerateUniformMesh(double boundary, int numberofnodes)

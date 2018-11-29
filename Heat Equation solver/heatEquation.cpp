@@ -77,6 +77,8 @@ double HeatEquation::PiecewiseU( double x, SpaceMesh currentsmesh, std::vector<d
     std::array<double, 2> secondpoint;
 
     int upperindex = currentsmesh.IndexAbove( x );
+    g_0 = 0;
+    g_L = 0;
     auto boundaryconditionU0 = g_0;
     auto boundarycondition1Un = g_L;
 

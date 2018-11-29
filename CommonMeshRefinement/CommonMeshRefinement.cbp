@@ -16,6 +16,7 @@
 					<Add directory="../AdaptiveHeatEquationSolver" />
 					<Add directory="../Heat Equation solver" />
 					<Add directory="../../../Downloads/boost_1_68_0 (2)/boost_1_68_0" />
+					<Add directory="../SelfAdaptingHeatEquation" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -34,8 +35,6 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="../AdaptiveHeatEquationSolver/AdaptiveHeat.cpp" />
-		<Unit filename="../AdaptiveHeatEquationSolver/AdaptiveHeat.hpp" />
 		<Unit filename="../Heat Equation solver/MassMatrix.cpp" />
 		<Unit filename="../Heat Equation solver/MassMatrix.hpp" />
 		<Unit filename="../Heat Equation solver/SpaceMesh.cpp" />
@@ -48,7 +47,11 @@
 		<Unit filename="../Heat Equation solver/TriDiagMatrix.hpp" />
 		<Unit filename="../Heat Equation solver/heatEquation.cpp" />
 		<Unit filename="../Heat Equation solver/heatEquation.hpp" />
-		<Unit filename="driver.cpp" />
+		<Unit filename="../SelfAdaptingHeatEquation/AdaptiveHeat.cpp" />
+		<Unit filename="../SelfAdaptingHeatEquation/AdaptiveHeat.hpp" />
+		<Unit filename="Driver_boundaries.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -2,45 +2,29 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="..\AdaptiveHeatEquationSolver\AdaptiveHeat.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5673" topLine="66" />
-		</Cursor>
-		<Folding>
-			<Collapse line="18" />
-			<Collapse line="27" />
-			<Collapse line="48" />
-			<Collapse line="54" />
-		</Folding>
-	</File>
-	<File name="..\Heat Equation solver\SpaceMesh.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="197" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="..\Heat Equation solver\heatEquation.hpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="46" />
-		</Cursor>
-	</File>
-	<File name="..\AdaptiveHeatEquationSolver\AdaptiveHeat.hpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1009" topLine="24" />
-		</Cursor>
-	</File>
-	<File name="..\Heat Equation solver\heatEquation.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\Heat Equation solver\heatEquation.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="3399" topLine="60" />
 		</Cursor>
 	</File>
-	<File name="driver.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\Heat Equation solver\heatEquation.hpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1173" topLine="41" />
+			<Cursor1 position="0" topLine="45" />
 		</Cursor>
 	</File>
-	<File name="..\Heat Equation solver\SpaceMesh.hpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\Heat Equation solver\SpaceMesh.hpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="154" topLine="0" />
+			<Cursor1 position="354" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Driver_boundaries.c" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="..\Heat Equation solver\SpaceMesh.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1438" topLine="41" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

@@ -43,7 +43,7 @@ for (int i = 1; i<currentsmesh.meshsize(); i++)
     for(int j = 0; j<intervals.size()-1; j++)
     {
         integral = integral + adaptiveheat.IntegrateBasisWithU(i, intervals.at(j),
-                    intervals.at(j+1), currentsmesh, oldsmesh, u);
+                    intervals.at(j+1) );
                     std::cout<<integral<< "\n";
     }
     b.push_back(integral);

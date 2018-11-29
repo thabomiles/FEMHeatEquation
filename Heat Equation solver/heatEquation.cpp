@@ -18,7 +18,6 @@ void HeatEquation::SetSpaceTimeMesh( SpaceMesh smesh, TimeMesh tmesh, const std:
 {
     mpsmesh = smesh;
     mptmesh = tmesh;
-    moutputFileName = outputFileName;
     mpcurrenTimeStep = 0;
 }
 
@@ -42,12 +41,6 @@ mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
 LHS.MatrixSolver( mpRHS, mpx );
 
 mpPreviousSolution = mpx;
-
-if (j==int(0.5*m))
-{
-//    PrintErrorMesh();
-//    GlobalSpaceError();
-}
 
 }
 }
@@ -77,10 +70,9 @@ double HeatEquation::PiecewiseU( double x, SpaceMesh currentsmesh, std::vector<d
     std::array<double, 2> secondpoint;
 
     int upperindex = currentsmesh.IndexAbove( x );
-    g_0 = 0;
-    g_L = 0;
-    auto boundaryconditionU0 = g_0;
-    auto boundarycondition1Un = g_L;
+
+    auto boundaryconditionU0 = 0;
+    auto boundarycondition1Un = 0;
 
     if((upperindex==1)||(upperindex==0))
     {
@@ -132,6 +124,7 @@ for(int i=0; i<mpsmesh.meshsize(); i++)
 Q = gauss<double, 7>::integrate(SquaredError, mpsmesh.ReadSpaceNode(i), mpsmesh.ReadSpaceNode(i+1));
 mpErrorMesh.push_back( Q );
 }
+
 }
 
 double HeatEquation::GlobalSpaceError()
@@ -155,9 +148,17 @@ void HeatEquation::PrintErrorMesh()
 
 void HeatEquation::PrintSolution( )
 {
+        BuildErrorMesh();
         AnalyticSolutionVec();
+
+        std::cout << "FEM Approximation:     ";
         PrintVector(mpx);
+        std::cout << "Analytic Solution:     ";
         PrintVector(mpAnalyticSolution);
+        std::cout << "Error Mesh:            ";
+        PrintVector(mpErrorMesh);
+        std::cout << "Global Error           ";
+        GlobalSpaceError();
 }
 
 void HeatEquation::PrintVector( std::vector<double> aVector)
@@ -165,7 +166,6 @@ void HeatEquation::PrintVector( std::vector<double> aVector)
         for (auto k: aVector)
         std::cout << k << ", ";
         std::cout << " \n";
-
 }
 
 void HeatEquation::AddVectors(std::vector<double>func1, std::vector<double> func2, std::vector<double>& result)

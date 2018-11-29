@@ -14,6 +14,11 @@ double APDE::EllipticalRHSfunction( double x )
 {
 }
 
+double APDE::AnalyticGradientWRTx( double x, double t )
+{
+
+}
+
 //double APDE::ContinuousAnalyticSolution( double x, double t )
 //{
 //     return 6*exp(-t)*sin(M_PI*x);

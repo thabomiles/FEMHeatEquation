@@ -47,8 +47,6 @@
 		<Unit filename="../Heat Equation solver/TimeMesh.hpp" />
 		<Unit filename="../Heat Equation solver/TriDiagMatrix.cpp" />
 		<Unit filename="../Heat Equation solver/TriDiagMatrix.hpp" />
-		<Unit filename="../Heat Equation solver/heatEquation.cpp" />
-		<Unit filename="../Heat Equation solver/heatEquation.hpp" />
 		<Unit filename="../PDEs/APDE.cpp" />
 		<Unit filename="../PDEs/APDE.hpp" />
 		<Unit filename="../PDEs/EllipticPDE2.cpp" />
@@ -61,8 +59,6 @@
 		<Unit filename="../PDEs/PDE_Q2.hpp" />
 		<Unit filename="../PDEs/originalPDE.cpp" />
 		<Unit filename="../PDEs/originalPDE.hpp" />
-		<Unit filename="../SelfAdaptingHeatEquation/AdaptiveHeat.cpp" />
-		<Unit filename="../SelfAdaptingHeatEquation/AdaptiveHeat.hpp" />
 		<Unit filename="Driver.cpp" />
 		<Unit filename="SpaceAdaptiveSolver.cpp" />
 		<Unit filename="SpaceAdaptiveSolver.hpp" />

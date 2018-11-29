@@ -34,11 +34,8 @@ AdaptiveSolver adapt;
 adapt.SetSpaceTimeMesh(smesh, tmesh, firstpde);
 //adapt.SolveWithBCs();
 adapt.AdaptiveSolve();
-//adapt.PrintSolution();
-//
-//adapt.PrintErrorMesh();
-//
-adapt.GlobalSpaceError();
+adapt.PrintSolution();
+
 
 
 }

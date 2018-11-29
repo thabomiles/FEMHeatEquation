@@ -9,49 +9,69 @@
 #include "TimeMesh.hpp"
 #include "APDE.hpp"
 
-class GeneralHeat: public AdaptiveHeatEquation
+class GeneralHeat
 {
 public:
-    void SetSpaceTimeMesh( SpaceMesh smesh, TimeMesh tmesh, APDE& apde );
-    double ContinuousAnalyticSolution( double x, double t );
-    void BuiltbrVec();
-
-    void SolveWithBCs();
     void AnalyticSolutionVec( );
-    void PrintSolution( );
+
+    void AddVectors( std::vector<double>func1, std::vector<double> func2, std::vector<double>& result );
+
+    void buildfvec( SpaceMesh& a_smesh );
+
+    void BuiltbrVec();
 
     void BuildErrorMesh();
 
+    void BuildGradientVec( std::vector<double>& funct, SpaceMesh& relevantMesh, std::vector<double>& gradvec );
+
+    void BuildErrorEstimate ( );
+
+    double ContinuousAnalyticSolution( double x, double t );
+
     double GlobalSpaceError();
 
-    void PrintErrorMesh();
-
     double GeneralInterpolant( double x, std::vector<double>& funct, SpaceMesh& relevantMesh );
-
-    void BuildGradientVec( std::vector<double>& funct, SpaceMesh& relevantMesh, std::vector<double>& gradvec );
 
     void GradientRecoveryFunction(  SpaceMesh& relevantMesh,
                                              std::vector<double>& gradvec, std::vector<double>& gradrecovery );
 
-    void BuildErrorEstimate ( );
-
     double GradientFunction ( double x );
+
+    void PrintErrorMesh();
+
+    void PrintSolution( );
+
+    void PrintVector( std::vector<double> aVector);
+
+    void SetSpaceTimeMesh( SpaceMesh smesh, TimeMesh tmesh, APDE& apde );
+
+    void SolveWithBCs();
 
     void StationaryHeatEquation();
 
     void UnitTest1 ();
 
-    void buildfvec( SpaceMesh& a_smesh );
+    void VectorTimesScalar( std::vector<double>& func1, double scalar);
 
-    std::vector<double> FEMGradient;
-    std::vector<double> ErrorEstimate;
-    std::vector<double> GradientRecovery;
+
+    const double M_PI = 2*acos(0);
+
+    std::vector<double> FEMGradient, ErrorEstimate, GradientRecovery;
 
 protected:
-    double mpa, k_0, k_L, g_0, g_L;
+    double mpa,mT, k_0, k_L, g_0, g_L;
+
+    int mn, mm, mpcurrenTimeStep = 0, mpcurrentMeshIndex = 0;
+
     APDE* mppde;
-    std::vector<double> br;
-    std::vector<double> f_vec;
+    std::vector<double> br, f_vec, mpx, mpAnalyticSolution, mpPreviousSolution, mpRHS, mpErrorMesh;
+
+    SpaceMesh mpsmesh;
+    TimeMesh mptmesh;
+
+    StiffnessMatrix stiff;
+    MassMatrix mass;
+    TriDiagMatrix LHS;
 
 
 };

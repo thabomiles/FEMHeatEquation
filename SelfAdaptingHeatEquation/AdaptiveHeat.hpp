@@ -29,12 +29,9 @@ public:
 
 protected:
 
-    const double tolerance = 0.2;
-    const double coarseningtol = 0.05;
-    std::vector<int> intervalsForRefinement;
-    std::vector<int> NodesForRemoval;
-    SpaceMesh oldmesh;
-    SpaceMesh refinedsmesh;
+    const double tolerance = 0.2, coarseningtol = 0.05;
+    std::vector<int> intervalsForRefinement, NodesForRemoval;
+    SpaceMesh oldmesh, refinedsmesh;
     int mpcurrentMeshIndex = 0;
 
 };

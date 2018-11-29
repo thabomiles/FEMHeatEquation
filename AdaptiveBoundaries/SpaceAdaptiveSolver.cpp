@@ -70,22 +70,6 @@ void AdaptiveSolver::SaveIntervalsForCoarsening()
     }
 }
 
-void AdaptiveSolver::BuildSystemAtTimeStep()
-{
-stiff.BuildGeneralStiffnessMatrix( mpsmesh );
-stiff.MultiplyByScalar( mptmesh.ReadTimeMesh(mpcurrentMeshIndex) );
-mass.BuildGeneralMassMatrix(mpsmesh);
-LHS.AddTwoMatrices( mass, stiff );
-}
-
-void AdaptiveSolver::SystemSolver()
-{
-    BuildRHS();
-    LHS.MatrixSolver( mpRHS, mpx );
-    oldmesh.CopySpaceMesh(mpsmesh);
-}
-
-
 void AdaptiveSolver::SaveIntervalsForRefinement()
 {
     BuildErrorMesh();
@@ -169,30 +153,4 @@ BuildRHS();
 }
 
 
-void AdaptiveSolver::BuildErrorMesh()
-{
-mpErrorMesh.clear();
 
-auto SquaredError = [this](double x)
-    { return pow(GeneralInterpolant(x, mpx, mpsmesh ) -
-    ContinuousAnalyticSolution(x, mptmesh.ReadTimeStep(mpcurrenTimeStep)), 2); };
-
-double Q;
-for(int i=0; i<mpsmesh.meshsize(); i++)
-{
-Q = gauss<double, 7>::integrate(SquaredError, mpsmesh.ReadSpaceNode(i), mpsmesh.ReadSpaceNode(i+1));
-mpErrorMesh.push_back( Q );
-}
-}
-
-double AdaptiveSolver::GlobalSpaceError()
-{
-    BuildErrorMesh();
-    double globalError=0;
-    for(auto k: mpErrorMesh)
-        globalError = globalError + k;
-
-    std::cout << sqrt(globalError);
-    std::cout << " \n";
-    return sqrt(globalError);
-}

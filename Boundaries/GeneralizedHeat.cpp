@@ -15,6 +15,24 @@
 using namespace std;
 using namespace boost::math::quadrature;
 
+void GeneralHeat::AddVectors(std::vector<double>func1, std::vector<double> func2, std::vector<double>& result)
+{
+    if(func1.size()==func2.size())
+    {
+    result.clear();
+     for ( int i=0; i<func1.size(); i++ )
+     {
+         result.push_back(func1.at(i)+func2.at(i));
+     }
+    }
+    else
+    {
+        std::cout<< " your vectors are different sizes";
+        std::cout<<"\n";
+    }
+}
+
+
 void GeneralHeat::SetSpaceTimeMesh( SpaceMesh smesh, TimeMesh tmesh, APDE& apde )
 {
     mpsmesh = smesh;
@@ -35,6 +53,7 @@ double GeneralHeat::ContinuousAnalyticSolution( double x, double t )
 }
 
 
+
 void GeneralHeat::StationaryHeatEquation()
 {
 buildfvec( mpsmesh );
@@ -49,6 +68,7 @@ AddVectors(br, f_vec, br);
 stiff.MatrixSolver( br, mpx );
 
 PrintVector(mpx);
+PrintVector(mpAnalyticSolution);
 }
 
 void GeneralHeat::buildfvec( SpaceMesh& a_smesh)
@@ -85,9 +105,17 @@ void GeneralHeat::AnalyticSolutionVec( )
 
 void GeneralHeat::PrintSolution( )
 {
+        BuildErrorMesh();
         AnalyticSolutionVec();
+
+        std::cout << "FEM Approximation:     ";
         PrintVector(mpx);
+        std::cout << "Analytic Solution:     ";
         PrintVector(mpAnalyticSolution);
+        std::cout << "Error Mesh:            ";
+        PrintVector(mpErrorMesh);
+        std::cout << "Global Error           ";
+        GlobalSpaceError();
 }
 
 void GeneralHeat::BuildErrorMesh()
@@ -278,6 +306,21 @@ double GeneralHeat::GradientFunction ( double x )
     {
        return FEMGradient.at(upperindex-1);
     }
+}
+
+void GeneralHeat::PrintVector( std::vector<double> aVector)
+{
+        for (auto k: aVector)
+        std::cout << k << ", ";
+        std::cout << " \n";
+}
+
+void GeneralHeat::VectorTimesScalar( std::vector<double>& func1, double scalar)
+{
+         for ( int i=0; i<func1.size(); i++ )
+     {
+         func1.at(i)= scalar*func1.at(i);
+     }
 }
 
 void GeneralHeat::UnitTest1 ()

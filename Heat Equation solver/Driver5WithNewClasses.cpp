@@ -41,8 +41,6 @@ heat.Solve();
 smesh.PrintSpaceNodes();
 heat.PrintSolution();
 
-heat.GlobalSpaceError();
-
 }
 
 

@@ -31,14 +31,14 @@ EllipticPDE_Q1 Q1;
 EllipticPDE2 elliptic2;
 
 GeneralHeat genheat;
-genheat.SetSpaceTimeMesh(smesh, tmesh, elliptic2);
+genheat.SetSpaceTimeMesh(smesh, tmesh, firstpde);
 
-genheat.StationaryHeatEquation();
+//genheat.StationaryHeatEquation();
 
-//genheat.SolveWithBCs();
+genheat.SolveWithBCs();
 //
 //
-//genheat.PrintSolution();
+genheat.PrintSolution();
 //
 //genheat.BuildErrorMesh();
 //genheat.PrintErrorMesh();

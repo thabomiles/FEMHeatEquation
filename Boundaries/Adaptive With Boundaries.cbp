@@ -14,9 +14,9 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="../Heat Equation solver" />
-					<Add directory="../AdaptiveHeatEquationSolver" />
 					<Add directory="../PDEs" />
 					<Add directory="../Adaptive With Boundaries" />
+					<Add directory="../SelfAdaptingHeatEquation" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -35,7 +35,6 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="../AdaptiveHeatEquationSolver/AdaptiveHeat.hpp" />
 		<Unit filename="../Heat Equation solver/MassMatrix.cpp" />
 		<Unit filename="../Heat Equation solver/MassMatrix.hpp" />
 		<Unit filename="../Heat Equation solver/SpaceMesh.cpp" />
@@ -46,8 +45,6 @@
 		<Unit filename="../Heat Equation solver/TimeMesh.hpp" />
 		<Unit filename="../Heat Equation solver/TriDiagMatrix.cpp" />
 		<Unit filename="../Heat Equation solver/TriDiagMatrix.hpp" />
-		<Unit filename="../Heat Equation solver/heatEquation.cpp" />
-		<Unit filename="../Heat Equation solver/heatEquation.hpp" />
 		<Unit filename="../PDEs/APDE.cpp" />
 		<Unit filename="../PDEs/APDE.hpp" />
 		<Unit filename="../PDEs/EllipticPDE2.cpp" />

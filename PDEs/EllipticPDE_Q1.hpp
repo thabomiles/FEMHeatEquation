@@ -16,6 +16,7 @@ class EllipticPDE_Q1: public APDE
     public:
         friend class GeneralHeat;
         double EllipticalRHSfunction( double x );
+        double ContinuousAnalyticSolution( double x, double t );
         EllipticPDE_Q1();
 
     protected:

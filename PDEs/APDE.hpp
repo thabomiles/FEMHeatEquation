@@ -15,7 +15,9 @@ class APDE
     public:
         friend class GeneralHeat;
         virtual double ContinuousAnalyticSolution( double x, double t );
+        virtual double AnalyticGradientWRTx( double x, double t );
         virtual double EllipticalRHSfunction( double x );
+
 
 
     protected:

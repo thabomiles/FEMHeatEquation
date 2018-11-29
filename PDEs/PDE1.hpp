@@ -16,6 +16,7 @@ class PDE1: public APDE
 {
     public:
         double ContinuousAnalyticSolution( double x, double t );
+        double AnalyticGradientWRTx( double x, double t );
 
     protected:
 

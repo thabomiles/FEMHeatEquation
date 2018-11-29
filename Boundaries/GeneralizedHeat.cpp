@@ -168,7 +168,7 @@ if (j==int(0.5*m))
 
 double GeneralHeat::GeneralInterpolant( double x, std::vector<double>& funct, SpaceMesh& relevantMesh )
 {
-     std::array<double, 2> firstpoint;
+    std::array<double, 2> firstpoint;
     std::array<double, 2> secondpoint;
 
     int upperindex = relevantMesh.IndexAbove( x );

@@ -31,24 +31,14 @@ EllipticPDE_Q1 Q1;
 EllipticPDE2 elliptic2;
 
 AdaptiveSolver adapt;
-adapt.UnitTest();
-
-//GeneralHeat genheat;
-//genheat.SetSpaceTimeMesh(smesh, tmesh, elliptic2);
+adapt.SetSpaceTimeMesh(smesh, tmesh, firstpde);
+//adapt.SolveWithBCs();
+adapt.AdaptiveSolve();
+//adapt.PrintSolution();
 //
-//genheat.StationaryHeatEquation();
-
-//genheat.SolveWithBCs();
+//adapt.PrintErrorMesh();
 //
-//
-//genheat.PrintSolution();
-//
-//genheat.BuildErrorMesh();
-//genheat.PrintErrorMesh();
-//genheat.GlobalSpaceError();
-//
-//genheat.UnitTest1();
-
+adapt.GlobalSpaceError();
 
 
 }

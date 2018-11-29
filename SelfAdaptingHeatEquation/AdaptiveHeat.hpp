@@ -11,21 +11,15 @@ class AdaptiveHeatEquation: public HeatEquation
 {
 public:
     void AdaptiveSolver();
-    void SolveChangingMesh();
     void BuildSystemAtTimeStep();
     void SaveIntervalsForRefinement();
     void RefineMesh();
-    void UpdatePreviousSolution();
     void SolveStep();
-    double InterpolantFunction( double x, std::vector<double> funct, SpaceMesh& relevantMesh );
     void SystemSolver();
     double IntegrateBasisWithU( int NodeIndex, double lowerlimit, double upperlimit );
 
     double SolutionTimesBasis( int NodeIndex, double x );
     void BuildRHS();
-    void BuildRHSWithBC();
-    double IntegrateFullBasisWithU( int NodeIndex, double lowerlimit,
-                              double upperlimit );
 
     void SaveIntervalsForCoarsening();
 

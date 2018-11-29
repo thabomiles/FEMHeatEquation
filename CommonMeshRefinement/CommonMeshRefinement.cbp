@@ -49,9 +49,7 @@
 		<Unit filename="../Heat Equation solver/heatEquation.hpp" />
 		<Unit filename="../SelfAdaptingHeatEquation/AdaptiveHeat.cpp" />
 		<Unit filename="../SelfAdaptingHeatEquation/AdaptiveHeat.hpp" />
-		<Unit filename="Driver_boundaries.c">
-			<Option compilerVar="CC" />
-		</Unit>
+		<Unit filename="Driver_boundaries.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

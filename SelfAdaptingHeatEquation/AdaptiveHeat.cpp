@@ -93,11 +93,7 @@ double AdaptiveHeatEquation::IntegrateBasisWithU( int NodeIndex, double lowerlim
     auto SolutionWithBasis = [&](double x)
         { return mpsmesh.TestFunctions( NodeIndex, x)*PiecewiseU(x, oldmesh, mpPreviousSolution); };
 
-    double Q;
-
-    Q = gauss<double, 7>::integrate(SolutionWithBasis, lowerlimit, upperlimit);
-
-    return Q;
+    return gauss<double, 7>::integrate(SolutionWithBasis, lowerlimit, upperlimit);
 }
 
 

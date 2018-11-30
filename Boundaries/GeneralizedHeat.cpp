@@ -15,6 +15,23 @@
 using namespace std;
 using namespace boost::math::quadrature;
 
+void GeneralHeat::EnergyNorm()
+{
+mpEnergyNorm.clear();
+BuildGradientVec(mpx, mpsmesh, FEMGradient);
+mpsmesh.PrintSpaceNodes();
+
+
+auto SquaredError = [this](double x)
+    { return pow(GradientFunction(x) - mppde->AnalyticGradientWRTx(x, mptmesh.ReadTimeStep(mpcurrenTimeStep)), 2); };
+
+for(int i=0; i<mpsmesh.meshsize(); i++)
+{
+mpEnergyNorm.push_back( gauss<double, 7>::integrate(SquaredError,
+                                        mpsmesh.ReadSpaceNode(i), mpsmesh.ReadSpaceNode(i+1)) );
+}
+}
+
 void GeneralHeat::AddVectors(std::vector<double>func1, std::vector<double> func2, std::vector<double>& result)
 {
     if(func1.size()==func2.size())
@@ -31,7 +48,6 @@ void GeneralHeat::AddVectors(std::vector<double>func1, std::vector<double> func2
         std::cout<<"\n";
     }
 }
-
 
 void GeneralHeat::SetSpaceTimeMesh( SpaceMesh smesh, TimeMesh tmesh, APDE& apde )
 {
@@ -51,8 +67,6 @@ double GeneralHeat::ContinuousAnalyticSolution( double x, double t )
 {
      return mppde->ContinuousAnalyticSolution( x, t );
 }
-
-
 
 void GeneralHeat::StationaryHeatEquation()
 {
@@ -103,10 +117,24 @@ void GeneralHeat::AnalyticSolutionVec( )
 }
 }
 
+void GeneralHeat::AnalyticGradientVec()
+{
+    mpTrueGradVec.clear();
+     for (int i = 0; i<mpsmesh.meshsize()+1; i++)
+{
+    mpTrueGradVec.push_back(mppde->AnalyticGradientWRTx( mpsmesh.ReadSpaceNode(i),
+                                                                        mptmesh.ReadTimeStep(mpcurrenTimeStep)));
+}
+}
+
 void GeneralHeat::PrintSolution( )
 {
         BuildErrorMesh();
         AnalyticSolutionVec();
+        EnergyNorm();
+        double globalError=0;
+        for(auto k: mpEnergyNorm)
+            globalError = globalError + k;
 
         std::cout << "FEM Approximation:     ";
         PrintVector(mpx);
@@ -116,6 +144,14 @@ void GeneralHeat::PrintSolution( )
         PrintVector(mpErrorMesh);
         std::cout << "Global Error           ";
         GlobalSpaceError();
+        std::cout << "FEM Grad approx:       ";
+        PrintVector(FEMGradient);
+        std::cout << "Analytic Gradient:     ";
+        PrintVector(mpTrueGradVec);
+        std::cout << "Energy Error           ";
+        PrintVector(mpEnergyNorm);
+        std::cout << "Global Error           ";
+        std::cout << sqrt(globalError);
 }
 
 void GeneralHeat::BuildErrorMesh()
@@ -145,7 +181,6 @@ double GeneralHeat::GlobalSpaceError()
     std::cout << " \n";
     return sqrt(globalError);
 }
-
 
 void GeneralHeat::PrintErrorMesh()
 {
@@ -184,13 +219,7 @@ mpPreviousSolution = mpx;
 
 if (j==int(0.5*m))
 {
-//    PrintSolution();
-//    GlobalSpaceError();
-//    PrintVector(mpErrorMesh);
-//    std::cout<<mpcurrenTimeStep;
-    std::cout<<"\n";
 }
-
 }
 }
 
@@ -287,7 +316,6 @@ void GeneralHeat::BuildErrorEstimate(  )
     double dummy_var;
     for(int i=0; i<mpsmesh.meshsize(); i++)
     {
-
     ErrorEstimate.push_back( gauss<double, 7>::integrate(GradSquaredError, mpsmesh.ReadSpaceNode(i), mpsmesh.ReadSpaceNode(i+1)) );
     }
 }
@@ -330,11 +358,4 @@ void GeneralHeat::UnitTest1 ()
 
     BuildErrorEstimate();
     PrintVector(ErrorEstimate);
-
-    double globalError=0;
-    for(auto k: ErrorEstimate)
-        globalError = globalError + k;
-
-    std::cout << sqrt(globalError);
-    std::cout << " \n";
 }

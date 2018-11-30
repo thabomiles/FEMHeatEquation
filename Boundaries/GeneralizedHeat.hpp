@@ -12,7 +12,12 @@
 class GeneralHeat
 {
 public:
+
+    void EnergyNorm();
+
     void AnalyticSolutionVec( );
+
+    void AnalyticGradientVec();
 
     void AddVectors( std::vector<double>func1, std::vector<double> func2, std::vector<double>& result );
 
@@ -64,7 +69,7 @@ protected:
     int mn, mm, mpcurrenTimeStep = 0, mpcurrentMeshIndex = 0;
 
     APDE* mppde;
-    std::vector<double> br, f_vec, mpx, mpAnalyticSolution, mpPreviousSolution, mpRHS, mpErrorMesh;
+    std::vector<double> br, f_vec, mpx, mpAnalyticSolution, mpPreviousSolution, mpRHS, mpErrorMesh, mpEnergyNorm, mpTrueGradVec;
 
     SpaceMesh mpsmesh;
     TimeMesh mptmesh;

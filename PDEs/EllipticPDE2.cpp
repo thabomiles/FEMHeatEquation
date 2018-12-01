@@ -16,6 +16,11 @@ double EllipticPDE2::ContinuousAnalyticSolution( double x, double t )
     return cos(M_PI*x-M_PI*0.5);
 }
 
+double EllipticPDE2::AnalyticGradientWRTx( double x, double t )
+{
+    return -M_PI*sin(M_PI*x-M_PI*0.5);
+}
+
 
 EllipticPDE2::EllipticPDE2()
 {

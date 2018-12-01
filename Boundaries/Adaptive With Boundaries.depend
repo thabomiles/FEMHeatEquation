@@ -245,7 +245,7 @@
 	"StiffnessMatrix.hpp"
 	"APDE.hpp"
 
-1543527388 source:c:\users\thabo\desktop\heatequationdis\pdes\ellipticpde_q1.cpp
+1543688209 source:c:\users\thabo\desktop\heatequationdis\pdes\ellipticpde_q1.cpp
 	<iostream>
 	<cmath>
 	<math.h>
@@ -254,7 +254,7 @@
 	<array>
 	"EllipticPDE_Q1.hpp"
 
-1543527388 c:\users\thabo\desktop\heatequationdis\pdes\ellipticpde_q1.hpp
+1543682310 c:\users\thabo\desktop\heatequationdis\pdes\ellipticpde_q1.hpp
 	<cmath>
 	<math.h>
 	<vector>
@@ -277,7 +277,7 @@
 	"MassMatrix.hpp"
 	"StiffnessMatrix.hpp"
 
-1543528163 source:c:\users\thabo\desktop\heatequationdis\pdes\ellipticpde2.cpp
+1543689697 source:c:\users\thabo\desktop\heatequationdis\pdes\ellipticpde2.cpp
 	<iostream>
 	<cmath>
 	<math.h>
@@ -286,7 +286,7 @@
 	<array>
 	"EllipticPDE2.hpp"
 
-1543528127 c:\users\thabo\desktop\heatequationdis\pdes\ellipticpde2.hpp
+1543689607 c:\users\thabo\desktop\heatequationdis\pdes\ellipticpde2.hpp
 	<cmath>
 	<math.h>
 	<vector>
@@ -389,7 +389,7 @@
 	"SpaceMesh.hpp"
 	"TimeMesh.hpp"
 
-1543536669 source:c:\users\thabo\desktop\heatequationdis\boundaries\generalizedheat.cpp
+1543698919 source:c:\users\thabo\desktop\heatequationdis\boundaries\generalizedheat.cpp
 	<iostream>
 	<cmath>
 	<math.h>
@@ -405,7 +405,7 @@
 	<functional>
 	<boost/math/quadrature/gauss.hpp>
 
-1543536509 c:\users\thabo\desktop\heatequationdis\boundaries\generalizedheat.hpp
+1543702638 c:\users\thabo\desktop\heatequationdis\boundaries\generalizedheat.hpp
 	<iostream>
 	<vector>
 	<array>
@@ -415,11 +415,12 @@
 	"TimeMesh.hpp"
 	"APDE.hpp"
 
-1543536509 source:c:\users\thabo\desktop\heatequationdis\boundaries\driver.cpp
+1543702600 source:c:\users\thabo\desktop\heatequationdis\boundaries\driver.cpp
 	<iostream>
 	<cmath>
 	<vector>
 	<math.h>
+	<fstream>
 	"GeneralizedHeat.hpp"
 	"APDE.hpp"
 	"PDE_Q2.hpp"

@@ -42,6 +42,10 @@ public:
 
     double GradientFunction ( double x );
 
+    double GlobalEnergyError();
+
+    double H_1Norm();
+
     void PrintErrorMesh();
 
     void PrintSolution( );
@@ -58,6 +62,8 @@ public:
 
     void VectorTimesScalar( std::vector<double>& func1, double scalar);
 
+    void PrintUToFile();
+
 
     const double M_PI = 2*acos(0);
 
@@ -69,7 +75,7 @@ protected:
     int mn, mm, mpcurrenTimeStep = 0, mpcurrentMeshIndex = 0;
 
     APDE* mppde;
-    std::vector<double> br, f_vec, mpx, mpAnalyticSolution, mpPreviousSolution, mpRHS, mpErrorMesh, mpEnergyNorm, mpTrueGradVec;
+    std::vector<double> br, f_vec, mpx, mpAnalyticSolution, mpPreviousSolution, mpRHS, mpErrorMesh, mpEnergyNorm;
 
     SpaceMesh mpsmesh;
     TimeMesh mptmesh;

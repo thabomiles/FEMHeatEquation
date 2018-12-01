@@ -1,0 +1,25 @@
+\contentsline {section}{\numberline {1}Introduction}{4}
+\contentsline {section}{\numberline {2}The Linear Heat Equation}{6}
+\contentsline {subsection}{\numberline {2.1}The Heat Equation in Steady State}{6}
+\contentsline {subsection}{\numberline {2.2}The Time Dependent Problem}{7}
+\contentsline {subsection}{\numberline {2.3}Boundary Conditions}{8}
+\contentsline {section}{\numberline {3}The Finite Element Method}{9}
+\contentsline {subsection}{\numberline {3.1}Sobolev Spaces}{9}
+\contentsline {subsection}{\numberline {3.2}Subdivion and basis functions}{12}
+\contentsline {subsection}{\numberline {3.3}The Weak Formulation}{12}
+\contentsline {subsection}{\numberline {3.4}Results}{14}
+\contentsline {subsection}{\numberline {3.5}Implementation}{15}
+\contentsline {section}{\numberline {4}The Time Dependent Problem}{18}
+\contentsline {subsubsection}{\numberline {4.0.1}Implicit Euler}{20}
+\contentsline {subsection}{\numberline {4.1}Results}{20}
+\contentsline {subsection}{\numberline {4.2}Impementation}{21}
+\contentsline {section}{\numberline {5}A Posteriori Error Analysis}{24}
+\contentsline {subsubsection}{\numberline {5.0.1}Gradient Recovery}{24}
+\contentsline {subsubsection}{\numberline {5.0.2}Implementation}{27}
+\contentsline {section}{\numberline {6}Design of Adaptive Algorithms}{29}
+\contentsline {subsubsection}{\numberline {6.0.1}Space Adaptivity}{29}
+\contentsline {subsubsection}{\numberline {6.0.2}Time Adaptivity}{29}
+\contentsline {section}{\numberline {7}Some Numerical Examples}{30}
+\contentsline {section}{\numberline {8}Conclusions}{31}
+\contentsline {section}{\numberline {A}Raw data}{32}
+\contentsline {section}{\numberline {B}Calculations for section \G@refundefinedtrue \text {\normalfont \bfseries ??}\GenericWarning { }{LaTeX Warning: Reference `sec:my1' on page 32 undefined}}{32}

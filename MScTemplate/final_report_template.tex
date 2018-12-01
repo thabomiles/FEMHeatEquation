@@ -1,10 +1,13 @@
 
 \documentclass{uonmathreport}
 
+
 % this allows one to include .jpg etc figures using pdflatex
 % change the optional argument if you use dvips or others
 \usepackage[pdftex]{graphicx}
 
+\usepackage{graphicx} %Loading the package
+\graphicspath{{ParabolicPlots/}} 
 \usepackage{amsthm}
 \usepackage{bigints}
 \usepackage{relsize}
@@ -353,7 +356,7 @@ This gives us the linear and bilinear form with can be used to show by \ref{Lax 
 
 To find the FEM approximation to \ref{Steady Diffusion1} we look for a solution in a finite dimensional subspace of $V\subset H^1(0, L) $. The subspace we chose consists of continuous piecewise linear functions of defined on some given subdivision of $\Omega$. Then we can restate the weak formulation by the following:
 
-\begin{problem} \label{prob:Approx1}
+\begin{problem}{FEM Approximation} \label{prob:Approx1}\\
 Find $\quad u_h \in  V\subset H^1(0, 1) \quad : \quad a(u_h, v_h) =  \ell(v_h) \quad \forall v_h \subset V.$
 \end{problem}
 
@@ -387,6 +390,53 @@ b_i =& \int_I  \, f\phi_i dx
 AU = F			\label{eq:system1}
 \end{equation}
 
+\subsection{Results} \label{subsec:results1}
+
+\begin{figure}[h]
+   \includegraphics[width=0.5\textwidth]{EllipticPDE2.pdf}
+   
+ \label{fig:eliptic1}
+\end{figure}
+
+\begin{center}
+  \begin{tabular}{r|cccccc}
+    $Mesh$   & h & $\|u-u_h\|_{L_2(0,1)}$ & s & $\|u-u_h\|_{H^1(0,1)}$ & s  \\ \hline
+    $1$ & $\tfrac{1}{4}$ & 0.0174706 & 2 & 0.511854 & 5  \\
+    $2$ & $\tfrac{1}{8}$ & 0.00413879 & 5 & 0.252837 & 11  \\
+    $3$ & $\tfrac{1}{16}$ & 0.00102063 & 5 & 0.12604 & 11  \\
+	$4$ & $\tfrac{1}{32}$ & 0.000254283 & 2 & 0.0629727 & 5 \\
+    $5$ & $\tfrac{1}{64}$ & 6.3516e-005 & 5 & 0.0314805 & 11  \\
+    $6$ & $\tfrac{1}{128}$ & 1.58756e-005 & 5 & 0.0157395 & 11 \\
+  \end{tabular}
+\end{center}
+
+
+
+
+\begin{figure}[h]
+   \includegraphics[width=0.5\textwidth]{EllipticPDE1_hi.pdf}
+   
+ \label{fig:eliptic1}
+\end{figure}
+
+\begin{center}
+  \begin{tabular}{r|cccccc}
+    $Mesh$   & DOGs & $\|u-u_h\|_{L_2(0,1)}$ & s & $\|u-u_h\|_{H^1(0,1)}$ & s  \\ \hline
+    $1$ & $4$ & 0.0776354 & 2 & 0.825144 & 5  \\
+    $2$ & $7$ & 0.0170398 & 5 & 0.40185 & 11  \\
+    $3$ & $13$ & 0.00411272 & 5 & 0.199548 & 11  \\
+	$4$ & $25$ & 0.00101902 & 2 & 0.0996014 & 5 \\
+    $5$ & $49$ & 0.000254182 & 5 & 0.0497791 & 11  \\
+    $6$ & $97$ & 6.35097e-005 & 5 & 0.0248868 & 11 \\
+  \end{tabular}
+\end{center}
+
+\begin{figure}[h]
+   \includegraphics[width=0.5\textwidth]{EllipticPDE1Convergences.pdf}
+     
+ \label{fig:eliptic1}
+\end{figure}
+
 \subsection{Implementation} \label{subsec:Implementation1}
 
 It is evident that all the matrices that arise from the one dimensional FEM are tridiagonal. This is important as there are efficient algorithms available for solving tridiagonal systems. To store the matrix we only need to  none zero arrays that compose it. This is an ideal opportunity to create a data structure to store these matrices and also to make use of some object oriented design patterns to associate the characteristics of the matrices to a special case of tridiagonal matrices such as \ref{eq:stiff}. One possible declaration is given below:
@@ -397,20 +447,10 @@ public:
     void SetMatrix( std::vector<double> Diagonal,
          std::vector<double> LowerDiag, std::vector<double> UpperDiag);
 
-    void MatrixVectorMultiplier ( std::vector<double> f, 
-    	 std::vector<double> &ProductVector);
-
-    void PrintMatrix();
-
     void MatrixSolver( std::vector<double> f,
          std::vector<double> &x );
 
-    void MultiplyByScalar (double k);
-
-    void AddTwoMatrices ( TriDiagMatrix firstMatrix, 
-    	 TriDiagMatrix secondMatix );
 protected:
-    int mpn;
     std::vector<double> mpDiagonal;
     std::vector<double> mpLowerDiag;
     std::vector<double> mpUpperDiag;
@@ -455,9 +495,6 @@ In practise one of the major advantages of the FEM is the ease with which more c
 
 
 
-
-\clearpage
-
 \section{The Time Dependent Problem} \label{sec:Time dependent}
 
 Now that we have built some foundations by solving the elliptical PDE ref{eq:Steady Diffusion1} we can use the same method to discretise the space dimension of the Heat Equation.
@@ -471,39 +508,38 @@ Now that we have built some foundations by solving the elliptical PDE ref{eq:Ste
 
 Multplying $\dot{u} - u'' = f$ by a test function  $v \in H^1_0(0, L)$  on both sides gives:
 
-\begin{equation}
+\begin{equation*}
   \int_0^L \dot{u} v dx  - \int_0^L  u'' v  dx =   \int_0^L  f v  dx   
-\end{equation}
+\end{equation*}
 
 Integrating by parts yields:
 
-\begin{equation}
+\begin{equation*}
   \int_0^L \dot{u} v dx  + \int_0^L  u'' v  +u(0)v(0) - u(L)v(L) dx =   \int_0^L  f v  dx   
-\end{equation}
+\end{equation*}
 
-\begin{equation}
+\begin{equation*}
   \int_0^L \dot{u} v dx +  \int_0^L  u' v'  dx =   \int_0^L  f v  dx    
-\end{equation}
+\end{equation*}
 
 The weak formulation of our problem is now given by:
 
 \begin{problem}{Weak Formulation} \label{weak2}
 Find $\quad u(\cdot, t) \in H^1_0(0, L)$:
 \begin{align*}
-	(\dot{u}(\cdot, t), v) + a(u(\cdot, t), v) = (f(\cdot, t), v)&\\
-	(u(\cdot, 0), v) = (u_0, v)&\\
+	(&\dot{u}(\cdot, t), v) + a(u(\cdot, t), v) = (f(\cdot, t), v)\\
+	(&u(\cdot, 0), v) = (u_0, v)
 \end{align*}
 $\forall v \in H^1_0(0, L)$
 \end{problem}
-
 Here,
-
 \begin{align*}
  a(w, v)  = \int_0^L  w' v'  dx 
  (w, v) = \int_0^L  w v  dx 
 \end{align*}
 
-To find our approximation define a mesh on $\Omega =[0, 1] x [0, T]$.
+
+To find our approximation define a mesh on $\bar{\Omega}^{\Delta t}_h =[0, 1] \times [0, T]$.\\
 
 \begin{center}
 \begin{tikzpicture}
@@ -527,11 +563,9 @@ To find our approximation define a mesh on $\Omega =[0, 1] x [0, T]$.
 \end{tikzpicture}
 \end{center}
 
-$\bar{\Omega}^{\Delta t}_h = {(x_j =  0<$
-$0 = x_0, x_1, ..., x_N = 1, h_i = (x_i - x_i-1) i = 1, 2,... N.$
+Let the partition on the space mesh be $0 = x_0< x_1< ...< x_N = 1$ with intervals\\ $h_i = x_i - x_{i-1}$. Let the time partition be $0 = t_0< t_1< ...< t_M = T$ time steps $\Delta t_j = t_j - t_{j-1}$. For both space and time we allow the intervals to vary.
 
-
-
+Let $V\subset H^1_0(0, 1)$ denote the set of all continuous piecewise linear functions defined on the space mesh that are zero on the boundaries $x=0 and x=1$. 
 
 \subsubsection{Implicit Euler} \label{subsubsec:Implicit Euler}
 
@@ -539,7 +573,7 @@ $0 = x_0, x_1, ..., x_N = 1, h_i = (x_i - x_i-1) i = 1, 2,... N.$
 
 
 \begin{problem}{Implict Euler Method} \label{eq:Implicit Euler}
-\\Find $u_h^{m+1} \in V 0 \leq m \leq M-1$
+\\Find $u_h^{m+1} \in V \quad 0 \leq m \leq M-1$
 \begin{align*}
 \Big(\frac{u_h^{m+1} \, - \, u_h^{m}}{\Delta t}, v_h \Big) +\: a(u_h^m, v_h) \quad=&\quad (f(\cdot, t^m), v_h) \\
 (u^{0}_h - u_0, v_h)\quad  =& \quad0 \quad \forall v_h \in V
@@ -548,7 +582,47 @@ $0 = x_0, x_1, ..., x_N = 1, h_i = (x_i - x_i-1) i = 1, 2,... N.$
 %a(u_h^m, v_h) =& (f(\cdot, t^m), v_h) \\
 %{u^{0}_h - u_0, v_h) =& 0 \quad \forall v_h \in V
 
-\subsubsection{Impementation} \label{subsubsec:Implementation}
+We can therefore rewrite the system as:
+
+\begin{align*}
+( u_h^{m+1} \, v_h)  + \: \Delta t a(u_h^m, v_h) \quad=\quad (u_h^{m}, \, v_h ) \:+\: \Delta t(f(\cdot, t^m), v_h) \\
+v_h \quad \forall v_h \in V \quad 0 \leq m \leq M-1 \\
+\end{align*}
+with
+\begin{equation}
+(u^{0}_h) \quad  = \quad u_0, v_h \quad \forall v_h \in V
+\end{equation}
+
+\subsection{Results} \label{subsec:results2}
+\begin{figure}[h]
+   \includegraphics[width=0.5\textwidth]{ParabolicConvergences.pdf}
+   
+ \label{fig:eliptic1}
+\end{figure}
+
+\begin{center}
+  \begin{tabular}{r|cccccc}  \label{table:Parabolic1}
+    $Mesh$   & DOGs & $\|u-u_h\|_{L_2(0,1)}$ & s & $\|u-u_h\|_{H^1(0,1)}$ & s  \\ \hline
+    $1$ & $4$ & 0.304466 & 2 & 1.74657 & 5  \\
+    $2$ & $7$ & 0.0918245 & 5 & 0.883062 & 11  \\
+    $3$ & $13$ & 0.0231464 & 5 & 0.439949 & 11  \\
+	$4$ & $25$ & 0.00575675 & 2 & 0.219779 & 5 \\
+    $5$ & $49$ & 0.00143142 & 5 & 0.109867 & 11  \\
+    $6$ & $97$ & 0.000356574 & 5 & 0.054931 & 11 \\
+  \end{tabular}
+\end{center}
+
+
+\begin{figure}[h]
+   \includegraphics[width=0.5\textwidth]{ParabolicConvergences.pdf}
+   
+ \label{fig:eliptic1}
+\end{figure}
+
+
+
+
+\subsection{Impementation} \label{subsubsec:Implementation}
 
 When it comes to the computer implementation of the FEM on time dependent or multidimensional problems "meshing" is the important art-form. There are entire software packages available to carry out the creation and manipulation of mesh structures and it would therefore benefit any FEM project to either design there own data-structures or implement an existing mesh package. 
 
@@ -747,6 +821,10 @@ void GeneralHeat::GradientRecoveryFunction( SpaceMesh& relevantMesh,
 \newpage
 
 \section{Design of Adaptive Algorithms} \label{sec:Adaptive}
+
+\subsubsection{Space Adaptivity} \label{subsubsec:KK Implementation}
+
+\subsubsection{Time Adaptivity} \label{subsubsec:Time Adaptivity}
 
 \newpage
 

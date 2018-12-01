@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cmath>
 #include <math.h>
-#include <iostream>
 #include <vector>
 #include <array>
 #include "GeneralizedHeat.hpp"
@@ -15,12 +14,11 @@
 using namespace std;
 using namespace boost::math::quadrature;
 
+
 void GeneralHeat::EnergyNorm()
 {
 mpEnergyNorm.clear();
 BuildGradientVec(mpx, mpsmesh, FEMGradient);
-mpsmesh.PrintSpaceNodes();
-
 
 auto SquaredError = [this](double x)
     { return pow(GradientFunction(x) - mppde->AnalyticGradientWRTx(x, mptmesh.ReadTimeStep(mpcurrenTimeStep)), 2); };
@@ -80,9 +78,6 @@ BuiltbrVec();
 AddVectors(br, f_vec, br);
 
 stiff.MatrixSolver( br, mpx );
-
-PrintVector(mpx);
-PrintVector(mpAnalyticSolution);
 }
 
 void GeneralHeat::buildfvec( SpaceMesh& a_smesh)
@@ -117,20 +112,12 @@ void GeneralHeat::AnalyticSolutionVec( )
 }
 }
 
-void GeneralHeat::AnalyticGradientVec()
-{
-    mpTrueGradVec.clear();
-     for (int i = 0; i<mpsmesh.meshsize()+1; i++)
-{
-    mpTrueGradVec.push_back(mppde->AnalyticGradientWRTx( mpsmesh.ReadSpaceNode(i),
-                                                                        mptmesh.ReadTimeStep(mpcurrenTimeStep)));
-}
-}
 
 void GeneralHeat::PrintSolution( )
 {
         BuildErrorMesh();
         AnalyticSolutionVec();
+//        AnalyticGradientVec();
         EnergyNorm();
         double globalError=0;
         for(auto k: mpEnergyNorm)
@@ -146,12 +133,14 @@ void GeneralHeat::PrintSolution( )
         GlobalSpaceError();
         std::cout << "FEM Grad approx:       ";
         PrintVector(FEMGradient);
-        std::cout << "Analytic Gradient:     ";
-        PrintVector(mpTrueGradVec);
+//        std::cout << "Analytic Gradient:     ";
+//        PrintVector(mpTrueGradVec);
         std::cout << "Energy Error           ";
         PrintVector(mpEnergyNorm);
-        std::cout << "Global Error           ";
-        std::cout << sqrt(globalError);
+        std::cout << "Global Energy Error    ";
+        std::cout << globalError;
+        //GlobalEnergyError();
+        std::cout << "\n";
 }
 
 void GeneralHeat::BuildErrorMesh()
@@ -182,6 +171,19 @@ double GeneralHeat::GlobalSpaceError()
     return sqrt(globalError);
 }
 
+double GeneralHeat::GlobalEnergyError()
+{
+    EnergyNorm();
+    double globalError=0;
+    for(auto k: mpEnergyNorm)
+        globalError = globalError + k;
+
+    std::cout << sqrt(globalError);
+    std::cout << " \n";
+    return sqrt(globalError);
+
+}
+
 void GeneralHeat::PrintErrorMesh()
 {
     BuildErrorMesh();
@@ -191,9 +193,14 @@ void GeneralHeat::PrintErrorMesh()
 
 void GeneralHeat::SolveWithBCs()
 {
+mpcurrenTimeStep = 0;
+mpcurrentMeshIndex = 0;
 AnalyticSolutionVec();
 mpPreviousSolution = mpAnalyticSolution;
 stiff.SetParameters(k_0, k_L, mpa);
+
+ofstream myfile;
+myfile.open ("solution.csv");
 
 int m = mptmesh.NumberOfTimeSteps();
 for(int j = 0; j<m; j++)
@@ -214,6 +221,10 @@ VectorTimesScalar( br, mptmesh.ReadTimeMesh(mpcurrentMeshIndex) );
 AddVectors( br, mpRHS, mpRHS );
 LHS.MatrixSolver( mpRHS, mpx );
 
+for (auto k: mpx)
+    myfile << k << ", ";
+myfile << "\n";
+
 mpPreviousSolution = mpx;
 
 
@@ -221,6 +232,7 @@ if (j==int(0.5*m))
 {
 }
 }
+myfile.close();
 }
 
 double GeneralHeat::GeneralInterpolant( double x, std::vector<double>& funct, SpaceMesh& relevantMesh )
@@ -349,6 +361,22 @@ void GeneralHeat::VectorTimesScalar( std::vector<double>& func1, double scalar)
      {
          func1.at(i)= scalar*func1.at(i);
      }
+}
+
+double GeneralHeat::H_1Norm()
+{
+    EnergyNorm();
+    BuildErrorMesh();
+    double globalError=0;
+    for(int i=0;i<mpErrorMesh.size(); i++)
+    {
+        globalError =mpEnergyNorm.at(i)+mpErrorMesh.at(i)+globalError;
+    }
+
+    std::cout << sqrt(globalError);
+    std::cout << " \n";
+    return sqrt(globalError);
+
 }
 
 void GeneralHeat::UnitTest1 ()

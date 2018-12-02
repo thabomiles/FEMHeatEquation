@@ -14,5 +14,5 @@ double PDE1::ContinuousAnalyticSolution( double x, double t )
 
 double PDE1::AnalyticGradientWRTx( double x, double t )
 {
-    return 2*M_PI*exp(-4*t)*cos(2*M_PI*x);
+    return 2*M_PI*exp(-4*t)*cos(2*M_PI*x)+1;
 }

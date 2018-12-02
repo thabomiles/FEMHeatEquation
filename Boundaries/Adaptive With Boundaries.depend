@@ -25,12 +25,12 @@
 	"MassMatrix.hpp"
 	"StiffnessMatrix.hpp"
 
-1543432612 c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.hpp
+1543755611 c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.hpp
 	<iostream>
 	<vector>
 	<array>
 
-1541327309 c:\users\thabo\desktop\heatequationdis\heat equation solver\timemesh.hpp
+1543755611 c:\users\thabo\desktop\heatequationdis\heat equation solver\timemesh.hpp
 	<iostream>
 	<vector>
 	<array>
@@ -88,7 +88,7 @@
 	<cmath>
 	"SpaceMesh.hpp"
 
-1543447583 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.cpp
+1543763023 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.cpp
 	<iostream>
 	<vector>
 	<array>
@@ -293,7 +293,7 @@
 	<array>
 	"APDE.hpp"
 
-1543332657 c:\users\thabo\desktop\heatequationdis\pdes\pde_q2.hpp
+1543767463 c:\users\thabo\desktop\heatequationdis\pdes\pde_q2.hpp
 	<cmath>
 	<math.h>
 	<vector>
@@ -347,7 +347,7 @@
 	"MassMatrix.hpp"
 	"StiffnessMatrix.hpp"
 
-1543329452 source:c:\users\thabo\desktop\heatequationdis\pdes\pde_q2.cpp
+1543767709 source:c:\users\thabo\desktop\heatequationdis\pdes\pde_q2.cpp
 	<iostream>
 	<cmath>
 	<math.h>
@@ -389,11 +389,10 @@
 	"SpaceMesh.hpp"
 	"TimeMesh.hpp"
 
-1543698919 source:c:\users\thabo\desktop\heatequationdis\boundaries\generalizedheat.cpp
+1543759771 source:c:\users\thabo\desktop\heatequationdis\boundaries\generalizedheat.cpp
 	<iostream>
 	<cmath>
 	<math.h>
-	<iostream>
 	<vector>
 	<array>
 	"GeneralizedHeat.hpp"
@@ -415,7 +414,7 @@
 	"TimeMesh.hpp"
 	"APDE.hpp"
 
-1543702600 source:c:\users\thabo\desktop\heatequationdis\boundaries\driver.cpp
+1543765752 source:c:\users\thabo\desktop\heatequationdis\boundaries\driver.cpp
 	<iostream>
 	<cmath>
 	<vector>

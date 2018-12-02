@@ -131,7 +131,7 @@ void SpaceMesh::GenerateSpaceMesh( std::vector<double> SpaceNodes )
 
 void SpaceMesh::GenerateDefaultSpaceMesh()
 {
-    mpSpaceNodes = {0, 0.25, 0.5, 1};
+    mpSpaceNodes = {0.0, 0.25, 0.5, 1.0};
     RefreshSpaceMesh();
 }
 

@@ -23,14 +23,14 @@ public:
     double ReadTimeStep (int i);
     double ReadTimeMesh (int i);
     int NumberOfTimeSteps();
-
+    std::vector<double> mpTimeNodes;
 
 
 
 protected:
 
     int mpnumberOfTimeSteps;
-    std::vector<double> mpTimeNodes;
+
     std::vector<double> mpTimeMesh;
 
 };

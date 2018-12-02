@@ -8,6 +8,7 @@
 
 \usepackage{graphicx} %Loading the package
 \graphicspath{{ParabolicPlots/}} 
+\graphicspath{{EllipticalPlots/}} 
 \usepackage{amsthm}
 \usepackage{bigints}
 \usepackage{relsize}
@@ -481,14 +482,6 @@ PrintVector(U);
 
 \clearpage
 
-\begin{figure}
-   \includegraphics[width=0.5\textwidth]{EllipticPDE2.pdf}
-   
- \label{fig:eliptic1}
-\end{figure}
-
-
-
 We have not yet discussed the implementation of boundary conditions. In the derivation of the weak formulation the boundary conditions are projected into the solution space. This has been done in \ref{prob:Weak Formulation Elliptic} by choosing $H^1_0(0, L)$ for our zero dirichlet boundaries.
 
 In practise one of the major advantages of the FEM is the ease with which more complicated boundary conditions can be implemented. A detailed account of doing this in a general is given in \cite{larson2013finite}. The method they advocate is implementing Robin boundary conditions and using parameters to set Neuman conditions or approximate dirichlet conditions. From here onward this is the method used in the code from here on.
@@ -594,11 +587,45 @@ with
 \end{equation}
 
 \subsection{Results} \label{subsec:results2}
-\begin{figure}[h]
+
+
+\begin{figure}
+   \includegraphics[width=0.5\textwidth]{OriginalPDEcoarse.pdf}
+   
+ \label{fig:OriginalPDEcoarse}
+\end{figure}
+
+hgliyvli
+
+\begin{figure}
+   \includegraphics[width=0.5\textwidth]{OriginalPDEfine.pdf}
+   
+ \label{fig:OriginalPDEfine}
+\end{figure}
+gilyglyib
+
+\begin{figure}
+   \includegraphics[width=0.5\textwidth]{firstPDE3d.pdf}
+   
+ \label{fig:firstPDE3d}
+\end{figure}
+
+kugkuyv
+
+\begin{figure}
+   \includegraphics[width=0.5\textwidth]{Heat1.pdf}
+   
+ \label{fig:Heat1}
+\end{figure}
+
+luiygliy
+
+\begin{figure}
    \includegraphics[width=0.5\textwidth]{ParabolicConvergences.pdf}
    
- \label{fig:eliptic1}
+ \label{fig:paraconvergences1}
 \end{figure}
+ukkuv
 
 \begin{center}
   \begin{tabular}{r|cccccc}  \label{table:Parabolic1}
@@ -613,11 +640,6 @@ with
 \end{center}
 
 
-\begin{figure}[h]
-   \includegraphics[width=0.5\textwidth]{ParabolicConvergences.pdf}
-   
- \label{fig:eliptic1}
-\end{figure}
 
 
 
@@ -848,20 +870,6 @@ mathematical symbols like $\xi$, $\nabla$, $\infty$, $\log$, $\iff$, etc.
 
 \section{Raw data} \label{app:rawdata}
 
-This could contain a table of interesting numbers
-\begin{center}
-  \begin{tabular}{r|cccccc}
-    $n$   & 1 & 2 & 3 & 4 & 5 & 6 \\ \hline
-    $F_n$ & 1 & 1 & 2 & 3 & 5 & 8 \\
-    $B_n$ & $\tfrac{1}{2}$ & $\tfrac{1}{6}$ & 0 & $-\tfrac{1}{30}$ & 0 &  $\tfrac{1}{42}$ \\
-    $p_n$ & 2 & 3& 5& 7 & 11 & 13 \\
-  \end{tabular}
-\end{center}
-
-Material that needs to be included but would distract from the main
-line of presentation can be put in appendices.
-Examples of such material are raw
-data, computing codes and details of calculations.
 
 
 \section{Calculations for section \ref{sec:my1}} \label{app:calculations}

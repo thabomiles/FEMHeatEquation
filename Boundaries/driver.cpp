@@ -15,13 +15,15 @@ using namespace std;
 using namespace boost::math::quadrature;
 //const double M_PI = 2*acos(0);
 
+void printTime(SpaceMesh a_smesh, TimeMesh a_tmesh);
+
 int main(int argc, char* argv[])
 {
 
 SpaceMesh smesh;
 smesh.GenerateDefaultSpaceMesh();
-//smesh.GloballyBisectSpaceMesh();
-//smesh.GloballyBisectSpaceMesh();
+smesh.GloballyBisectSpaceMesh();
+smesh.GloballyBisectSpaceMesh();
 //smesh.GloballyBisectSpaceMesh();
 //smesh.GloballyBisectSpaceMesh();
 
@@ -39,13 +41,14 @@ genheat.SetSpaceTimeMesh(smesh, tmesh, firstpde);
 
 genheat.SolveWithBCs();
 genheat.PrintSolution();
+
 //genheat.GlobalSpaceError();
 
 //for (int i=0; i<6; i++)
 //{
 //    genheat.SetSpaceTimeMesh(smesh, tmesh, firstpde);
 //    genheat.SolveWithBCs();
-//    //std::cout<< smesh.meshsize() + 1 <<"\n";
+    std::cout<< smesh.meshsize() + 1 <<"\n";
 //    genheat.GlobalSpaceError();
 //    //genheat.H_1Norm();
 //    std::cout<< ", " ;
@@ -53,23 +56,20 @@ genheat.PrintSolution();
 //    tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize()+1, 2), 1.0);
 //}
 
-//genheat.StationaryHeatEquation();
-
-//genheat.SolveWithBCs();
-
-//genheat.EnergyNorm();
-
-//genheat.PrintSolution();
-//
-//genheat.BuildErrorMesh();
-//genheat.PrintErrorMesh();
-//genheat.GlobalSpaceError();
-//
-//genheat.UnitTest1();
-
-
-
 
 }
 
-
+void printTime(SpaceMesh a_smesh, TimeMesh a_tmesh)
+{
+    ofstream myfile2;
+    myfile2.open ("Y.csv");
+    for(int j=1;j<a_tmesh.NumberOfTimeSteps()+1;j++ )
+    {
+    for(int i = 0; i<a_smesh.meshsize()+1; i++)
+    {
+        myfile2 << a_tmesh.ReadTimeStep(j) << ", ";
+    }
+    myfile2 << "\n";
+    }
+    myfile2.close();
+}

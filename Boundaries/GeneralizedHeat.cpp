@@ -199,8 +199,14 @@ AnalyticSolutionVec();
 mpPreviousSolution = mpAnalyticSolution;
 stiff.SetParameters(k_0, k_L, mpa);
 
+std::array<double, 4> header;
+
 ofstream myfile;
+ofstream myfile1;
 myfile.open ("solution.csv");
+myfile1.open ("X.csv");
+
+
 
 int m = mptmesh.NumberOfTimeSteps();
 for(int j = 0; j<m; j++)
@@ -224,6 +230,9 @@ LHS.MatrixSolver( mpRHS, mpx );
 for (auto k: mpx)
     myfile << k << ", ";
 myfile << "\n";
+for (auto k: mpsmesh.mpSpaceNodes)
+    myfile1 << k << ", ";
+myfile1 << "\n";
 
 mpPreviousSolution = mpx;
 
@@ -233,6 +242,8 @@ if (j==int(0.5*m))
 }
 }
 myfile.close();
+myfile1.close();
+
 }
 
 double GeneralHeat::GeneralInterpolant( double x, std::vector<double>& funct, SpaceMesh& relevantMesh )

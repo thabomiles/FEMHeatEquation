@@ -31,11 +31,11 @@ public:
     double ReadSpaceMesh (int i);
     int meshsize();
     int IndexAbove ( double x );
-
+    std::vector<double> mpSpaceNodes ;
 
 protected:
 
-    std::vector<double> mpSpaceNodes ;
+
     std::vector<double> mpSpaceMesh;
     int mpmeshsize;
 

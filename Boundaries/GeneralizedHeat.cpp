@@ -27,7 +27,12 @@ for(int i=0; i<mpsmesh.meshsize(); i++)
 {
 mpEnergyNorm.push_back( gauss<double, 7>::integrate(SquaredError,
                                         mpsmesh.ReadSpaceNode(i), mpsmesh.ReadSpaceNode(i+1)) );
+
 }
+        double globalError=0;
+        for(auto k: mpEnergyNorm)
+            globalError = globalError + k;
+        //std::cout << sqrt(globalError);
 }
 
 void GeneralHeat::AddVectors(std::vector<double>func1, std::vector<double> func2, std::vector<double>& result)
@@ -396,5 +401,14 @@ void GeneralHeat::UnitTest1 ()
     GradientRecoveryFunction( mpsmesh, FEMGradient, GradientRecovery );
 
     BuildErrorEstimate();
-    PrintVector(ErrorEstimate);
+
+    double globalError=0;
+    for(int i=0;i<ErrorEstimate.size(); i++)
+    {
+        globalError =ErrorEstimate.at(i)+globalError;
+    }
+
+    std::cout << sqrt(globalError)<<"\n";
+
+    //PrintVector(ErrorEstimate);
 }

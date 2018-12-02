@@ -7,8 +7,8 @@
 \usepackage[pdftex]{graphicx}
 
 \usepackage{graphicx} %Loading the package
-\graphicspath{{ParabolicPlots/}} 
-\graphicspath{{EllipticalPlots/}} 
+\graphicspath{{ParabolicPlots/}{EllipticalPlots/}{Aposteriori/}} 
+%\graphicspath{EllipticalPlots/} 
 \usepackage{amsthm}
 \usepackage{bigints}
 \usepackage{relsize}
@@ -422,13 +422,13 @@ AU = F			\label{eq:system1}
 
 \begin{center}
   \begin{tabular}{r|cccccc}
-    $Mesh$   & DOGs & $\|u-u_h\|_{L_2(0,1)}$ & s & $\|u-u_h\|_{H^1(0,1)}$ & s  \\ \hline
-    $1$ & $4$ & 0.0776354 & 2 & 0.825144 & 5  \\
-    $2$ & $7$ & 0.0170398 & 5 & 0.40185 & 11  \\
-    $3$ & $13$ & 0.00411272 & 5 & 0.199548 & 11  \\
-	$4$ & $25$ & 0.00101902 & 2 & 0.0996014 & 5 \\
-    $5$ & $49$ & 0.000254182 & 5 & 0.0497791 & 11  \\
-    $6$ & $97$ & 6.35097e-005 & 5 & 0.0248868 & 11 \\
+    $Mesh$   & DOGs & $\|u-u_h\|_{L_2(0,1)}$  & $\|u-u_h\|_{H^1(0,1)}$   \\ \hline
+    $1$ & $4$ & 0.0776354  & 0.825144   \\
+    $2$ & $7$ & 0.0170398  & 0.40185   \\
+    $3$ & $13$ & 0.00411272  & 0.199548   \\
+	$4$ & $25$ & 0.00101902  & 0.0996014 \\
+    $5$ & $49$ & 0.000254182  & 0.0497791   \\
+    $6$ & $97$ & 6.35097e-005  & 0.0248868  \\
   \end{tabular}
 \end{center}
 
@@ -589,43 +589,30 @@ with
 \subsection{Results} \label{subsec:results2}
 
 
-\begin{figure}
+\begin{figure}[h]
    \includegraphics[width=0.5\textwidth]{OriginalPDEcoarse.pdf}
+   \includegraphics[width=0.5\textwidth]{OriginalPDEfine.pdf}
    
  \label{fig:OriginalPDEcoarse}
 \end{figure}
 
-hgliyvli
 
-\begin{figure}
-   \includegraphics[width=0.5\textwidth]{OriginalPDEfine.pdf}
-   
- \label{fig:OriginalPDEfine}
-\end{figure}
-gilyglyib
 
-\begin{figure}
+\begin{figure}[h]
    \includegraphics[width=0.5\textwidth]{firstPDE3d.pdf}
+   \includegraphics[width=0.5\textwidth]{firstPDE3dfine.pdf}
    
  \label{fig:firstPDE3d}
 \end{figure}
 
-kugkuyv
 
-\begin{figure}
-   \includegraphics[width=0.5\textwidth]{Heat1.pdf}
+\begin{figure}[h]
+   \includegraphics[width=0.5\textwidth]{Heat1angle.pdf}
    
  \label{fig:Heat1}
 \end{figure}
 
-luiygliy
 
-\begin{figure}
-   \includegraphics[width=0.5\textwidth]{ParabolicConvergences.pdf}
-   
- \label{fig:paraconvergences1}
-\end{figure}
-ukkuv
 
 \begin{center}
   \begin{tabular}{r|cccccc}  \label{table:Parabolic1}
@@ -638,6 +625,12 @@ ukkuv
     $6$ & $97$ & 0.000356574 & 5 & 0.054931 & 11 \\
   \end{tabular}
 \end{center}
+
+\begin{figure}[h]
+   \includegraphics[width=0.5\textwidth]{ParabolicConvergencesOriginal.pdf}
+   
+ \label{fig:paraconvergences1}
+\end{figure}
 
 
 
@@ -801,7 +794,49 @@ A we also need to decide what to do with the elements at each side as our curren
 \end{tikzpicture}
 \end{center}
 
-\subsubsection{Implementation} \label{subsubsec:KK Implementation}
+\subsection{Results} \label{subsec:results3}
+
+
+\begin{center}
+  \begin{tabular}{r|cccccc}  \label{table:IndicatorPDE1}
+    $Mesh$   & DOGs & $\|u-u_h\|_{a(0,1)}$ & $\|\eta\|$  \\ \hline
+    $1$ & $4$ & 1.63002 &  1.71983   \\
+    $2$ & $7$ & 0.862629 &  0.878275   \\
+    $3$ & $13$ & 0.435436 & 0.43934   \\
+	$4$ & $25$ & 0.218313 &  0.219703  \\
+    $5$ & $49$ & 0.109433 &  0.109858   \\
+    $6$ & $97$ & 0.0548128 &  0.0549298  \\
+  \end{tabular}
+\end{center}
+
+
+\begin{figure}[h]
+   \includegraphics[width=0.5\textwidth]{IndicatorPDE1.pdf}
+   
+ \label{fig:IndicatorPDE1}
+\end{figure}
+
+\begin{center}
+  \begin{tabular}{r|cccccc}  \label{table:IndicatorPDE2}
+    $Mesh$   & DOGs & $\|u-u_h\|_{a(0,1)}$ & $\|\eta\|$  \\ \hline
+    $1$ & $4$ & 0.29131 &  0.108467   \\
+    $2$ & $7$ & 0.074447 &  0.0201663   \\
+    $3$ & $13$ & 0.0229916 & 0.0135003   \\
+	$4$ & $25$ & 0.00855775 &  0.00718688  \\
+    $5$ & $49$ & 0.00381445 &  0.00363495   \\
+    $6$ & $97$ & 0.00184453 &  0.00182187  \\
+  \end{tabular}
+\end{center}
+
+
+
+\begin{figure}[h]
+   \includegraphics[width=0.5\textwidth]{IndicatorPDE2.pdf}
+   
+ \label{fig:IndicatorPDE1}
+\end{figure}
+
+\subsection{Implementation} \label{subsubsec:KK Implementation}
 
 To make the most use of our existing member functions in the SpaceMesh class we should make sure our gradient recovery vector match the space nodes. This will allow the interpolant to be completely defined by the new vector and a reference to a grid. This means that the first and last point though should be defined on the boundary. In practise this means hard coding an interpolant over the first and last element and taking its value at the boundary.
 
@@ -843,6 +878,8 @@ void GeneralHeat::GradientRecoveryFunction( SpaceMesh& relevantMesh,
 \newpage
 
 \section{Design of Adaptive Algorithms} \label{sec:Adaptive}
+
+
 
 \subsubsection{Space Adaptivity} \label{subsubsec:KK Implementation}
 

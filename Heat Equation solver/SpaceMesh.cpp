@@ -191,7 +191,7 @@ double SpaceMesh::ReadSpaceMesh (int i)
 
 int SpaceMesh::meshsize()
 {
-    return mpSpaceMesh.size();
+    return mpSpaceNodes.size()-1;
 }
 
 int SpaceMesh::IndexAbove ( double x )

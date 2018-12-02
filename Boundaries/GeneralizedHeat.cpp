@@ -204,8 +204,6 @@ AnalyticSolutionVec();
 mpPreviousSolution = mpAnalyticSolution;
 stiff.SetParameters(k_0, k_L, mpa);
 
-std::array<double, 4> header;
-
 ofstream myfile;
 ofstream myfile1;
 myfile.open ("solution.csv");

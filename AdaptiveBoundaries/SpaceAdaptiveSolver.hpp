@@ -27,11 +27,9 @@ public:
     void UnitTest();
 
 protected:
-    const double tolerance = 1, coarseningtol = 0.0;
+    const double tolerance = 0.1, coarseningtol = 0.0;
     std::vector<int> intervalsForRefinement, NodesForRemoval;
     SpaceMesh oldmesh, refinedsmesh;
-    int mpcurrentMeshIndex = 0;
-
 };
 
 

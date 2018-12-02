@@ -52,4 +52,4 @@ for(int i=0; i<mpn-2; i++)
 mpDiagonal.push_back( smesh.ReadSpaceMesh(mpn-2)*pow(3,-1)) ;
 mpLowerDiag.push_back( smesh.ReadSpaceMesh(mpn-2)*pow(6,-1) );
 mpUpperDiag.push_back( 0 );
-         }
+}

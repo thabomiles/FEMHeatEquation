@@ -1,7 +1,7 @@
 #include <iostream>
+#include <fstream>
 #include <cmath>
 #include <math.h>
-#include <iostream>
 #include <vector>
 #include <array>
 #include "SpaceAdaptiveSolver.hpp"
@@ -16,18 +16,24 @@ using namespace boost::math::quadrature;
 
 void AdaptiveSolver::AdaptiveSolve()
 {
+mpcurrenTimeStep = 0;
+mpcurrentMeshIndex = 0;
 oldmesh.CopySpaceMesh(mpsmesh);
-mpsmesh.PrintSpaceNodes();
 
 AnalyticSolutionVec();
 mpPreviousSolution = mpAnalyticSolution;
 stiff.SetParameters(k_0, k_L, mpa);
 
+ofstream myfile;
+ofstream myfile1;
+ofstream myfile2;
+myfile2.open ("Y.csv");
+myfile.open ("solution.csv");
+myfile1.open ("X.csv");
 
 int m = mptmesh.NumberOfTimeSteps();
 for(int j = 0; j<m; j++)
 {
-//std::cout<< mpcurrenTimeStep<< ", ";
 mpcurrenTimeStep = j+1;
 mpcurrentMeshIndex = j;
 stiff.BuildGeneralStiffnessMatrix ( mpsmesh );
@@ -43,16 +49,38 @@ VectorTimesScalar( br, mptmesh.ReadTimeMesh(mpcurrentMeshIndex) );
 AddVectors( br, mpRHS, mpRHS );
 
 LHS.MatrixSolver( mpRHS, mpx );
+
+
+
+for (int i=0; i<mpsmesh.meshsize()+1; i++)
+{
+    myfile << mpx.at(i) << ", ";
+}
+
+for (int i=0; i<mpsmesh.meshsize()+1; i++)
+{
+    myfile1 << mpsmesh.ReadSpaceNode(i)+1 << ", ";
+}
+
+
+for (int i=0; i<mpsmesh.meshsize()+1; i++)
+{
+    myfile2 << mptmesh.ReadTimeStep(mpcurrenTimeStep) << ", ";
+}
+
 oldmesh.CopySpaceMesh(mpsmesh);
 
 mpPreviousSolution = mpx;
-
 
     SaveIntervalsForRefinement();
     SaveIntervalsForCoarsening();
     mpsmesh.BisectIntervals(intervalsForRefinement);
     mpsmesh.CoarsenIntervals(NodesForRemoval);
 }
+myfile.close();
+myfile1.close();
+myfile2.close();
+
     std::cout<<mpsmesh.meshsize() <<"\n";
     std::cout<<"\n";
 }

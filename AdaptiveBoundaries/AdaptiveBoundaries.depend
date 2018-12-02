@@ -1,9 +1,8 @@
 # depslib dependency file v1.0
-1543527045 source:c:\users\thabo\desktop\heatequationdis\boundaries\generalizedheat.cpp
+1543785039 source:c:\users\thabo\desktop\heatequationdis\boundaries\generalizedheat.cpp
 	<iostream>
 	<cmath>
 	<math.h>
-	<iostream>
 	<vector>
 	<array>
 	"GeneralizedHeat.hpp"
@@ -15,7 +14,7 @@
 	<functional>
 	<boost/math/quadrature/gauss.hpp>
 
-1543529060 c:\users\thabo\desktop\heatequationdis\boundaries\generalizedheat.hpp
+1543702638 c:\users\thabo\desktop\heatequationdis\boundaries\generalizedheat.hpp
 	<iostream>
 	<vector>
 	<array>
@@ -43,12 +42,12 @@
 	"MassMatrix.hpp"
 	"StiffnessMatrix.hpp"
 
-1543432612 c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.hpp
+1543792583 c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.hpp
 	<iostream>
 	<vector>
 	<array>
 
-1541327309 c:\users\thabo\desktop\heatequationdis\heat equation solver\timemesh.hpp
+1543755611 c:\users\thabo\desktop\heatequationdis\heat equation solver\timemesh.hpp
 	<iostream>
 	<vector>
 	<array>
@@ -100,7 +99,7 @@
 	<string>
 	<boost/math/quadrature/gauss.hpp>
 
-1541808870 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\massmatrix.cpp
+1543792385 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\massmatrix.cpp
 	<iostream>
 	<vector>
 	<array>
@@ -109,7 +108,7 @@
 	<cmath>
 	"SpaceMesh.hpp"
 
-1543447583 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.cpp
+1543763023 source:c:\users\thabo\desktop\heatequationdis\heat equation solver\spacemesh.cpp
 	<iostream>
 	<vector>
 	<array>
@@ -152,7 +151,7 @@
 	<array>
 	"APDE.hpp"
 
-1543528163 source:c:\users\thabo\desktop\heatequationdis\pdes\ellipticpde2.cpp
+1543689697 source:c:\users\thabo\desktop\heatequationdis\pdes\ellipticpde2.cpp
 	<iostream>
 	<cmath>
 	<math.h>
@@ -161,14 +160,14 @@
 	<array>
 	"EllipticPDE2.hpp"
 
-1543528127 c:\users\thabo\desktop\heatequationdis\pdes\ellipticpde2.hpp
+1543689607 c:\users\thabo\desktop\heatequationdis\pdes\ellipticpde2.hpp
 	<cmath>
 	<math.h>
 	<vector>
 	<array>
 	"APDE.hpp"
 
-1543527388 source:c:\users\thabo\desktop\heatequationdis\pdes\ellipticpde_q1.cpp
+1543688209 source:c:\users\thabo\desktop\heatequationdis\pdes\ellipticpde_q1.cpp
 	<iostream>
 	<cmath>
 	<math.h>
@@ -177,7 +176,7 @@
 	<array>
 	"EllipticPDE_Q1.hpp"
 
-1543527388 c:\users\thabo\desktop\heatequationdis\pdes\ellipticpde_q1.hpp
+1543682310 c:\users\thabo\desktop\heatequationdis\pdes\ellipticpde_q1.hpp
 	<cmath>
 	<math.h>
 	<vector>
@@ -210,7 +209,7 @@
 	"StiffnessMatrix.hpp"
 	"APDE.hpp"
 
-1543522761 source:c:\users\thabo\desktop\heatequationdis\pdes\pde1.cpp
+1543767394 source:c:\users\thabo\desktop\heatequationdis\pdes\pde1.cpp
 	<iostream>
 	<cmath>
 	<math.h>
@@ -231,7 +230,7 @@
 	"MassMatrix.hpp"
 	"StiffnessMatrix.hpp"
 
-1543329452 source:c:\users\thabo\desktop\heatequationdis\pdes\pde_q2.cpp
+1543767709 source:c:\users\thabo\desktop\heatequationdis\pdes\pde_q2.cpp
 	<iostream>
 	<cmath>
 	<math.h>
@@ -240,7 +239,7 @@
 	<array>
 	"PDE_Q2.hpp"
 
-1543332657 c:\users\thabo\desktop\heatequationdis\pdes\pde_q2.hpp
+1543767463 c:\users\thabo\desktop\heatequationdis\pdes\pde_q2.hpp
 	<cmath>
 	<math.h>
 	<vector>
@@ -268,8 +267,9 @@
 	<string>
 	<boost/math/quadrature/gauss.hpp>
 
-1543529507 source:c:\users\thabo\desktop\heatequationdis\adaptiveboundaries\driver.cpp
+1543792494 source:c:\users\thabo\desktop\heatequationdis\adaptiveboundaries\driver.cpp
 	<iostream>
+	<fstream>
 	<cmath>
 	<vector>
 	<math.h>
@@ -283,7 +283,7 @@
 	<string>
 	<boost/math/quadrature/gauss.hpp>
 
-1543529677 c:\users\thabo\desktop\heatequationdis\adaptiveboundaries\spaceadaptivesolver.hpp
+1543786206 c:\users\thabo\desktop\heatequationdis\adaptiveboundaries\spaceadaptivesolver.hpp
 	<iostream>
 	<vector>
 	<array>
@@ -294,11 +294,11 @@
 	"TimeMesh.hpp"
 	"APDE.hpp"
 
-1543529507 source:c:\users\thabo\desktop\heatequationdis\adaptiveboundaries\spaceadaptivesolver.cpp
+1543789799 source:c:\users\thabo\desktop\heatequationdis\adaptiveboundaries\spaceadaptivesolver.cpp
 	<iostream>
+	<fstream>
 	<cmath>
 	<math.h>
-	<iostream>
 	<vector>
 	<array>
 	"SpaceAdaptiveSolver.hpp"

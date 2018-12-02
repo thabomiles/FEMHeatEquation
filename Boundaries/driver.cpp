@@ -21,19 +21,11 @@ int main(int argc, char* argv[])
 {
 
 SpaceMesh smesh;
-<<<<<<< HEAD
 smesh.GenerateDefaultSpaceMesh();
 smesh.GloballyBisectSpaceMesh();
 smesh.GloballyBisectSpaceMesh();
 //smesh.GloballyBisectSpaceMesh();
 //smesh.GloballyBisectSpaceMesh();
-=======
-smesh.GenerateUniformMesh(1, 5);
-smesh.GloballyBisectSpaceMesh();
-smesh.GloballyBisectSpaceMesh();
-smesh.GloballyBisectSpaceMesh();
-smesh.GloballyBisectSpaceMesh();
->>>>>>> e3ed97a... now have a true energy
 
 TimeMesh tmesh;
 tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize(), 2), 1.0);
@@ -48,12 +40,6 @@ smesh.PrintSpaceNodes();
 genheat.SetSpaceTimeMesh(smesh, tmesh, firstpde);
 
 genheat.SolveWithBCs();
-<<<<<<< HEAD
-=======
-
-//genheat.EnergyNorm();
-
->>>>>>> e3ed97a... now have a true energy
 genheat.PrintSolution();
 
 //genheat.GlobalSpaceError();

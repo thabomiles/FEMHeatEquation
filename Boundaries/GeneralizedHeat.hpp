@@ -75,7 +75,11 @@ protected:
     int mn, mm, mpcurrenTimeStep = 0, mpcurrentMeshIndex = 0;
 
     APDE* mppde;
+<<<<<<< HEAD
     std::vector<double> br, f_vec, mpx, mpAnalyticSolution, mpPreviousSolution, mpRHS, mpErrorMesh, mpEnergyNorm;
+=======
+    std::vector<double> br, f_vec, mpx, mpAnalyticSolution, mpPreviousSolution, mpRHS, mpErrorMesh, mpEnergyNorm, mpTrueGradVec;
+>>>>>>> e3ed97a... now have a true energy
 
     SpaceMesh mpsmesh;
     TimeMesh mptmesh;

@@ -389,7 +389,11 @@
 	"SpaceMesh.hpp"
 	"TimeMesh.hpp"
 
+<<<<<<< HEAD
 1543759771 source:c:\users\thabo\desktop\heatequationdis\boundaries\generalizedheat.cpp
+=======
+1543536669 source:c:\users\thabo\desktop\heatequationdis\boundaries\generalizedheat.cpp
+>>>>>>> e3ed97a... now have a true energy
 	<iostream>
 	<cmath>
 	<math.h>
@@ -404,7 +408,11 @@
 	<functional>
 	<boost/math/quadrature/gauss.hpp>
 
+<<<<<<< HEAD
 1543702638 c:\users\thabo\desktop\heatequationdis\boundaries\generalizedheat.hpp
+=======
+1543536509 c:\users\thabo\desktop\heatequationdis\boundaries\generalizedheat.hpp
+>>>>>>> e3ed97a... now have a true energy
 	<iostream>
 	<vector>
 	<array>
@@ -414,7 +422,11 @@
 	"TimeMesh.hpp"
 	"APDE.hpp"
 
+<<<<<<< HEAD
 1543765752 source:c:\users\thabo\desktop\heatequationdis\boundaries\driver.cpp
+=======
+1543536509 source:c:\users\thabo\desktop\heatequationdis\boundaries\driver.cpp
+>>>>>>> e3ed97a... now have a true energy
 	<iostream>
 	<cmath>
 	<vector>

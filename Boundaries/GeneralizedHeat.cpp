@@ -14,11 +14,19 @@
 using namespace std;
 using namespace boost::math::quadrature;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e3ed97a... now have a true energy
 void GeneralHeat::EnergyNorm()
 {
 mpEnergyNorm.clear();
 BuildGradientVec(mpx, mpsmesh, FEMGradient);
+<<<<<<< HEAD
+=======
+mpsmesh.PrintSpaceNodes();
+
+>>>>>>> e3ed97a... now have a true energy
 
 auto SquaredError = [this](double x)
     { return pow(GradientFunction(x) - mppde->AnalyticGradientWRTx(x, mptmesh.ReadTimeStep(mpcurrenTimeStep)), 2); };
@@ -112,12 +120,27 @@ void GeneralHeat::AnalyticSolutionVec( )
 }
 }
 
+<<<<<<< HEAD
+=======
+void GeneralHeat::AnalyticGradientVec()
+{
+    mpTrueGradVec.clear();
+     for (int i = 0; i<mpsmesh.meshsize()+1; i++)
+{
+    mpTrueGradVec.push_back(mppde->AnalyticGradientWRTx( mpsmesh.ReadSpaceNode(i),
+                                                                        mptmesh.ReadTimeStep(mpcurrenTimeStep)));
+}
+}
+>>>>>>> e3ed97a... now have a true energy
 
 void GeneralHeat::PrintSolution( )
 {
         BuildErrorMesh();
         AnalyticSolutionVec();
+<<<<<<< HEAD
 //        AnalyticGradientVec();
+=======
+>>>>>>> e3ed97a... now have a true energy
         EnergyNorm();
         double globalError=0;
         for(auto k: mpEnergyNorm)
@@ -133,6 +156,7 @@ void GeneralHeat::PrintSolution( )
         GlobalSpaceError();
         std::cout << "FEM Grad approx:       ";
         PrintVector(FEMGradient);
+<<<<<<< HEAD
 //        std::cout << "Analytic Gradient:     ";
 //        PrintVector(mpTrueGradVec);
         std::cout << "Energy Error           ";
@@ -141,6 +165,14 @@ void GeneralHeat::PrintSolution( )
         std::cout << globalError;
         //GlobalEnergyError();
         std::cout << "\n";
+=======
+        std::cout << "Analytic Gradient:     ";
+        PrintVector(mpTrueGradVec);
+        std::cout << "Energy Error           ";
+        PrintVector(mpEnergyNorm);
+        std::cout << "Global Error           ";
+        std::cout << sqrt(globalError);
+>>>>>>> e3ed97a... now have a true energy
 }
 
 void GeneralHeat::BuildErrorMesh()
@@ -171,6 +203,7 @@ double GeneralHeat::GlobalSpaceError()
     return sqrt(globalError);
 }
 
+<<<<<<< HEAD
 double GeneralHeat::GlobalEnergyError()
 {
     EnergyNorm();
@@ -184,6 +217,8 @@ double GeneralHeat::GlobalEnergyError()
 
 }
 
+=======
+>>>>>>> e3ed97a... now have a true energy
 void GeneralHeat::PrintErrorMesh()
 {
     BuildErrorMesh();

@@ -1,26 +1,32 @@
-\contentsline {section}{\numberline {1}Introduction}{4}
-\contentsline {section}{\numberline {2}The Linear Heat Equation}{6}
-\contentsline {subsection}{\numberline {2.1}The Heat Equation in Steady State}{6}
-\contentsline {subsection}{\numberline {2.2}The Time Dependent Problem}{7}
-\contentsline {subsection}{\numberline {2.3}Boundary Conditions}{8}
-\contentsline {section}{\numberline {3}The Finite Element Method}{9}
-\contentsline {subsection}{\numberline {3.1}Sobolev Spaces}{9}
-\contentsline {subsection}{\numberline {3.2}Subdivion and basis functions}{12}
-\contentsline {subsection}{\numberline {3.3}The Weak Formulation}{12}
-\contentsline {subsection}{\numberline {3.4}Results}{14}
-\contentsline {subsection}{\numberline {3.5}Implementation}{15}
-\contentsline {section}{\numberline {4}The Time Dependent Problem}{18}
-\contentsline {subsubsection}{\numberline {4.0.1}Implicit Euler}{19}
-\contentsline {subsection}{\numberline {4.1}Results}{20}
-\contentsline {subsection}{\numberline {4.2}Impementation}{21}
-\contentsline {section}{\numberline {5}A Posteriori Error Analysis}{24}
-\contentsline {subsubsection}{\numberline {5.0.1}Gradient Recovery}{24}
-\contentsline {subsection}{\numberline {5.1}Results}{27}
-\contentsline {subsection}{\numberline {5.2}Implementation}{28}
-\contentsline {section}{\numberline {6}Design of Adaptive Algorithms}{30}
-\contentsline {subsubsection}{\numberline {6.0.1}Space Adaptivity}{30}
-\contentsline {subsubsection}{\numberline {6.0.2}Time Adaptivity}{30}
-\contentsline {section}{\numberline {7}Some Numerical Examples}{31}
-\contentsline {section}{\numberline {8}Conclusions}{32}
-\contentsline {section}{\numberline {A}Raw data}{33}
-\contentsline {section}{\numberline {B}Calculations for section \G@refundefinedtrue \text {\normalfont \bfseries ??}\GenericWarning { }{LaTeX Warning: Reference `sec:my1' on page 33 undefined}}{33}
+\contentsline {section}{\numberline {1}Introduction}{5}
+\contentsline {section}{\numberline {2}The Linear Heat Equation}{7}
+\contentsline {subsection}{\numberline {2.1}The Heat Equation in Steady State}{7}
+\contentsline {subsection}{\numberline {2.2}The Time Dependent Problem}{8}
+\contentsline {subsection}{\numberline {2.3}Boundary Conditions}{9}
+\contentsline {section}{\numberline {3}The Finite Element Method}{10}
+\contentsline {subsection}{\numberline {3.1}Supporting Theory}{11}
+\contentsline {subsubsection}{\numberline {3.1.1}Notation and the Weak Derivative}{11}
+\contentsline {subsubsection}{\numberline {3.1.2}Function Spaces}{12}
+\contentsline {subsubsection}{\numberline {3.1.3}Basis Functions}{12}
+\contentsline {subsection}{\numberline {3.2}An Elliptical Model Problem}{14}
+\contentsline {subsection}{\numberline {3.3}Numerical Experiments}{15}
+\contentsline {subsection}{\numberline {3.4}Implementation}{17}
+\contentsline {section}{\numberline {4}The Time Dependent Problem}{20}
+\contentsline {subsubsection}{\numberline {4.0.1}Implicit Euler}{21}
+\contentsline {subsection}{\numberline {4.1}Results}{22}
+\contentsline {subsection}{\numberline {4.2}Implementation}{23}
+\contentsline {section}{\numberline {5}A Posteriori Error Analysis}{26}
+\contentsline {subsubsection}{\numberline {5.0.1}Gradient Recovery}{26}
+\contentsline {subsection}{\numberline {5.1}Results}{29}
+\contentsline {subsection}{\numberline {5.2}Implementation}{30}
+\contentsline {section}{\numberline {6}Design of Adaptive Algorithms}{32}
+\contentsline {subsubsection}{\numberline {6.0.1}Space Adaptivity}{32}
+\contentsline {subsection}{\numberline {6.1}Results}{32}
+\contentsline {subsection}{\numberline {6.2}Time Adaptivity}{32}
+\contentsline {section}{\numberline {7}Some Numerical Examples}{33}
+\contentsline {section}{\numberline {8}Conclusions}{34}
+\contentsline {section}{\numberline {A}Lax Milgram}{35}
+\contentsline {section}{\numberline {B}Tridiagonal Matrices}{35}
+\contentsline {section}{\numberline {C}Stiffness and Mass Matrices}{37}
+\contentsline {section}{\numberline {D}Space and Time Meshes}{38}
+\contentsline {section}{\numberline {E}Calculations for section \G@refundefinedtrue \text {\normalfont \bfseries ??}\GenericWarning { }{LaTeX Warning: Reference `sec:my1' on page 39 undefined}}{39}

@@ -23,6 +23,7 @@ int main(int argc, char* argv[])
 SpaceMesh smesh;
 smesh.GenerateUniformMesh(1, 5);
 smesh.GloballyBisectSpaceMesh();
+smesh.PrintSpaceNodes();
 
 
 TimeMesh tmesh;

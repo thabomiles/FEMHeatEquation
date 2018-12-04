@@ -43,22 +43,22 @@ double SpaceMesh::GeneralTestFunctions(int nodeIndex, double x)
     else if(nodeIndex==0)
     {
         //std::cout<< " half hat1 "<< "\n";
-        return -pow(mpSpaceMesh.at(nodeIndex),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
+        return -pow(ReadSpaceMesh(nodeIndex),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
     }
     else if(nodeIndex==meshsize())
     {
         //std::cout<< " half hat2 "<< "\n";
-        return pow(mpSpaceMesh.at(nodeIndex-1),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
+        return pow(ReadSpaceMesh(nodeIndex-1),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
     }
     else if (x<=mpSpaceNodes[nodeIndex])
     {
         //std::cout<< " Lower "<< "\n";
-        return pow(mpSpaceMesh.at(nodeIndex-1),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
+        return pow(ReadSpaceMesh(nodeIndex-1),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
     }
     else if (x>mpSpaceNodes[nodeIndex])
     {
         //std::cout<< " Upper "<< "\n";
-        return -pow(mpSpaceMesh.at(nodeIndex),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
+        return -pow(ReadSpaceMesh(nodeIndex),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
     }
 }
 
@@ -68,7 +68,7 @@ double SpaceMesh::TestFunctions( int nodeIndex, double x)
     {
         std::cout<< " This function has 0 dirichlet boundaries "<< "\n";
     }
-    else if (x<mpSpaceNodes[nodeIndex]-mpSpaceMesh[nodeIndex-1]||x>mpSpaceNodes[nodeIndex]+mpSpaceMesh[nodeIndex])
+    else if (x<mpSpaceNodes[nodeIndex]-ReadSpaceMesh(nodeIndex-1)||x>mpSpaceNodes[nodeIndex]+ReadSpaceMesh(nodeIndex))
     {
         std::cout<< " You are out of your interval "<< "\n";
         return 0;
@@ -76,12 +76,12 @@ double SpaceMesh::TestFunctions( int nodeIndex, double x)
     else if (x<=mpSpaceNodes[nodeIndex])
     {
         //std::cout<< " Lower "<< "\n";
-        return pow(mpSpaceMesh.at(nodeIndex-1),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
+        return pow(ReadSpaceMesh(nodeIndex-1),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
     }
     else if (x>mpSpaceNodes[nodeIndex])
     {
         //std::cout<< " Upper "<< "\n";
-        return -pow(mpSpaceMesh.at(nodeIndex),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
+        return -pow(ReadSpaceMesh(nodeIndex),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
     }
 }
 
@@ -99,7 +99,7 @@ void SpaceMesh::CopySpaceMesh (const SpaceMesh& oldSpaceMesh)
 
     mpSpaceNodes = oldSpaceMesh.mpSpaceNodes;
     RefreshSpaceMesh();
-    mpmeshsize = mpSpaceMesh.size();
+    mpmeshsize = mpSpaceNodes.size()-1;
 }
 
 void SpaceMesh::BisectIntervals (std::vector<int> &intervalsForBisection)
@@ -137,10 +137,11 @@ void SpaceMesh::GenerateDefaultSpaceMesh()
 
 void SpaceMesh::GloballyBisectSpaceMesh ()
 {
+    double mesh_size = mpSpaceNodes.size()-1;
     double gridPoint;
-    for (int i=0; i<mpSpaceMesh.size(); i++)
+    for (int i=0; i<mesh_size; i++)
     {
-        gridPoint = mpSpaceNodes.at(i)+0.5*mpSpaceMesh.at(i);
+        gridPoint = mpSpaceNodes.at(i)+0.5*ReadSpaceMesh(i);
         mpSpaceNodes.push_back(gridPoint);
     }
     sort(mpSpaceNodes.begin(), mpSpaceNodes.end());
@@ -173,8 +174,10 @@ void SpaceMesh::PrintSpaceNodes ()
 
 void SpaceMesh::PrintSpaceMesh ()
 {
-    for (auto k: mpSpaceMesh)
-    std::cout << k << ' ';
+    for (int i = 0; i<mpSpaceNodes.size()-1; i++)
+    {
+        std::cout << mpSpaceNodes.at(i+1)-mpSpaceNodes.at(i) << ", ";
+    }
     std::cout << " \n";
 }
 
@@ -186,7 +189,9 @@ double SpaceMesh::ReadSpaceNode (int i)
 
 double SpaceMesh::ReadSpaceMesh (int i)
 {
-    return mpSpaceMesh[i];
+    return mpSpaceNodes.at(i+1)-mpSpaceNodes.at(i);
+
+    //return mpSpaceMesh[i];
 }
 
 int SpaceMesh::meshsize()

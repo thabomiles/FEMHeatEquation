@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.12.2)  2 DEC 2018 19:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.12.2)  3 DEC 2018 23:16
 entering extended mode
 **./final_report_template.tex
 (final_report_template.tex
@@ -139,17 +139,95 @@ File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 \Gin@req@height=\dimen120
 \Gin@req@width=\dimen121
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\capt-of\capt-of.sty"
+Package: capt-of 2009/12/29 v0.2 standard captions outside of floats
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\floatrow\floatrow.sty"
+Package: floatrow 2008/08/02 v0.3b floatrow: float package extension
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty"
+Package: caption3 2018/09/12 v1.8c caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 64.
+\captionmargin=\dimen122
+\captionmargin@=\dimen123
+\captionwidth=\dimen124
+\caption@tempdima=\dimen125
+\caption@indent=\dimen126
+\caption@parindent=\dimen127
+\caption@hangindent=\dimen128
+)
+\c@float@type=\count103
+\float@exts=\toks21
+\float@box=\box28
+\@floatcapt=\box29
+Package floatrow Info: Modified float package code loaded on input line 455.
+Package floatrow Info: Modified rotfloat package code loaded on input line 473.
+
+\FR@everyfloat=\toks22
+\flrow@foot=\insert199
+\FB@wd=\dimen129
+\FBo@wd=\dimen130
+\FBc@wd=\dimen131
+\FBo@ht=\skip46
+\FBc@ht=\skip47
+\FBf@ht=\skip48
+\FBo@max=\skip49
+\FBc@max=\skip50
+\FBf@max=\skip51
+\c@FBl@b=\count104
+\floatbox@depth=\count105
+\c@FRobj=\count106
+\c@FRsobj=\count107
+\Xhsize=\skip52
+\sXhsize=\skip53
+\Zhsize=\skip54
+\sZhsize=\skip55
+\flrow@rowbox=\box30
+\FR@Zunitlength=\dimen132
+\c@FBcnt=\count108
+\FPOScnt=\count109
+\LTleft=\skip56
+\LTright=\skip57
+\LTleft=\skip58
+\LTright=\skip59
+\flrow@types=\toks23
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\blindtext\blindtext.sty"
+Package: blindtext 2012/01/06 V2.0 blindtext-Package
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\xspace.sty"
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+\c@blindtext=\count110
+\c@Blindtext=\count111
+\c@blind@countparstart=\count112
+\blind@countxx=\count113
+\blindtext@numBlindtext=\count114
+\blind@countyy=\count115
+\c@blindlist=\count116
+\c@blindlistlevel=\count117
+\c@blindlist@level=\count118
+\blind@listitem=\count119
+\c@blind@listcount=\count120
+\c@blind@levelcount=\count121
+\blind@mathformula=\count122
+\blind@Mathformula=\count123
+\c@blind@randomcount=\count124
+\c@blind@randommax=\count125
+\c@blind@pangramcount=\count126
+\c@blind@pangrammax=\count127
+)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amscls\amsthm.sty"
 Package: amsthm 2017/10/31 v2.20.4
-\thm@style=\toks21
-\thm@bodyfont=\toks22
-\thm@headfont=\toks23
-\thm@notefont=\toks24
-\thm@headpunct=\toks25
-\thm@preskip=\skip46
-\thm@postskip=\skip47
-\thm@headsep=\skip48
-\dth@everypar=\toks26
+\thm@style=\toks24
+\thm@bodyfont=\toks25
+\thm@headfont=\toks26
+\thm@notefont=\toks27
+\thm@headpunct=\toks28
+\thm@preskip=\skip60
+\thm@postskip=\skip61
+\thm@headsep=\skip62
+\dth@everypar=\toks29
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\bigints\bigints.sty"
 Package: bigints 2010/02/15 Writing big integrals
@@ -162,13 +240,13 @@ Package: relsize 2013/03/29 ver 4.1
 ("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgf.sty"
 ("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\utilities\pgfrcs.sty"
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common.tex"
-\pgfutil@everybye=\toks27
-\pgfutil@tempdima=\dimen122
-\pgfutil@tempdimb=\dimen123
+\pgfutil@everybye=\toks30
+\pgfutil@tempdima=\dimen133
+\pgfutil@tempdimb=\dimen134
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common-lists.te
 x")) ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-latex.def"
-\pgfutil@abb=\box28
+\pgfutil@abb=\box31
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ms\everyshi.sty"
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 ))
@@ -183,30 +261,30 @@ Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
 Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeys.code.tex"
-\pgfkeys@pathtoks=\toks28
-\pgfkeys@temptoks=\toks29
+\pgfkeys@pathtoks=\toks31
+\pgfkeys@temptoks=\toks32
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeysfiltered.code.te
 x"
-\pgfkeys@tmptoks=\toks30
+\pgfkeys@tmptoks=\toks33
 ))
-\pgf@x=\dimen124
-\pgf@y=\dimen125
-\pgf@xa=\dimen126
-\pgf@ya=\dimen127
-\pgf@xb=\dimen128
-\pgf@yb=\dimen129
-\pgf@xc=\dimen130
-\pgf@yc=\dimen131
+\pgf@x=\dimen135
+\pgf@y=\dimen136
+\pgf@xa=\dimen137
+\pgf@ya=\dimen138
+\pgf@xb=\dimen139
+\pgf@yb=\dimen140
+\pgf@xc=\dimen141
+\pgf@yc=\dimen142
 \w@pgf@writea=\write3
 \r@pgf@reada=\read1
-\c@pgf@counta=\count103
-\c@pgf@countb=\count104
-\c@pgf@countc=\count105
-\c@pgf@countd=\count106
-\t@pgf@toka=\toks31
-\t@pgf@tokb=\toks32
-\t@pgf@tokc=\toks33
+\c@pgf@counta=\count128
+\c@pgf@countb=\count129
+\c@pgf@countc=\count130
+\c@pgf@countd=\count131
+\t@pgf@toka=\toks34
+\t@pgf@tokb=\toks35
+\t@pgf@tokc=\toks36
  ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgf.cfg"
 File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
 )
@@ -222,8 +300,8 @@ File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.t
 ex"
 File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
-\pgfsyssoftpath@smallbuffer@items=\count107
-\pgfsyssoftpath@bigbuffer@items=\count108
+\pgfsyssoftpath@smallbuffer@items=\count132
+\pgfsyssoftpath@bigbuffer@items=\count133
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsysprotocol.code.t
 ex"
@@ -252,12 +330,12 @@ Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathcalc.code.tex"
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathutil.code.tex")
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathparser.code.tex"
-\pgfmath@dimen=\dimen132
-\pgfmath@count=\count109
-\pgfmath@box=\box29
-\pgfmath@toks=\toks34
-\pgfmath@stack@operand=\toks35
-\pgfmath@stack@operation=\toks36
+\pgfmath@dimen=\dimen143
+\pgfmath@count=\count134
+\pgfmath@box=\box32
+\pgfmath@toks=\toks37
+\pgfmath@stack@operand=\toks38
+\pgfmath@stack@operation=\toks39
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.code.tex"
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.basic.code.
@@ -277,57 +355,57 @@ ex")
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.integerarit
 hmetics.code.tex")))
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfloat.code.tex"
-\c@pgfmathroundto@lastzeros=\count110
+\c@pgfmathroundto@lastzeros=\count135
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepoints.code.tex
 "
 File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
-\pgf@picminx=\dimen133
-\pgf@picmaxx=\dimen134
-\pgf@picminy=\dimen135
-\pgf@picmaxy=\dimen136
-\pgf@pathminx=\dimen137
-\pgf@pathmaxx=\dimen138
-\pgf@pathminy=\dimen139
-\pgf@pathmaxy=\dimen140
-\pgf@xx=\dimen141
-\pgf@xy=\dimen142
-\pgf@yx=\dimen143
-\pgf@yy=\dimen144
-\pgf@zx=\dimen145
-\pgf@zy=\dimen146
+\pgf@picminx=\dimen144
+\pgf@picmaxx=\dimen145
+\pgf@picminy=\dimen146
+\pgf@picmaxy=\dimen147
+\pgf@pathminx=\dimen148
+\pgf@pathmaxx=\dimen149
+\pgf@pathminy=\dimen150
+\pgf@pathmaxy=\dimen151
+\pgf@xx=\dimen152
+\pgf@xy=\dimen153
+\pgf@yx=\dimen154
+\pgf@yy=\dimen155
+\pgf@zx=\dimen156
+\pgf@zy=\dimen157
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathconstruct.c
 ode.tex"
 File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
-\pgf@path@lastx=\dimen147
-\pgf@path@lasty=\dimen148
+\pgf@path@lastx=\dimen158
+\pgf@path@lasty=\dimen159
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathusage.code.
 tex"
 File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
-\pgf@shorten@end@additional=\dimen149
-\pgf@shorten@start@additional=\dimen150
+\pgf@shorten@end@additional=\dimen160
+\pgf@shorten@start@additional=\dimen161
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorescopes.code.tex
 "
 File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
-\pgfpic=\box30
-\pgf@hbox=\box31
-\pgf@layerbox@main=\box32
-\pgf@picture@serial@count=\count111
+\pgfpic=\box33
+\pgf@hbox=\box34
+\pgf@layerbox@main=\box35
+\pgf@picture@serial@count=\count136
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoregraphicstate.co
 de.tex"
 File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
-\pgflinewidth=\dimen151
+\pgflinewidth=\dimen162
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoretransformations
 .code.tex"
 File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
-\pgf@pt@x=\dimen152
-\pgf@pt@y=\dimen153
-\pgf@pt@temp=\dimen154
+\pgf@pt@x=\dimen163
+\pgf@pt@y=\dimen164
+\pgf@pt@temp=\dimen165
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorequick.code.tex"
 File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
@@ -343,12 +421,12 @@ File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorearrows.code.tex
 "
 File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
-\pgfarrowsep=\dimen155
+\pgfarrowsep=\dimen166
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreshade.code.tex"
 File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
-\pgf@max=\dimen156
-\pgf@sys@shading@range@num=\count112
+\pgf@max=\dimen167
+\pgf@sys@shading@range@num=\count137
 ) ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreimage.code.te
 x"
 File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
@@ -356,7 +434,7 @@ File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreexternal.code.t
 ex"
 File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
-\pgfexternal@startupbox=\box33
+\pgfexternal@startupbox=\box36
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorelayers.code.tex
 "
@@ -372,15 +450,15 @@ File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
 )))
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduleshapes.code.tex"
 File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
-\pgfnodeparttextbox=\box34
+\pgfnodeparttextbox=\box37
 ) ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduleplot.code.tex"
 File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\compatibility\pgfcomp-version-0-65.
 sty"
 Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
-\pgf@nodesepstart=\dimen157
-\pgf@nodesepend=\dimen158
+\pgf@nodesepstart=\dimen168
+\pgf@nodesepend=\dimen169
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\compatibility\pgfcomp-version-1-18.
 sty"
@@ -394,10 +472,10 @@ Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
 Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmath.code.tex")
-\pgffor@iter=\dimen159
-\pgffor@skip=\dimen160
-\pgffor@stack=\toks37
-\pgffor@toks=\toks38
+\pgffor@iter=\dimen170
+\pgffor@skip=\dimen171
+\pgffor@stack=\toks40
+\pgffor@toks=\toks41
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\tikz.code.tex"
 Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
@@ -405,76 +483,79 @@ Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryplothandlers.
 code.tex"
 File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
-\pgf@plot@mark@count=\count113
-\pgfplotmarksize=\dimen161
+\pgf@plot@mark@count=\count138
+\pgfplotmarksize=\dimen172
 )
-\tikz@lastx=\dimen162
-\tikz@lasty=\dimen163
-\tikz@lastxsaved=\dimen164
-\tikz@lastysaved=\dimen165
-\tikzleveldistance=\dimen166
-\tikzsiblingdistance=\dimen167
-\tikz@figbox=\box35
-\tikz@figbox@bg=\box36
-\tikz@tempbox=\box37
-\tikz@tempbox@bg=\box38
-\tikztreelevel=\count114
-\tikznumberofchildren=\count115
-\tikznumberofcurrentchild=\count116
-\tikz@fig@count=\count117
+\tikz@lastx=\dimen173
+\tikz@lasty=\dimen174
+\tikz@lastxsaved=\dimen175
+\tikz@lastysaved=\dimen176
+\tikzleveldistance=\dimen177
+\tikzsiblingdistance=\dimen178
+\tikz@figbox=\box38
+\tikz@figbox@bg=\box39
+\tikz@tempbox=\box40
+\tikz@tempbox@bg=\box41
+\tikztreelevel=\count139
+\tikznumberofchildren=\count140
+\tikznumberofcurrentchild=\count141
+\tikz@fig@count=\count142
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmodulematrix.code.tex"
 File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
-\pgfmatrixcurrentrow=\count118
-\pgfmatrixcurrentcolumn=\count119
-\pgf@matrix@numberofcolumns=\count120
+\pgfmatrixcurrentrow=\count143
+\pgfmatrixcurrentcolumn=\count144
+\pgf@matrix@numberofcolumns=\count145
 )
-\tikz@expandcount=\count121
+\tikz@expandcount=\count146
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
 librarytopaths.code.tex"
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 )))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.sty"
-\lst@mode=\count122
-\lst@gtempboxa=\box39
-\lst@token=\toks39
-\lst@length=\count123
-\lst@currlwidth=\dimen168
-\lst@column=\count124
-\lst@pos=\count125
-\lst@lostspace=\dimen169
-\lst@width=\dimen170
-\lst@newlines=\count126
-\lst@lineno=\count127
-\lst@maxwidth=\dimen171
+\lst@mode=\count147
+\lst@gtempboxa=\box42
+\lst@token=\toks42
+\lst@length=\count148
+\lst@currlwidth=\dimen179
+\lst@column=\count149
+\lst@pos=\count150
+\lst@lostspace=\dimen180
+\lst@width=\dimen181
+\lst@newlines=\count151
+\lst@lineno=\count152
+\lst@maxwidth=\dimen182
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
 File: lstmisc.sty 2018/09/02 1.7 (Carsten Heinz)
-\c@lstnumber=\count128
-\lst@skipnumbers=\count129
-\lst@framebox=\box40
+\c@lstnumber=\count153
+\lst@skipnumbers=\count154
+\lst@framebox=\box43
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.cfg"
 File: listings.cfg 2018/09/02 1.7 listings configuration
 ))
 Package: listings 2018/09/02 1.7 (Carsten Heinz)
-\c@definition=\count130
+\c@definition=\count155
 
 
-Package amsthm Warning: Unknown theoremstyle `problem' on input line 25.
+Package amsthm Warning: Unknown theoremstyle `problem' on input line 34.
 
-\c@problem=\count131
+\c@problem=\count156
 
-Package amsthm Warning: Unknown theoremstyle `theorem' on input line 28.
+Package amsthm Warning: Unknown theoremstyle `theorem' on input line 37.
 
-\c@theorem=\count132
+\c@theorem=\count157
 (final_report_template.aux
 
-LaTeX Warning: Label `fig:eliptic1' multiply defined.
+LaTeX Warning: Label `subsec:Function Spaces' multiply defined.
 
 
 LaTeX Warning: Label `fig:eliptic1' multiply defined.
+
+
+LaTeX Warning: Label `fig:c' multiply defined.
 
 
 LaTeX Warning: Label `fig:Heat1' multiply defined.
@@ -485,21 +566,24 @@ LaTeX Warning: Label `fig:IndicatorPDE1' multiply defined.
 
 LaTeX Warning: Label `subsubsec:KK Implementation' multiply defined.
 
+
+LaTeX Warning: Label `subsec:results3' multiply defined.
+
 )
 \openout1 = `final_report_template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -537,17 +621,17 @@ LaTeX Font Info:    ... okay on input line 65.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count133
-\scratchdimen=\dimen172
-\scratchbox=\box41
-\nofMPsegments=\count134
-\nofMParguments=\count135
-\everyMPshowfont=\toks40
-\MPscratchCnt=\count136
-\MPscratchDim=\dimen173
-\MPnumerator=\count137
-\makeMPintoPDFobject=\count138
-\everyMPtoPDFconversion=\toks41
+\scratchcounter=\count158
+\scratchdimen=\dimen183
+\scratchbox=\box44
+\nofMPsegments=\count159
+\nofMParguments=\count160
+\everyMPshowfont=\toks43
+\MPscratchCnt=\count161
+\MPscratchDim=\dimen184
+\MPnumerator=\count162
+\makeMPintoPDFobject=\count163
+\everyMPtoPDFconversion=\toks44
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -596,9 +680,12 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+
 ABD: EveryShipout initializing macros
-\c@lstlisting=\count139
-\my@gap=\skip49
+\c@lstlisting=\count164
+\my@gap=\skip63
  [1
 
 {C:/Users/thabo/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] (final_
@@ -612,95 +699,90 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 3.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
+) [3]
 
-LaTeX Warning: Reference `sec:my1' on page 33 undefined on input line 26.
+LaTeX Warning: Reference `sec:my1' on page 39 undefined on input line 32.
 
 )
 \tf@toc=\write4
 \openout4 = `final_report_template.toc'.
 
- [3]
+ [4]
 
-LaTeX Warning: Citation `courant1943' on page 4 undefined on input line 84.
+LaTeX Warning: Citation `courant1943' on page 5 undefined on input line 93.
 
 
-LaTeX Warning: Citation `topper2005option' on page 4 undefined on input line 84
+LaTeX Warning: Citation `topper2005option' on page 5 undefined on input line 93
 .
 
 
-LaTeX Warning: Citation `babuska1981posteriori' on page 4 undefined on input li
-ne 88.
+LaTeX Warning: Citation `babuska1981posteriori' on page 5 undefined on input li
+ne 97.
 
 
-LaTeX Warning: Citation `eriksson1991adaptive' on page 4 undefined on input lin
-e 88.
+LaTeX Warning: Citation `eriksson1991adaptive' on page 5 undefined on input lin
+e 97.
 
 
-LaTeX Warning: Citation `johnson1988error' on page 4 undefined on input line 88
+LaTeX Warning: Citation `johnson1988error' on page 5 undefined on input line 97
 .
 
 
-LaTeX Warning: Citation `morin2008basic' on page 4 undefined on input line 88.
+LaTeX Warning: Citation `morin2008basic' on page 5 undefined on input line 97.
 
 
-LaTeX Warning: Citation `siebert2011convergence' on page 4 undefined on input l
-ine 88.
+LaTeX Warning: Citation `siebert2011convergence' on page 5 undefined on input l
+ine 97.
 
 
-LaTeX Warning: Citation `Bergam' on page 4 undefined on input line 94.
+LaTeX Warning: Citation `Bergam' on page 5 undefined on input line 103.
 
 
-LaTeX Warning: Reference `sec:background' on page 4 undefined on input line 100
+LaTeX Warning: Reference `sec:background' on page 5 undefined on input line 109
 .
 
 
-LaTeX Warning: Reference `sec:my1' on page 4 undefined on input line 101.
+LaTeX Warning: Reference `sec:my1' on page 5 undefined on input line 110.
 
 
-LaTeX Warning: Reference `sec:my2' on page 4 undefined on input line 102.
+LaTeX Warning: Reference `sec:my2' on page 5 undefined on input line 111.
 
 
-LaTeX Warning: Reference `sec:my1' on page 4 undefined on input line 105.
+LaTeX Warning: Reference `sec:my1' on page 5 undefined on input line 114.
 
-[4] [5] [6]
+[5] [6] [7]
 
-LaTeX Warning: Command \textbullet invalid in math mode on input line 149.
+LaTeX Warning: Command \textbullet invalid in math mode on input line 158.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 149.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 158.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 149.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 158.
 
 
-LaTeX Warning: Command \textbullet invalid in math mode on input line 149.
+LaTeX Warning: Command \textbullet invalid in math mode on input line 158.
 
 
-LaTeX Warning: Command \textbullet invalid in math mode on input line 149.
+LaTeX Warning: Command \textbullet invalid in math mode on input line 158.
 
 
-LaTeX Warning: Command \textbullet invalid in math mode on input line 149.
+LaTeX Warning: Command \textbullet invalid in math mode on input line 158.
 
-[7]
-<ParabolicPlots/Heat1.pdf, id=35, 462.52798pt x 346.89601pt>
+[8]
+<ParabolicPlots/Heat1.pdf, id=38, 462.52798pt x 346.89601pt>
 File: ParabolicPlots/Heat1.pdf Graphic file (type pdf)
 <use ParabolicPlots/Heat1.pdf>
-Package pdftex.def Info: ParabolicPlots/Heat1.pdf  used on input line 180.
+Package pdftex.def Info: ParabolicPlots/Heat1.pdf  used on input line 189.
 (pdftex.def)             Requested size: 227.62206pt x 170.71628pt.
-<ParabolicPlots/Heat2.pdf, id=36, 462.52798pt x 346.89601pt>
+<ParabolicPlots/Heat2.pdf, id=39, 462.52798pt x 346.89601pt>
 File: ParabolicPlots/Heat2.pdf Graphic file (type pdf)
 <use ParabolicPlots/Heat2.pdf>
-Package pdftex.def Info: ParabolicPlots/Heat2.pdf  used on input line 181.
+Package pdftex.def Info: ParabolicPlots/Heat2.pdf  used on input line 190.
 (pdftex.def)             Requested size: 227.62206pt x 170.71628pt.
-
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 180--182
-[][] [] 
- []
-
-[8
+ [9
 
  <./ParabolicPlots/Heat1.pdf> <./ParabolicPlots/Heat2.pdf
 
@@ -708,94 +790,89 @@ pdfTeX warning: pdflatex (file ./ParabolicPlots/Heat2.pdf): PDF inclusion: mult
 iple pdfs with page group included in a single page
 >]
 
-LaTeX Warning: Citation `larson2013finite' on page 9 undefined on input line 19
-3.
-
-[9
-
-]
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 272.
-
-LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 272.
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 272.
+LaTeX Warning: Citation `larson2013finite' on page 10 undefined on input line 2
+04.
 
 
-LaTeX Warning: Command \textbullet invalid in math mode on input line 272.
+LaTeX Warning: Reference `subsec:results1' on page 10 undefined on input line 2
+08.
+
+[10
+
+] [11] [12] [13]
+
+LaTeX Warning: Reference `Steady Diffusion1' on page 14 undefined on input line
+ 371.
 
 
-LaTeX Warning: Command \textbullet invalid in math mode on input line 272.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 272.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 272.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 272.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 272.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 272.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 272.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 272.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 272.
-
-[10] [11]
-Underfull \hbox (badness 10000) in paragraph at lines 294--297
+Underfull \hbox (badness 10000) in paragraph at lines 373--375
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 294--297
-
- []
-
-[12
+[14
 
 ]
-
-LaTeX Warning: Reference `Steady Diffusion1' on page 13 undefined on input line
- 358.
-
-[13]
-<EllipticalPlots/EllipticPDE2.pdf, id=96, 462.52798pt x 346.89601pt>
+<EllipticalPlots/EllipticPDE2.pdf, id=99, 462.52798pt x 346.89601pt>
 File: EllipticalPlots/EllipticPDE2.pdf Graphic file (type pdf)
 <use EllipticalPlots/EllipticPDE2.pdf>
-Package pdftex.def Info: EllipticalPlots/EllipticPDE2.pdf  used on input line 3
-97.
-(pdftex.def)             Requested size: 227.62206pt x 170.71628pt.
-<EllipticalPlots/EllipticPDE1_hi.pdf, id=97, 462.52798pt x 346.89601pt>
-File: EllipticalPlots/EllipticPDE1_hi.pdf Graphic file (type pdf)
-<use EllipticalPlots/EllipticPDE1_hi.pdf>
-Package pdftex.def Info: EllipticalPlots/EllipticPDE1_hi.pdf  used on input lin
-e 418.
+Package pdftex.def Info: EllipticalPlots/EllipticPDE2.pdf  used on input line 4
+31.
 (pdftex.def)             Requested size: 227.62206pt x 170.71628pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14 <./EllipticalPlots/EllipticPDE2.pdf>]
-<EllipticalPlots/EllipticPDE1Convergences.pdf, id=117, 462.52798pt x 346.89601p
+<EllipticalPlots/EllipticPDE2Convergences.pdf, id=100, 462.52798pt x 346.89601p
+t>
+File: EllipticalPlots/EllipticPDE2Convergences.pdf Graphic file (type pdf)
+<use EllipticalPlots/EllipticPDE2Convergences.pdf>
+Package pdftex.def Info: EllipticalPlots/EllipticPDE2Convergences.pdf  used on 
+input line 453.
+(pdftex.def)             Requested size: 196.66235pt x 147.5003pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<EllipticalPlots/EllipticPDE1_hi.pdf, id=101, 462.52798pt x 346.89601pt>
+File: EllipticalPlots/EllipticPDE1_hi.pdf Graphic file (type pdf)
+<use EllipticalPlots/EllipticPDE1_hi.pdf>
+Package pdftex.def Info: EllipticalPlots/EllipticPDE1_hi.pdf  used on input lin
+e 460.
+(pdftex.def)             Requested size: 227.62206pt x 170.71628pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (11.09909pt too wide) in paragraph at lines 468--478
+[][] 
+ []
+
+<EllipticalPlots/EllipticPDE1Convergences.pdf, id=102, 462.52798pt x 346.89601p
 t>
 File: EllipticalPlots/EllipticPDE1Convergences.pdf Graphic file (type pdf)
 <use EllipticalPlots/EllipticPDE1Convergences.pdf>
 Package pdftex.def Info: EllipticalPlots/EllipticPDE1Convergences.pdf  used on 
-input line 436.
-(pdftex.def)             Requested size: 227.62206pt x 170.71628pt.
- [15 <./EllipticalPlots/EllipticPDE1_hi.pdf> <./EllipticalPlots/EllipticPDE1Con
-vergences.pdf
+input line 481.
+(pdftex.def)             Requested size: 196.66235pt x 147.5003pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: Reference `eq:stiff' on page 15 undefined on input line 489.
+
+[15]
+
+LaTeX Warning: Text page 16 contains only floats.
+
+[16 <./EllipticalPlots/EllipticPDE2.pdf> <./EllipticalPlots/EllipticPDE2Converg
+ences.pdf
+
+pdfTeX warning: pdflatex (file ./EllipticalPlots/EllipticPDE2Convergences.pdf):
+ PDF inclusion: multiple pdfs with page group included in a single page
+> <./EllipticalPlots/EllipticPDE1_hi.pdf
+
+pdfTeX warning: pdflatex (file ./EllipticalPlots/EllipticPDE1_hi.pdf): PDF incl
+usion: multiple pdfs with page group included in a single page
+> <./EllipticalPlots/EllipticPDE1Convergences.pdf
 
 pdfTeX warning: pdflatex (file ./EllipticalPlots/EllipticPDE1Convergences.pdf):
  PDF inclusion: multiple pdfs with page group included in a single page
@@ -808,157 +885,258 @@ File: lstlang1.sty 2018/09/02 1.7 listings language file
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
 File: lstmisc.sty 2018/09/02 1.7 (Carsten Heinz)
 )
-Underfull \hbox (badness 10000) in paragraph at lines 472--473
+
+LaTeX Warning: Reference `eq:stiff' on page 17 undefined on input line 509.
+
+
+LaTeX Warning: Reference `eq:system1' on page 17 undefined on input line 518.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 518--519
 
  []
 
-[16] [17]
+[17] [18]
 
-LaTeX Warning: Citation `larson2013finite' on page 18 undefined on input line 4
-87.
+LaTeX Warning: Citation `larson2013finite' on page 19 undefined on input line 5
+33.
 
-[18
+[19
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 535--536
+Underfull \hbox (badness 10000) in paragraph at lines 581--582
 
  []
 
-[19]
-<ParabolicPlots/OriginalPDEcoarse.pdf, id=181, 462.52798pt x 346.89601pt>
+[20
+
+] [21]
+<ParabolicPlots/OriginalPDEcoarse.pdf, id=208, 462.52798pt x 346.89601pt>
 File: ParabolicPlots/OriginalPDEcoarse.pdf Graphic file (type pdf)
 <use ParabolicPlots/OriginalPDEcoarse.pdf>
 Package pdftex.def Info: ParabolicPlots/OriginalPDEcoarse.pdf  used on input li
-ne 593.
+ne 639.
 (pdftex.def)             Requested size: 227.62206pt x 170.71628pt.
-<ParabolicPlots/OriginalPDEfine.pdf, id=182, 462.52798pt x 346.89601pt>
+<ParabolicPlots/OriginalPDEfine.pdf, id=209, 462.52798pt x 346.89601pt>
 File: ParabolicPlots/OriginalPDEfine.pdf Graphic file (type pdf)
 <use ParabolicPlots/OriginalPDEfine.pdf>
 Package pdftex.def Info: ParabolicPlots/OriginalPDEfine.pdf  used on input line
- 594.
+ 640.
 (pdftex.def)             Requested size: 227.62206pt x 170.71628pt.
-
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 593--595
-[][] [] 
- []
-
-<ParabolicPlots/firstPDE3d.pdf, id=183, 462.52798pt x 346.89601pt>
+<ParabolicPlots/firstPDE3d.pdf, id=210, 462.52798pt x 346.89601pt>
 File: ParabolicPlots/firstPDE3d.pdf Graphic file (type pdf)
 <use ParabolicPlots/firstPDE3d.pdf>
-Package pdftex.def Info: ParabolicPlots/firstPDE3d.pdf  used on input line 602.
+Package pdftex.def Info: ParabolicPlots/firstPDE3d.pdf  used on input line 648.
 
 (pdftex.def)             Requested size: 227.62206pt x 170.71628pt.
-<ParabolicPlots/firstPDE3dfine.pdf, id=184, 462.52798pt x 346.89601pt>
+<ParabolicPlots/firstPDE3dfine.pdf, id=211, 462.52798pt x 346.89601pt>
 File: ParabolicPlots/firstPDE3dfine.pdf Graphic file (type pdf)
 <use ParabolicPlots/firstPDE3dfine.pdf>
 Package pdftex.def Info: ParabolicPlots/firstPDE3dfine.pdf  used on input line 
-603.
+649.
 (pdftex.def)             Requested size: 227.62206pt x 170.71628pt.
 
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 602--604
-[][] [] 
- []
 
-<ParabolicPlots/Heat1angle.pdf, id=185, 462.52798pt x 346.89601pt>
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<ParabolicPlots/Heat1angle.pdf, id=212, 462.52798pt x 346.89601pt>
 File: ParabolicPlots/Heat1angle.pdf Graphic file (type pdf)
 <use ParabolicPlots/Heat1angle.pdf>
-Package pdftex.def Info: ParabolicPlots/Heat1angle.pdf  used on input line 610.
+Package pdftex.def Info: ParabolicPlots/Heat1angle.pdf  used on input line 656.
 
 (pdftex.def)             Requested size: 227.62206pt x 170.71628pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[20 <./ParabolicPlots/OriginalPDEcoarse.pdf> <./ParabolicPlots/OriginalPDEfine.
-pdf
-
-pdfTeX warning: pdflatex (file ./ParabolicPlots/OriginalPDEfine.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./ParabolicPlots/firstPDE3d.pdf
-
-pdfTeX warning: pdflatex (file ./ParabolicPlots/firstPDE3d.pdf): PDF inclusion:
- multiple pdfs with page group included in a single page
-> <./ParabolicPlots/firstPDE3dfine.pdf
-
-pdfTeX warning: pdflatex (file ./ParabolicPlots/firstPDE3dfine.pdf): PDF inclus
-ion: multiple pdfs with page group included in a single page
->]
-<ParabolicPlots/ParabolicConvergencesOriginal.pdf, id=262, 462.52798pt x 346.89
+<ParabolicPlots/ParabolicConvergencesOriginal.pdf, id=213, 462.52798pt x 346.89
 601pt>
 File: ParabolicPlots/ParabolicConvergencesOriginal.pdf Graphic file (type pdf)
 <use ParabolicPlots/ParabolicConvergencesOriginal.pdf>
 Package pdftex.def Info: ParabolicPlots/ParabolicConvergencesOriginal.pdf  used
- on input line 630.
+ on input line 676.
 (pdftex.def)             Requested size: 227.62206pt x 170.71628pt.
- [21 <./ParabolicPlots/Heat1angle.pdf> <./ParabolicPlots/ParabolicConvergencesO
-riginal.pdf
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[22 <./ParabolicPlots/OriginalPDEcoarse.pdf> <./ParabolicPlots/OriginalPDEfine.
+pdf
+
+pdfTeX warning: pdflatex (file ./ParabolicPlots/OriginalPDEfine.pdf): PDF inclu
+sion: multiple pdfs with page group included in a single page
+>] [23 <./ParabolicPlots/firstPDE3d.pdf> <./ParabolicPlots/firstPDE3dfine.pdf
+
+pdfTeX warning: pdflatex (file ./ParabolicPlots/firstPDE3dfine.pdf): PDF inclus
+ion: multiple pdfs with page group included in a single page
+>] [24 <./ParabolicPlots/Heat1angle.pdf> <./ParabolicPlots/ParabolicConvergence
+sOriginal.pdf
 
 pdfTeX warning: pdflatex (file ./ParabolicPlots/ParabolicConvergencesOriginal.p
 df): PDF inclusion: multiple pdfs with page group included in a single page
->] [22] [23]
+>] [25]
 
-LaTeX Warning: Citation `babuska1978posteriori' on page 24 undefined on input l
-ine 690.
-
-
-LaTeX Warning: Citation `babuska1981posteriori' on page 24 undefined on input l
-ine 690.
+LaTeX Warning: Citation `babuska1978posteriori' on page 26 undefined on input l
+ine 736.
 
 
-LaTeX Warning: Citation `ainsworth65001posteriori' on page 24 undefined on inpu
-t line 694.
+LaTeX Warning: Citation `babuska1981posteriori' on page 26 undefined on input l
+ine 736.
 
-[24]
 
-LaTeX Warning: Reference `eq:Steady Diffusion' on page 25 undefined on input li
-ne 728.
-
-[25]
-
-LaTeX Warning: Citation `zlamal1978superconvergence' on page 26 undefined on in
-put line 770.
+LaTeX Warning: Citation `ainsworth65001posteriori' on page 26 undefined on inpu
+t line 740.
 
 [26]
-<Aposteriori/IndicatorPDE1.pdf, id=328, 462.52798pt x 346.89601pt>
+
+LaTeX Warning: Reference `eq:Steady Diffusion' on page 27 undefined on input li
+ne 774.
+
+[27]
+
+LaTeX Warning: Citation `zlamal1978superconvergence' on page 28 undefined on in
+put line 816.
+
+[28]
+<Aposteriori/IndicatorPDE1.pdf, id=356, 462.52798pt x 346.89601pt>
 File: Aposteriori/IndicatorPDE1.pdf Graphic file (type pdf)
 <use Aposteriori/IndicatorPDE1.pdf>
-Package pdftex.def Info: Aposteriori/IndicatorPDE1.pdf  used on input line 814.
+Package pdftex.def Info: Aposteriori/IndicatorPDE1.pdf  used on input line 860.
 
 (pdftex.def)             Requested size: 227.62206pt x 170.71628pt.
- [27 <./Aposteriori/IndicatorPDE1.pdf>]
-<Aposteriori/IndicatorPDE2.pdf, id=363, 462.52798pt x 346.89601pt>
+ [29 <./Aposteriori/IndicatorPDE1.pdf>]
+<Aposteriori/IndicatorPDE2.pdf, id=391, 462.52798pt x 346.89601pt>
 File: Aposteriori/IndicatorPDE2.pdf Graphic file (type pdf)
 <use Aposteriori/IndicatorPDE2.pdf>
-Package pdftex.def Info: Aposteriori/IndicatorPDE2.pdf  used on input line 834.
+Package pdftex.def Info: Aposteriori/IndicatorPDE2.pdf  used on input line 880.
 
 (pdftex.def)             Requested size: 227.62206pt x 170.71628pt.
 
-Overfull \hbox (10.95499pt too wide) in paragraph at lines 845--847
+Overfull \hbox (10.95499pt too wide) in paragraph at lines 891--893
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[28 <./Aposteriori/IndicatorPDE2.pdf>]
-Overfull \hbox (10.95499pt too wide) in paragraph at lines 855--857
+[30 <./Aposteriori/IndicatorPDE2.pdf>]
+Overfull \hbox (10.95499pt too wide) in paragraph at lines 901--903
 [][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (99.15477pt too wide) in paragraph at lines 866--867
+Overfull \hbox (99.15477pt too wide) in paragraph at lines 912--913
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.655pt too wide) in paragraph at lines 871--872
+Overfull \hbox (4.655pt too wide) in paragraph at lines 917--918
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[29] [30] [31] [32]
+[31] [32] [33] [34]
 
-LaTeX Warning: Reference `sec:my1' on page 33 undefined on input line 910.
+LaTeX Warning: Command \textbullet invalid in math mode on input line 960.
+
+LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 960.
+
+LaTeX Warning: Command \textbullet invalid in math mode on input line 960.
 
 
-LaTeX Warning: Reference `eq:myeq1' on page 33 undefined on input line 912.
+LaTeX Warning: Command \textbullet invalid in math mode on input line 960.
 
-[33]
+
+LaTeX Warning: Command \textbullet invalid in math mode on input line 960.
+
+
+LaTeX Warning: Command \textbullet invalid in math mode on input line 960.
+
+
+LaTeX Warning: Command \textbullet invalid in math mode on input line 960.
+
+
+LaTeX Warning: Command \textbullet invalid in math mode on input line 960.
+
+
+LaTeX Warning: Command \textbullet invalid in math mode on input line 960.
+
+
+LaTeX Warning: Command \textbullet invalid in math mode on input line 960.
+
+
+LaTeX Warning: Command \textbullet invalid in math mode on input line 960.
+
+
+LaTeX Warning: Command \textbullet invalid in math mode on input line 960.
+
+
+LaTeX Warning: Command \textbullet invalid in math mode on input line 960.
+
+
+Overfull \hbox (130.65475pt too wide) in paragraph at lines 983--985
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (55.0549pt too wide) in paragraph at lines 992--994
+[][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[35]
+Overfull \hbox (199.95462pt too wide) in paragraph at lines 1004--1005
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (86.55484pt too wide) in paragraph at lines 1009--1011
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (162.1547pt too wide) in paragraph at lines 1013--1014
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (80.25485pt too wide) in paragraph at lines 1017--1018
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (162.1547pt too wide) in paragraph at lines 1026--1027
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (4.655pt too wide) in paragraph at lines 1027--1028
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (23.55496pt too wide) in paragraph at lines 1034--1035
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+] 
+ []
+
+[36]
+Overfull \hbox (199.95462pt too wide) in paragraph at lines 1066--1067
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[37]
+Overfull \hbox (124.35477pt too wide) in paragraph at lines 1092--1093
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (61.35489pt too wide) in paragraph at lines 1110--1111
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[38]
+
+LaTeX Warning: Reference `sec:my1' on page 39 undefined on input line 1134.
+
+
+LaTeX Warning: Reference `eq:myeq1' on page 39 undefined on input line 1136.
+
+[39]
 No file final_report_template.bbl.
 (final_report_template.aux)
 
@@ -969,13 +1147,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 15008 strings out of 492970
- 281685 string characters out of 3135855
- 520523 words of memory out of 3000000
- 18586 multiletter control sequences out of 15000+200000
+ 16431 strings out of 492970
+ 305608 string characters out of 3135855
+ 553462 words of memory out of 3000000
+ 19987 multiletter control sequences out of 15000+200000
  11117 words of font info for 43 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,12n,60p,892b,1637s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 55i,13n,60p,892b,1637s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKT
@@ -987,9 +1165,9 @@ cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.
 pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/
 Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program 
 Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on final_report_template.pdf (33 pages, 365029 bytes).
+Output written on final_report_template.pdf (39 pages, 387131 bytes).
 PDF statistics:
- 453 PDF objects out of 1000 (max. 8388607)
+ 496 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 78 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 83 words of extra memory for PDF output out of 10000 (max. 10000000)
 

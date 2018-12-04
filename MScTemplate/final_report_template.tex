@@ -5,6 +5,15 @@
 % this allows one to include .jpg etc figures using pdflatex
 % change the optional argument if you use dvips or others
 \usepackage[pdftex]{graphicx}
+   \usepackage{graphicx}
+\usepackage{capt-of}
+
+\usepackage{floatrow}
+% Table float box with bottom caption, box width adjusted to content
+\newfloatcommand{capbtabbox}{table}[][\FBwidth]
+
+\usepackage{blindtext}
+
 
 \usepackage{graphicx} %Loading the package
 \graphicspath{{ParabolicPlots/}{EllipticalPlots/}{Aposteriori/}} 
@@ -190,12 +199,18 @@ m\dot{T} - (SkT')' = f	\label{eq:Heat Equation}
 
 \section{The Finite Element Method} \label{sec:FEM}
 
-This section is concerned with the discretisation of the Heat Equation by Finite Elements. Though not uncommon, the FEM is not necessarily widely known by the average postgraduate mathematician. As such we will provide a fairly detailed description of the method and full derivation of the scheme. A very nice introduction to the subject if more detail is needed is \cite{larson2013finite}.
+This section is concerned with the discretisation of the elliptical Heat Equation by Finite Elements. Although the focus of this dissertation is adaptive solvers for the time dependent Heat Equation many aspects of the time dependent problem are the same, or only slightly different, from more easily described stationary one. We will therefore introduce a bulk of concepts in this chapter to avoid introducing this content alongside the specific content for the parabolic problem.  
 
-The underlying practical steps to the method are:
+Though not uncommon, the FEM is not necessarily widely known by the average postgraduate mathematician. As such we will provide a fairly detailed description of the method and a few of its attendant concepts. A very nice introduction to the subject if more detail is needed is \cite{larson2013finite}.
+
+The underlying practical steps to the method can be reduced to finding a variational form of the equation and then solving that form of the equation in an approximated sense. We will add the detail to this as we introduce the relevant background.
+
+The remainder of this chapter will introduce some function spaces and the basis function that we will use for our approximation \ref{subsec:Sobolev}, we will then introduce the weak formulation and approximation of an elliptical model problem \ref{subsec:Weak Formulation1}, an analysis of the model problem will be carried out in \ref{subsec:results1} and then finally we will analyse the way we have designed our data structures and why in \ref{subsec:Implementation1}.
+
+Finding the variational form:
 
 \begin{enumerate}
-\item Finding a variational form of the equation we are looking to solve. This will allow us to look for a solution which satisfies the equation in some weak sense. This step requires the introduction of the function spaces in which we can study our  equation and look for its solution. We will see that these spaces are Sobolev spaces.
+\item Finding a variational form of the equation we are looking to solve. This will allow us to look for a solution which satisfies the equation in some weak sense. This step requires some knowledge of function spaces and some definitions that we will introduce when necessary. 
 
 \item Creating the subdivision of our domain $\Omega$.
 
@@ -206,13 +221,14 @@ The underlying practical steps to the method are:
 
 Once the mathematical context of the Finite Element has been outlined we will move on to finding the weak formulation of the Heat Equation. With this done we will consider the finite dimensional subspace and the elements that will be used in our discretisation. We will close the chapter will a discussion of other possible choices for elements.
 
-\subsection{Sobolev Spaces} \label{subsec:Sobolev}
+\subsection{Supporting Theory} \label{subsec:Sobolev}
 
 We begin by stating the notation to be used in this dissertation and also stating some of the relevant definitions and results from functional analysis.
 
-\theoremstyle{definition}
+\subsubsection{Notation and the Weak Derivative} \label{subsec:Function Spaces}
+
 \begin{definition}{Continuous Functions}
-Let $\Omega \subset \mathbb{R}^n, n \geq 1$ be an open bounded set. 
+Let $\Omega \subset \mathbb{R}^n , n \geq 1$ be an open bounded set. 
 \begin{itemize}
 \item We define $C(\Omega)$  the set of all real-valued and continuous functions defined on $\Omega$.
 \item For $m \geq1$ we write $C^m(\Omega)$ to denote the set of m times continuously differentiable functions  i.e. that $C^m(\Omega) = \{f \in C(\Omega) : f^{(k)} \in C(\Omega)\quad \forall k \leq m\} $.
@@ -220,86 +236,80 @@ Let $\Omega \subset \mathbb{R}^n, n \geq 1$ be an open bounded set.
 \end{itemize}
 \end{definition}
 
-\theoremstyle{definition}
-\begin{definition}{$L^p$ Space}
+The multi-index is a notational tool which allows for the simplification of statements in multi-dimensional calculus and is useful for our descriptions of PDEs. It is specifically an array $\alpha$ which carries information about our partial derivatives.
 
-$\|u\|_{L_2(\Omega)} := \mathlarger{\Big(\int_\Omega  { |u|^p } dx\Big)}^{\frac{1}{p}} < \infty$
-
-\end{definition}
-
-
-\theoremstyle{definition}
 \begin{definition}{Multi Index}
 
 $\alpha = (\alpha_1, \alpha_2, ... \alpha_n) \in \mathbb{N}^n \quad \quad   |\alpha| = \alpha_1 + ... \alpha_n$
 
-Define the Multi Index 
-
 $D^{\alpha} = \Big(\frac{\partial}{\partial x_1}\Big)^{\alpha_1}...\Big(\frac{\partial}{\partial x_n}\Big)^{\alpha_n} = $
 $\frac{\partial^{|\alpha|}}{\partial x^{\alpha}_1 ... \partial x^{\alpha}_n}$
 
-We can now generalise our earlier definition of continuous differentiable functions to an analogous idea with the multi index which will be relevant to partial differentiation.
 
 $C^m(\Omega) = \{f \in C(\Omega) : D^\alpha f \in C(\Omega)\quad \forall |a| \leq\leq m\} $
 
 \end{definition}
 
+The FEM makes extensive use of piecewise-linear functions. These functions may not have derivatives in the traditional continuous sense but we may generalise the concept of a derivative to admit certain piecewise functions.
 
-\theoremstyle{definition}
-\begin{definition}{Weak Derivative}
+\begin{definition}{Weak Derivative} \label{def:weak derivative}
 
-Say $\psi_\alpha$ is a locally integrable 
+Let $u$ be a locally integrable  function on $\Omega$. Say there exists a function $\psi_\alpha$ which is also locally integrable on $\omega$ such that:
 
-$\mathlarger{\int_\Omega  \psi_\alpha(x) \cdot v(x) dx} = (-1)^{\alpha} \mathlarger{\int_\Omega  u(x) \cdot D^{\alpha} v(x) dx} \forall v \in C^\infty_0(\Omega)$
+$\mathlarger{\int_\Omega  \psi_\alpha(x) \cdot v(x) dx} = (-1)^{\alpha} \mathlarger{\int_\Omega  u \cdot D^{\alpha} v} \forall v \in C^\infty_0(\Omega)$
 
+Then $\psi_\alpha$ is the weak derivative of $u$ of order $|a|$ hence $\psi_\alpha = D^\alpha u$. 
 \end{definition}
 
-\theoremstyle{definition}
+\subsubsection{Function Spaces} \label{subsec:Function Spaces}
+
+To find a suitable weak formulation we need to take some results from the theory of function spaces.
+
+\begin{definition}{$L_2$ Space}
+Let $L_2(\Omega)$ denote the set of all real valued functions defined on $\Omega$ with $\Omega \subset \mathbb{R}^n$ such that:
+\begin{center}
+$\|u\|_{L_2(\Omega)} := \mathlarger{\Big(\int_\Omega  { |u|^2 } dx\Big)}^{\frac{1}{p}} < \infty$
+\end{center}
+\end{definition}
+
+
 \begin{definition}{Sobolev Space}
 
 $H^{m}(\Omega) = \{ u \in L_2(\Omega) : D^{\alpha} u \in L_2(\Omega), |\alpha| \leq m \}$
 
 $$\|u\|_{H^m(\Omega)} :=  \Big(\mathlarger{\sum_{|\alpha|\leq m}}\|D^{\alpha}u\|^2_{L_2(\Omega)} \Big)^{\frac{1}{2}} $$
-
-
 \end{definition}
 
-The Lax Milgram theorem shows shows the existence and uniqueness of a solution to the PDE. 
 
-
-\begin{theorem}[Lax Milgram]
-\label{Lax Milgram}
-Let V be a real Hilbert Space with associated norm $\|\dot{•}\|$. Also let $a(\dot{•}, \dot{•})$ be a bilinear functional on V x V with:
-
-(a) $a(\cdot, \cdot)$ is coercive, i.e. there exists a positive constant $c_0 \forall v \in V |a(v, v)|  \geq c_0 \|v\|^2_V$ 
-
-(b) $a(\cdot, \cdot)$ is continuous i.e. there exists a positive constant $c_1 \forall v, w \in V |a(v, w) \leq c_1 \|v\|_V \|w\|_V$ 
-
-and for $\ell(\cdot)$ a bilinear functional also on V such that 
-
-(c) $\ell(\cdot)$ is continuous i.e. there exists a positive constant $c_2 \forall v \in V |\ell(\cdot)|  \leq c_2 \|v\|_V$
-
-Then there $\exists u \in V: a(u, v) = \ell(v) \forall v \exists V$ and u is unique.
-\end{theorem}
-
-This version of the theorem is Weaker than the refinement proved by Babuska but it sufficient for our purposes. The refined theorem is available f in most textbooks on the FEM.
+\subsubsection{Basis Functions} \label{subsec:basis}
 
 
 
+Take the interval $x \in [0,L]$ and the intervals $[x_k, x_{k+1}] \quad k=0, 1, ... , N-1$ with $h_i = x_{i+1}-x_i$. Then we can define the below function which is referred to a the FEM basis function or the "hat" function.
 
-\clearpage
+\begin{equation}
+\phi_j(x) =  \Big(\:1 - \Big|\frac{x-x_k}{h_i}\Big| \: \Big)_+ , \quad j = 0,1,..., N
+\end{equation}
 
-\subsection{Subdivion and basis functions} \label{subsec:Subspace}
+The interval leads to two half hats on the boundary. Clearly the basis function does not have a continuous derivative but it does have a weak derivative in the sense described above \ref{def:weak derivative}.
 
-Take the subdivision on $x \in \Omega$ in our model problem \ref{eq:Steady Diffusion1}. We subdivide the domain into N intervals $[x_k, x_{k+1}] \quad k=0, 1, ... , N-1$. This subdivision may not be regular and when later in this dissertation we begin seeking an adaptive solution will very rarely be regular. intervals may be referred to as elements and give the FEM its name.
-\\
-\\
+The function space through which we will choose to view this function 
 
 \begin{center}
 \begin{tikzpicture}
 
-\draw[thick] (0,0) -- (10,0) node[anchor=north west] {};
-\foreach \x in {0,1,2,3,5,6,9}
+\draw[thick,->] (-0.5,0) -- (-0.5,2.5);
+\draw (-0.6,1.5) -- (-0.4,1.5) node[anchor=south east] {$1$};
+\draw[dotted] (0,0) -- (0, 1.5);
+\draw[thick] (-0.5,0)--(2,0) -- (2.25,-0.25) -- (2.5,0.25) --(2.75,0)--(8,0) -- (8.25,-0.25) -- (8.5,0.25) --(8.75,0) -- (10,0) node[anchor=north west]{};
+
+\draw (4,0) -- (5,1.5)--(6, 0) ;
+\draw (4 cm,1pt) -- (4 cm,-1pt) node[anchor=north] {$x_{i-1}$};
+\draw (5 cm,1pt) -- (5 cm,-1pt) node[anchor=north] {$x_{i}$};
+\draw (6 cm,1pt) -- (6 cm,-1pt) node[anchor=north] {$x_{i+1}$};
+\draw (0,1.5) -- (1,0);
+
+\foreach \x in {0,1}
    \draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {$x_\x$};
 
 \draw (10 cm,1pt) -- (10 cm,-1pt) node[anchor=north] {$x_N$};
@@ -308,17 +318,20 @@ Take the subdivision on $x \in \Omega$ in our model problem \ref{eq:Steady Diffu
 \end{center}
 
 
-We now define the FEM basis function on this grid. 
-
-\begin{equation}
-\phi_j(x) =  \Big(\:1 - \Big|\frac{x-x_k}{h_i}\Big| \: \Big)_+ , \quad j = 0,1,..., N
-\end{equation}
 
 
 
 
 
-\subsection{The Weak Formulation} \label{subsec:Weak Formulation}
+
+The Lax Milgram theorem shows shows the existence and uniqueness of a solution to the PDE. 
+
+
+\clearpage
+
+
+
+\subsection{An Elliptical Model Problem} \label{subsec:Weak Formulation1}
 
 Now we have defined the mathematical context let us solve a problem via the FEM. Take the stationary heat equation.
 
@@ -353,18 +366,39 @@ Define
 \int_0^L  f v dx  =  \ell(v)
 \end{equation*}
 
-This gives us the linear and bilinear form with can be used to show by \ref{Lax Milgram} that $u$ exists and is unique. However, our test function has been chosen simply some function in the Sobolev space which has infinitely many functions defined within it and is described as infinite dimensional. 
+This gives us the linear and bilinear form with can be used to show by \ref{app:LM} that $u$ exists and is unique. However, our test function has been chosen simply some function in the Sobolev space which has infinitely many functions defined within it and is described as infinite dimensional. 
 
 To find the FEM approximation to \ref{Steady Diffusion1} we look for a solution in a finite dimensional subspace of $V\subset H^1(0, L) $. The subspace we chose consists of continuous piecewise linear functions of defined on some given subdivision of $\Omega$. Then we can restate the weak formulation by the following:
 
-\begin{problem}{FEM Approximation} \label{prob:Approx1}\\
+Take the subdivision on $x \in \Omega$ in our model problem \ref{eq:Steady Diffusion1}. We subdivide the domain into N intervals $[x_k, x_{k+1}] \quad k=0, 1, ... , N-1$. This subdivision may not be regular and when later in this dissertation we begin seeking an adaptive solution will very rarely be regular. intervals may be referred to as elements and give the FEM its name.
+\\
+\begin{center}
+\begin{tikzpicture}
+
+
+
+\draw[thick] (0,0)--(2,0) -- (2.25,-0.25) -- (2.5,0.25) --(2.75,0)--(8,0) -- (8.25,-0.25) -- (8.5,0.25) --(8.75,0) -- (10,0) node[anchor=north west]{};
+
+
+\draw (4 cm,1pt) -- (4 cm,-1pt) node[anchor=north] {$x_{i-1}$};
+\draw (5 cm,1pt) -- (5 cm,-1pt) node[anchor=north] {$x_{i}$};
+\draw (6 cm,1pt) -- (6 cm,-1pt) node[anchor=north] {$x_{i+1}$};
+
+
+\foreach \x in {0,1}
+   \draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {$x_\x$};
+
+\draw (10 cm,1pt) -- (10 cm,-1pt) node[anchor=north] {$x_N$};
+
+\end{tikzpicture}
+\end{center}
+
+
+\vspace{5mm} %5mm vertical space
+
+\begin{problem}{FEM Approximation} \label{prob:Approx1}
 Find $\quad u_h \in  V\subset H^1(0, 1) \quad : \quad a(u_h, v_h) =  \ell(v_h) \quad \forall v_h \subset V.$
 \end{problem}
-
-We now define a basis for our domain 
-As we are looking to approximate u by a piecewise linear function $u_h$ 
-
-Let the subspace $V$ have dimension $N(h)$ and $V = span\{\phi_1, ..., \phi_{N(h)}\}$. Hence, we have defined our subspace by linearly independent basis functions $\phi_i$.
 
 Now we can define our approximation $u_h$ to \ref{eq:Steady Diffusion1} by:
 
@@ -374,24 +408,24 @@ u_h(x) = \sum_{j=1}^{N(h)} U_j \cdot \phi_h(x)
 
 With $U_j \: j = 1, ..., N(h)$ being constants to be determined. We can now rewrite \ref{prob:Approx1} by the following:
 
-\begin{problem}
-$$\sum_{j=1}^{N(h)}U_j \: a( \,\phi_j(x),\, \phi_i(x)) = \ell(\,\phi_i(x)\,) $$
-\end{problem}
+\begin{equation*}
+\sum_{j=1}^{N(h)}U_j \: a( \,\phi_j(x),\, \phi_i(x)) = \ell(\,\phi_i(x)\,) 
+\end{equation*}
 
-This gives a system of linear equations with $a( \,\phi_j(x),\, \phi_i(x))$ an $N(h)\times N(h)$ matrix. To form and solve this system we need to introduce the FEM basis function 
+This gives a system of linear equations with $a( \,\phi_j(x),\, \phi_i(x))$ an $N(h)\times N(h)$ matrix. 
 
-\begin{subequations} 
-\begin{align}
-A_{ij} =& \int_I \phi_i \phi_j dx \label{eq:stiff}\\
-b_i =& \int_I  \, f\phi_i dx
-\end{align}
-\end{subequations}
+\begin{equation*} 
+A_{ij} = \int_I \phi_i' \phi_j' dx \quad \quad
+b_i = \int_I  \, f\phi_i dx
+\end{equation*}
+\vspace{2mm} %5mm vertical space
+Hence the system $AU = F$		
 
-\begin{equation}
-AU = F			\label{eq:system1}
-\end{equation}
 
-\subsection{Results} \label{subsec:results1}
+\subsection{Numerical Experiments} \label{subsec:Numerical1}
+
+First we take \ref{eq:Steady Diffusion1} with right-hand side function $\pi^2 \cos(\pi x - 0.5 \pi )$ and a uniform mesh $ x \in [0, 0.25, 0.5, 0.75, 1]$.
+
 
 \begin{figure}[h]
    \includegraphics[width=0.5\textwidth]{EllipticPDE2.pdf}
@@ -399,44 +433,56 @@ AU = F			\label{eq:system1}
  \label{fig:eliptic1}
 \end{figure}
 
-\begin{center}
-  \begin{tabular}{r|cccccc}
-    $Mesh$   & h & $\|u-u_h\|_{L_2(0,1)}$ & s & $\|u-u_h\|_{H^1(0,1)}$ & s  \\ \hline
-    $1$ & $\tfrac{1}{4}$ & 0.0174706 & 2 & 0.511854 & 5  \\
-    $2$ & $\tfrac{1}{8}$ & 0.00413879 & 5 & 0.252837 & 11  \\
-    $3$ & $\tfrac{1}{16}$ & 0.00102063 & 5 & 0.12604 & 11  \\
-	$4$ & $\tfrac{1}{32}$ & 0.000254283 & 2 & 0.0629727 & 5 \\
-    $5$ & $\tfrac{1}{64}$ & 6.3516e-005 & 5 & 0.0314805 & 11  \\
-    $6$ & $\tfrac{1}{128}$ & 1.58756e-005 & 5 & 0.0157395 & 11 \\
+
+\begin{figure}[h!]
+\begin{minipage}{0.48\hsize}
+\begin{tabular}{ccc}
+    \hline
+     h & $\|u-u_h\|_{L_2(0,1)}$ & $\|u-u_h\|_{H^1(0,1)}$   \\ \hline
+     $\tfrac{1}{4}$ & 0.0174706 &  0.511854   \\
+     $\tfrac{1}{8}$ & 0.00413879 &  0.252837   \\
+     $\tfrac{1}{16}$ & 0.00102063 &  0.12604   \\
+	 $\tfrac{1}{32}$ & 0.000254283 &  0.0629727  \\
+     $\tfrac{1}{64}$ & 6.3516e-005 &  0.0314805   \\
+
+    \hline
   \end{tabular}
-\end{center}
+  \end{minipage}
+  \hfill
+    \begin{minipage}{0.48\hsize}
+  \includegraphics[width=0.9\textwidth]{EllipticPDE2Convergences.pdf}
+  \label{fig:c}
+\end{minipage}
+    \end{figure}
 
 
-
-
-\begin{figure}[h]
+\begin{figure}[h!]
    \includegraphics[width=0.5\textwidth]{EllipticPDE1_hi.pdf}
-   
  \label{fig:eliptic1}
 \end{figure}
 
-\begin{center}
-  \begin{tabular}{r|cccccc}
-    $Mesh$   & DOGs & $\|u-u_h\|_{L_2(0,1)}$  & $\|u-u_h\|_{H^1(0,1)}$   \\ \hline
-    $1$ & $4$ & 0.0776354  & 0.825144   \\
-    $2$ & $7$ & 0.0170398  & 0.40185   \\
-    $3$ & $13$ & 0.00411272  & 0.199548   \\
-	$4$ & $25$ & 0.00101902  & 0.0996014 \\
-    $5$ & $49$ & 0.000254182  & 0.0497791   \\
-    $6$ & $97$ & 6.35097e-005  & 0.0248868  \\
+
+
+\begin{figure}[h!]
+\begin{minipage}{0.48\hsize}
+\begin{tabular}{ccc}
+    \hline
+     DOGs & $\|u-u_h\|_{L_2(0,1)}$  & $\|u-u_h\|_{H^1(0,1)}$   \\ \hline
+     $4$ & 0.0776354  & 0.825144   \\
+     $7$ & 0.0170398  & 0.40185   \\
+     $13$ & 0.00411272  & 0.199548   \\
+	 $25$ & 0.00101902  & 0.0996014 \\
+    $49$ & 0.000254182  & 0.0497791   \\
+    \hline
   \end{tabular}
-\end{center}
+  \end{minipage}
+  \hfill
+    \begin{minipage}{0.48\hsize}
+  \includegraphics[width=0.9\textwidth]{EllipticPDE1Convergences.pdf}
+  \label{fig:c}
+\end{minipage}
+    \end{figure}
 
-\begin{figure}[h]
-   \includegraphics[width=0.5\textwidth]{EllipticPDE1Convergences.pdf}
-     
- \label{fig:eliptic1}
-\end{figure}
 
 \subsection{Implementation} \label{subsec:Implementation1}
 
@@ -460,7 +506,7 @@ protected:
 
 
 
-The obvious advantage of a similar declaration is not only the efficiency of the storage and the methods but also the readability, polymorphism and the ease with which the code can then be tested. Once module tests have been run and effectiveness established we can derived any specific matrices we need from the above interface. The first derivation we make is for \ref{eq:stiff} also called the Stiffness matrix. This class reads a specific subdivision of the domain $\omega$ and sets the Stiffness matrix accordingly.
+The obvious advantage of a similar declaration is not only the efficiency of the storage and the methods but also the readability, polymorphism and the ease with which the code can then be tested. Once module tests have been run and effectiveness established we can derived any specific matrices we need from the above interface. The first derivation we make is for \ref{eq:stiff} also called the Stiffness matrix. This class reads a specific subdivision of the domain and sets the Stiffness matrix accordingly.
 
 \begin{lstlisting}[language=C++]
 class StiffnessMatrix: public TriDiagMatrix{
@@ -484,11 +530,13 @@ PrintVector(U);
 
 We have not yet discussed the implementation of boundary conditions. In the derivation of the weak formulation the boundary conditions are projected into the solution space. This has been done in \ref{prob:Weak Formulation Elliptic} by choosing $H^1_0(0, L)$ for our zero dirichlet boundaries.
 
-In practise one of the major advantages of the FEM is the ease with which more complicated boundary conditions can be implemented. A detailed account of doing this in a general is given in \cite{larson2013finite}. The method they advocate is implementing Robin boundary conditions and using parameters to set Neuman conditions or approximate dirichlet conditions. From here onward this is the method used in the code from here on.
+In practise one of the major advantages of the FEM is the ease with which more complicated boundary conditions can be implemented. A detailed account of doing this in a general is given in \cite{larson2013finite}. The method they advocate is implementing Robin boundary conditions and using parameters to set Neumann conditions or approximate dirichlet conditions. From here onward this is the method used in the code from here on.
 
-
+\clearpage
 
 \section{The Time Dependent Problem} \label{sec:Time dependent}
+
+
 
 Now that we have built some foundations by solving the elliptical PDE ref{eq:Steady Diffusion1} we can use the same method to discretise the space dimension of the Heat Equation.
 \begin{subequations} 
@@ -637,7 +685,7 @@ with
 
 
 
-\subsection{Impementation} \label{subsubsec:Implementation}
+\subsection{Implementation} \label{subsubsec:Implementation}
 
 When it comes to the computer implementation of the FEM on time dependent or multidimensional problems "meshing" is the important art-form. There are entire software packages available to carry out the creation and manipulation of mesh structures and it would therefore benefit any FEM project to either design there own data-structures or implement an existing mesh package. 
 
@@ -709,7 +757,7 @@ With
 \int_0^L  u' v'  dx = a(u, v)  	
 \end{equation*}
 
-It is clear that the bilinear form is symmetric i.e.  a(w, v) = a(v, w) and it can be shown that it is coercive as described in the Lax Milgram theorem \ref{Lax Milgram}. Hence, $a(w, v)$ is an inner product on $H^1_0(0, L) (w, v)_a$.
+It is clear that the bilinear form is symmetric i.e.  a(w, v) = a(v, w) and it can be shown that it is coercive as described in the Lax Milgram theorem \ref{app:LM}. Hence, $a(w, v)$ is an inner product on $H^1_0(0, L) (w, v)_a$.
 
 We can then define the associated energy norm.
 
@@ -907,8 +955,182 @@ mathematical symbols like $\xi$, $\nabla$, $\infty$, $\log$, $\iff$, etc.
 
 \appendix
 
-\section{Raw data} \label{app:rawdata}
+\section{Lax Milgram} \label{app:LM}
 
+\begin{theorem}[Lax Milgram]
+%\label{Lax Milgram}
+Let V be a real Hilbert Space with associated norm $\|\dot{•}\|$. Also let $a(\dot{•}, \dot{•})$ be a bilinear functional on V x V with:
+
+(a) $a(\cdot, \cdot)$ is coercive, i.e. there exists a positive constant $c_0 \forall v \in V |a(v, v)|  \geq c_0 \|v\|^2_V$ 
+
+(b) $a(\cdot, \cdot)$ is continuous i.e. there exists a positive constant $c_1 \forall v, w \in V |a(v, w) \leq c_1 \|v\|_V \|w\|_V$ 
+
+and for $\ell(\cdot)$ a bilinear functional also on V such that 
+
+(c) $\ell(\cdot)$ is continuous i.e. there exists a positive constant $c_2 \forall v \in V |\ell(\cdot)|  \leq c_2 \|v\|_V$
+
+Then there $\exists u \in V: a(u, v) = \ell(v) \forall v \exists V$ and u is unique.
+\end{theorem}
+
+\section{Tridiagonal Matrices} \label{app:rawdata}
+
+\begin{lstlisting}[language=C++]
+class TriDiagMatrix
+{
+public:
+
+    void SetMatrix( std::vector<double> Diagonal,
+        std::vector<double> LowerDiag, std::vector<double> UpperDiag);
+
+    void MatrixVectorMultiplier ( std::vector<double> f, std::vector<double> &ProductVector);
+
+    void PrintMatrix();
+
+    void MatrixSolver( std::vector<double> f,
+         std::vector<double> &x );
+
+    void MultiplyByScalar (double k);
+
+    void AddTwoMatrices ( TriDiagMatrix firstMatrix, TriDiagMatrix secondMatix );
+
+protected:
+
+    int mpn;
+
+    std::vector<double> mpDiagonal;
+    std::vector<double> mpLowerDiag;
+    std::vector<double> mpUpperDiag;
+
+};
+
+void TriDiagMatrix::MatrixVectorMultiplier ( std::vector<double> f, std::vector<double> &ProductVector )
+    {
+        ProductVector.assign( mpn, 0 );
+
+        ProductVector[0] = mpDiagonal[0]*f[0]+mpUpperDiag[0]*f[1];
+        ProductVector[mpn-1] = mpLowerDiag[mpn-1]*f[mpn-2]+mpDiagonal[mpn-1]*f[mpn-1];
+
+            for (int j = 1; j<mpn-1; j++)
+            {
+                ProductVector[j] = mpLowerDiag[j]*f[j-1]+mpDiagonal[j]*f[j]+mpUpperDiag[j]*f[j+1];
+            }
+    }
+    
+    void TriDiagMatrix::MatrixSolver( std::vector<double> f, std::vector<double> &x )
+    {
+        std::vector<double> cDiagonal = mpDiagonal;
+        std::vector<double> cLowerDiag = mpLowerDiag;
+        std::vector<double> cUpperDiag = mpUpperDiag;
+        x.assign(mpn, 0.);
+         //scaling matrix entries
+    for(int i=1; i<mpn; i++)
+    {
+        cDiagonal.at(i) = cDiagonal.at(i)-(cUpperDiag.at(i-1)*cLowerDiag.at(i)/cDiagonal.at(i-1));
+        f.at(i) = f.at(i)-(f.at(i-1)*cLowerDiag.at(i)/cDiagonal.at(i-1));
+    }
+
+        //solving through elimination
+     x.at(mpn-1)=f.at(mpn-1)/cDiagonal.at(mpn-1);
+     for(int i=mpn-2; i>=0; i=i-1)
+     {
+         x.at(i) = (f.at(i) - cUpperDiag.at(i)*x.at(i+1))/(cDiagonal.at(i));
+     }
+    }
+
+\end{lstlisting}
+
+\section{Stiffness and Mass Matrices} \label{app:Stiff/Mass}
+
+\begin{lstlisting}[language=C++]
+
+class StiffnessMatrix: public TriDiagMatrix
+{
+public:
+
+    void BuildStiffnessMatrix ( SpaceMesh smesh );
+    void BuildGeneralStiffnessMatrix ( SpaceMesh smesh );
+    void SetParameters (double k_0, double k_L, double constant);
+
+protected:
+    const double M_PI = 2*acos(0);
+    double a, mpk_0, mpk_L;
+};
+
+void StiffnessMatrix::BuildGeneralStiffnessMatrix ( SpaceMesh smesh )
+{
+mpn = smesh.meshsize()+1;
+mpDiagonal = { a*pow(smesh.ReadSpaceMesh(0), -1)+mpk_0 };
+mpLowerDiag = {0};
+mpUpperDiag = { -1*a*pow( smesh.ReadSpaceMesh(0), -1 ) };
+
+for(int i=0; i<mpn-2; i++)
+    {
+        mpDiagonal.push_back( a*pow(smesh.ReadSpaceMesh(i), -1) + a*pow(smesh.ReadSpaceMesh(i+1), -1) );
+        mpLowerDiag.push_back( -1*a*pow(smesh.ReadSpaceMesh(i),-1)  );
+        mpUpperDiag.push_back( -1*a*pow(smesh.ReadSpaceMesh(i+1), -1) );
+    }
+
+mpDiagonal.push_back( a*pow(smesh.ReadSpaceMesh(mpn-2), -1)+mpk_L );
+mpLowerDiag.push_back( -1*a*pow(smesh.ReadSpaceMesh(mpn-2),-1) );
+mpUpperDiag.push_back( 0 );
+}
+
+class MassMatrix: public TriDiagMatrix
+{
+public:
+    void BuildMassMatrix ( SpaceMesh smesh );
+    void BuildGeneralMassMatrix ( SpaceMesh smesh );
+};
+
+void MassMatrix::BuildGeneralMassMatrix ( SpaceMesh smesh )
+{
+mpn = smesh.meshsize()+1;
+mpDiagonal = {smesh.ReadSpaceMesh(0)*pow(3,-1)};
+mpLowerDiag = {0};
+mpUpperDiag = {(smesh.ReadSpaceMesh(0)*pow(6,-1))};
+
+for(int i=0; i<mpn-2; i++)
+    {
+        mpDiagonal.push_back( (smesh.ReadSpaceMesh(i)+smesh.ReadSpaceMesh(i+1))*pow(3,-1) );
+        mpLowerDiag.push_back( smesh.ReadSpaceMesh(i)*pow(6,-1) );
+        mpUpperDiag.push_back( smesh.ReadSpaceMesh(i+1)*pow(6,-1) );
+    }
+
+mpDiagonal.push_back( smesh.ReadSpaceMesh(mpn-2)*pow(3,-1)) ;
+mpLowerDiag.push_back( smesh.ReadSpaceMesh(mpn-2)*pow(6,-1) );
+mpUpperDiag.push_back( 0 );
+}
+
+\end{lstlisting}
+
+\section{Space and Time Meshes} \label{app:smesh/tmesh}
+
+\begin{lstlisting}[language=C++]
+class SpaceMesh
+{
+public:
+    void Range( double lowerlimit, double upperlimit, std::vector<double>& Nodes);
+    void CommonMesh( SpaceMesh& firstmesh, SpaceMesh& secondmesh );
+    double GeneralTestFunctions(int nodeIndex, double x);
+    bool Contained (double my_var );
+
+    void CopySpaceMesh (const SpaceMesh& oldSpaceMesh);
+
+    void BisectIntervals (std::vector<int> &intervalsForBisection);
+    void CoarsenIntervals (std::vector<int> &intervalsForCoarsening);
+
+    void GloballyBisectSpaceMesh ();
+
+
+    int IndexAbove ( double x );
+
+
+protected:
+    std::vector<double> mpSpaceNodes;
+};
+
+
+\end{lstlisting}
 
 
 \section{Calculations for section \ref{sec:my1}} \label{app:calculations}

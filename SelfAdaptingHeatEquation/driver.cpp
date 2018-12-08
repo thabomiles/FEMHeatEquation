@@ -40,7 +40,7 @@ adaptiveheat.AdaptiveSolver();
 //adaptiveheat.PrintSolution();
 
 //adaptiveheat.PrintErrorMesh();
-adaptiveheat.GlobalSpaceError();
+adaptiveheat.PrintSolution();
 
 }
 

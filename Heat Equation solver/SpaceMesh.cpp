@@ -30,17 +30,11 @@ void SpaceMesh::CommonMesh( SpaceMesh& firstmesh, SpaceMesh& secondmesh )
     mpSpaceNodes.insert( mpSpaceNodes.end(), secondmesh.mpSpaceNodes.begin(), secondmesh.mpSpaceNodes.end() );
     sort(mpSpaceNodes.begin(), mpSpaceNodes.end());
     mpSpaceNodes.erase( unique( mpSpaceNodes.begin(), mpSpaceNodes.end() ), mpSpaceNodes.end() );
-    RefreshSpaceMesh();
 }
 
 double SpaceMesh::GeneralTestFunctions(int nodeIndex, double x)
 {
-    if (x<mpSpaceNodes[nodeIndex]-mpSpaceMesh[nodeIndex-1]||x>mpSpaceNodes[nodeIndex]+mpSpaceMesh[nodeIndex])
-    {
-        std::cout<< " You are out of your interval "<< "\n";
-        return 0;
-    }
-    else if(nodeIndex==0)
+    if(nodeIndex==0)
     {
         //std::cout<< " half hat1 "<< "\n";
         return -pow(ReadSpaceMesh(nodeIndex),-1)*(x-mpSpaceNodes.at(nodeIndex))+1;
@@ -91,15 +85,21 @@ void SpaceMesh::GenerateUniformMesh(double boundary, int numberofnodes)
     {
         mpSpaceNodes.push_back( i*boundary*pow( numberofnodes-1, -1) );
     }
-    RefreshSpaceMesh();
 }
 
 void SpaceMesh::CopySpaceMesh (const SpaceMesh& oldSpaceMesh)
 {
 
     mpSpaceNodes = oldSpaceMesh.mpSpaceNodes;
-    RefreshSpaceMesh();
     mpmeshsize = mpSpaceNodes.size()-1;
+}
+
+void SpaceMesh::InsertArray ( std::vector<double> RefinementNodes )
+{
+    for( auto i: RefinementNodes)
+        mpSpaceNodes.push_back(i);
+    sort(mpSpaceNodes.begin(), mpSpaceNodes.end());
+    mpSpaceNodes.erase( unique( mpSpaceNodes.begin(), mpSpaceNodes.end() ), mpSpaceNodes.end() );
 }
 
 void SpaceMesh::BisectIntervals (std::vector<int> &intervalsForBisection)
@@ -107,8 +107,6 @@ void SpaceMesh::BisectIntervals (std::vector<int> &intervalsForBisection)
     for(auto i: intervalsForBisection)
         mpSpaceNodes.push_back(0.5*(mpSpaceNodes.at(i)+mpSpaceNodes.at(i+1)));
     sort(mpSpaceNodes.begin(), mpSpaceNodes.end());
-
-    RefreshSpaceMesh();
 }
 
 void SpaceMesh::CoarsenIntervals (std::vector<int> &intervalsForCoarsening)
@@ -118,21 +116,17 @@ void SpaceMesh::CoarsenIntervals (std::vector<int> &intervalsForCoarsening)
 
     int vecSize = mpSpaceNodes.size()-intervalsForCoarsening.size();
     mpSpaceNodes.resize(vecSize);
-
-    RefreshSpaceMesh();
 }
 
 void SpaceMesh::GenerateSpaceMesh( std::vector<double> SpaceNodes )
 {
     mpSpaceNodes = SpaceNodes;
-    RefreshSpaceMesh();
-    mpmeshsize = mpSpaceMesh.size();
+    mpmeshsize = meshsize();
 }
 
 void SpaceMesh::GenerateDefaultSpaceMesh()
 {
     mpSpaceNodes = {0.0, 0.25, 0.5, 1.0};
-    RefreshSpaceMesh();
 }
 
 void SpaceMesh::GloballyBisectSpaceMesh ()
@@ -145,25 +139,21 @@ void SpaceMesh::GloballyBisectSpaceMesh ()
         mpSpaceNodes.push_back(gridPoint);
     }
     sort(mpSpaceNodes.begin(), mpSpaceNodes.end());
-
-    RefreshSpaceMesh();
 }
 
 void SpaceMesh::InsertSpaceNode ( double xi )
 {
     mpSpaceNodes.push_back( xi );
     sort(mpSpaceNodes.begin(), mpSpaceNodes.end());
-
-    RefreshSpaceMesh();
 }
 
-void SpaceMesh::RefreshSpaceMesh()
-{
-    mpSpaceMesh.clear();
-    for (int i = 0; i<mpSpaceNodes.size()-1; i++)
-    mpSpaceMesh.push_back( mpSpaceNodes.at(i+1)- mpSpaceNodes.at(i) );
-    mpmeshsize = mpSpaceMesh.size();
-}
+//void SpaceMesh::RefreshSpaceMesh()
+//{
+//    mpSpaceMesh.clear();
+//    for (int i = 0; i<mpSpaceNodes.size()-1; i++)
+//    mpSpaceMesh.push_back( mpSpaceNodes.at(i+1)- mpSpaceNodes.at(i) );
+//    mpmeshsize = mpSpaceMesh.size();
+//}
 
 void SpaceMesh::PrintSpaceNodes ()
 {
@@ -190,8 +180,6 @@ double SpaceMesh::ReadSpaceNode (int i)
 double SpaceMesh::ReadSpaceMesh (int i)
 {
     return mpSpaceNodes.at(i+1)-mpSpaceNodes.at(i);
-
-    //return mpSpaceMesh[i];
 }
 
 int SpaceMesh::meshsize()
@@ -221,7 +209,6 @@ void SpaceMesh::RemoveSpaceNode (int i)
     {
     mpSpaceNodes.erase(mpSpaceNodes.begin() + i);
     }
-    RefreshSpaceMesh();
 }
 
 bool SpaceMesh::Contained (double my_var)

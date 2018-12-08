@@ -28,7 +28,7 @@ smesh.GenerateDefaultSpaceMesh();
 //smesh.GloballyBisectSpaceMesh();
 
 TimeMesh tmesh;
-tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize(), 2), 1.0);
+tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize(), 1), 1.0);
 
 PDE_Q2 anotherpde;
 originalPDE firstpde;
@@ -37,27 +37,28 @@ EllipticPDE2 elliptic2;
 
 GeneralHeat genheat;
 smesh.PrintSpaceNodes();
-//genheat.SetSpaceTimeMesh(smesh, tmesh, anotherpde);
+genheat.SetSpaceTimeMesh(smesh, tmesh, anotherpde);
 //
-//genheat.SolveWithBCs();
-//genheat.PrintSolution();
+genheat.SolveWithBCs();
+printTime(smesh, tmesh);
+genheat.PrintSolution();
 
 
 //genheat.GlobalSpaceError();
 
-for (int i=0; i<6; i++)
-{
-    genheat.SetSpaceTimeMesh(smesh, tmesh, anotherpde);
-    genheat.SolveWithBCs();
-    //std::cout<< smesh.meshsize() + 1 <<"\n";
-    //genheat.UnitTest1();
-    //genheat.GlobalSpaceError();
-    genheat.H_1Norm();
-    //genheat.EnergyNorm();
-    std::cout<< ", " ;
-    smesh.GloballyBisectSpaceMesh();
-    tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize()+1, 2), 1.0);
-}
+//for (int i=0; i<10; i++)
+//{
+//    genheat.SetSpaceTimeMesh(smesh, tmesh, anotherpde);
+//    genheat.SolveWithBCs();
+//    std::cout<< smesh.meshsize() + 1 <<"\n";
+//    //genheat.UnitTest1();
+//    //genheat.GlobalSpaceError();
+//    //genheat.H_1Norm();
+//    //genheat.EnergyNorm();
+//    std::cout<< ", " ;
+//    smesh.GloballyBisectSpaceMesh();
+//    tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize()+1, 1), 1.0);
+//}
 
 
 }

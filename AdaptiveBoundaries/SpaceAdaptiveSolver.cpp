@@ -14,8 +14,20 @@
 using namespace std;
 using namespace boost::math::quadrature;
 
+void AdaptiveSolver::SetTolerances(const double refineby, const double coarsenby)
+{
+    tolerance = refineby;
+    coarseningtol = coarsenby;
+}
+
+void AdaptiveSolver::AdaptiveChangingBC();
+{
+
+}
+
 void AdaptiveSolver::AdaptiveSolve()
 {
+mpsmesh.PrintSpaceNodes();
 mpcurrenTimeStep = 0;
 mpcurrentMeshIndex = 0;
 oldmesh.CopySpaceMesh(mpsmesh);
@@ -23,13 +35,6 @@ oldmesh.CopySpaceMesh(mpsmesh);
 AnalyticSolutionVec();
 mpPreviousSolution = mpAnalyticSolution;
 stiff.SetParameters(k_0, k_L, mpa);
-
-ofstream myfile;
-ofstream myfile1;
-ofstream myfile2;
-myfile2.open ("Y.csv");
-myfile.open ("solution.csv");
-myfile1.open ("X.csv");
 
 int m = mptmesh.NumberOfTimeSteps();
 for(int j = 0; j<m; j++)
@@ -50,48 +55,34 @@ AddVectors( br, mpRHS, mpRHS );
 
 LHS.MatrixSolver( mpRHS, mpx );
 
-
-
-for (int i=0; i<mpsmesh.meshsize()+1; i++)
-{
-    myfile << mpx.at(i) << ", ";
-}
-
-for (int i=0; i<mpsmesh.meshsize()+1; i++)
-{
-    myfile1 << mpsmesh.ReadSpaceNode(i)+1 << ", ";
-}
-
-
-for (int i=0; i<mpsmesh.meshsize()+1; i++)
-{
-    myfile2 << mptmesh.ReadTimeStep(mpcurrenTimeStep) << ", ";
-}
-
 oldmesh.CopySpaceMesh(mpsmesh);
-
+mpsmesh.PrintSpaceNodes();
+PrintVector(mpx);
 mpPreviousSolution = mpx;
 
-    SaveIntervalsForRefinement();
-    SaveIntervalsForCoarsening();
-    mpsmesh.BisectIntervals(intervalsForRefinement);
-    mpsmesh.CoarsenIntervals(NodesForRemoval);
-}
-myfile.close();
-myfile1.close();
-myfile2.close();
+    BuildGradientVec(mpx, mpsmesh, FEMGradient);
+    GradientRecoveryFunction( mpsmesh, FEMGradient, GradientRecovery );
+    BuildErrorEstimate();
 
+    PrintVector(ErrorEstimate);
+
+    SaveRefinementNodes(mpNodeToInsert);
+    SaveIntervalsForCoarsening();
+    PrintVector(mpNodeToInsert);
+
+    mpsmesh.CoarsenIntervals(NodesForRemoval);
+    mpsmesh.InsertArray( mpNodeToInsert );
+}
     std::cout<<mpsmesh.meshsize() <<"\n";
     std::cout<<"\n";
 }
 
-void AdaptiveSolver::SaveIntervalsForCoarsening()
+void AdaptiveSolver::SaveIntervalsForCoarsening(  )
 {
-    BuildErrorMesh();
     NodesForRemoval.clear();
-    for(int i=0; i<mpErrorMesh.size()-1; i++)
+    for(int i=0; i<ErrorEstimate.size()-1; i++)
     {
-        if (sqrt(mpErrorMesh.at(i)+mpErrorMesh.at(i+1))<coarseningtol)
+        if (sqrt(ErrorEstimate.at(i)+ErrorEstimate.at(i+1))<coarseningtol)
         {
             NodesForRemoval.push_back(i+1);
         }
@@ -100,15 +91,29 @@ void AdaptiveSolver::SaveIntervalsForCoarsening()
 
 void AdaptiveSolver::SaveIntervalsForRefinement()
 {
-    BuildErrorMesh();
     intervalsForRefinement.clear();
-    for(int i=0; i<mpErrorMesh.size(); i++)
+    for(int i=0; i<ErrorEstimate.size(); i++)
     {
-        if (sqrt(mpErrorMesh.at(i))>tolerance)
+        if (sqrt(ErrorEstimate.at(i))>tolerance)
         {
             intervalsForRefinement.push_back(i);
         }
     }
+}
+
+void AdaptiveSolver::SaveRefinementNodes( std::vector<double>& Nodes_to_insert )
+{
+    Nodes_to_insert.clear();
+    double midpoint;
+    for(int i=0; i<ErrorEstimate.size(); i++)
+    {
+        if (sqrt(ErrorEstimate.at(i))>tolerance)
+        {
+           midpoint = 0.5*(mpsmesh.ReadSpaceNode(i)+mpsmesh.ReadSpaceNode(i+1));
+           Nodes_to_insert.push_back(midpoint);
+        }
+    }
+
 }
 
 void AdaptiveSolver::BuildRHS()
@@ -149,6 +154,15 @@ refinedsmesh.Range(mpsmesh.ReadSpaceNode(mpsmesh.meshsize()-1), mpsmesh.ReadSpac
 //PrintVector(mpRHS);
 }
 
+void AdaptiveSolver::MeshRefinement()
+{
+
+    SaveIntervalsForRefinement();
+    SaveIntervalsForCoarsening();
+    mpsmesh.BisectIntervals(intervalsForRefinement);
+    mpsmesh.CoarsenIntervals(NodesForRemoval);
+
+}
 
 double AdaptiveSolver::IntegrateBasisWithU( int NodeIndex, double lowerlimit,
                               double upperlimit )
@@ -180,5 +194,28 @@ mpsmesh.PrintSpaceNodes();
 BuildRHS();
 }
 
+//void AdaptiveSolver::SaveIntervalsForCoarsening2()
+//{
+//    NodesForRemoval.clear();
+//    for(int i=0; i<ErrorEstimate.size()-1; i++)
+//    {
+//        if ((sqrt(ErrorEstimate.at(i))<coarseningtol)||(sqrt(ErrorEstimate.at(i+1))<coarseningtol))
+//        {
+//            NodesForRemoval.push_back(i+1);
+//        }
+//    }
+//}
+
+void AdaptiveSolver::SaveIntervalsForCoarsening2()
+{
+    NodesForRemoval.clear();
+    for(int i=0; i<ErrorEstimate.size()-1; i++)
+    {
+        if ((sqrt(ErrorEstimate.at(i))<coarseningtol)||(sqrt(ErrorEstimate.at(i+1))<coarseningtol))
+        {
+            NodesForRemoval.push_back(i+1);
+        }
+    }
+}
 
 

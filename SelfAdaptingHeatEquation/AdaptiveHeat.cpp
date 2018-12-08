@@ -24,8 +24,8 @@ oldmesh.CopySpaceMesh(mpsmesh);
 mpsmesh.PrintSpaceNodes();
 
 
-//int m = mptmesh.NumberOfTimeSteps();
-for(int j = 0; j<mptmesh.NumberOfTimeSteps(); j++)
+int m = mptmesh.NumberOfTimeSteps();
+for(int j = 0; j<m; j++)
 {
     mpcurrenTimeStep = j+1;
     mpcurrentMeshIndex = j;
@@ -38,10 +38,12 @@ for(int j = 0; j<mptmesh.NumberOfTimeSteps(); j++)
     SaveIntervalsForCoarsening();
     mpsmesh.BisectIntervals(intervalsForRefinement);
     mpsmesh.CoarsenIntervals(NodesForRemoval);
+    std::cout<<mpsmesh.meshsize() <<"\n";
+    std::cout<<"\n";
+    PrintVector(mpErrorMesh);
 }
     std::cout<<mpsmesh.meshsize() <<"\n";
     std::cout<<"\n";
-
 }
 
 void AdaptiveHeatEquation::SaveIntervalsForCoarsening()

@@ -120,6 +120,9 @@ void GeneralHeat::AnalyticSolutionVec( )
 
 void GeneralHeat::PrintSolution( )
 {
+        BuildGradientVec(mpx, mpsmesh, FEMGradient);
+        GradientRecoveryFunction( mpsmesh, FEMGradient, GradientRecovery );
+        BuildErrorEstimate();
         BuildErrorMesh();
         AnalyticSolutionVec();
 //        AnalyticGradientVec();
@@ -138,8 +141,8 @@ void GeneralHeat::PrintSolution( )
         GlobalSpaceError();
         std::cout << "FEM Grad approx:       ";
         PrintVector(FEMGradient);
-//        std::cout << "Analytic Gradient:     ";
-//        PrintVector(mpTrueGradVec);
+        std::cout << "ErrorEstimate:         ";
+        PrintVector(ErrorEstimate);
         std::cout << "Energy Error           ";
         PrintVector(mpEnergyNorm);
         std::cout << "Global Energy Error    ";

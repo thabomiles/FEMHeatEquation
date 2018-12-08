@@ -14,21 +14,25 @@ class AdaptiveSolver: public GeneralHeat
 {
 public:
     void AdaptiveSolve();
-    void SaveIntervalsForRefinement();
-    void RefineMesh();
-
-    double IntegrateBasisWithU( int NodeIndex, double lowerlimit, double upperlimit );
-
-    double SolutionTimesBasis( int NodeIndex, double x );
     void BuildRHS();
 
-    void SaveIntervalsForCoarsening();
+    double IntegrateBasisWithU( int NodeIndex, double lowerlimit, double upperlimit );
+    void RefineMesh();
 
+    void AdaptiveChangingBC();
+    void SaveRefinementNodes( std::vector<double>& Nodes_to_insert );
+    void SaveIntervalsForRefinement();
+    void SaveIntervalsForCoarsening();
+    void SaveIntervalsForCoarsening2();
+    void MeshRefinement();
+    void SetTolerances(const double refineby, const double coarsenby);
+    double SolutionTimesBasis( int NodeIndex, double x );
     void UnitTest();
 
 protected:
-    const double tolerance = 0.1, coarseningtol = 0.0;
+    double tolerance, coarseningtol;
     std::vector<int> intervalsForRefinement, NodesForRemoval;
+    std::vector<double> mpNodeToInsert;
     SpaceMesh oldmesh, refinedsmesh;
 };
 

@@ -23,6 +23,7 @@ public:
     void GenerateDefaultSpaceMesh();
     void GloballyBisectSpaceMesh ();
     void InsertSpaceNode ( double xi );
+    void InsertArray ( std::vector<double> RefinementNodes );
     void RemoveSpaceNode (int i);
     void RefreshSpaceMesh();
     void PrintSpaceNodes ();
@@ -32,12 +33,12 @@ public:
     int meshsize();
     int IndexAbove ( double x );
 
-    std::vector<double> mpSpaceNodes ;
+    std::vector<double> mpSpaceNodes;
 
 protected:
 
 
-    std::vector<double> mpSpaceMesh;
+    //std::vector<double> mpSpaceMesh;
     int mpmeshsize;
 
 };

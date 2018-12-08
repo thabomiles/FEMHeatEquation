@@ -1,5 +1,5 @@
-#ifndef PDE_Q2HEADERREF
-#define PDE_Q2HEADERREF
+#ifndef PDE1HEADERREF
+#define PDE1HEADERREF
 #include <cmath>
 #include <math.h>
 #include <vector>
@@ -11,18 +11,24 @@
 #include "StiffnessMatrix.hpp"
 #include "APDE.hpp"
 
-class PDE_Q2: public APDE
+
+
+class Nonanalytic: public APDE
 {
     public:
         friend class GeneralHeat;
-        double ContinuousAnalyticSolution( double x, double t );
-        double AnalyticGradientWRTx( double x, double t );
+        double InitialCondition ( double x );
         double FirstBoundary( double t );
         double SecondBoundary( double t );
-        PDE_Q2( );
 
     protected:
 
+        double g_0 =0 , g_L = 1, k_0 = pow(10, 300), k_L = pow(10, 300);
+
+
+
+
 };
 
-#endif // PDE_Q2HEADERREF
+#endif // PDE1HEADERREF
+

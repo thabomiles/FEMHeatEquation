@@ -21,25 +21,32 @@ int main(int argc, char* argv[])
 {
 
 SpaceMesh smesh;
-smesh.GenerateUniformMesh(1, 5);
-smesh.GloballyBisectSpaceMesh();
-smesh.PrintSpaceNodes();
+std::vector<double> mesh = {0, 0.15, 0.25, 0.5, 1};
+smesh.GenerateSpaceMesh(mesh);
+//smesh.GenerateUniformMesh(1, 5);
+//smesh.InsertArray(mesh);
+//smesh.PrintSpaceNodes();
 
 
 TimeMesh tmesh;
 tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize(), 2), 1.0);
+tmesh.PrintTimeNodes();
 
 PDE_Q2 anotherpde;
 originalPDE firstpde;
 EllipticPDE_Q1 Q1;
 EllipticPDE2 elliptic2;
 
-//printTime(smesh, tmesh);
+
 
 AdaptiveSolver adapt;
-adapt.SetSpaceTimeMesh(smesh, tmesh, firstpde);
-
+adapt.SetSpaceTimeMesh(smesh, tmesh, anotherpde);
+adapt.SetTolerances(0.8,0.1);
 adapt.AdaptiveSolve();
+adapt.PrintSolution();
+
+adapt.SetSpaceTimeMesh(smesh, tmesh, anotherpde);
+adapt.SolveWithBCs();
 adapt.PrintSolution();
 }
 

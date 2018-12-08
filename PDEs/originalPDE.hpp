@@ -17,6 +17,8 @@ class originalPDE: public APDE
         friend class GeneralHeat;
         double ContinuousAnalyticSolution( double x, double t );
         double AnalyticGradientWRTx( double x, double t );
+        double FirstBoundary( double t );
+        double SecondBoundary( double t );
         originalPDE();
 
     protected:

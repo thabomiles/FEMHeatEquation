@@ -53,6 +53,8 @@
 		<Unit filename="../PDEs/EllipticPDE2.hpp" />
 		<Unit filename="../PDEs/EllipticPDE_Q1.cpp" />
 		<Unit filename="../PDEs/EllipticPDE_Q1.hpp" />
+		<Unit filename="../PDEs/Nonanalytic_1.cpp" />
+		<Unit filename="../PDEs/Nonanalytic_1.hpp" />
 		<Unit filename="../PDEs/PDE1.cpp" />
 		<Unit filename="../PDEs/PDE1.hpp" />
 		<Unit filename="../PDEs/PDE_Q2.cpp" />

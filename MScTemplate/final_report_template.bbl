@@ -1,0 +1,73 @@
+\begin{thebibliography}{10}
+
+\bibitem{ainsworth65001posteriori}
+M~Ainsworth and JT~Oden.
+\newblock A posteriori error estimation in finite element analysis
+  (wiley-interscience, new york, 2000).
+\newblock {\em MR1885308 (2003b: 65001)}, 2000.
+
+\bibitem{babuska1981posteriori}
+I~Babuska and A~Miller.
+\newblock A-posteriori error estimates and adaptive techniques for the finite
+  element method.
+\newblock Technical report, MARYLAND UNIV COLLEGE PARK INST FOR PHYSICAL
+  SCIENCE AND TECHNOLOGY, 1981.
+
+\bibitem{babuska1978posteriori}
+Ivo Babuska and Werner~C Rheinboldt.
+\newblock A-posteriori error estimates for the finite element method.
+\newblock {\em International Journal for Numerical Methods in Engineering},
+  12(10):1597--1615, 1978.
+
+\bibitem{courant1943}
+R.~Courant.
+\newblock Variational methods for the solution of problems of equilibrium and
+  vibrations.
+\newblock {\em Bull. Amer. Math. Soc.}, 49(1):1--23, 01 1943.
+
+\bibitem{eriksson1991adaptive}
+Kenneth Eriksson and Claes Johnson.
+\newblock Adaptive finite element methods for parabolic problems i: A linear
+  model problem.
+\newblock {\em SIAM Journal on Numerical Analysis}, 28(1):43--77, 1991.
+
+\bibitem{johnson1988error}
+Claes Johnson.
+\newblock Error estimates and adaptive time-step control for a class of
+  one-step methods for stiff ordinary differential equations.
+\newblock {\em SIAM Journal on Numerical Analysis}, 25(4):908--926, 1988.
+
+\bibitem{larson2013finite}
+Mats~G Larson and Fredrik Bengzon.
+\newblock {\em The finite element method: theory, implementation, and
+  applications}, volume~10.
+\newblock Springer Science \& Business Media, 2013.
+
+\bibitem{morin2008basic}
+Pedro Morin, Kunibert~G Siebert, and Andreas Veeser.
+\newblock A basic convergence result for conforming adaptive finite elements.
+\newblock {\em Mathematical Models and Methods in Applied Sciences},
+  18(05):707--737, 2008.
+
+\bibitem{pitt2012guide}
+Joe Pitt-Francis and Jonathan Whiteley.
+\newblock {\em Guide to scientific computing in C++}.
+\newblock Springer, 2012.
+
+\bibitem{siebert2011convergence}
+Kunibert~G Siebert.
+\newblock A convergence proof for adaptive finite elements without lower bound.
+\newblock {\em IMA journal of numerical analysis}, 31(3):947--970, 2011.
+
+\bibitem{topper2005option}
+J{\"u}rgen Topper.
+\newblock Option pricing with finite elements.
+\newblock {\em Wilmott Magazine}, pages 84--90, 2005.
+
+\bibitem{zlamal1978superconvergence}
+Milo{\v{s}} Zl{\'a}mal.
+\newblock Superconvergence and reduced integration in the finite element
+  method.
+\newblock {\em Mathematics of computation}, 32(143):663--685, 1978.
+
+\end{thebibliography}

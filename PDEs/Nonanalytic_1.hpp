@@ -1,5 +1,5 @@
-#ifndef PDE1HEADERREF
-#define PDE1HEADERREF
+#ifndef NONANALYTICHEADERREF
+#define NONANALYTICHEADERREF
 #include <cmath>
 #include <math.h>
 #include <vector>
@@ -17,18 +17,15 @@ class Nonanalytic: public APDE
 {
     public:
         friend class GeneralHeat;
-        double InitialCondition ( double x );
+        void InitialCondition ( SpaceMesh& a_mesh, std::vector<double>& first_U );
         double FirstBoundary( double t );
         double SecondBoundary( double t );
+        Nonanalytic( );
 
     protected:
-
-        double g_0 =0 , g_L = 1, k_0 = pow(10, 300), k_L = pow(10, 300);
-
-
 
 
 };
 
-#endif // PDE1HEADERREF
+#endif // NONANALYTICHEADERREF
 

@@ -128,7 +128,7 @@ void GeneralHeat::PrintSolution( )
 //        AnalyticGradientVec();
         EnergyNorm();
         double globalError=0;
-        for(auto k: mpEnergyNorm)
+        for(auto k: ErrorEstimate)
             globalError = globalError + k;
 
         std::cout << "FEM Approximation:     ";
@@ -143,11 +143,12 @@ void GeneralHeat::PrintSolution( )
         PrintVector(FEMGradient);
         std::cout << "ErrorEstimate:         ";
         PrintVector(ErrorEstimate);
-        std::cout << "Energy Error           ";
+        std::cout << "GlobalErrorEstimate:   ";
+        std::cout << sqrt(globalError)<<" \n";
+        std::cout << "EnergyError:           ";
         PrintVector(mpEnergyNorm);
         std::cout << "Global Energy Error    ";
-        std::cout << globalError;
-        //GlobalEnergyError();
+        GlobalEnergyError();
         std::cout << "\n";
 }
 
@@ -203,16 +204,21 @@ void GeneralHeat::SolveWithBCs()
 {
 mpcurrenTimeStep = 0;
 mpcurrentMeshIndex = 0;
-AnalyticSolutionVec();
-mpPreviousSolution = mpAnalyticSolution;
+//AnalyticSolutionVec();
+//mpPreviousSolution = mpAnalyticSolution;
+mppde->InitialCondition(mpsmesh, mpPreviousSolution);
 stiff.SetParameters(k_0, k_L, mpa);
 
 ofstream myfile;
 ofstream myfile1;
 myfile.open ("solution.csv");
 myfile1.open ("X.csv");
-
-
+for (auto k: mpPreviousSolution)
+    myfile << k << ", ";
+myfile << "\n";
+for (auto k: mpsmesh.mpSpaceNodes)
+    myfile1 << k << ", ";
+myfile1 << "\n";
 
 int m = mptmesh.NumberOfTimeSteps();
 for(int j = 0; j<m; j++)
@@ -224,12 +230,13 @@ stiff.MultiplyByScalar( mptmesh.ReadTimeMesh(mpcurrentMeshIndex) );
 mass.BuildGeneralMassMatrix(mpsmesh);
 
 LHS.AddTwoMatrices( mass, stiff );
-
 mass.MatrixVectorMultiplier( mpPreviousSolution, mpRHS );
+
+g_0 = mppde->FirstBoundary(mptmesh.ReadTimeStep(mpcurrenTimeStep));
+g_L =mppde->SecondBoundary(mptmesh.ReadTimeStep(mpcurrenTimeStep));
 
 BuiltbrVec();
 VectorTimesScalar( br, mptmesh.ReadTimeMesh(mpcurrentMeshIndex) );
-
 AddVectors( br, mpRHS, mpRHS );
 LHS.MatrixSolver( mpRHS, mpx );
 
@@ -400,7 +407,6 @@ void GeneralHeat::UnitTest1 ()
 {
     BuildGradientVec(mpx, mpsmesh, FEMGradient);
     GradientRecoveryFunction( mpsmesh, FEMGradient, GradientRecovery );
-
     BuildErrorEstimate();
 
     double globalError=0;
@@ -408,8 +414,13 @@ void GeneralHeat::UnitTest1 ()
     {
         globalError =ErrorEstimate.at(i)+globalError;
     }
-
+    std::cout << "Error estimate:           ";
     std::cout << sqrt(globalError)<<"\n";
+
+    EnergyNorm();
+    std::cout << "Global Energy Error       ";
+    GlobalEnergyError();
+    std::cout << "\n";
 
     //PrintVector(ErrorEstimate);
 }

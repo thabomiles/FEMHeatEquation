@@ -10,6 +10,7 @@
 #include "originalPDE.hpp"
 #include "EllipticPDE_Q1.hpp"
 #include "EllipticPDE2.hpp"
+#include "Nonanalytic_1.hpp"
 #include <string>
 #include <boost/math/quadrature/gauss.hpp>
 using namespace std;
@@ -22,26 +23,28 @@ int main(int argc, char* argv[])
 
 SpaceMesh smesh;
 std::vector<double> mesh = {0, 0.15, 0.25, 0.5, 1};
-smesh.GenerateSpaceMesh(mesh);
-//smesh.GenerateUniformMesh(1, 5);
+//smesh.GenerateSpaceMesh(mesh);
+smesh.GenerateUniformMesh(1, 5);
 //smesh.InsertArray(mesh);
 //smesh.PrintSpaceNodes();
 
-
 TimeMesh tmesh;
 tmesh.GenerateUniformTimeMesh(pow(smesh.meshsize(), 2), 1.0);
-tmesh.PrintTimeNodes();
+
 
 PDE_Q2 anotherpde;
 originalPDE firstpde;
 EllipticPDE_Q1 Q1;
 EllipticPDE2 elliptic2;
-
-
+Nonanalytic NA_1;
 
 AdaptiveSolver adapt;
+
+adapt.SetSpaceTimeMesh(smesh, tmesh, firstpde);
+
+
 adapt.SetSpaceTimeMesh(smesh, tmesh, anotherpde);
-adapt.SetTolerances(0.8,0.1);
+adapt.SetTolerances(0.2,0.05);
 adapt.AdaptiveSolve();
 adapt.PrintSolution();
 

@@ -19,6 +19,7 @@ class APDE
         virtual double EllipticalRHSfunction( double x );
         virtual double FirstBoundary( double t );
         virtual double SecondBoundary( double t );
+        virtual void InitialCondition ( SpaceMesh& a_mesh, std::vector<double>& first_U );
 
 
 
@@ -26,7 +27,6 @@ class APDE
     protected:
         const double M_PI = 2*acos(0);
 
-        //double a= pow(M_PI, -2), g_0 =0 , g_L = 0, k_0 = pow(10, 300), k_L = pow(10, 300);
         double a, g_0, g_L, k_0, k_L;
 
 };

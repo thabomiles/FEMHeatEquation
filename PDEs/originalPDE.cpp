@@ -26,6 +26,18 @@ double originalPDE::SecondBoundary( double t )
     return 0;
 }
 
+void originalPDE::InitialCondition ( SpaceMesh& a_mesh, std::vector<double>& first_U )
+{
+    first_U.clear();
+    double var;
+    for (int i = 0; i<a_mesh.meshsize()+1; i++)
+    {
+        var = ContinuousAnalyticSolution(a_mesh.ReadSpaceNode(i), 0);
+        first_U.push_back(var);
+    }
+}
+
+
 originalPDE::originalPDE( )
 {
     a= pow(M_PI, -2), g_0 =0 , g_L = 0, k_0 = pow(10, 300), k_L = pow(10, 300);

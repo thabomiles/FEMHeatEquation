@@ -29,13 +29,7 @@ double APDE::SecondBoundary( double t )
 
 }
 
-//double APDE::ContinuousAnalyticSolution( double x, double t )
-//{
-//     return 6*exp(-t)*sin(M_PI*x);
-//}
+void APDE::InitialCondition ( SpaceMesh& a_mesh, std::vector<double>& first_U )
+{
 
-//double APDE::ContinuousAnalyticSolution( double x, double t )
-//{
-//     return exp(-4*t)*sin(2*M_PI*x)+x;
-//}
-
+}

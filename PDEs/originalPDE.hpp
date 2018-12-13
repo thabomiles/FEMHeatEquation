@@ -19,6 +19,7 @@ class originalPDE: public APDE
         double AnalyticGradientWRTx( double x, double t );
         double FirstBoundary( double t );
         double SecondBoundary( double t );
+        void InitialCondition ( SpaceMesh& a_mesh, std::vector<double>& first_U );
         originalPDE();
 
     protected:

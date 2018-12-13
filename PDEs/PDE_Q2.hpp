@@ -17,6 +17,7 @@ class PDE_Q2: public APDE
         friend class GeneralHeat;
         double ContinuousAnalyticSolution( double x, double t );
         double AnalyticGradientWRTx( double x, double t );
+        void InitialCondition ( SpaceMesh& a_mesh, std::vector<double>& first_U );
         double FirstBoundary( double t );
         double SecondBoundary( double t );
         PDE_Q2( );

@@ -20,11 +20,6 @@ void AdaptiveSolver::SetTolerances(const double refineby, const double coarsenby
     coarseningtol = coarsenby;
 }
 
-void AdaptiveSolver::AdaptiveChangingBC();
-{
-
-}
-
 void AdaptiveSolver::AdaptiveSolve()
 {
 mpsmesh.PrintSpaceNodes();
@@ -32,8 +27,9 @@ mpcurrenTimeStep = 0;
 mpcurrentMeshIndex = 0;
 oldmesh.CopySpaceMesh(mpsmesh);
 
-AnalyticSolutionVec();
-mpPreviousSolution = mpAnalyticSolution;
+//AnalyticSolutionVec();
+//mpPreviousSolution = mpAnalyticSolution;
+mppde->InitialCondition(mpsmesh, mpPreviousSolution);
 stiff.SetParameters(k_0, k_L, mpa);
 
 int m = mptmesh.NumberOfTimeSteps();
@@ -46,7 +42,8 @@ stiff.MultiplyByScalar( mptmesh.ReadTimeMesh(mpcurrentMeshIndex) );
 mass.BuildGeneralMassMatrix(mpsmesh);
 
 LHS.AddTwoMatrices( mass, stiff );
-
+g_0 = mppde->FirstBoundary(mptmesh.ReadTimeStep(mpcurrenTimeStep));
+g_L =mppde->SecondBoundary(mptmesh.ReadTimeStep(mpcurrenTimeStep));
 BuildRHS();
 BuiltbrVec();
 VectorTimesScalar( br, mptmesh.ReadTimeMesh(mpcurrentMeshIndex) );
@@ -57,20 +54,31 @@ LHS.MatrixSolver( mpRHS, mpx );
 
 oldmesh.CopySpaceMesh(mpsmesh);
 mpsmesh.PrintSpaceNodes();
-PrintVector(mpx);
+
 mpPreviousSolution = mpx;
 
     BuildGradientVec(mpx, mpsmesh, FEMGradient);
     GradientRecoveryFunction( mpsmesh, FEMGradient, GradientRecovery );
     BuildErrorEstimate();
-
     PrintVector(ErrorEstimate);
 
+
+
+
     SaveRefinementNodes(mpNodeToInsert);
-    SaveIntervalsForCoarsening();
     PrintVector(mpNodeToInsert);
 
+    if(ErrorEstimate.size()>3)
+    {
+    std::cout<< ErrorEstimate.size()<<"\n";
+    SaveIntervalsForCoarsening();
     mpsmesh.CoarsenIntervals(NodesForRemoval);
+    }
+    else
+    {
+    NodesForRemoval.clear();
+    }
+
     mpsmesh.InsertArray( mpNodeToInsert );
 }
     std::cout<<mpsmesh.meshsize() <<"\n";
@@ -80,13 +88,16 @@ mpPreviousSolution = mpx;
 void AdaptiveSolver::SaveIntervalsForCoarsening(  )
 {
     NodesForRemoval.clear();
-    for(int i=0; i<ErrorEstimate.size()-1; i++)
+    for(int i=1; i<ErrorEstimate.size()-1; i++)
     {
         if (sqrt(ErrorEstimate.at(i)+ErrorEstimate.at(i+1))<coarseningtol)
         {
             NodesForRemoval.push_back(i+1);
         }
     }
+        for (auto k: NodesForRemoval)
+        std::cout << k << ", ";
+        std::cout << " \n";
 }
 
 void AdaptiveSolver::SaveIntervalsForRefinement()
@@ -113,7 +124,6 @@ void AdaptiveSolver::SaveRefinementNodes( std::vector<double>& Nodes_to_insert )
            Nodes_to_insert.push_back(midpoint);
         }
     }
-
 }
 
 void AdaptiveSolver::BuildRHS()
@@ -150,8 +160,6 @@ refinedsmesh.Range(mpsmesh.ReadSpaceNode(mpsmesh.meshsize()-1), mpsmesh.ReadSpac
         integral = integral + IntegrateBasisWithU(mpsmesh.meshsize(), intervals.at(j), intervals.at(j+1));
     }
     mpRHS.push_back(integral);
-
-//PrintVector(mpRHS);
 }
 
 void AdaptiveSolver::MeshRefinement()
@@ -209,7 +217,7 @@ BuildRHS();
 void AdaptiveSolver::SaveIntervalsForCoarsening2()
 {
     NodesForRemoval.clear();
-    for(int i=0; i<ErrorEstimate.size()-1; i++)
+    for(int i=1; i<ErrorEstimate.size()-1; i++)
     {
         if ((sqrt(ErrorEstimate.at(i))<coarseningtol)||(sqrt(ErrorEstimate.at(i+1))<coarseningtol))
         {

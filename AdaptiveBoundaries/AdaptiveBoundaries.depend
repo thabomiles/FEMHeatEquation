@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1544289378 source:c:\users\thabo\desktop\heatequationdis\boundaries\generalizedheat.cpp
+1544548546 source:c:\users\thabo\desktop\heatequationdis\boundaries\generalizedheat.cpp
 	<iostream>
 	<cmath>
 	<math.h>
@@ -73,7 +73,7 @@
 	<cmath>
 	<math.h>
 
-1544299245 c:\users\thabo\desktop\heatequationdis\pdes\apde.hpp
+1544387855 c:\users\thabo\desktop\heatequationdis\pdes\apde.hpp
 	<cmath>
 	<math.h>
 	<vector>
@@ -142,7 +142,7 @@
 	<array>
 	"TriDiagMatrix.hpp"
 
-1544299245 source:c:\users\thabo\desktop\heatequationdis\pdes\apde.cpp
+1544372005 source:c:\users\thabo\desktop\heatequationdis\pdes\apde.cpp
 	<iostream>
 	<cmath>
 	<math.h>
@@ -188,7 +188,7 @@
 	"StiffnessMatrix.hpp"
 	"APDE.hpp"
 
-1543522497 source:c:\users\thabo\desktop\heatequationdis\pdes\originalpde.cpp
+1544384153 source:c:\users\thabo\desktop\heatequationdis\pdes\originalpde.cpp
 	<iostream>
 	<cmath>
 	<math.h>
@@ -197,7 +197,7 @@
 	<array>
 	"originalPDE.hpp"
 
-1544304233 c:\users\thabo\desktop\heatequationdis\pdes\originalpde.hpp
+1544384153 c:\users\thabo\desktop\heatequationdis\pdes\originalpde.hpp
 	<cmath>
 	<math.h>
 	<vector>
@@ -230,7 +230,7 @@
 	"MassMatrix.hpp"
 	"StiffnessMatrix.hpp"
 
-1543767709 source:c:\users\thabo\desktop\heatequationdis\pdes\pde_q2.cpp
+1544385888 source:c:\users\thabo\desktop\heatequationdis\pdes\pde_q2.cpp
 	<iostream>
 	<cmath>
 	<math.h>
@@ -239,7 +239,7 @@
 	<array>
 	"PDE_Q2.hpp"
 
-1544304218 c:\users\thabo\desktop\heatequationdis\pdes\pde_q2.hpp
+1544385113 c:\users\thabo\desktop\heatequationdis\pdes\pde_q2.hpp
 	<cmath>
 	<math.h>
 	<vector>
@@ -267,7 +267,7 @@
 	<string>
 	<boost/math/quadrature/gauss.hpp>
 
-1544298247 source:c:\users\thabo\desktop\heatequationdis\adaptiveboundaries\driver.cpp
+1544614199 source:c:\users\thabo\desktop\heatequationdis\adaptiveboundaries\driver.cpp
 	<iostream>
 	<fstream>
 	<cmath>
@@ -280,6 +280,7 @@
 	"originalPDE.hpp"
 	"EllipticPDE_Q1.hpp"
 	"EllipticPDE2.hpp"
+	"Nonanalytic_1.hpp"
 	<string>
 	<boost/math/quadrature/gauss.hpp>
 
@@ -294,7 +295,7 @@
 	"TimeMesh.hpp"
 	"APDE.hpp"
 
-1544296097 source:c:\users\thabo\desktop\heatequationdis\adaptiveboundaries\spaceadaptivesolver.cpp
+1544632807 source:c:\users\thabo\desktop\heatequationdis\adaptiveboundaries\spaceadaptivesolver.cpp
 	<iostream>
 	<fstream>
 	<cmath>
@@ -308,4 +309,25 @@
 	<string>
 	<functional>
 	<boost/math/quadrature/gauss.hpp>
+
+1544390167 source:c:\users\thabo\desktop\heatequationdis\pdes\nonanalytic_1.cpp
+	<iostream>
+	<cmath>
+	<math.h>
+	<iostream>
+	<vector>
+	<array>
+	"Nonanalytic_1.hpp"
+
+1544387522 c:\users\thabo\desktop\heatequationdis\pdes\nonanalytic_1.hpp
+	<cmath>
+	<math.h>
+	<vector>
+	<array>
+	"SpaceMesh.hpp"
+	"TimeMesh.hpp"
+	"TriDiagMatrix.hpp"
+	"MassMatrix.hpp"
+	"StiffnessMatrix.hpp"
+	"APDE.hpp"
 
